@@ -1,0 +1,30 @@
+{
+    "configurations": [
+        {
+            "name": "RT1052",
+            "includePath": [
+                "C:\\Users\\Dz_hui\\Desktop\\RT1052_emwin1.1\\RT1052_emwin/**",
+                "D:\\Keil_v5\\ARM\\ARMCC\\include/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE",
+                "__CC_ARM",
+                "CPU_MIMXRT1052DVL6B",
+                "XIP_EXTERNAL_FLASH=1",
+                "XIP_BOOT_HEADER_ENABLE=1",
+                "XIP_BOOT_HEADER_DCD_ENABLE=1",
+                "PRINTF_FLOAT_ENABLE=1",
+                "SCANF_FLOAT_ENABLE=1",
+                "PRINTF_ADVANCED_ENABLE=1",
+                "SCANF_ADVANCED_ENABLE=1"
+            ],
+            "compilerPath": "",
+            "cStandard": "c11",
+            "cppStandard": "c++98",
+            "intelliSenseMode": "msvc-x64"
+        }
+    ],
+    "version": 4
+}

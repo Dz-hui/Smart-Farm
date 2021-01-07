@@ -1,0 +1,10 @@
+.\objects\timer.o: ..\..\Libraries\rtthread\src\timer.c
+.\objects\timer.o: ..\..\Libraries\rtthread\include\rtthread.h
+.\objects\timer.o: ..\..\Libraries\rtthread\bsp\rtconfig.h
+.\objects\timer.o: ..\..\Libraries\rtthread\include\rtdebug.h
+.\objects\timer.o: ..\..\Libraries\rtthread\include\rtdef.h
+.\objects\timer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\timer.o: ..\..\Libraries\rtthread\include\rtservice.h
+.\objects\timer.o: ..\..\Libraries\rtthread\include\rtm.h
+.\objects\timer.o: ..\..\Libraries\rtthread\include\rtthread.h
+.\objects\timer.o: ..\..\Libraries\rtthread\include\rthw.h

@@ -1,0 +1,9 @@
+.\objects\thermometer.o: ..\..\Libraries\emWin\demo\thermometer.c
+.\objects\thermometer.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\thermometer.o: ..\..\Libraries\emWin\inc\GUI.h
+.\objects\thermometer.o: ..\..\Libraries\emWin\inc\GUI_ConfDefaults.h
+.\objects\thermometer.o: ..\..\Libraries\emWin\Config\GUIConf.h
+.\objects\thermometer.o: ..\..\Libraries\emWin\inc\GUI_Type.h
+.\objects\thermometer.o: ..\..\Libraries\emWin\inc\LCD.h
+.\objects\thermometer.o: ..\..\Libraries\emWin\inc\Global.h
+.\objects\thermometer.o: ..\..\Libraries\emWin\inc\GUI_Version.h

@@ -1,0 +1,9 @@
+.\objects\on.o: ..\..\Libraries\emWin\demo\on.c
+.\objects\on.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\on.o: ..\..\Libraries\emWin\inc\GUI.h
+.\objects\on.o: ..\..\Libraries\emWin\inc\GUI_ConfDefaults.h
+.\objects\on.o: ..\..\Libraries\emWin\Config\GUIConf.h
+.\objects\on.o: ..\..\Libraries\emWin\inc\GUI_Type.h
+.\objects\on.o: ..\..\Libraries\emWin\inc\LCD.h
+.\objects\on.o: ..\..\Libraries\emWin\inc\Global.h
+.\objects\on.o: ..\..\Libraries\emWin\inc\GUI_Version.h

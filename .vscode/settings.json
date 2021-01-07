@@ -1,0 +1,31 @@
+{
+    "files.associations": {
+        "fsl_debug_console.h": "c",
+        "systick.h": "c",
+        "key.h": "c",
+        "clock_config.h": "c",
+        "pin_mux.h": "c",
+        "board.h": "c",
+        "fsl_common.h": "c",
+        "fsl_iomuxc.h": "c",
+        "i2c.h": "c",
+        "fsl_lpi2c.h": "c",
+        "fsl_device_registers.h": "c",
+        "bsp_lcd.h": "c",
+        "spi.h": "c",
+        "fsl_adc.h": "c",
+        "fire_lcd.h": "c",
+        "stdint.h": "c"
+    },
+    "editor.minimap.enabled": true,
+    "C_Cpp.autocomplete": "Default",
+    "[cpp]": {
+        "editor.quickSuggestions": true
+    },
+    "[c]": {
+        "editor.quickSuggestions": true
+    },
+    "terminal.integrated.automationShell.windows": "C:\\Program Files\\Git\binbash.exe",
+    "files.encoding": "gb2312"
+}
+

@@ -1,0 +1,9 @@
+.\objects\brightness.o: ..\..\Libraries\emWin\demo\brightness.c
+.\objects\brightness.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\brightness.o: ..\..\Libraries\emWin\inc\GUI.h
+.\objects\brightness.o: ..\..\Libraries\emWin\inc\GUI_ConfDefaults.h
+.\objects\brightness.o: ..\..\Libraries\emWin\Config\GUIConf.h
+.\objects\brightness.o: ..\..\Libraries\emWin\inc\GUI_Type.h
+.\objects\brightness.o: ..\..\Libraries\emWin\inc\LCD.h
+.\objects\brightness.o: ..\..\Libraries\emWin\inc\Global.h
+.\objects\brightness.o: ..\..\Libraries\emWin\inc\GUI_Version.h
