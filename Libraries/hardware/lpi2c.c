@@ -138,14 +138,15 @@ void LPI2C_readdata(uint8_t addr,uint8_t subaddr,uint8_t *data)
     status_t reval=kStatus_Fail;
     
     lpi2c_transfer.direction=kLPI2C_Read;
-	lpi2c_transfer.slaveAddress=(addr>>1);
-	lpi2c_transfer.subaddress=subaddr;
-	lpi2c_transfer.subaddressSize=SLAVER_INIT_SIZE;
-	lpi2c_transfer.data=data;
-	lpi2c_transfer.dataSize=0x02;
-	lpi2c_transfer.flags=kLPI2C_TransferDefaultFlag;
+		lpi2c_transfer.slaveAddress=(addr>>1);
+		lpi2c_transfer.subaddress=subaddr;
+		lpi2c_transfer.subaddressSize=SLAVER_INIT_SIZE;
+		lpi2c_transfer.data=data;
+		lpi2c_transfer.dataSize=0x02;
+		lpi2c_transfer.flags=kLPI2C_TransferDefaultFlag;
     
-    reval=LPI2C_MasterTransferBlocking(LPI2C_PORT,&lpi2c_transfer);   
+    reval=LPI2C_MasterTransferBlocking(LPI2C_PORT,&lpi2c_transfer);
+		*data = reval;
 }
 
 void BH1750_writebyte(void)

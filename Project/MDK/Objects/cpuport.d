@@ -1,9 +1,0 @@
-.\objects\cpuport.o: ..\..\Libraries\rtthread\libcpu\arm\cortex-m7\cpuport.c
-.\objects\cpuport.o: ..\..\Libraries\rtthread\include\rtthread.h
-.\objects\cpuport.o: ..\..\Libraries\rtthread\bsp\rtconfig.h
-.\objects\cpuport.o: ..\..\Libraries\rtthread\include\rtdebug.h
-.\objects\cpuport.o: ..\..\Libraries\rtthread\include\rtdef.h
-.\objects\cpuport.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
-.\objects\cpuport.o: ..\..\Libraries\rtthread\include\rtservice.h
-.\objects\cpuport.o: ..\..\Libraries\rtthread\include\rtm.h
-.\objects\cpuport.o: ..\..\Libraries\rtthread\include\rtthread.h

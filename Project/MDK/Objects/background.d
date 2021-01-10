@@ -1,9 +1,0 @@
-.\objects\background.o: ..\..\Libraries\emWin\demo\background.c
-.\objects\background.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\background.o: ..\..\Libraries\emWin\inc\GUI.h
-.\objects\background.o: ..\..\Libraries\emWin\inc\GUI_ConfDefaults.h
-.\objects\background.o: ..\..\Libraries\emWin\Config\GUIConf.h
-.\objects\background.o: ..\..\Libraries\emWin\inc\GUI_Type.h
-.\objects\background.o: ..\..\Libraries\emWin\inc\LCD.h
-.\objects\background.o: ..\..\Libraries\emWin\inc\Global.h
-.\objects\background.o: ..\..\Libraries\emWin\inc\GUI_Version.h

@@ -3,7 +3,7 @@
         {
             "name": "RT1052",
             "includePath": [
-                "C:\\Users\\Dz_hui\\Desktop\\RT1052_emwin1.1\\RT1052_emwin/**",
+                "E:\\my_workspace\\my_github\\Smart-Farm/**",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include/**"
             ],
             "defines": [
