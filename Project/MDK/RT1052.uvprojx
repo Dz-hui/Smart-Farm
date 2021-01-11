@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>MIMXRT1052DVL6B</Device>
           <Vendor>NXP</Vendor>
-          <PackID>NXP.MIMXRT1052_DFP.10.0.1</PackID>
+          <PackID>NXP.MIMXRT1052_DFP.12.2.0</PackID>
           <PackURL>http://mcuxpresso.nxp.com/cmsis_pack/repo/</PackURL>
           <Cpu>IRAM(0x20000000,0x020000) IRAM2(0x00000000,0x020000) XRAM(0x20200000,0x040000) CPUTYPE("Cortex-M7") FPU3(DFPU) CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -54,7 +54,7 @@
           <CreateLib>0</CreateLib>
           <CreateHexFile>0</CreateHexFile>
           <DebugInformation>1</DebugInformation>
-          <BrowseInformation>0</BrowseInformation>
+          <BrowseInformation>1</BrowseInformation>
           <ListingPath>.\Listings\</ListingPath>
           <HexFormatSelection>1</HexFormatSelection>
           <Merge32K>0</Merge32K>

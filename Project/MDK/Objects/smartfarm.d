@@ -1,9 +1,0 @@
-.\objects\smartfarm.o: ..\..\Libraries\emWin\demo\smartfarm.c
-.\objects\smartfarm.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\smartfarm.o: ..\..\Libraries\emWin\inc\GUI.h
-.\objects\smartfarm.o: ..\..\Libraries\emWin\inc\GUI_ConfDefaults.h
-.\objects\smartfarm.o: ..\..\Libraries\emWin\Config\GUIConf.h
-.\objects\smartfarm.o: ..\..\Libraries\emWin\inc\GUI_Type.h
-.\objects\smartfarm.o: ..\..\Libraries\emWin\inc\LCD.h
-.\objects\smartfarm.o: ..\..\Libraries\emWin\inc\Global.h
-.\objects\smartfarm.o: ..\..\Libraries\emWin\inc\GUI_Version.h

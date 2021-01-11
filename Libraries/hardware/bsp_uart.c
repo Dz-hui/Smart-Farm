@@ -53,8 +53,6 @@ void UART_ModeConfig(void)
   IRQN_priority(4,0,1,DEBUG_UART_IRQ);
   /*Ê¹ÄÜÖÐ¶Ï*/
   EnableIRQ(DEBUG_UART_IRQ);
-  
-
 }
 
  /**
