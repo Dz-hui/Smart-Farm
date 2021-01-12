@@ -12,7 +12,7 @@
 #define USER_SERIAL_TX_BUFF                 128
 #define USER_SERIAL_RX_BUFF                 48
 #if defined(User_Serial_Port)
-#define HAS_USER_Serial
+#define HAS_USER_Serial                     1           //user serial port
 #define User_Serial_Port_TX
 #define User_Serial_Port_RX
 #endif
