@@ -115,10 +115,7 @@ static void distant_thread_entry(void* parameter)
 	while(1)
 	{
 		rt_enter_critical();
-		
-
 		gizwits_data.G_distant_data = GP2Y0E03_DateRead();
-		
 		rt_exit_critical();
 		rt_thread_delay(1000);
 	}
@@ -173,12 +170,9 @@ static void curtain_up_thread_entry(void* parameter)
 			curtain_stop();
 			
 		}	
-
 		rt_exit_critical(); 
 
 		rt_thread_delay(4);
-		
-		
 	}
 }
 
@@ -209,20 +203,21 @@ static void fan_thread_entry(void* parameter)
 {
 	while(1)
 	{
-		
 		rt_enter_critical();
-		if(gizwits_status.G_fan_status ==1  )
-		{
-			QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,20,false,QTMR_SOURCE_CLOCK / 128);
-		}
-		else if(gizwits_status.G_fan_status== 2 )
-		{
-			QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,50,false,QTMR_SOURCE_CLOCK / 128);
-		}
-		else if(gizwits_status.G_fan_status == 3)
-		{
-			QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,90,false,QTMR_SOURCE_CLOCK / 128);
-		}
+		// if(gizwits_status.G_fan_status ==1  )
+		// {
+		// 	QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,20,false,QTMR_SOURCE_CLOCK / 128);
+		// }
+		// else if(gizwits_status.G_fan_status== 2 )
+		// {
+		// 	QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,50,false,QTMR_SOURCE_CLOCK / 128);
+		// }
+		// else if(gizwits_status.G_fan_status == 3)
+		// {
+		// 	QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,90,false,QTMR_SOURCE_CLOCK / 128);
+		// }
+
+		QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,gizwits_status.G_fan_status * (3/100),false,QTMR_SOURCE_CLOCK / 128);
 		
 		if(emwin_status.E_fan_status==1)
 		{
@@ -299,8 +294,6 @@ static void default_thread_entry(void* parameter)
 			button_status.E_button_pump=0;
 			button_status.E_light_val=0;
 			gizwitsHandle((dataPoint_t *)&currentDataPoint); 
-		
-
 		}	
 		rt_exit_critical();
 		rt_thread_delay(100);

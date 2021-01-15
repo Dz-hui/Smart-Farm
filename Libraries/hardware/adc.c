@@ -16,12 +16,15 @@
 #include "stdio.h"
 #include "core_delay.h"
 
-float soil_val;
+float soil_val;    
 float soil;
 float distant_val;
 float distance_val;
 uint8_t soil_conversion_flg=0;
 uint8_t distant_conversion_flg=0;
+
+
+SOIL_DATA_DEF soil_data;
 
 /***********************************************************************
 *@Drscription: SOIL_PAD_CONFIG
@@ -60,14 +63,13 @@ void adc_iomuxc_pad_config(void)
     IOMUXC_SetPinConfig(DISTANCE_GPIO_IOMUXC,ADC_PAD_SETTING);
     IOMUXC_SetPinConfig(DISTANCE_GPIO1_IOMUXC,ADC_PAD_SETTING);
     IOMUXC_SetPinConfig(DISTANCE_VIN_IOMUXC,ADC_PAD_SETTING);
-
 }
 
 void soil_gpio_config(void)
 {
     gpio_pin_config_t adc_pin_config;
     adc_pin_config.direction = kGPIO_DigitalInput;
-	adc_pin_config.interruptMode = kGPIO_NoIntmode;//不使用中断
+	adc_pin_config.interruptMode = kGPIO_NoIntmode; //不使用中断
 
 	GPIO_PinInit(SOIL_GPIO_PORT,SOIL_GPIO_PIN,&adc_pin_config);
     GPIO_PinInit(DISTANCE_GPIO_PORT,DISTANCE_GPIO_PIN,&adc_pin_config);
@@ -107,16 +109,9 @@ void adc_mode_config(void)
     ADC_SetChannelConfig(ADC,DISTANCE_ADC_CHANNLE_GROUP,&adc_channle_config);
     
     if(kStatus_Success == ADC_DoAutoCalibration(ADC))
-    {
-        //printf("校准完成\n");
-
-    }
-
+        printf("校准完成\n");
     else 
-    {
-        //printf("校准失败\n");
-    }
-    
+        printf("校准失败\n");
 }
 
 void adc_ect_config(void)
@@ -186,22 +181,67 @@ void xbar_config(void)
     XBARA_SetSignalsConnection(XBARA1,kXBARA1_InputPitTrigger0,kXBARA1_OutputAdcEtcXbar0Trig3);
 }
 
+/**********************************************************************************************************************/
 
 
-float soil_adc_get(void)
-{ 
-    soil = ADC_GetChannelConversionValue(ADC,SOIL_ADC_CHANNLE_GROUP);
-    soil =((4095-soil)/4095)*100;
-    printf("soil_adc=%f\n",soil);
-    return soil;
+void soil_data_init(void) {
+    soil_data.soil_buff_length = 0;
+    soil_data.soil_status = IDLE;
+    soil_data.soil_value = 0;
 }
 
-float GP2Y0E03_DateRead(void)
-{
+SOIL_F soil_adc_get(void) {   
+    SOIL_F value = 0;
+    value = ADC_GetChannelConversionValue(ADC,SOIL_ADC_CHANNLE_GROUP);
+    value =((4095-value)/4095)*100;
+    soil_write_byte(&soil_data, value);
+    return value;
+}
+
+void soil_write_byte(SOIL_DATA_DEF *sd, SOIL_F data) {
+
+    if((sd->soil_buff_length >= SOIL_QUEUE_BUFF_SIZE) || (sd->soil_status != IN_CALC)) 
+        return;
+    if(sd->soil_status == RE_CALC) 
+        sd->soil_status = IDLE;
+
+    sd->soil_queue_buffer[sd->soil_buff_length] = data;
+    sd->soil_buff_length++;
     
+    if(sd->soil_buff_length == SOIL_QUEUE_BUFF_SIZE) 
+        sd->soil_status = IN_CALC;
+}
+
+void soil_read_buffer(SOIL_DATA_DEF *sd, SOIL_F *data) {
+
+    if((sd->soil_buff_length == 0)) {
+        sd->soil_status = IDLE;
+        return ;
+    }
+    memcpy(data, sd->soil_queue_buffer, sd->soil_buff_length);
+    sd->soil_buff_length = 0;
+}
+
+SOIL_F soil_calc(SOIL_DATA_DEF *sd, SOIL_F *data) {
+
+    sd->soil_status = IN_CALC;
+    SOIL_F value = 0;
+    soil_read_buffer(sd, data);
+
+    for (uint32_t i=0; i<SOIL_QUEUE_BUFF_SIZE; i++) {
+        value = value + data[i];
+    }
+    value = value / SOIL_QUEUE_BUFF_SIZE;
+    sd->soil_status = RE_CALC;
+    return value;
+}
+
+/**********************************************************************************************************************/
+
+float GP2Y0E03_DateRead(void) {
 	float adc_data = 0,distant = 0;
     distance_val =  ADC_GetChannelConversionValue(ADC,DISTANCE_ADC_CHANNLE_GROUP);
-	distance_val = (float)distance_val/(float)4095*(float)3.3;	//得出电压
+	distance_val = (float)distance_val/(float)4095*(float)3.3;	    //得出电压
 	distance_val = -((distance_val-(float)2.35)/(float)0.035);		//计算出距离
 	printf("distant=%f\n",distance_val);
 	return distance_val;

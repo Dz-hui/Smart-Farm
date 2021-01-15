@@ -1,0 +1,9 @@
+.\objects\watering.o: ..\..\Libraries\emWin\demo\watering.c
+.\objects\watering.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\watering.o: ..\..\Libraries\emWin\inc\GUI.h
+.\objects\watering.o: ..\..\Libraries\emWin\inc\GUI_ConfDefaults.h
+.\objects\watering.o: ..\..\Libraries\emWin\Config\GUIConf.h
+.\objects\watering.o: ..\..\Libraries\emWin\inc\GUI_Type.h
+.\objects\watering.o: ..\..\Libraries\emWin\inc\LCD.h
+.\objects\watering.o: ..\..\Libraries\emWin\inc\Global.h
+.\objects\watering.o: ..\..\Libraries\emWin\inc\GUI_Version.h

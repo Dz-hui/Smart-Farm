@@ -19,10 +19,8 @@
 #include "fsl_iomuxc.h"
 #include "fsl_gpio.h"
 #include "fsl_lpuart.h"
-
 #include "pad_config.h"
 #include "fsl_debug_console.h"
-
 #include "exit.h"
 #include "bsp_uart.h"
 #include "gizwits_protocol.h"
@@ -112,7 +110,6 @@ void Uart_SendString( LPUART_Type *base,  const char *str)
   LPUART_WriteBlocking( base, (const uint8_t *)str, strlen(str));
 }
  
-
   /**
 * @brief  发送一个16位数  
 * @param  base:选择端口
