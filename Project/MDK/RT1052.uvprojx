@@ -678,11 +678,6 @@
           <GroupName>user</GroupName>
           <Files>
             <File>
-              <FileName>fsl_qtmr.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Libraries\drivers\fsl_qtmr.c</FilePath>
-            </File>
-            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\User\main.c</FilePath>

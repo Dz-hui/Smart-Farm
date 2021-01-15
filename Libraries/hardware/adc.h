@@ -41,17 +41,39 @@
 #define ADC_IRQ                                     ADC1_IRQn
 #define ADC_IRQHandler                              ADC1_IRQHandler
 
-typedef struct
-{
-	float soil_val;
-	float distance_val;
-	
-}adc_data_typedef;
+// typedef struct
+// {
+// 	float soil_val;
+// 	float distance_val;
+// }adc_data_typedef;
+
+typedef float SOIL_F;
+#define SOIL_QUEUE_BUFF_SIZE		10
+
+typedef enum {
+	IDLE,			// 空闲状态，可以采集接收buffer
+	IN_CALC,		// 正在等待计算，不能填充BUFF
+	RE_CALC,		// 计算完成，清空BUFF中
+}SOIL_STATUS_DEF;
+
+typedef struct {
+	SOIL_F 				soil_value;
+	SOIL_F 				soil_queue_buffer[SOIL_QUEUE_BUFF_SIZE];
+	uint32_t 			soil_buff_length;
+	SOIL_STATUS_DEF		soil_status;
+}SOIL_DATA_DEF;
+extern SOIL_DATA_DEF soil_data;
 
 void adc_config(void);
 void xbar_config(void);
 
-float soil_adc_get(void);
+SOIL_F soil_adc_get(void);
+void soil_write_byte(SOIL_DATA_DEF *sd, SOIL_F data);
+void soil_read_buffer(SOIL_DATA_DEF *sd, SOIL_F *data);
+SOIL_F soil_calc(SOIL_DATA_DEF *sd, SOIL_F *data);
+
+
+
 float GP2Y0E03_DateRead(void);
 
 #endif /*__ADC_SOIL__H*/

@@ -3,7 +3,7 @@
         {
             "name": "RT1052",
             "includePath": [
-                "E:\\Github\\GitHub\\NXP\\Smart-Farm/**",
+                "E:\\my_workspace\\my_github\\Smart-Farm/**",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include/**"
             ],
             "defines": [
