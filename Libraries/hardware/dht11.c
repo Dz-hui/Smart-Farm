@@ -132,7 +132,6 @@ uint8_t ReadByte(void) {
 ****************************************************************/
 uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
     
-    
 	__DHT11_MODE(1);            //配置为输出
 	
 	__DHT11_OUT_L();            //拉低
@@ -141,7 +140,6 @@ uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
 	__DHT11_OUT_H();            //拉高
     
     CPU_TS_Tmr_Delay_US(13);//rt_thread_udelay(13)//__DHT11_DELAY_US(13);       //13us
-
 	__DHT11_MODE(0);            //配置为输入
 
 	if(__DHT11_READ() == 0) {

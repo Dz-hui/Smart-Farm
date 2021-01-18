@@ -6,6 +6,8 @@
 #include "core_delay.h"
 
 
+STEP_DEF user_step;
+
 /* 所有引脚均使用同样的PAD配置 */
 #define STEP_PAD_CONFIG_DATA            (SRE_0_SLOW_SLEW_RATE| \
                                         DSE_6_R0_6| \
@@ -85,94 +87,88 @@ void STEP_GPIO_Config(void)
 }
 
 
+
+void user_step_init() {
+
+	user_step.curtain_dir = 0;
+	user_step.motor_num = 0;
+	user_step.step_delay = 4; 
+	user_step.step_move = 0;
+	user_step.step_status = STEP_STOP;
+}
+
+void step_move(uint8_t ch1,uint8_t ch2,uint8_t ch3,uint8_t ch4) {
+
+	GPIO_PinWrite(STEP_IN1_PORT,STEP_IN1_GPIO_PIN,ch1);
+	GPIO_PinWrite(STEP_IN2_PORT,STEP_IN2_GPIO_PIN,ch2);
+	GPIO_PinWrite(STEP_IN3_PORT,STEP_IN3_GPIO_PIN,ch3);
+	GPIO_PinWrite(STEP_IN4_PORT,STEP_IN4_GPIO_PIN,ch4);
+}
+
+
 /**逆时针转动**/
 void curtain_down(void)
 {
 	uint8_t i;
-	for(i=0;i<4;i++)
+
+	switch(user_step.motor_num)
 	{
-		switch(i)
-		{
-			case 0:
-				GPIO_PinWrite(STEP_IN1_PORT,STEP_IN1_GPIO_PIN,1);
-				GPIO_PinWrite(STEP_IN2_PORT,STEP_IN2_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN3_PORT,STEP_IN3_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN4_PORT,STEP_IN4_GPIO_PIN,0);
-			break;
-			
-			case 1:
-				GPIO_PinWrite(STEP_IN2_PORT,STEP_IN2_GPIO_PIN,1);
-				GPIO_PinWrite(STEP_IN1_PORT,STEP_IN1_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN3_PORT,STEP_IN3_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN4_PORT,STEP_IN4_GPIO_PIN,0);
-			break;
-			
-			case 2:
-				GPIO_PinWrite(STEP_IN3_PORT,STEP_IN3_GPIO_PIN,1);
-				GPIO_PinWrite(STEP_IN2_PORT,STEP_IN2_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN1_PORT,STEP_IN1_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN4_PORT,STEP_IN4_GPIO_PIN,0);
-			break;
-			
-			case 3:
-				GPIO_PinWrite(STEP_IN4_PORT,STEP_IN4_GPIO_PIN,1);
-				GPIO_PinWrite(STEP_IN2_PORT,STEP_IN2_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN3_PORT,STEP_IN3_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN1_PORT,STEP_IN1_GPIO_PIN,0);
-			break;
-				
-		}
+		case 0:
+			step_move(1,0,0,0);
+			user_step.motor_num++;
+			user_step.step_status = STEP_IN_MOVE;
+		break;
 		
-		CPU_TS_Tmr_Delay_US(4000);
+		case 1:
+			step_move(0,1,0,0);
+			user_step.motor_num++;
+			user_step.step_status = STEP_IN_MOVE;
+		break;
+		
+		case 2:
+			step_move(0,0,1,0);
+			user_step.motor_num++;
+			user_step.step_status = STEP_IN_MOVE;
+		break;
+		
+		case 3:
+			step_move(0,0,0,1);
+			user_step.motor_num = 0;
+			user_step.step_status = STEP_STOP;
+		break;
 	}
-	
 }
 
 /**顺时针转动**/
 void curtain_up(void)
 {
 	uint8_t i;
-	for(i=0;i<4;i++)
+	switch(user_step.motor_num)
 	{
-		switch(i)
-		{
-			case 0:
-				GPIO_PinWrite(STEP_IN4_PORT,STEP_IN4_GPIO_PIN,1);
-				GPIO_PinWrite(STEP_IN2_PORT,STEP_IN2_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN3_PORT,STEP_IN3_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN1_PORT,STEP_IN1_GPIO_PIN,0);
-
-			break;
-			
-			case 1:
-				GPIO_PinWrite(STEP_IN3_PORT,STEP_IN3_GPIO_PIN,1);
-				GPIO_PinWrite(STEP_IN1_PORT,STEP_IN1_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN2_PORT,STEP_IN2_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN4_PORT,STEP_IN4_GPIO_PIN,0);
-
-			break;
-			
-			case 2:
-				GPIO_PinWrite(STEP_IN2_PORT,STEP_IN2_GPIO_PIN,1);
-				GPIO_PinWrite(STEP_IN1_PORT,STEP_IN1_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN3_PORT,STEP_IN3_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN4_PORT,STEP_IN4_GPIO_PIN,0);
-
-			break;
-			
-			case 3:
-				GPIO_PinWrite(STEP_IN1_PORT,STEP_IN1_GPIO_PIN,1);
-				GPIO_PinWrite(STEP_IN2_PORT,STEP_IN2_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN3_PORT,STEP_IN3_GPIO_PIN,0);
-				GPIO_PinWrite(STEP_IN4_PORT,STEP_IN4_GPIO_PIN,0);
-
-			break;
-				
-		}
-		CPU_TS_Tmr_Delay_US(4000);
-	}
+		case 0:
+		step_move(0,0,0,1);
+		user_step.motor_num++;
+		user_step.step_status = STEP_IN_MOVE;
+		break;
 		
-
+		case 1:
+		step_move(0,0,1,0);
+		user_step.motor_num++;
+		user_step.step_status = STEP_IN_MOVE;
+		break;
+		
+		case 2:
+		step_move(0,1,0,0);
+		user_step.motor_num++;
+		user_step.step_status = STEP_IN_MOVE;
+		break;
+		
+		case 3:
+		step_move(1,0,0,0);
+		user_step.motor_num = 0;
+		user_step.step_status = STEP_STOP;
+		break;
+	}
 }
 
 void curtain_stop(void)

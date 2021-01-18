@@ -1,32 +1,38 @@
-<mxfile host="65bd71144e" modified="2021-01-15T16:40:46.059Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.1 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" version="13.10.0" etag="YalwERg3EFNbAdkthXoD" type="embed">
+<mxfile host="65bd71144e" modified="2021-01-18T09:31:53.027Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Code/1.52.1 Chrome/83.0.4103.122 Electron/9.3.5 Safari/537.36" etag="6dxVLm6FLeilkzCnaSce" version="13.10.0" type="embed">
     <diagram id="pXxdqhi2ekppScwuKoym" name="ตฺ 1 าณ">
-        <mxGraphModel dx="1830" dy="1317" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+        <mxGraphModel dx="812" dy="596" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="MCU" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="330" y="610" width="980" height="80" as="geometry"/>
+                <mxCell id="2" value="MCU" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#60a917;strokeColor=#2D7600;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="410" y="290" width="960" height="68" as="geometry"/>
                 </mxCell>
-                <mxCell id="4" value="GPIO" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="330" y="440" width="120" height="60" as="geometry"/>
+                <mxCell id="4" value="GPIO" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="410" y="390" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="5" value="GPT" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="610" y="440" width="120" height="60" as="geometry"/>
+                <mxCell id="5" value="GPT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="690" y="390" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="6" value="ADC" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="470" y="440" width="120" height="60" as="geometry"/>
+                <mxCell id="6" value="ADC" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="550" y="390" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="8" value="I2C" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="890" y="440" width="120" height="60" as="geometry"/>
+                <mxCell id="8" value="I2C" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="970" y="390" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="PIT" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="750" y="440" width="120" height="60" as="geometry"/>
+                <mxCell id="9" value="PIT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="830" y="390" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="UART" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="1170" y="440" width="120" height="60" as="geometry"/>
+                <mxCell id="12" value="UART" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="1250" y="390" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="I2C" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-                    <mxGeometry x="1030" y="440" width="120" height="60" as="geometry"/>
+                <mxCell id="13" value="I2C" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#1ba1e2;strokeColor=#006EAF;fontColor=#ffffff;" parent="1" vertex="1">
+                    <mxGeometry x="1110" y="390" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="RT_THREAD" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="410" y="490" width="390" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="Gizwits" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d80073;strokeColor=#A50040;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="830" y="490" width="230" height="60" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

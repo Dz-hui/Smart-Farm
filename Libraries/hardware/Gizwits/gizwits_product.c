@@ -94,12 +94,6 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
         else
         {
 		      gizwits_status.G_curtain_down_status=0;
-//			n=2000;
-//			while(n)
-//			{
-//				curtain_up();
-//				--n;
-//			}
         }
       case EVENT_curtain_up:
         currentDataPoint.valuecurtain_up = dataPointPtr->valuecurtain_up;
