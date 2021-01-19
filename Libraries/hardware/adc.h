@@ -5,8 +5,7 @@
 *@Drscription: 
 ***********************************************************************/
 #ifndef   __ADC_SOIL__H
-
-#define    __ADC_SOIL__H
+#define   __ADC_SOIL__H
 
 #include "fsl_common.h"
 
@@ -41,12 +40,6 @@
 #define ADC_IRQ                                     ADC1_IRQn
 #define ADC_IRQHandler                              ADC1_IRQHandler
 
-// typedef struct
-// {
-// 	float soil_val;
-// 	float distance_val;
-// }adc_data_typedef;
-
 typedef float SOIL_F;
 #define SOIL_QUEUE_BUFF_SIZE		10
 
@@ -71,9 +64,6 @@ SOIL_F soil_adc_get(void);
 void soil_write_byte(SOIL_DATA_DEF *sd, SOIL_F data);
 void soil_read_buffer(SOIL_DATA_DEF *sd, SOIL_F *data);
 SOIL_F soil_calc(SOIL_DATA_DEF *sd, SOIL_F *data);
-
-
-
 float GP2Y0E03_DateRead(void);
 
 #endif /*__ADC_SOIL__H*/

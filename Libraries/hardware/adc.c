@@ -95,17 +95,24 @@ void adc_mode_config(void)
     adc_channel_config_t adc_channle_config;
     
     ADC_GetDefaultConfig(&adc_config);
+
     adc_config.resolution = kADC_Resolution12Bit;
+
     ADC_Init(ADC,&adc_config);
+
     ADC_EnableHardwareTrigger(ADC,true);
     
 	adc_channle_config.channelNumber = ADC_ETC_CHANNLE_x;
+    
     /*使能转换完成中断*/
 	adc_channle_config.enableInterruptOnConversionCompleted = false;
+
     ADC_SetChannelConfig(ADC,SOIL_ADC_CHANNLE_GROUP,&adc_channle_config);
     
     adc_channle_config.channelNumber = ADC_ETC_CHANNLE_x;
+
     adc_channle_config.enableInterruptOnConversionCompleted = false;
+
     ADC_SetChannelConfig(ADC,DISTANCE_ADC_CHANNLE_GROUP,&adc_channle_config);
     
     if(kStatus_Success == ADC_DoAutoCalibration(ADC))
@@ -114,17 +121,17 @@ void adc_mode_config(void)
         printf("校准失败\n");
 }
 
-void adc_ect_config(void)
-{
+void adc_ect_config(void) {
+
     adc_etc_config_t adc_ectconfig;
     adc_etc_trigger_config_t adc_etctriggerconfig;
     adc_etc_trigger_chain_config_t adc_etctriggerchainconfig;
 
     ADC_ETC_GetDefaultConfig(&adc_ectconfig);
-	adc_ectconfig.enableTSCBypass = false;//该位允许使用ADC2
+	adc_ectconfig.enableTSCBypass = false;                                      //该位允许使用ADC2
 	adc_ectconfig.XBARtriggerMask = 1<<ADC_ETC_XBARA_TRIGGLE_CHANNEL;
     ADC_ETC_Init(ADC_ETC,&adc_ectconfig);
-    
+
 	adc_etctriggerconfig.enableSyncMode = false;
 	adc_etctriggerconfig.enableSWTriggerMode = false;
 	adc_etctriggerconfig.triggerChainLength = ADC_ETC_CHAIN_LENTH;
@@ -134,12 +141,12 @@ void adc_ect_config(void)
     ADC_ETC_SetTriggerConfig(ADC_ETC, ADC_ETC_XBARA_TRIGGLE_CHANNEL, &adc_etctriggerconfig);
 
 	adc_etctriggerchainconfig.enableB2BMode = true;
-	adc_etctriggerchainconfig.ADCHCRegisterSelect = 1<<SOIL_ADC_CHANNLE_GROUP;
+	adc_etctriggerchainconfig.ADCHCRegisterSelect = 1 << SOIL_ADC_CHANNLE_GROUP;
 	adc_etctriggerchainconfig.ADCChannelSelect = SOIL_ADC_CHANNLE;
 	adc_etctriggerchainconfig.InterruptEnable = kADC_ETC_Done0InterruptEnable;
     ADC_ETC_SetTriggerChainConfig(ADC_ETC,ADC_ETC_XBARA_TRIGGLE_CHANNEL,0U,&adc_etctriggerchainconfig);
     
-	adc_etctriggerchainconfig.ADCHCRegisterSelect = 1<<DISTANCE_ADC_CHANNLE_GROUP;
+	adc_etctriggerchainconfig.ADCHCRegisterSelect = 1 << DISTANCE_ADC_CHANNLE_GROUP;
 	adc_etctriggerchainconfig.ADCChannelSelect = DISTANCE_ADC_CHANNLE;
 	adc_etctriggerchainconfig.InterruptEnable = kADC_ETC_Done1InterruptEnable;
     ADC_ETC_SetTriggerChainConfig(ADC_ETC,ADC_ETC_XBARA_TRIGGLE_CHANNEL,1U,&adc_etctriggerchainconfig);
@@ -149,7 +156,6 @@ void adc_ect_config(void)
 
     EnableIRQ(ADC_ETC_IRQ0_IRQn);
     EnableIRQ(ADC_ETC_IRQ1_IRQn);
-    
 }
 
 /***********************************************************************
@@ -167,9 +173,9 @@ void adc_config(void)
     soil_gpio_config();
     
     CPU_TS_Tmr_Delay_US(5000);
-    GPIO_PinWrite(DISTANCE_VIN_GPIO_PORT,DISTANCE_VIN_GPIO_PIN,1);
+    GPIO_PinWrite(DISTANCE_VIN_GPIO_PORT, DISTANCE_VIN_GPIO_PIN, 1);
     CPU_TS_Tmr_Delay_US(5000);
-    GPIO_PinWrite(DISTANCE_GPIO1_GPIO_PORT,DISTANCE_GPIO1_GPIO_PIN,1);
+    GPIO_PinWrite(DISTANCE_GPIO1_GPIO_PORT, DISTANCE_GPIO1_GPIO_PIN, 1);
 
     adc_mode_config();
     adc_ect_config();
@@ -183,8 +189,8 @@ void xbar_config(void)
 
 /**********************************************************************************************************************/
 
-
 void soil_data_init(void) {
+
     soil_data.soil_buff_length = 0;
     soil_data.soil_status = IDLE;
     soil_data.soil_value = 0;
@@ -266,12 +272,10 @@ void ADC_IRQHandler(void)
 
 
 
-void ADC_ETC_IRQ0_IRQHandler(void)
-{
+void ADC_ETC_IRQ0_IRQHandler(void) {
     ADC_ETC_ClearInterruptStatusFlags(ADC_ETC,kADC_ETC_Trg3TriggerSource,kADC_ETC_Done0StatusFlagMask);
     soil_val = ADC_ETC_GetADCConversionValue(ADC_ETC,ADC_ETC_XBARA_TRIGGLE_CHANNEL,0U);
     soil_conversion_flg = true;
-
 }
 
 void ADC_ETC_IRQ1_IRQHandler(void)
@@ -279,7 +283,5 @@ void ADC_ETC_IRQ1_IRQHandler(void)
     ADC_ETC_ClearInterruptStatusFlags(ADC_ETC,kADC_ETC_Trg3TriggerSource,kADC_ETC_Done1StatusFlagMask);
     distant_val = ADC_ETC_GetADCConversionValue(ADC_ETC,ADC_ETC_XBARA_TRIGGLE_CHANNEL,1U);
     distant_conversion_flg = true;
-	
-    
 }
 
