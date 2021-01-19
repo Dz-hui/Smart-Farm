@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2020-09-16 16:32:46
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??RT1052_test??¾¶·Ö¸ô???Ìæ??DEMO??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??adc_soil.c
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??RT1052_emwin??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??adc.c
 *@Drscription: 
 ***********************************************************************/
 #include "adc.h"
@@ -200,7 +200,7 @@ SOIL_F soil_adc_get(void) {
 
 void soil_write_byte(SOIL_DATA_DEF *sd, SOIL_F data) {
 
-    if((sd->soil_buff_length >= SOIL_QUEUE_BUFF_SIZE) || (sd->soil_status != IN_CALC)) 
+    if((sd->soil_buff_length >= SOIL_QUEUE_BUFF_SIZE) || (sd->soil_status == IN_CALC)) 
         return;
     if(sd->soil_status == RE_CALC) 
         sd->soil_status = IDLE;
@@ -220,11 +220,12 @@ void soil_read_buffer(SOIL_DATA_DEF *sd, SOIL_F *data) {
     }
     memcpy(data, sd->soil_queue_buffer, sd->soil_buff_length);
     sd->soil_buff_length = 0;
-}
+} 
 
 SOIL_F soil_calc(SOIL_DATA_DEF *sd, SOIL_F *data) {
 
     sd->soil_status = IN_CALC;
+    31
     SOIL_F value = 0;
     soil_read_buffer(sd, data);
 
@@ -237,6 +238,9 @@ SOIL_F soil_calc(SOIL_DATA_DEF *sd, SOIL_F *data) {
 }
 
 /**********************************************************************************************************************/
+
+
+
 
 float GP2Y0E03_DateRead(void) {
 	float adc_data = 0,distant = 0;
