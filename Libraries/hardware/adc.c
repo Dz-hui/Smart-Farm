@@ -15,6 +15,7 @@
 #include "fsl_iomuxc.h"
 #include "stdio.h"
 #include "core_delay.h"
+#include "fsl_common.h"
 
 float soil_val;    
 float soil;
@@ -24,7 +25,7 @@ uint8_t soil_conversion_flg=0;
 uint8_t distant_conversion_flg=0;
 
 
-SOIL_DATA_DEF soil_data;
+MEASURE_DATA_DEF soil_data;
 
 /***********************************************************************
 *@Drscription: SOIL_PAD_CONFIG
@@ -65,7 +66,7 @@ void adc_iomuxc_pad_config(void)
     IOMUXC_SetPinConfig(DISTANCE_VIN_IOMUXC,ADC_PAD_SETTING);
 }
 
-void soil_gpio_config(void)
+void adc_gpio_config(void)
 {
     gpio_pin_config_t adc_pin_config;
     adc_pin_config.direction = kGPIO_DigitalInput;
@@ -89,6 +90,19 @@ void soil_gpio_config(void)
 *@Date: 2020-09-16 17:04:32
 *@Drscription: 
 ***********************************************************************/
+void adc_config(void)
+{
+    adc_config_t adc_config;
+    adc_iomuxc_mux_config();
+    adc_iomuxc_pad_config();
+    adc_gpio_config();
+    ADC_GetDefaultConfig(&adc_config);
+    adc_config.resolution = kADC_Resolution12Bit;
+    ADC_Init(ADC,&adc_config);
+    
+}
+
+#if 0
 void adc_mode_config(void)
 {
     adc_config_t adc_config;
@@ -120,6 +134,7 @@ void adc_mode_config(void)
     else 
         printf("Ð£×¼Ê§°Ü\n");
 }
+
 
 void adc_ect_config(void) {
 
@@ -187,59 +202,66 @@ void xbar_config(void)
     XBARA_SetSignalsConnection(XBARA1,kXBARA1_InputPitTrigger0,kXBARA1_OutputAdcEtcXbar0Trig3);
 }
 
+#endif 
+
 /**********************************************************************************************************************/
 
 void soil_data_init(void) {
 
-    soil_data.soil_buff_length = 0;
-    soil_data.soil_status = IDLE;
-    soil_data.soil_value = 0;
+    soil_data.adc_measure_buff_length = 0;
+    soil_data.adc_measure_status = IDLE;
+    soil_data.adc_measure_value = 0;
 }
 
-SOIL_F soil_adc_get(void) {   
-    SOIL_F value = 0;
-    value = ADC_GetChannelConversionValue(ADC,SOIL_ADC_CHANNLE_GROUP);
+MEASURE_F data_adc_get(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumber,MEASURE_DATA_DEF *sd) {   
+    
+    MEASURE_F value = 0;
+    adc_channel_config_t adc_channle_config;
+    
+    adc_channle_config.channelNumber = channelNumber;
+    ADC_SetChannelConfig(base,channelGroup,&adc_channle_config);
+
+    value = ADC_GetChannelConversionValue(base,channelGroup);
     value =((4095-value)/4095)*100;
-    soil_write_byte(&soil_data, value);
+    adc_measure_write_byte(sd, value);
     return value;
 }
 
-void soil_write_byte(SOIL_DATA_DEF *sd, SOIL_F data) {
+void adc_measure_write_byte(MEASURE_DATA_DEF *sd, MEASURE_F data) {
 
-    if((sd->soil_buff_length >= SOIL_QUEUE_BUFF_SIZE) || (sd->soil_status == IN_CALC)) 
+    if((sd->adc_measure_buff_length >= ADC_MEASURE_QUEUE_BUFF_SIZE) || (sd->adc_measure_status == IN_CALC)) 
         return;
-    if(sd->soil_status == RE_CALC) 
-        sd->soil_status = IDLE;
+    if(sd->adc_measure_status == RE_CALC) 
+        sd->adc_measure_status = IDLE;
 
-    sd->soil_queue_buffer[sd->soil_buff_length] = data;
-    sd->soil_buff_length++;
+    sd->adc_measure_queue_buffer[sd->adc_measure_buff_length] = data;
+    sd->adc_measure_buff_length++;
     
-    if(sd->soil_buff_length == SOIL_QUEUE_BUFF_SIZE) 
-        sd->soil_status = IN_CALC;
+    if(sd->adc_measure_buff_length == ADC_MEASURE_QUEUE_BUFF_SIZE) 
+        sd->adc_measure_status = IN_CALC;
 }
 
-void soil_read_buffer(SOIL_DATA_DEF *sd, SOIL_F *data) {
+void adc_measure_read_buffer(MEASURE_DATA_DEF *sd, MEASURE_F *data) {
 
-    if((sd->soil_buff_length == 0)) {
-        sd->soil_status = IDLE;
+    if((sd->adc_measure_buff_length == 0)) {
+        sd->adc_measure_status = IDLE;
         return ;
     }
-    memcpy(data, sd->soil_queue_buffer, sd->soil_buff_length);
-    sd->soil_buff_length = 0;
+    memcpy(data, sd->adc_measure_queue_buffer, sd->adc_measure_buff_length);
+    sd->adc_measure_buff_length = 0;
 } 
 
-SOIL_F soil_calc(SOIL_DATA_DEF *sd, SOIL_F *data) {
+MEASURE_F adc_measure_calc(MEASURE_DATA_DEF *sd, MEASURE_F *data) {
 
-    sd->soil_status = IN_CALC;
-    31
-    SOIL_F value = 0;
-    soil_read_buffer(sd, data);
+    sd->adc_measure_status = IN_CALC;
+    MEASURE_F value = 0;
+    adc_measure_read_buffer(sd, data);
 
-    for (uint32_t i=0; i<SOIL_QUEUE_BUFF_SIZE; i++) {
+    for (uint32_t i=0; i<ADC_MEASURE_QUEUE_BUFF_SIZE; i++) {
         value = value + data[i];
     }
-    value = value / SOIL_QUEUE_BUFF_SIZE;
-    sd->soil_status = RE_CALC;
+    value = value / ADC_MEASURE_QUEUE_BUFF_SIZE;
+    sd->adc_measure_status = RE_CALC;
     return value;
 }
 
@@ -248,6 +270,8 @@ SOIL_F soil_calc(SOIL_DATA_DEF *sd, SOIL_F *data) {
 
 
 
+
+#if 0
 float GP2Y0E03_DateRead(void) {
 	float adc_data = 0,distant = 0;
     distance_val =  ADC_GetChannelConversionValue(ADC,DISTANCE_ADC_CHANNLE_GROUP);
@@ -256,6 +280,8 @@ float GP2Y0E03_DateRead(void) {
 	printf("distant=%f\n",distance_val);
 	return distance_val;
 }
+
+#endif
 
 
 
@@ -268,7 +294,7 @@ void ADC_IRQHandler(void)
     soil_val =  ADC_GetChannelConversionValue(SOIL_ADC,SOIL_ADC_CHANNLE_GROUP);
     
 }
-#endif
+
 
 
 
@@ -285,3 +311,4 @@ void ADC_ETC_IRQ1_IRQHandler(void)
     distant_conversion_flg = true;
 }
 
+#endif

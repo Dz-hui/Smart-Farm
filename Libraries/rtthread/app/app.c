@@ -115,7 +115,7 @@ static void distant_thread_entry(void* parameter)
 	while(1)
 	{
 		rt_enter_critical();
-		gizwits_data.G_distant_data = GP2Y0E03_DateRead();
+		//gizwits_data.G_distant_data = GP2Y0E03_DateRead();
 		rt_exit_critical();
 		rt_thread_delay(1000);
 	}
@@ -127,7 +127,7 @@ static void soil_thread_entry(void* parameter)
 	while(1)
 	{
 		rt_enter_critical();
-		gizwits_data.G_soil_data = soil_adc_get();
+		//gizwits_data.G_soil_data = soil_adc_get();
 		rt_exit_critical();
 		rt_thread_delay(1000);
 	}
