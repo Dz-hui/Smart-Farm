@@ -1,9 +1,11 @@
 /***********************************************************************
 *@Author: Dz_hui
-*@Date: 2020-09-16 16:32:46
+*@Date: 2021-01-06 23:27:08
 *@FilePath: ??径分隔???替??RT1052_emwin??径分隔???替??Libraries??径分隔???替??hardware??径分隔???替??adc.c
 *@Drscription: 
 ***********************************************************************/
+
+
 #include "adc.h"
 #include "pad_config.h"
 
@@ -18,7 +20,7 @@
 #include "fsl_common.h"
 
 float soil_val;    
-float soil;
+//float soil;
 float distant_val;
 float distance_val;
 uint8_t soil_conversion_flg=0;
@@ -31,12 +33,12 @@ MEASURE_DATA_DEF soil_data;
 *@Drscription: SOIL_PAD_CONFIG
 ***********************************************************************/
 #define ADC_PAD_SETTING      (SRE_0_SLOW_SLEW_RATE|\
-                              DSE_4_R0_4|\
-                              SPEED_1_MEDIUM_100MHz|\
+                              DSE_6_R0_6 |\
+                              SPEED_2_MEDIUM_100MHz|\
                               ODE_0_OPEN_DRAIN_DISABLED|\
                               PKE_0_PULL_KEEPER_DISABLED|\
                               PUE_0_KEEPER_SELECTED|\
-                              PUS_2_100K_OHM_PULL_UP|\
+                              PUS_0_100K_OHM_PULL_DOWN|\
                               HYS_0_HYSTERESIS_DISABLED)
 
                 
@@ -93,84 +95,23 @@ void adc_gpio_config(void)
 void adc_config(void)
 {
     adc_config_t adc_config;
+
+    adc_gpio_config();
     adc_iomuxc_mux_config();
     adc_iomuxc_pad_config();
-    adc_gpio_config();
+    
+    CPU_TS_Tmr_Delay_US(5000);
+    GPIO_WritePinOutput(DISTANCE_VIN_GPIO_PORT,DISTANCE_VIN_GPIO_PIN,1);
+    CPU_TS_Tmr_Delay_US(5000);
+    GPIO_WritePinOutput(DISTANCE_GPIO1_GPIO_PORT,DISTANCE_GPIO1_GPIO_PIN,1);
+
     ADC_GetDefaultConfig(&adc_config);
-    adc_config.resolution = kADC_Resolution12Bit;
     ADC_Init(ADC,&adc_config);
-    
-}
-
-#if 0
-void adc_mode_config(void)
-{
-    adc_config_t adc_config;
-    adc_channel_config_t adc_channle_config;
-    
-    ADC_GetDefaultConfig(&adc_config);
-
-    adc_config.resolution = kADC_Resolution12Bit;
-
-    ADC_Init(ADC,&adc_config);
-
-    ADC_EnableHardwareTrigger(ADC,true);
-    
-	adc_channle_config.channelNumber = ADC_ETC_CHANNLE_x;
-    
-    /*使能转换完成中断*/
-	adc_channle_config.enableInterruptOnConversionCompleted = false;
-
-    ADC_SetChannelConfig(ADC,SOIL_ADC_CHANNLE_GROUP,&adc_channle_config);
-    
-    adc_channle_config.channelNumber = ADC_ETC_CHANNLE_x;
-
-    adc_channle_config.enableInterruptOnConversionCompleted = false;
-
-    ADC_SetChannelConfig(ADC,DISTANCE_ADC_CHANNLE_GROUP,&adc_channle_config);
-    
-    if(kStatus_Success == ADC_DoAutoCalibration(ADC))
+    if( kStatus_Success == ADC_DoAutoCalibration(ADC) )
         printf("校准完成\n");
     else 
         printf("校准失败\n");
-}
-
-
-void adc_ect_config(void) {
-
-    adc_etc_config_t adc_ectconfig;
-    adc_etc_trigger_config_t adc_etctriggerconfig;
-    adc_etc_trigger_chain_config_t adc_etctriggerchainconfig;
-
-    ADC_ETC_GetDefaultConfig(&adc_ectconfig);
-	adc_ectconfig.enableTSCBypass = false;                                      //该位允许使用ADC2
-	adc_ectconfig.XBARtriggerMask = 1<<ADC_ETC_XBARA_TRIGGLE_CHANNEL;
-    ADC_ETC_Init(ADC_ETC,&adc_ectconfig);
-
-	adc_etctriggerconfig.enableSyncMode = false;
-	adc_etctriggerconfig.enableSWTriggerMode = false;
-	adc_etctriggerconfig.triggerChainLength = ADC_ETC_CHAIN_LENTH;
-	adc_etctriggerconfig.triggerPriority = 0U;
-	adc_etctriggerconfig.sampleIntervalDelay = 0U;
-	adc_etctriggerconfig.initialDelay = 0U;
-    ADC_ETC_SetTriggerConfig(ADC_ETC, ADC_ETC_XBARA_TRIGGLE_CHANNEL, &adc_etctriggerconfig);
-
-	adc_etctriggerchainconfig.enableB2BMode = true;
-	adc_etctriggerchainconfig.ADCHCRegisterSelect = 1 << SOIL_ADC_CHANNLE_GROUP;
-	adc_etctriggerchainconfig.ADCChannelSelect = SOIL_ADC_CHANNLE;
-	adc_etctriggerchainconfig.InterruptEnable = kADC_ETC_Done0InterruptEnable;
-    ADC_ETC_SetTriggerChainConfig(ADC_ETC,ADC_ETC_XBARA_TRIGGLE_CHANNEL,0U,&adc_etctriggerchainconfig);
     
-	adc_etctriggerchainconfig.ADCHCRegisterSelect = 1 << DISTANCE_ADC_CHANNLE_GROUP;
-	adc_etctriggerchainconfig.ADCChannelSelect = DISTANCE_ADC_CHANNLE;
-	adc_etctriggerchainconfig.InterruptEnable = kADC_ETC_Done1InterruptEnable;
-    ADC_ETC_SetTriggerChainConfig(ADC_ETC,ADC_ETC_XBARA_TRIGGLE_CHANNEL,1U,&adc_etctriggerchainconfig);
-
-    IRQN_priority(4,6,1,ADC_ETC_IRQ0_IRQn);
-    IRQN_priority(4,6,0,ADC_ETC_IRQ1_IRQn);
-
-    EnableIRQ(ADC_ETC_IRQ0_IRQn);
-    EnableIRQ(ADC_ETC_IRQ1_IRQn);
 }
 
 /***********************************************************************
@@ -178,34 +119,28 @@ void adc_ect_config(void) {
 *@Input: 
 *@Return: none
 *@Author: Dz_hui
-*@Date: 2020-09-16 18:45:45
+*@Date: 2020-09-16 17:04:32
 *@Drscription: 
 ***********************************************************************/
-void adc_config(void)
+uint16_t adc_measure(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumber)
 {
-    adc_iomuxc_mux_config();
-    adc_iomuxc_pad_config();
-    soil_gpio_config();
-    
-    CPU_TS_Tmr_Delay_US(5000);
-    GPIO_PinWrite(DISTANCE_VIN_GPIO_PORT, DISTANCE_VIN_GPIO_PIN, 1);
-    CPU_TS_Tmr_Delay_US(5000);
-    GPIO_PinWrite(DISTANCE_GPIO1_GPIO_PORT, DISTANCE_GPIO1_GPIO_PIN, 1);
-
-    adc_mode_config();
-    adc_ect_config();
+	adc_channel_config_t adc_channle_config;
+	adc_channle_config.channelNumber = channelNumber;
+	adc_channle_config.enableInterruptOnConversionCompleted = true;
+	ADC_SetChannelConfig(base,channelGroup,&adc_channle_config);
+	while(1U == ADC_GetChannelStatusFlags(base,channelGroup));
+	printf("value=%d\n",ADC_GetChannelConversionValue(base, channelGroup));
+    return ADC_GetChannelConversionValue(base, channelGroup);
 }
 
-void xbar_config(void)
-{
-    XBARA_Init(XBARA1);
-    XBARA_SetSignalsConnection(XBARA1,kXBARA1_InputPitTrigger0,kXBARA1_OutputAdcEtcXbar0Trig3);
-}
-
-#endif 
-
-/**********************************************************************************************************************/
-
+/***********************************************************************
+*@Function: 
+*@Input: 
+*@Return: none
+*@Author: Dz_hui
+*@Date: 2021-01-26 23:00:49
+*@Drscription: 
+***********************************************************************/
 void soil_data_init(void) {
 
     soil_data.adc_measure_buff_length = 0;
@@ -213,16 +148,29 @@ void soil_data_init(void) {
     soil_data.adc_measure_value = 0;
 }
 
-MEASURE_F data_adc_get(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumber,MEASURE_DATA_DEF *sd) {   
+/***********************************************************************
+*@Function: 
+*@Input: 
+*@Return: none
+*@Author: Dz_hui
+*@Date: 2021-01-26 23:01:24
+*@Drscription: 
+***********************************************************************/
+MEASURE_F data_adc_get(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumber,MEASURE_DATA_DEF *sd,MEASURE_NUM adc_measure_num) {   
     
     MEASURE_F value = 0;
+    uint8_t adc_num = adc_measure_num;
     adc_channel_config_t adc_channle_config;
     
     adc_channle_config.channelNumber = channelNumber;
     ADC_SetChannelConfig(base,channelGroup,&adc_channle_config);
 
-    value = ADC_GetChannelConversionValue(base,channelGroup);
-    value =((4095-value)/4095)*100;
+    value = adc_measure(base,channelGroup,channelNumber);
+    if(adc_num == 0)
+        value =((4095-value)/4095)*100;
+    else  if(adc_num == 1)
+        value =-((((value/4095)*(float)3.3)-(float)2.35)/(float)0.035);
+
     adc_measure_write_byte(sd, value);
     return value;
 }
@@ -265,50 +213,3 @@ MEASURE_F adc_measure_calc(MEASURE_DATA_DEF *sd, MEASURE_F *data) {
     return value;
 }
 
-/**********************************************************************************************************************/
-
-
-
-
-
-#if 0
-float GP2Y0E03_DateRead(void) {
-	float adc_data = 0,distant = 0;
-    distance_val =  ADC_GetChannelConversionValue(ADC,DISTANCE_ADC_CHANNLE_GROUP);
-	distance_val = (float)distance_val/(float)4095*(float)3.3;	    //得出电压
-	distance_val = -((distance_val-(float)2.35)/(float)0.035);		//计算出距离
-	printf("distant=%f\n",distance_val);
-	return distance_val;
-}
-
-#endif
-
-
-
-
-#if 0
-void ADC_IRQHandler(void)
-{
-    adc_soil_flg = true;
-    
-    soil_val =  ADC_GetChannelConversionValue(SOIL_ADC,SOIL_ADC_CHANNLE_GROUP);
-    
-}
-
-
-
-
-void ADC_ETC_IRQ0_IRQHandler(void) {
-    ADC_ETC_ClearInterruptStatusFlags(ADC_ETC,kADC_ETC_Trg3TriggerSource,kADC_ETC_Done0StatusFlagMask);
-    soil_val = ADC_ETC_GetADCConversionValue(ADC_ETC,ADC_ETC_XBARA_TRIGGLE_CHANNEL,0U);
-    soil_conversion_flg = true;
-}
-
-void ADC_ETC_IRQ1_IRQHandler(void)
-{
-    ADC_ETC_ClearInterruptStatusFlags(ADC_ETC,kADC_ETC_Trg3TriggerSource,kADC_ETC_Done1StatusFlagMask);
-    distant_val = ADC_ETC_GetADCConversionValue(ADC_ETC,ADC_ETC_XBARA_TRIGGLE_CHANNEL,1U);
-    distant_conversion_flg = true;
-}
-
-#endif
