@@ -1,4 +1,4 @@
---cpu Cortex-M7.fp.dp
+--cpu Cortex-M7.fp.dp --scatter "./RTE/Device/MIMXRT1052DVL6B/MIMXRT1052xxxxx_ram.scf"
 ".\objects\system_mimxrt1052.o"
 ".\objects\startup_mimxrt1052.o"
 ".\objects\fsl_clock.o"
@@ -13,7 +13,7 @@
 ".\objects\fsl_gpt.o"
 ".\objects\fsl_adc_etc.o"
 ".\objects\fsl_xbara.o"
-".\objects\fsl_qtmr_1.o"
+".\objects\fsl_qtmr.o"
 ".\objects\fsl_assert.o"
 ".\objects\fsl_notifier.o"
 ".\objects\fsl_shell.o"
