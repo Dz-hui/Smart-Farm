@@ -109,13 +109,12 @@ static void bh1750_thread_entry(void* parameter)
 	}
 }
 
-
 static void distant_thread_entry(void* parameter)
 {
 	while(1)
 	{
 		rt_enter_critical();
-		//gizwits_data.G_distant_data = GP2Y0E03_DateRead();
+		// gizwits_data.G_distant_data = GP2Y0E03_DateRead();
 		rt_exit_critical();
 		rt_thread_delay(1000);
 	}
@@ -135,18 +134,18 @@ static void soil_thread_entry(void* parameter)
 
 static void pump_thread_entry(void* parameter)
 {
+	bool pump_last_status = true;
+
 	while(1)
 	{
-		rt_enter_critical();
-		if(gizwits_status.G_pump_status == 1 || emwin_status.E_pump_status == 1)
-		{
-			GPIO_PinWrite(PUMP_GPIO, PUMP_GPIO_PIN, 0U); 
-		}
-		else if(gizwits_status.G_pump_status == 0 && emwin_status.E_pump_status == 0)
-		{
-			GPIO_PinWrite(PUMP_GPIO, PUMP_GPIO_PIN, 1U); 
-		}
-		rt_exit_critical();
+		if(	(pump_last_status != gizwits_status.G_pump_status) ||  
+			(pump_last_status != emwin_status.E_pump_status)) {
+
+				if(gizwits_status.G_pump_status == true || emwin_status.E_pump_status == true)
+					GPIO_PinWrite(PUMP_GPIO, PUMP_GPIO_PIN, 0U); 
+				else if(gizwits_status.G_pump_status == false && emwin_status.E_pump_status == false)
+					GPIO_PinWrite(PUMP_GPIO, PUMP_GPIO_PIN, 1U); 
+			}
 		rt_thread_delay(100);
 	}
 }
@@ -192,22 +191,26 @@ static void curtain_up_thread_entry(void* parameter)
 static void curtain_down_thread_entry(void* parameter)
 {
 	uint8_t n;
-	while(1)
-	{	
+	while(1) {	
 		rt_thread_delay(100);
 	}
 }
 
 static void fan_thread_entry(void* parameter)
-{
+{	
+	uint8_t last_status = 0;
+
 	while(1)
-	{
-		QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,gizwits_status.G_fan_status * (3/100),false,QTMR_SOURCE_CLOCK / 128);
-		QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,gizwits_status.G_fan_status * (3/100),false,QTMR_SOURCE_CLOCK / 128);
+	{	
+		if(last_status != gizwits_status.G_fan_status) {  // when the status is no same with last;
+
+			QTMR_SetupPwm(FAN_QTMR_PORT, FAN_QTMR_CHANNLE, QTMR_PWM_FREQ, gizwits_status.G_fan_status * (3/100),false,QTMR_SOURCE_CLOCK / 128);
+			QTMR_SetupPwm(FAN_QTMR_PORT, FAN_QTMR_CHANNLE, QTMR_PWM_FREQ, gizwits_status.G_fan_status * (3/100),false,QTMR_SOURCE_CLOCK / 128);
 		
-		if(gizwits_status.G_fan_status == 0 && emwin_status.E_fan_status==0)
-		{
-			QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,0,false,QTMR_SOURCE_CLOCK / 128);
+			if(gizwits_status.G_fan_status == 0 && emwin_status.E_fan_status==0) 
+				QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,0,false,QTMR_SOURCE_CLOCK / 128);
+
+			last_status = gizwits_status.G_fan_status; 
 		}
 		rt_thread_delay(100);
 	}

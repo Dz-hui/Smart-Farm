@@ -33,8 +33,6 @@
 #define UART5_PORT             LPUART5   
 #define UART5_CLK_FREQ         BOARD_DebugConsoleSrcFreq()
 
-
-
 void USB_UART_config(void);
 void UART5_config(void);
 void UART_senddata(LPUART_Type *base,uint8_t data);

@@ -108,9 +108,9 @@ void adc_config(void)
     ADC_GetDefaultConfig(&adc_config);
     ADC_Init(ADC,&adc_config);
     if( kStatus_Success == ADC_DoAutoCalibration(ADC) )
-        printf("校准完成\n");
+        printf("Check Succeed\n");
     else 
-        printf("校准失败\n");
+        printf("Check Error\n");
     
 }
 
@@ -175,6 +175,14 @@ MEASURE_F data_adc_get(ADC_Type *base, uint32_t channelGroup,uint32_t channelNum
     return value;
 }
 
+/***********************************************************************
+*@Function: 
+*@Input: 
+*@Return: none
+*@Author: sola
+*@Date: 2021-01-26 23:01:24
+*@Drscription: 
+***********************************************************************/
 void adc_measure_write_byte(MEASURE_DATA_DEF *sd, MEASURE_F data) {
 
     if((sd->adc_measure_buff_length >= ADC_MEASURE_QUEUE_BUFF_SIZE) || (sd->adc_measure_status == IN_CALC)) 
@@ -189,6 +197,14 @@ void adc_measure_write_byte(MEASURE_DATA_DEF *sd, MEASURE_F data) {
         sd->adc_measure_status = IN_CALC;
 }
 
+/***********************************************************************
+*@Function: 
+*@Input: 
+*@Return: none
+*@Author: sola
+*@Date: 2021-01-26 23:01:24
+*@Drscription: 
+***********************************************************************/
 void adc_measure_read_buffer(MEASURE_DATA_DEF *sd, MEASURE_F *data) {
 
     if((sd->adc_measure_buff_length == 0)) {
@@ -199,6 +215,14 @@ void adc_measure_read_buffer(MEASURE_DATA_DEF *sd, MEASURE_F *data) {
     sd->adc_measure_buff_length = 0;
 } 
 
+/***********************************************************************
+*@Function: 
+*@Input: 
+*@Return: none
+*@Author: sola
+*@Date: 2021-01-26 23:01:24
+*@Drscription: 
+***********************************************************************/
 MEASURE_F adc_measure_calc(MEASURE_DATA_DEF *sd, MEASURE_F *data) {
 
     sd->adc_measure_status = IN_CALC;
