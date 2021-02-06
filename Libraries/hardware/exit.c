@@ -26,7 +26,6 @@ void IRQN_priority(uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t Su
     NVIC_SetPriorityGrouping(PriorityGroup);
     encode=NVIC_EncodePriority(PriorityGroup,PreemptPriority,SubPriority);
     NVIC_SetPriority(IRQn,encode);   
-
 }
 
 

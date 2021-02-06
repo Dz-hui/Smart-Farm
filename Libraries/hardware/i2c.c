@@ -48,7 +48,7 @@
 void I2C_Init(void)
 {
     lpi2c_master_config_t masterConfig;
-    
+
     /* 
      * @时钟配置
      * LPI2C1的时钟来源于,选择0：来自PLL3，选择1：来自osc_clk
@@ -104,7 +104,7 @@ bool I2C_WriteByte(uint8_t SalveAddr,uint8_t RegAddr,uint8_t *DateByte)
     transfer.slaveAddress =(SalveAddr>>1);
     transfer.subaddress = RegAddr;
     transfer.subaddressSize = 0x01;
-    err_flag = LPI2C_MasterTransferBlocking(LPI2C1,&transfer);
+    err_flag = LPI2C_MasterTransferBlocking(LPI2C1, &transfer);
 
     if(err_flag != kStatus_Success)  return false;
        

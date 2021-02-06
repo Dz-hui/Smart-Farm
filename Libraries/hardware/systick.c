@@ -47,7 +47,9 @@ void delay_us(uint32_t tick)
     uint32_t reload=SysTick->LOAD;   
                                                      
     ticks=tick * (CLOCK_GetFreq(kCLOCK_CpuClk) / 1000000); 
-    told=SysTick->VAL;                                       
+    
+    told=SysTick->VAL;       
+
     while(1)
     {
         tnow=SysTick->VAL;        

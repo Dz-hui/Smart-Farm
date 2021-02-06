@@ -113,8 +113,6 @@ void USB_UART_config(void)
     UART1_MODE_config();
 }
 
-
-
 /***********************************************************************
 *@Function: void UART_senddata(LPUART_Type *base,uint8_t data)
 *@Input: 
@@ -128,7 +126,6 @@ void UART_senddata(LPUART_Type *base,uint8_t data)
     LPUART_WriteByte(base,data);
     while (!(base->STAT & LPUART_STAT_TDRE_MASK));
 }
-
 
 /***********************************************************************
 *@Function: void UART_sendstring(LPUART_Type *base,const char *str  )

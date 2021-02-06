@@ -149,59 +149,28 @@ void LPI2C_readdata(uint8_t addr,uint8_t subaddr,uint8_t *data)
 		*data = reval;
 }
 
+
 void BH1750_writebyte(void)
 {
-	LPI2C_MasterStart(LPI2C_PORT,BH1705_ADDR,kLPI2C_Write);
+	LPI2C_MasterStart(LPI2C_PORT, BH1705_ADDR, kLPI2C_Write);
 	LPI2C_MasterSend(LPI2C_PORT,&BH1750_write_reg,1);
 	LPI2C_MasterStop(LPI2C_PORT);
 }
 
 void BH1750_readdata(void)
 {
-	float light;
 	LPI2C_MasterStart(LPI2C_PORT,BH1705_ADDR,kLPI2C_Read);
 	LPI2C_MasterReceive(LPI2C_PORT,&BH1750_readbuff,2);
 	LPI2C_MasterStop(LPI2C_PORT);
-	CPU_TS_Tmr_Delay_US(180000);
-	printf("光照强度=%f\n",light);
-	
-
+	// CPU_TS_Tmr_Delay_US(180000);
 }
-
-// void xxxx()
-// {
-//     // if(statuss == write_starus)
-//     // {
-//     //     BH1750_writebyte(); 
-//     //     statuss = read_status;
-//     // }
-//     // else if
-//     // {
-//     //     BH1750_readdata();
-//     //     statuss = write_starus;
-//     // }
-
-//     switch(statuss)
-//     {
-//         case write_starus:
-//             BH1750_writebyte(); 
-//         break;
-//         case :
-//             BH1750_readdata();
-//         break;
-//         default:
-//         break;
-//     }
-// }
 
 float BH1750_measure(void)
 {
-	// BH1750_writebyte();  
-	// CPU_TS_Tmr_Delay_US(180000);
-	// BH1750_readdata();
-	// CPU_TS_Tmr_Delay_US(1000000);
 	float light =0;
+
     static uint8_t statuss =1;
+
     if(statuss == 1)
      {
          BH1750_writebyte(); 
@@ -211,11 +180,9 @@ float BH1750_measure(void)
      {
          BH1750_readdata();
          statuss = 1;
-		 light=(float)((BH1750_readbuff[0]<<8)|BH1750_readbuff[1])/(float)3.6;
-		 printf("光照强度=%f\n",light);
+		 light = (float)( (BH1750_readbuff[0]<<8 ) | BH1750_readbuff[1]) / (float)3.6;
      }
 	 return light;
-	
 }
 
 
