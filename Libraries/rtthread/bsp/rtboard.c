@@ -75,7 +75,7 @@ void rt_hw_board_init()
 	dht11_config();
 	LPI2C_config();
 	pit_timer_config();
-	adc_config();
+	// adc_config();
 	
 	PUMP_GPIO_Config();
 	STEP_GPIO_Config();

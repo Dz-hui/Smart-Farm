@@ -60,7 +60,6 @@ int main(void)
 ***********************************************************************/
 void Print_Log(void)
 {
-	
     DEBUG_PRINT("\r\n");
     DEBUG_PRINT("CPU:             %d Hz", CLOCK_GetFreq(kCLOCK_CpuClk));
     DEBUG_PRINT("AHB:             %d Hz", CLOCK_GetFreq(kCLOCK_AhbClk));
@@ -70,7 +69,6 @@ void Print_Log(void)
     DEBUG_PRINT("SYSPLLPFD1:      %d Hz", CLOCK_GetFreq(kCLOCK_SysPllPfd1Clk));
     DEBUG_PRINT("SYSPLLPFD2:      %d Hz", CLOCK_GetFreq(kCLOCK_SysPllPfd2Clk));
     DEBUG_PRINT("SYSPLLPFD3:      %d Hz", CLOCK_GetFreq(kCLOCK_SysPllPfd3Clk));	
-	
 }
 
 /***********************************************************************

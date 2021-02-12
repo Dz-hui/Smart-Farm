@@ -325,8 +325,7 @@ void gizwits_init(void)
 void dht11_init(void)
 {
 	dht11_thread = rt_thread_create("dht11",dht11_thread_entry,RT_NULL,1024,7,20);
-	if(dht11_thread != RT_NULL)
-	{
+	if(dht11_thread != RT_NULL) {
 		rt_thread_startup(dht11_thread);
 	}
 }
@@ -334,14 +333,12 @@ void dht11_init(void)
 void bh1750_init(void)
 {
 	bh1750_thread = rt_thread_create("bh1750",bh1750_thread_entry,RT_NULL,1024,7,20);
+	
 	if(bh1750_thread != RT_NULL)
 	{
 		rt_thread_startup(bh1750_thread);
 	}
-
-	
 }
-
 
 void soil_init(void)
 {
