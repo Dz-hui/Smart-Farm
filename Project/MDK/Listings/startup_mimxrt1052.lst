@@ -1770,11 +1770,10 @@ ARM Macro Assembler    Page 28
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M7.fp.dp --apcs=
 interwork --depend=.\objects\startup_mimxrt1052.d -o.\objects\startup_mimxrt105
-2.o -I.\RTE\_Target_1 -ID:\Keil_v5\ARM\PACK\NXP\MIMXRT1052_DFP\10.0.1 -ID:\Keil
-_v5\ARM\CMSIS\Include --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VE
-RSION SETA 525" --predefine="CPU_MIMXRT1052DVL6B SETA 1" --predefine="__STARTUP
-_INITIALIZE_NONCACHEDATA SETA 1" --list=.\listings\startup_mimxrt1052.lst start
-up_MIMXRT1052.s
+2.o -Id:\Keil_v5\ARM\PACK\NXP\MIMXRT1052_DFP\10.0.1 -ID:\Keil_v5\ARM\CMSIS\Incl
+ude --predefine="__MICROLIB SETA 1" --predefine="__UVISION_VERSION SETA 531" --
+predefine="CPU_MIMXRT1052DVL6B SETA 1" --predefine="__STARTUP_INITIALIZE_NONCAC
+HEDATA SETA 1" --list=.\listings\startup_mimxrt1052.lst startup_MIMXRT1052.s
 
 
 

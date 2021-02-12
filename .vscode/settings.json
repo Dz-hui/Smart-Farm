@@ -15,7 +15,11 @@
         "spi.h": "c",
         "fsl_adc.h": "c",
         "fire_lcd.h": "c",
-        "stdint.h": "c"
+        "stdint.h": "c",
+        "app.h": "c",
+        "main.h": "c",
+        "lv_draw_lvgl.h": "c",
+        "lv_draw_home.h": "c"
     },
     "editor.minimap.enabled": true,
     "C_Cpp.autocomplete": "Default",

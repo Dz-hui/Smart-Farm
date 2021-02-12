@@ -32,30 +32,3 @@ void pit_timer_config(void) {
 	
 	PIT_StartTimer(PIT,PIT_CHANNLE);
 }
-
-//void pit_start_timer(void)
-//{
-//    PIT_StartTimer(PIT,PIT_CHANNLE);
-//}
-
-#if 0
-void PIT_IRQHandler(void)
-{
-    time1 ++;
-    time2 ++;
-    PIT_ClearStatusFlags(PIT,PIT_CHANNLE,kPIT_TimerFlag);
-    if(time1 == 100)
-    {
-        soil_val = soil_adc_get();
-        time1 = 0;
-        
-    }
-
-    else if(time2 == 150)
-    {
-        pool_distance = GP2Y0E03_DateRead();
-        time2 = 0;
-        
-    }
-}
-#endif

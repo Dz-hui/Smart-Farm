@@ -366,8 +366,6 @@ static int16_t pre_y[GTP_MAX_TOUCH] ={-1,-1,-1,-1,-1};
 
 uint32_t x_point,y_point;
 
-
-GUI_PID_STATE TS_STATUS;
 static void GTP_Touch_Down(int32_t id,int32_t x,int32_t y,int32_t w)
 {
   
@@ -384,12 +382,6 @@ static void GTP_Touch_Down(int32_t id,int32_t x,int32_t y,int32_t w)
   /*在此处添加自己的触摸点按下时处理过程即可*/
   /* (x,y) 即为最新的触摸点 *************/
   /************************************/
-
-  TS_STATUS.Pressed = 1;
-  TS_STATUS.Layer = 0;
-  TS_STATUS.x = x;
-  TS_STATUS.y = y;
-  GUI_TOUCH_StoreStateEx(&TS_STATUS);
 }
 
 
@@ -409,9 +401,8 @@ static void GTP_Touch_Up( int32_t id)
   
   x_point = 0;
   y_point = 0;
-  TS_STATUS.Pressed = 0;
-  GUI_TOUCH_StoreStateEx(&TS_STATUS);
-  
+
+ 
   /*触笔释放，把pre xy 重置为负*/
   pre_x[id] = -1;
   pre_y[id] = -1;		

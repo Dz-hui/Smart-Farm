@@ -29,25 +29,7 @@
 ***********************************************************************/
 int main(void)
 {
-	DEBUG_PRINT("enter main thread");
-    gizwits_status.G_default_status =0 ;
-    emwin_status.E_default_status=0;
-    
-	gui_touch_task_init();
-    gui_task_init();	
-
-    default_init();
-	gizwits_init();
-	dht11_init();
-	bh1750_init();
-	soil_init();
-	distant_init();
-	pump_init();
-	curtain_up_init();
-	curtain_down_init();
-	fan_init();
-	brightness_init();  
-	
+    gui_lvgl_thread_init();
 }
 
 /***********************************************************************
@@ -60,7 +42,6 @@ int main(void)
 ***********************************************************************/
 void Print_Log(void)
 {
-	
     DEBUG_PRINT("\r\n");
     DEBUG_PRINT("CPU:             %d Hz", CLOCK_GetFreq(kCLOCK_CpuClk));
     DEBUG_PRINT("AHB:             %d Hz", CLOCK_GetFreq(kCLOCK_AhbClk));
@@ -70,7 +51,6 @@ void Print_Log(void)
     DEBUG_PRINT("SYSPLLPFD1:      %d Hz", CLOCK_GetFreq(kCLOCK_SysPllPfd1Clk));
     DEBUG_PRINT("SYSPLLPFD2:      %d Hz", CLOCK_GetFreq(kCLOCK_SysPllPfd2Clk));
     DEBUG_PRINT("SYSPLLPFD3:      %d Hz", CLOCK_GetFreq(kCLOCK_SysPllPfd3Clk));	
-	
 }
 
 /***********************************************************************

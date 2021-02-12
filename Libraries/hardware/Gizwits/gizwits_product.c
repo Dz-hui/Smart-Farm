@@ -220,8 +220,6 @@ void userHandle(void)
     currentDataPoint.valuehumi = gizwits_data.G_humi_data;//((float)dht11_data.humi_int +(((float)dht11_data.humi_deci)/10));//Add Sensor Data Collection
     currentDataPoint.valuesoil = gizwits_data.G_soil_data;//soil;//Add Sensor Data Collection
     currentDataPoint.valuedistant = gizwits_data.G_distant_data;//distance_val;//Add Sensor Data Collection
-
-    
 }
 
 /**

@@ -109,8 +109,6 @@ void step_move(uint8_t ch1,uint8_t ch2,uint8_t ch3,uint8_t ch4) {
 /**逆时针转动**/
 void curtain_down(void)
 {
-	uint8_t i;
-
 	switch(user_step.motor_num)
 	{
 		case 0:
@@ -142,7 +140,6 @@ void curtain_down(void)
 /**顺时针转动**/
 void curtain_up(void)
 {
-	uint8_t i;
 	switch(user_step.motor_num)
 	{
 		case 0:

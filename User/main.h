@@ -21,11 +21,6 @@
 #include "dht11.h"
 #include "mpu6050.h"
 
-#include "GUI.h"
-#include "dialog.h"
-#include "GUI.h"
-#include "WM.h"
-#include "GUIDEMO.h"
 
 #include "rtboard.h"
 #include "app.h"

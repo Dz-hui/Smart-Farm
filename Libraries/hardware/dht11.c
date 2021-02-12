@@ -171,10 +171,7 @@ uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
                                                                 dht11_data.humi_int,
                                                                 dht11_data.humi_deci,
                                                                 dht11_data.temp_int,
-                                                                dht11_data.temp_deci);
-			gizwits_data.G_humi_data=((float)dht11_data.temp_int +(((float)dht11_data.temp_deci)/10));
-			gizwits_data.G_temp_data=((float)dht11_data.humi_int +(((float)dht11_data.humi_deci)/10));
-													
+                                                                dht11_data.temp_deci);								
 		}
 		else {		
 			printf("\nDHT11 READ ERROR\r\n");	
