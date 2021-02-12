@@ -29,25 +29,7 @@
 ***********************************************************************/
 int main(void)
 {
-	DEBUG_PRINT("enter main thread");
-    gizwits_status.G_default_status =0 ;
-    emwin_status.E_default_status=0;
-    
-	gui_touch_task_init();
-    gui_task_init();	
-
-    default_init();
-	gizwits_init();
-	dht11_init();
-	bh1750_init();
-	soil_init();
-	distant_init();
-	pump_init();
-	curtain_up_init();
-	curtain_down_init();
-	fan_init();
-	brightness_init();  
-	
+    gui_lvgl_thread_init();
 }
 
 /***********************************************************************

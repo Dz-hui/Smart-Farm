@@ -247,7 +247,8 @@ static void _cbDialog2(WM_MESSAGE *pMsg)
 	case WM_INIT_DIALOG:
 		hItem = pMsg->hWin;
 		WINDOW_SetBkColor(hItem,0xEF5160);
-
+		
+		// buttun blk bitmap set
 		hItem = WM_GetDialogItem(pMsg->hWin,ID_BUTTON_1);
 		BUTTON_SetBitmap(hItem,BUTTON_BI_UNPRESSED,&bmcurtains);
 
@@ -266,7 +267,7 @@ static void _cbDialog2(WM_MESSAGE *pMsg)
 		hItem = WM_GetDialogItem(pMsg->hWin,ID_BUTTON_12);
 		WM_SetCallback(hItem,_cbbuttondefault);
 
-		
+		// set text 
 		hItem = WM_GetDialogItem(pMsg->hWin,ID_TEXT_5);
 		TEXT_SetTextColor(hItem,GUI_BLACK);
 		TEXT_SetTextAlign(hItem, GUI_TA_VCENTER | GUI_TA_HCENTER);
@@ -314,8 +315,6 @@ static void _cbDialog2(WM_MESSAGE *pMsg)
 		TEXT_SetTextAlign(hItem, GUI_TA_VCENTER | GUI_TA_HCENTER);
 		TEXT_SetFont(hItem,&GUI_Font24B_ASCII);
 		TEXT_SetText(hItem,"Environmental Data");
-
-
 		break;
 
 	case WM_PAINT:
@@ -370,112 +369,102 @@ static void _cbDialog2(WM_MESSAGE *pMsg)
 		break;
 
 	case WM_NOTIFY_PARENT:
-		ID =WM_GetId(pMsg->hWinSrc);
+		ID = WM_GetId(pMsg->hWinSrc);
 		Ncode = pMsg->Data.v;
-		switch (ID){
-		case ID_BUTTON_1:
-			switch(Ncode){
-			case WM_NOTIFICATION_CLICKED:
-				break;
-			case WM_NOTIFICATION_RELEASED:
-				button_status.E_button_curtain_up = 1-button_status.E_button_curtain_up;
-				if(button_status.E_button_curtain_up!=0)   
-				{
-					emwin_status.E_curtain_up_status= 1;
-				}
-				else
-				{
-					emwin_status.E_curtain_up_status = 0;
-				}
-				break;
-			}
-			break;
+		switch (ID) {
+			case ID_BUTTON_1:
+				switch(Ncode) {
+					case WM_NOTIFICATION_CLICKED:  break;
+					case WM_NOTIFICATION_RELEASED:
 
-		case ID_BUTTON_2:
-			switch(Ncode){
-			case WM_NOTIFICATION_CLICKED:
-				break;
-			case WM_NOTIFICATION_RELEASED:
-				GUI_CreateDialogBox(_aDialogCreate3, GUI_COUNTOF(_aDialogCreate3), _cbDialog3, WM_HBKWIN, 0, 0);
-				break;
-			}
-			break;
+						button_status.E_button_curtain_up = 1 - button_status.E_button_curtain_up;
 
-		case ID_BUTTON_3:
-			
-			switch(Ncode){
-			case WM_NOTIFICATION_CLICKED:
-				break;
-			case WM_NOTIFICATION_RELEASED:
-				button_status.E_button_pump = 1-button_status.E_button_pump;
-				if(button_status.E_button_pump!=0)   
-				{
-					emwin_status.E_pump_status = 1;
-				}
-				else
-				{
-					emwin_status.E_pump_status = 0;
+						if(button_status.E_button_curtain_up!=0)	{
+							emwin_status.E_curtain_up_status= 1;
+						}
+						else	{
+							emwin_status.E_curtain_up_status = 0;
+						}
+						break;
 				}
 				break;
-			}
-			break;
 
-		case ID_BUTTON_4:
-			hItem = WM_GetDialogItem(pMsg->hWin,ID_TEXT_3);
-			switch(Ncode){
-			case WM_NOTIFICATION_CLICKED:
-				break;
-			case WM_NOTIFICATION_RELEASED:
-				GUI_CreateDialogBox(_aDialogCreate4,GUI_COUNTOF(_aDialogCreate4),_cbDialog4,WM_HBKWIN,0,0);
-				break;
-			}
-			break;
-
-			case ID_BUTTON_10:
-			
-			switch(Ncode){
-			case WM_NOTIFICATION_CLICKED:
-				break;
-			case WM_NOTIFICATION_RELEASED:
-				button_status.E_button_curtain_down = 1-button_status.E_button_curtain_down;
-				if(button_status.E_button_curtain_down!=0)   
-				{
-					emwin_status.E_curtain_down_status=1;
-				}
-				else
-				{
-					emwin_status.E_curtain_down_status =0;
+			case ID_BUTTON_2:
+				switch(Ncode){
+				case WM_NOTIFICATION_CLICKED:
+					break;
+				case WM_NOTIFICATION_RELEASED:
+					GUI_CreateDialogBox(_aDialogCreate3, GUI_COUNTOF(_aDialogCreate3), _cbDialog3, WM_HBKWIN, 0, 0);
+					break;
 				}
 				break;
-			}
-			break;
 
+			case ID_BUTTON_3:
+				
+				switch(Ncode)	{
 
-			case ID_BUTTON_12:
-			switch(Ncode){
-			case WM_NOTIFICATION_CLICKED:
+				case WM_NOTIFICATION_CLICKED: break;
+
+				case WM_NOTIFICATION_RELEASED:
+
+					button_status.E_button_pump = 1-button_status.E_button_pump;
+
+					if(button_status.E_button_pump!=0)   {
+						emwin_status.E_pump_status = 1;
+					}
+					else {
+						emwin_status.E_pump_status = 0;
+					}
+					break;
+				}
 				break;
-			case WM_NOTIFICATION_RELEASED:
-				// button12_flg = 1-button12_flg;
-				// if(button12_flg!=0)   
-				// {
-					emwin_status.E_default_status =1;
-				// }
-				// else
-				// {
-					// emwin_status.E_default_status =0;
-				// }
-				break;
-			}
-			break;
 
+			case ID_BUTTON_4:
+				hItem = WM_GetDialogItem(pMsg->hWin,ID_TEXT_3);
+				switch(Ncode){
+				case WM_NOTIFICATION_CLICKED:
+					break;
+				case WM_NOTIFICATION_RELEASED:
+					GUI_CreateDialogBox(_aDialogCreate4,GUI_COUNTOF(_aDialogCreate4),_cbDialog4,WM_HBKWIN,0,0);
+					break;
+				}
+				break;
+
+				case ID_BUTTON_10:
+				
+				switch(Ncode){
+				case WM_NOTIFICATION_CLICKED:
+					break;
+				case WM_NOTIFICATION_RELEASED:
+					button_status.E_button_curtain_down = 1-button_status.E_button_curtain_down;
+					if(button_status.E_button_curtain_down!=0)   
+					{
+						emwin_status.E_curtain_down_status=1;
+					}
+					else
+					{
+						emwin_status.E_curtain_down_status =0;
+					}
+					break;
+				}
+				break;
+
+
+				case ID_BUTTON_12:
+				switch(Ncode){
+				case WM_NOTIFICATION_CLICKED:
+					break;
+				case WM_NOTIFICATION_RELEASED:
+						emwin_status.E_default_status =1;
+					break;
+				}
+				break;
 		}
 		break;
 			
-	default:
-		WM_DefaultProc(pMsg);
-		break;
-
+		default:
+			WM_DefaultProc(pMsg);
+			break;
 	}
 
 }
@@ -515,7 +504,6 @@ static void _cbDialog3(WM_MESSAGE *pMsg)
 
 		hItem = WM_GetDialogItem(pMsg->hWin,ID_BUTTON_11);
 		WM_SetCallback(hItem,_cbbuttonclose);
-
 
 		hItem = WM_GetDialogItem(pMsg->hWin,ID_TEXT_4);
 		TEXT_SetTextColor(hItem,GUI_WHITE);
@@ -861,7 +849,6 @@ static void _cbbuttonclose(WM_MESSAGE *pMsg)
 
 			GUI_SetColor(GUI_BLACK);
 			GUI_DrawEllipse(rect.x1/2,rect.y1/2,rect.x1/2,rect.y1/2);
-			
 		}
 		GUI_SetColor(GUI_WHITE);
 		GUI_SetFont(&GUI_Font24B_ASCII);
@@ -931,13 +918,9 @@ void GUIDEMO_Main(void) {
 	{
 		GUI_Delay(100);
 		invalidprogbar(hwin);
- 
 	}
 	GUI_Clear();
-	
-  
 }
-
 
 void GUI_Main(void)
 {
@@ -949,9 +932,6 @@ void GUI_Main(void)
 		GUI_Delay(5);
 		invalidprogbar(hwin);
 	}
-	
- 
-	
 }
 
 

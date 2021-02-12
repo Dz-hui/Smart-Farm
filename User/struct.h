@@ -1,9 +1,4 @@
-/***********************************************************************
-*@Author: Dz_hui
-*@Date: 2020-11-27 19:29:33
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??RT1052_emwin1.2??¾¶·Ö¸ô???Ìæ??RT1052_emwin??¾¶·Ö¸ô???Ìæ??User??¾¶·Ö¸ô???Ìæ??struct.h
-*@Drscription: 
-***********************************************************************/
+
 #ifndef __STRUCT__H
 #define __STRUCT__H
 
@@ -42,6 +37,7 @@ typedef struct
     float G_co2_data;
     
 }gizwits_data_typedef;
+
 extern gizwits_data_typedef gizwits_data;
 
 typedef struct 
@@ -51,7 +47,9 @@ typedef struct
     bool E_button_pump;
     bool E_button_default;
     uint8_t E_light_val;
+    
 }emwin_button_typedef;
+
 extern emwin_button_typedef button_status;
 
 
