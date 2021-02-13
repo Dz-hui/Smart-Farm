@@ -216,6 +216,7 @@
 .\objects\app.o: ..\..\GUI\lvgl\src/lv_draw/lv_img_cache.h
 .\objects\app.o: ..\..\GUI_APP\lv_draw_home.h
 .\objects\app.o: ..\..\GUI_APP\lv_draw_lvgl.h
+.\objects\app.o: ..\..\GUI_APP\lv_draw_temp.h
 .\objects\app.o: ..\..\GUI\lvgl_driver\lv_port_disp.h
 .\objects\app.o: ..\..\GUI\lvgl_driver\lv_port_indev.h
 .\objects\app.o: ..\..\GUI\lv_examples\lv_apps\demo\demo.h

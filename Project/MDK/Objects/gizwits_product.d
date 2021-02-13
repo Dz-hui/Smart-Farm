@@ -208,6 +208,7 @@
 .\objects\gizwits_product.o: ..\..\GUI\lvgl\src/lv_draw/lv_img_cache.h
 .\objects\gizwits_product.o: ..\..\GUI_APP\lv_draw_home.h
 .\objects\gizwits_product.o: ..\..\GUI_APP\lv_draw_lvgl.h
+.\objects\gizwits_product.o: ..\..\GUI_APP\lv_draw_temp.h
 .\objects\gizwits_product.o: ..\..\Libraries\hardware\uart.h
 .\objects\gizwits_product.o: ..\..\Libraries\hardware\gpt.h
 .\objects\gizwits_product.o: ..\..\Libraries\drivers\fsl_gpt.h

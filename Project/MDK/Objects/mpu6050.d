@@ -202,6 +202,7 @@
 .\objects\mpu6050.o: ..\..\GUI\lvgl\src/lv_draw/lv_img_cache.h
 .\objects\mpu6050.o: ..\..\GUI_APP\lv_draw_home.h
 .\objects\mpu6050.o: ..\..\GUI_APP\lv_draw_lvgl.h
+.\objects\mpu6050.o: ..\..\GUI_APP\lv_draw_temp.h
 .\objects\mpu6050.o: ..\..\Libraries\hardware\bsp_uart.h
 .\objects\mpu6050.o: ..\..\Libraries\hardware\uart.h
 .\objects\mpu6050.o: ..\..\Libraries\hardware\Gizwits\gizwits_product.h

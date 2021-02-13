@@ -203,6 +203,7 @@
 .\objects\bsp_touch_gtxx.o: ..\..\GUI\lvgl\src/lv_draw/lv_img_cache.h
 .\objects\bsp_touch_gtxx.o: ..\..\GUI_APP\lv_draw_home.h
 .\objects\bsp_touch_gtxx.o: ..\..\GUI_APP\lv_draw_lvgl.h
+.\objects\bsp_touch_gtxx.o: ..\..\GUI_APP\lv_draw_temp.h
 .\objects\bsp_touch_gtxx.o: ..\..\Libraries\hardware\bsp_uart.h
 .\objects\bsp_touch_gtxx.o: ..\..\Libraries\hardware\uart.h
 .\objects\bsp_touch_gtxx.o: ..\..\Libraries\hardware\Gizwits\gizwits_product.h

@@ -27,15 +27,13 @@ void gui_lvgl_thread_init(void) {
 
 void gui_lvgl_init(void *parg) {
 
-	lv_init();
-    DEBUG_PRINT("lv init");
+    lv_init();
     lv_port_disp_init();
-    DEBUG_PRINT("disp init");
     lv_port_indev_init();
-    DEBUG_PRINT("indev init");
 
-	//draw_home();
-	lv_test_theme_1(lv_theme_night_init(210, NULL));
+
+    draw_home();
+    //lv_test_theme_1(lv_theme_night_init(210, NULL));
 	while(1) {
 		lv_task_handler();
 		rt_thread_delay(5);
@@ -61,7 +59,6 @@ void gizwit_thread_init(void) {
 		rt_thread_startup(gizwit_thread);
 	else 
 		DEBUG_PRINT("gizwit_thread ERR");
-
 }
 
 void gizwit_init(void *parg) {
@@ -77,5 +74,12 @@ void gizwit_init(void *parg) {
 		
 
 		// »úÖÇÔÆÏÂÐÐ
+
+
+		rt_thread_delay(1000);
 	}
 }
+
+
+
+

@@ -1305,6 +1305,11 @@
               <FileType>1</FileType>
               <FilePath>..\..\GUI_APP\lvgl_task.c</FilePath>
             </File>
+            <File>
+              <FileName>lv_draw_temp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\lv_draw_temp.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -1314,6 +1319,11 @@
               <FileName>background.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\GUI_APP\background.c</FilePath>
+            </File>
+            <File>
+              <FileName>curtain.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\curtain.c</FilePath>
             </File>
           </Files>
         </Group>

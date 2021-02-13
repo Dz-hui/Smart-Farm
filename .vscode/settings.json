@@ -19,7 +19,8 @@
         "app.h": "c",
         "main.h": "c",
         "lv_draw_lvgl.h": "c",
-        "lv_draw_home.h": "c"
+        "lv_draw_home.h": "c",
+        "lv_draw_temp.h": "c"
     },
     "editor.minimap.enabled": true,
     "C_Cpp.autocomplete": "Default",
