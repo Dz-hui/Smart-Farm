@@ -215,3 +215,4 @@
 .\objects\lv_draw_lvgl.o: ..\..\GUI\lvgl\src/lv_objx/lv_spinbox.h
 .\objects\lv_draw_lvgl.o: ..\..\GUI\lvgl\src/lv_objx/../../../lv_conf.h
 .\objects\lv_draw_lvgl.o: ..\..\GUI\lvgl\src/lv_draw/lv_img_cache.h
+.\objects\lv_draw_lvgl.o: ..\..\GUI_APP\lv_draw_temp.h

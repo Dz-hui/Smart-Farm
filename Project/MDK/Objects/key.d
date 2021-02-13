@@ -203,6 +203,7 @@
 .\objects\key.o: ..\..\GUI\lvgl\src/lv_draw/lv_img_cache.h
 .\objects\key.o: ..\..\GUI_APP\lv_draw_home.h
 .\objects\key.o: ..\..\GUI_APP\lv_draw_lvgl.h
+.\objects\key.o: ..\..\GUI_APP\lv_draw_temp.h
 .\objects\key.o: ..\..\Libraries\hardware\bsp_uart.h
 .\objects\key.o: ..\..\Libraries\hardware\uart.h
 .\objects\key.o: ..\..\Libraries\hardware\Gizwits\gizwits_product.h

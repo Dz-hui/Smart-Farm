@@ -204,6 +204,7 @@
 .\objects\main.o: ..\..\GUI\lvgl\src/lv_draw/lv_img_cache.h
 .\objects\main.o: ..\..\GUI_APP\lv_draw_home.h
 .\objects\main.o: ..\..\GUI_APP\lv_draw_lvgl.h
+.\objects\main.o: ..\..\GUI_APP\lv_draw_temp.h
 .\objects\main.o: ..\..\Libraries\hardware\bsp_uart.h
 .\objects\main.o: ..\..\Libraries\hardware\uart.h
 .\objects\main.o: ..\..\Libraries\hardware\Gizwits\gizwits_product.h

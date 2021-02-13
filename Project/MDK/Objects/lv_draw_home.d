@@ -202,6 +202,8 @@
 .\objects\lv_draw_home.o: ..\..\GUI\lvgl\src/lv_objx/../../../lv_conf.h
 .\objects\lv_draw_home.o: ..\..\GUI\lvgl\src/lv_draw/lv_img_cache.h
 .\objects\lv_draw_home.o: ..\..\GUI_APP\lv_draw_home.h
+.\objects\lv_draw_home.o: ..\..\GUI_APP\lv_draw_temp.h
+.\objects\lv_draw_home.o: ..\..\GUI_APP\lv_draw_lvgl.h
 .\objects\lv_draw_home.o: ..\..\Libraries\hardware\bsp_uart.h
 .\objects\lv_draw_home.o: ..\..\Libraries\hardware\uart.h
 .\objects\lv_draw_home.o: ..\..\Libraries\hardware\Gizwits\gizwits_product.h

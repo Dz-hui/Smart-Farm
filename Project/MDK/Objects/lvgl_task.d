@@ -203,6 +203,7 @@
 .\objects\lvgl_task.o: ..\..\GUI\lvgl\src/lv_draw/lv_img_cache.h
 .\objects\lvgl_task.o: ..\..\GUI_APP\lv_draw_home.h
 .\objects\lvgl_task.o: ..\..\GUI_APP\lv_draw_lvgl.h
+.\objects\lvgl_task.o: ..\..\GUI_APP\lv_draw_temp.h
 .\objects\lvgl_task.o: ..\..\Libraries\hardware\bsp_uart.h
 .\objects\lvgl_task.o: ..\..\Libraries\hardware\uart.h
 .\objects\lvgl_task.o: ..\..\Libraries\hardware\Gizwits\gizwits_product.h

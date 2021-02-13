@@ -203,6 +203,7 @@
 .\objects\lv_port_disp.o: ..\..\GUI_APP\lv_draw_lvgl.h
 .\objects\lv_port_disp.o: ..\..\GUI_APP\lv_draw_home.h
 .\objects\lv_port_disp.o: ..\..\GUI_APP\lv_draw_lvgl.h
+.\objects\lv_port_disp.o: ..\..\GUI_APP\lv_draw_temp.h
 .\objects\lv_port_disp.o: ..\..\Libraries\hardware\bsp_uart.h
 .\objects\lv_port_disp.o: ..\..\Libraries\hardware\uart.h
 .\objects\lv_port_disp.o: ..\..\Libraries\hardware\Gizwits\gizwits_product.h
