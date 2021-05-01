@@ -1,13 +1,13 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2020-11-19 20:34:50
-*@FilePath: ??径分隔???替??RT1052_emwin1.2??径分隔???替??RT1052_emwin??径分隔???替??Libraries??径分隔???替??hardware??径分隔???替??gpt.c
+*@FilePath: ??径分隔???替??Smart-Farm??径分隔???替??Libraries??径分隔???替??hardware??径分隔???替??gpt.c
 *@Drscription: 
 ***********************************************************************/
 #include "exit.h"
 #include "gpt.h"
 #include "gizwits_product.h"
-
+#include "main.h"
 
 //unsigned int i = 0; //用于控制RGB灯的翻转
   
@@ -47,11 +47,11 @@ void GPT_Config(void)
 /*定义中断服务函数*/
 void EXAMPLE_GPT_IRQHandler(void)
 {
-	
+
 	/* 清除中断标志位.*/
 	GPT_ClearStatusFlags(EXAMPLE_GPT, kGPT_OutputCompare1Flag);
-	//i++;
 	gizTimerMs();
+
   
 }
 

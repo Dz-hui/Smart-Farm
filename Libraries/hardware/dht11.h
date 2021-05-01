@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2020-11-19 20:25:57
-*@FilePath: ??径分隔???替??RT1052_emwin??径分隔???替??Libraries??径分隔???替??hardware??径分隔???替??dht11.h
+*@FilePath: ??径分隔???替??Smart-Farm??径分隔???替??Libraries??径分隔???替??hardware??径分隔???替??dht11.h
 *@Drscription: 
 ***********************************************************************/
 #ifndef __DHT11__H
@@ -16,14 +16,17 @@
 #define __DHT11_OUT_H()         GPIO_PinWrite(DHT11_PORT,DHT11_PIN,1U)
 #define __DHT11_OUT_L()         GPIO_PinWrite(DHT11_PORT,DHT11_PIN,0U)
 #define __DHT11_READ()          GPIO_PinRead(DHT11_PORT,DHT11_PIN)    
-#define __DHT11_DELAY_MS(nms)   delay_ms(nms)
-#define __DHT11_DELAY_US(nms)   delay_us(nms)
+// #define __DHT11_DELAY_MS(nms)   delay_ms(nms)
+// #define __DHT11_DELAY_US(nms)   delay_us(nms)
+#define __DHT11_DELAY_MS(nms)   CPU_TS_Tmr_Delay_US(nms*1000)
+#define __DHT11_DELAY_US(nms)   CPU_TS_Tmr_Delay_US(nms*1000)
+
 
 /*硬件接口*/
 #define __DHT11_PIN_CLK()       
-#define DHT11_PIN              	25U 
+#define DHT11_PIN              	28U 
 #define DHT11_PORT              GPIO1
-#define DHT11_IOMUXC       		IOMUXC_GPIO_AD_B1_09_GPIO1_IO25
+#define DHT11_IOMUXC       		IOMUXC_GPIO_AD_B1_12_GPIO1_IO28
 /*延时函数*/
 #define  SYSCLK                             600000000/1000000                   //指明CPU工作频率为(SystemCoreClock/1000000)MHz
 #define  A                                  12                                   //一次循环所花的周期数
@@ -43,7 +46,7 @@ typedef struct
 		                 
 }DHT11_Data_TypeDef;
 
-extern DHT11_Data_TypeDef dht11_data;
+
 
 
 /*函数声明*/
@@ -52,7 +55,7 @@ void dht11_config(void);
 uint8_t ReadByte(void);
 uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data);
 void DHT11_PRINTF(void);
-
+void dht11_lvgl_display(DHT11_Data_TypeDef *dht11);
 
 
 #endif

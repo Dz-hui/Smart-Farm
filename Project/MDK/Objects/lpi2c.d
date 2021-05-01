@@ -1,5 +1,5 @@
 .\objects\lpi2c.o: ..\..\Libraries\hardware\lpi2c.c
-.\objects\lpi2c.o: ..\..\Libraries\hardware\lpi2c.h
+.\objects\lpi2c.o: ..\..\Libraries\hardware\i2c.h
 .\objects\lpi2c.o: ..\..\Libraries\drivers\fsl_common.h
 .\objects\lpi2c.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\assert.h
 .\objects\lpi2c.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
@@ -7,15 +7,15 @@
 .\objects\lpi2c.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\lpi2c.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\lpi2c.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\lpi2c.o: d:\Keil_v5\ARM\PACK\NXP\MIMXRT1052_DFP\10.0.1\fsl_device_registers.h
-.\objects\lpi2c.o: d:\Keil_v5\ARM\PACK\NXP\MIMXRT1052_DFP\10.0.1\MIMXRT1052.h
+.\objects\lpi2c.o: D:\Keil_v5\ARM\PACK\NXP\MIMXRT1052_DFP\12.2.0\fsl_device_registers.h
+.\objects\lpi2c.o: D:\Keil_v5\ARM\PACK\NXP\MIMXRT1052_DFP\12.2.0\MIMXRT1052.h
 .\objects\lpi2c.o: ..\..\Libraries\CMSIS\Include\core_cm7.h
 .\objects\lpi2c.o: ..\..\Libraries\CMSIS\Include\cmsis_version.h
 .\objects\lpi2c.o: ..\..\Libraries\CMSIS\Include\cmsis_compiler.h
 .\objects\lpi2c.o: ..\..\Libraries\CMSIS\Include\cmsis_armcc.h
 .\objects\lpi2c.o: ..\..\Libraries\CMSIS\Include\mpu_armv7.h
-.\objects\lpi2c.o: d:\Keil_v5\ARM\PACK\NXP\MIMXRT1052_DFP\10.0.1\system_MIMXRT1052.h
-.\objects\lpi2c.o: d:\Keil_v5\ARM\PACK\NXP\MIMXRT1052_DFP\10.0.1\MIMXRT1052_features.h
+.\objects\lpi2c.o: D:\Keil_v5\ARM\PACK\NXP\MIMXRT1052_DFP\12.2.0\system_MIMXRT1052.h
+.\objects\lpi2c.o: D:\Keil_v5\ARM\PACK\NXP\MIMXRT1052_DFP\12.2.0\MIMXRT1052_features.h
 .\objects\lpi2c.o: ..\..\Libraries\hardware\led.h
 .\objects\lpi2c.o: ..\..\Libraries\drivers\fsl_common.h
 .\objects\lpi2c.o: ..\..\Libraries\drivers\fsl_iomuxc.h
@@ -215,6 +215,7 @@
 .\objects\lpi2c.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
 .\objects\lpi2c.o: ..\..\Libraries\hardware\gpt.h
 .\objects\lpi2c.o: ..\..\Libraries\drivers\fsl_gpt.h
+.\objects\lpi2c.o: ..\..\Libraries\hardware\lpi2c.h
 .\objects\lpi2c.o: ..\..\Libraries\hardware\pump.h
 .\objects\lpi2c.o: ..\..\Libraries\hardware\step.h
 .\objects\lpi2c.o: ..\..\Libraries\hardware\pwm.h

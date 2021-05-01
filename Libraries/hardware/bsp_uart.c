@@ -24,6 +24,8 @@
 #include "exit.h"
 #include "bsp_uart.h"
 #include "gizwits_protocol.h"
+#include "gizwits_product.h"
+#include "main.h"
 
 /**
 * @brief  初始化uart配置参数
@@ -139,7 +141,6 @@ void Uart_SendHalfWord(LPUART_Type *base, uint16_t ch)
 void DEBUG_UART_IRQHandler(void)
 {
   uint8_t Temp;
-  
   /*串口接收到数据*/
   if ((kLPUART_RxDataRegFullFlag)&LPUART_GetStatusFlags(DEBUG_UARTx))
   {
@@ -149,5 +150,6 @@ void DEBUG_UART_IRQHandler(void)
     /*将读取到的数据写入到缓冲区*/
     //Uart_SendByte(DEBUG_UARTx,ucTemp);
   }
+
 }
 

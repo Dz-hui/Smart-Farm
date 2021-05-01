@@ -7,9 +7,9 @@
 * @version      V03030000
 * @copyright    Gizwits
 * 
-* @note         机智�?.�?为智能硬件而生
+* @note         机智云.只为智能硬件而生
 *               Gizwits Smart Cloud  for Smart Products
-*               链接|增值ֵ|开放|�?立|安全|�?有|�?由|生�?
+*               链接|增值ֵ|开放|中立|安全|自有|自由|生态
 *               www.gizwits.com
 *
 ***********************************************************/
@@ -64,7 +64,7 @@ int32_t gizPutData(uint8_t *buf, uint32_t len)
 *
 * @param [out] head         : Protocol header pointer
 *
-* @return 0�? success; other�? failure    
+* @return 0， success; other， failure    
 */
 static int8_t gizProtocolHeadInit(protocolHead_t *head)
 {
@@ -87,7 +87,7 @@ static int8_t gizProtocolHeadInit(protocolHead_t *head)
 * @param [in] data            : data adress
 * @param [in] len             : data length
 *
-* @return 0�? suceess; other�? failure
+* @return 0， suceess; other， failure
 */
 static int8_t gizProtocolWaitAck(uint8_t *gizdata, uint32_t len)
 {
@@ -139,27 +139,6 @@ static int8_t ICACHE_FLASH_ATTR gizDataPoint2Event(gizwitsIssued_t *issuedData, 
         dataPoints->valuepump = gizStandardDecompressionValue(pump_BYTEOFFSET,pump_BITOFFSET,pump_LEN,(uint8_t *)&issuedData->attrVals.wBitBuf,sizeof(issuedData->attrVals.wBitBuf));
     }
         
-    if(0x01 == issuedData->attrFlags.flagcurtain_down)
-    {
-        info->event[info->num] = EVENT_curtain_down;
-        info->num++;
-        dataPoints->valuecurtain_down = gizStandardDecompressionValue(curtain_down_BYTEOFFSET,curtain_down_BITOFFSET,curtain_down_LEN,(uint8_t *)&issuedData->attrVals.wBitBuf,sizeof(issuedData->attrVals.wBitBuf));
-    }
-        
-    if(0x01 == issuedData->attrFlags.flagcurtain_up)
-    {
-        info->event[info->num] = EVENT_curtain_up;
-        info->num++;
-        dataPoints->valuecurtain_up = gizStandardDecompressionValue(curtain_up_BYTEOFFSET,curtain_up_BITOFFSET,curtain_up_LEN,(uint8_t *)&issuedData->attrVals.wBitBuf,sizeof(issuedData->attrVals.wBitBuf));
-    }
-        
-    if(0x01 == issuedData->attrFlags.flagdefault)
-    {
-        info->event[info->num] = EVENT_default;
-        info->num++;
-        dataPoints->valuedefault = gizStandardDecompressionValue(default_BYTEOFFSET,default_BITOFFSET,default_LEN,(uint8_t *)&issuedData->attrVals.wBitBuf,sizeof(issuedData->attrVals.wBitBuf));
-    }
-        
         
     if(0x01 == issuedData->attrFlags.flagbrightness)
     {
@@ -201,21 +180,6 @@ static int8_t ICACHE_FLASH_ATTR gizCheckReport(dataPoint_t *cur, dataPoint_t *la
     if(last->valuepump != cur->valuepump)
     {
         GIZWITS_LOG("valuepump Changed\n");
-        ret = 1;
-    }
-    if(last->valuecurtain_down != cur->valuecurtain_down)
-    {
-        GIZWITS_LOG("valuecurtain_down Changed\n");
-        ret = 1;
-    }
-    if(last->valuecurtain_up != cur->valuecurtain_up)
-    {
-        GIZWITS_LOG("valuecurtain_up Changed\n");
-        ret = 1;
-    }
-    if(last->valuedefault != cur->valuedefault)
-    {
-        GIZWITS_LOG("valuedefault Changed\n");
         ret = 1;
     }
     if(last->valuebrightness != cur->valuebrightness)
@@ -304,9 +268,6 @@ static int8_t ICACHE_FLASH_ATTR gizDataPoints2ReportData(dataPoint_t *dataPoints
     gizMemset((uint8_t *)devStatusPtr->wBitBuf,0,sizeof(devStatusPtr->wBitBuf));
 
     gizStandardCompressValue(pump_BYTEOFFSET,pump_BITOFFSET,pump_LEN,(uint8_t *)devStatusPtr,dataPoints->valuepump);
-    gizStandardCompressValue(curtain_down_BYTEOFFSET,curtain_down_BITOFFSET,curtain_down_LEN,(uint8_t *)devStatusPtr,dataPoints->valuecurtain_down);
-    gizStandardCompressValue(curtain_up_BYTEOFFSET,curtain_up_BITOFFSET,curtain_up_LEN,(uint8_t *)devStatusPtr,dataPoints->valuecurtain_up);
-    gizStandardCompressValue(default_BYTEOFFSET,default_BITOFFSET,default_LEN,(uint8_t *)devStatusPtr,dataPoints->valuedefault);
     gizByteOrderExchange((uint8_t *)devStatusPtr->wBitBuf,sizeof(devStatusPtr->wBitBuf));
 
     devStatusPtr->valuebrightness = gizY2X(brightness_RATIO,  brightness_ADDITION, dataPoints->valuebrightness); 
@@ -680,7 +641,7 @@ static void gizProtocolResendData(void)
 *
 * @param [in] head : Protocol header address
 *
-* @return 0�? success; other�? failure
+* @return 0， success; other， failure
 */
 static int8_t gizProtocolWaitAckCheck(protocolHead_t *head)
 {
@@ -809,7 +770,7 @@ static int32_t gizProtocolGetDeviceInfo(protocolHead_t * head)
 
 * @param[in] head  : Protocol header address
 * @param[in] errno : Illegal message notification type
-* @return 0�? success; other�? failure
+* @return 0， success; other， failure
 */
 static int32_t gizProtocolErrorCmd(protocolHead_t *head,errorPacketsType_t errno)
 {
@@ -843,7 +804,7 @@ static int32_t gizProtocolErrorCmd(protocolHead_t *head,errorPacketsType_t errno
 *
 * @param [in] head : Protocol header address
 *
-* @return 0�? success; other�? failure
+* @return 0， success; other， failure
 */
 static int8_t gizProtocolNTP(protocolHead_t *head)
 {  
@@ -1074,7 +1035,7 @@ void gizwitsInit(void)
 
 * Set the WiFi module into the corresponding configuration mode or reset the module
 
-* @param[in] mode �?0x0�? reset the module ;0x01�? SoftAp mode ;0x02�? AirLink mode ;0x03�? Production test mode; 0x04:allow users to bind devices
+* @param[in] mode ：0x0， reset the module ;0x01， SoftAp mode ;0x02， AirLink mode ;0x03， Production test mode; 0x04:allow users to bind devices
 
 * @return Error command code
 */
@@ -1240,7 +1201,7 @@ void gizwitsGetModuleInfo(void)
 *
 * @param [in] head : 
 *
-* @return 0, Success�? , other,Faild
+* @return 0, Success， , other,Faild
 */
 static int8_t gizProtocolModuleInfoHandle(protocolHead_t *head)
 {

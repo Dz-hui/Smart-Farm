@@ -1,3 +1,9 @@
+/***********************************************************************
+*@Author: Dz_hui
+*@Date: 2021-03-21 01:08:14
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??Gizwits??¾¶·Ö¸ô???Ìæ??gizwits_product.h
+*@Drscription: 
+***********************************************************************/
 /**
 ************************************************************
 * @file         gizwits_product.h
@@ -7,9 +13,9 @@
 * @version      V03030000
 * @copyright    Gizwits
 * 
-* @note         æœºæ™ºï¿½?.ï¿½?ä¸ºæ™ºèƒ½ç¡¬ä»¶è€Œç”Ÿ
+* @note         æœºæ™ºäº?.å?ä¸ºæ™ºèƒ½ç¡¬ä»¶è€Œç”Ÿ
 *               Gizwits Smart Cloud  for Smart Products
-*               é“¾æ¥|å¢å€¼Öµ|å¼€æ”¾|ï¿½?ç«‹|å®‰å…¨|ï¿½?æœ‰|ï¿½?ç”±|ç”Ÿï¿½?
+*               é“¾æ¥|å¢å€¼Öµ|å¼€æ”¾|ä¸?ç«‹|å®‰å…¨|è‡?æœ‰|è‡?ç”±|ç”Ÿæ€?
 *               www.gizwits.com
 *
 ***********************************************************/
@@ -41,6 +47,7 @@ extern "C" {
 
 
 extern dataPoint_t currentDataPoint;
+extern dataPoint_t lastDataPoint;
 
 void userInit(void);
 void userHandle(void);
@@ -48,7 +55,6 @@ void mcuRestart(void);
 int32_t uartWrite(uint8_t *buf, uint32_t len);
 int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *data, uint32_t len);
 void gizTimerMs(void);
-
 
 #ifdef __cplusplus
 }

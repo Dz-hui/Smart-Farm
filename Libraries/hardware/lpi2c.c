@@ -1,10 +1,10 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2020-06-02 19:24:01
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??RT1052_emwin1.2??¾¶·Ö¸ô???Ìæ??RT1052_emwin??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??lpi2c.c
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??lpi2c.c
 *@Drscription: 
 ***********************************************************************/
-#include "lpi2c.h"
+#include "i2c.h"
 #include "fsl_gpio.h"
 #include "fsl_lpi2c.h"
 #include "pad_config.h"
@@ -14,7 +14,7 @@
 #include "struct.h"
 
 
-uint8_t BH1750_write_reg = 0x10;
+uint8_t BH1750_write_reg[1] ={0x10};
 //uint8_t SGP30_init_air_quality[2]={0x20,0x03};
 //uint8_t SGP30_measure_air_quality[2]={0x20,0x08};
 //uint8_t SGP30_reset=0x06;
@@ -162,12 +162,12 @@ void BH1750_readdata(void)
 	LPI2C_MasterStart(LPI2C_PORT,BH1705_ADDR,kLPI2C_Read);
 	LPI2C_MasterReceive(LPI2C_PORT,&BH1750_readbuff,2);
 	LPI2C_MasterStop(LPI2C_PORT);
-	// CPU_TS_Tmr_Delay_US(180000);
 }
 
-float BH1750_measure(void)
+#if 1
+float bh1750_measure(void)
 {
-	float light =0;
+	float light;
 
     static uint8_t statuss =1;
 
@@ -182,9 +182,32 @@ float BH1750_measure(void)
          statuss = 1;
 		 light = (float)( (BH1750_readbuff[0]<<8 ) | BH1750_readbuff[1]) / (float)3.6;
      }
+     printf("light = %f\n",light);
 	 return light;
 }
+#endif
 
+#if 0
+float bh1750_measure(void)
+{
+    float light =0;
+    static uint8_t statuss =1;
+    if(statuss == 1)
+     {
+        I2C_WriteByte(BH1705_ADDR,0x01,BH1750_write_reg);
+        statuss = 0;
+     }
+     else if(statuss == 0)
+     {
+        I2C_ReadBuffer(BH1705_ADDR,0x01,BH1750_readbuff,2);
+        statuss = 1;
+		light = (float)( (BH1750_readbuff[0]<<8 ) | BH1750_readbuff[1]) / (float)3.6;
+     }
+     printf("light = %f\n",light);
+	 return light;
+
+}
+#endif
 
 /********************************SGP30*********************************/
 //void SGP30_writebyte(uint8_t *buff1,uint8_t *buff2)

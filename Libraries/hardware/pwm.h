@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2020-06-12 17:05:43
-*@FilePath: \DEMO\hardware\pwm.h
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??pwm.h
 *@Drscription: 
 ***********************************************************************/
 #ifndef __PWM__H
@@ -17,14 +17,14 @@
 #define QTMR_PORT                   TMR3
 #define QTMR_CHANNLE                kQTMR_Channel_2
 
-#define QTMR_CH1_GPIO_PORT          GPIO2
-#define QTMR_CH1_GPIO_PIN           (27U)
-#define QTMR_CH1_IOMUXC             IOMUXC_GPIO_B1_11_QTIMER4_TIMER3    
+#define FAN_QTMR_CH1_GPIO_PORT          GPIO2
+#define FAN_QTMR_CH1_GPIO_PIN           (27U)
+#define FAN_QTMR_CH1_IOMUXC         IOMUXC_GPIO_B1_11_QTIMER4_TIMER3    
 
 #define FAN_QTMR_PORT               TMR4
 #define FAN_QTMR_CHANNLE            kQTMR_Channel_3
 
-#define QTMR_PWM_FREQ               2000
+#define QTMR_PWM_FREQ               50000
 #define QTMR_PWM_DUTY_CYCLE         10
 
 #define QTMR_SOURCE_CLOCK           CLOCK_GetFreq(kCLOCK_IpgClk)

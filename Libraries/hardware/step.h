@@ -1,23 +1,29 @@
+/***********************************************************************
+*@Author: Dz_hui
+*@Date: 2021-03-21 01:08:14
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??step.h
+*@Drscription: 
+***********************************************************************/
 #ifndef __STEP__H
 #define __STEP__H 
 
 #include "fsl_common.h"
 
 #define STEP_IN1_PORT             			GPIO2
-#define STEP_IN1_GPIO_PIN         			(28U)
-#define STEP_IN1_IOMUXC           			IOMUXC_GPIO_B1_12_GPIO2_IO28
+#define STEP_IN1_GPIO_PIN         			(23U)
+#define STEP_IN1_IOMUXC           			IOMUXC_GPIO_B1_07_GPIO2_IO23
 
 #define STEP_IN2_PORT             			GPIO2
-#define STEP_IN2_GPIO_PIN         			(29U)
-#define STEP_IN2_IOMUXC           			IOMUXC_GPIO_B1_13_GPIO2_IO29
+#define STEP_IN2_GPIO_PIN         			(21U)
+#define STEP_IN2_IOMUXC           			IOMUXC_GPIO_B1_05_GPIO2_IO21
 
-#define STEP_IN3_PORT             			GPIO1
-#define STEP_IN3_GPIO_PIN         			(14U)
-#define STEP_IN3_IOMUXC           			IOMUXC_GPIO_AD_B0_14_GPIO1_IO14
+#define STEP_IN3_PORT             			GPIO2
+#define STEP_IN3_GPIO_PIN         			(24U)
+#define STEP_IN3_IOMUXC           			IOMUXC_GPIO_B1_08_GPIO2_IO24
 
 #define STEP_IN4_PORT             			GPIO1
-#define STEP_IN4_GPIO_PIN         			(19U)
-#define STEP_IN4_IOMUXC           			IOMUXC_GPIO_AD_B1_03_GPIO1_IO19
+#define STEP_IN4_GPIO_PIN         			(20U)
+#define STEP_IN4_IOMUXC           			IOMUXC_GPIO_AD_B1_04_GPIO1_IO20
 
 #define STEP_DIR_UP         0
 #define STEP_DIR_DOWN       1
@@ -38,6 +44,7 @@ typedef struct {
 extern STEP_DEF user_step;
 
 void STEP_GPIO_Config(void);
+void user_step_init(void);
 void curtain_down(void);
 void curtain_up(void);
 void curtain_stop(void);
