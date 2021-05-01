@@ -31,13 +31,7 @@ void lv_draw_init(void) {
     lv_obj_set_style(my_ui.home_buttom_gb_layer, &home_buttom_gb_style);
     
     draw_home();
-    
-    
-    
 }
-
-
-
 
 static void event_popup_draw(const char *text) {
 
@@ -53,10 +47,33 @@ static void event_popup_draw(const char *text) {
 void lv_draw_home(void) {
 
     my_ui.ui_list = UI_HOME;
-    
-    
 }
 
+
+lv_obj_t* lv_btn_set(lv_obj_t* scr, lv_obj_t* btn, lv_coord_t btn_w, lv_coord_t btn_h, lv_coord_t x, lv_coord_t y, lv_event_cb_t event_cb) {
+
+    btn = lv_btn_create(scr, NULL);
+    lv_obj_set_size(btn, btn_w, btn_h);
+    lv_obj_set_pos(btn, x, y);
+    lv_obj_set_event_cb(btn, event_cb);
+    return btn;
+}
+
+lv_obj_t* lv_label_set(lv_obj_t* scr, lv_obj_t* label, lv_coord_t x, lv_coord_t y,const char *txt) {
+
+    label = lv_label_create(scr, NULL);
+    lv_obj_set_pos(label, x, y);
+    lv_label_set_text(label,txt);
+    return label;
+}
+
+lv_obj_t* lv_label_align_set(lv_obj_t* scr, lv_obj_t* label, const char *txt) {
+
+    label = lv_label_create(scr, NULL);
+    lv_label_set_text(label,txt);
+    lv_obj_align(label,scr,LV_ALIGN_CENTER,0,0);
+    return label;
+}
 
 void my_lv_obj_del(lv_obj_t *obj) {
     //lv_obj_clear(obj);

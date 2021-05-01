@@ -9,7 +9,8 @@
 
 #include "main.h"
 
-static void back_btn_cb(lv_obj_t *btn, lv_event_t event);
+
 lv_obj_t* draw_about(void);
 
 #endif
+

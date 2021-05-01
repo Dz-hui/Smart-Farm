@@ -30,8 +30,11 @@ typedef struct {
     UI_EVENT event;
 
     lv_obj_t *main_src;                 // Ö÷ÆÁÄ»
-    lv_obj_t *home_top_gb_layer;       // ×´Ì¬À¸
-    lv_obj_t *home_buttom_gb_layer;    // µ¯´°
+    
+    lv_obj_t *home_top_gb_layer;        // ×´Ì¬À¸
+    lv_obj_t *home_buttom_gb_layer;     // ÏÂ°ëÆÁÄ»
+    lv_obj_t *home_popup;               // µ¯´°
+    
 
     lv_style_t main_style;             // Ö÷ÑùÊ½
     lv_style_t bar_style;              // Ö÷ÑùÊ½
@@ -46,41 +49,13 @@ typedef struct {
 
 
 
-typedef struct {
-
-
-    lv_obj_t *home_btn_setting;
-    lv_obj_t *home_btn_ctrl;
-    lv_obj_t *home_btn_about;
-
-    lv_obj_t *home_label_setting;
-    lv_obj_t *home_label_ctrl;
-    lv_obj_t *home_label_about;
-
-    lv_obj_t *home_temp_text;
-    lv_obj_t *home_co2_text;
-    lv_obj_t *home_lighting_text;
-    lv_obj_t *home_humi_text;
-    lv_obj_t *home_water_text;
-    lv_obj_t *home_soil_text;
-
-    lv_obj_t *home_fan_text;
-    lv_obj_t *home_curtain_text;
-    lv_obj_t *home_led_text;
-    lv_obj_t *home_pump_text;
-    lv_obj_t *device_text;
-
-    lv_obj_t *back_btn;
-
-
-    
-}UI_HOME_T;
 
 
 
 void my_lv_obj_del(lv_obj_t *obj);
 void lv_draw_init(void);
 
-
-
+lv_obj_t* lv_btn_set(lv_obj_t* scr, lv_obj_t* btn, lv_coord_t btn_w, lv_coord_t btn_h, lv_coord_t x, lv_coord_t y, lv_event_cb_t event_cb);
+lv_obj_t* lv_label_set(lv_obj_t* scr, lv_obj_t* label, lv_coord_t x, lv_coord_t y,const char *txt);
+lv_obj_t* lv_label_align_set(lv_obj_t* scr, lv_obj_t* label, const char *txt) ;
 #endif

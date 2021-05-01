@@ -6,14 +6,12 @@
 ***********************************************************************/
 #include "lv_draw_about.h"
 extern MY_UI_T my_ui; 
-extern UI_HOME_T home_obj;
 
 static void back_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
        lv_clean_home();
-       display_home();
    }
 }
 
@@ -28,6 +26,8 @@ lv_obj_t* draw_about(void)
     lv_label_set_style(text, LV_LABEL_STYLE_MAIN, &text_style);//…Ë÷√—˘ Ω
     lv_label_set_text(text, "                                       FW : V1.0\n                                Author : He Jiahui\nClass :Electronic Information Engineering Class 1701");
     lv_obj_align(text, my_ui.home_buttom_gb_layer, LV_ALIGN_CENTER, 0, 0);
-    back_btn(my_ui.home_buttom_gb_layer, home_obj.back_btn, back_btn_cb, 100, 40, 680, 350, "BACK");
+    //back_btn(my_ui.home_buttom_gb_layer, home_obj.back_btn, back_btn_cb, 100, 40, 680, 350, "BACK");
 
 }
+
+

@@ -29,7 +29,6 @@ void page_btn(lv_obj_t* par, lv_obj_t* btn, lv_event_cb_t btn_cb, int btn_pos_x,
     page_btn_press.body.border.color = LV_COLOR_MAKE(0xd8, 0xbf, 0xd8);
     //page_btn_press.body.border.width = 2;//设置边框的宽度
 
-
     btn = lv_btn_create(par, NULL);
     lv_obj_set_size(btn, 160, 160);//设置大小
     lv_obj_set_pos(btn, btn_pos_x, btn_pos_y);
@@ -37,8 +36,6 @@ void page_btn(lv_obj_t* par, lv_obj_t* btn, lv_event_cb_t btn_cb, int btn_pos_x,
     // lv_btn_set_style(btn, LV_BTN_STYLE_PR, &page_btn_press);
     lv_obj_set_click(btn, true);//使能点击
     lv_obj_set_event_cb(btn, btn_cb);//设置按键事件回调
-
-
 
     lv_obj_t* btn_label = lv_label_create(btn, NULL);
     static lv_style_t page_label_style;
@@ -48,5 +45,5 @@ void page_btn(lv_obj_t* par, lv_obj_t* btn, lv_event_cb_t btn_cb, int btn_pos_x,
     lv_label_set_style(btn_label, LV_LABEL_STYLE_MAIN, &page_label_style);
     lv_label_set_text(btn_label, text);
     lv_obj_align(btn_label, btn, LV_ALIGN_CENTER, 0, 0);
-
 }
+
