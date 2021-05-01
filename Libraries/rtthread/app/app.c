@@ -17,13 +17,12 @@
 #include "lv_apps\demo\demo.h"
 #include "lv_tests\lv_test_theme\lv_test_theme_1.h"
 #include "lv_tests\lv_test_theme\lv_test_theme_2.h"
-#include "gui_display.h"
 
 #include "stdlib.h"
 #include "stdio.h"
 
 rt_thread_t lv_thread = RT_NULL;
-#define LV_THREAD_SIZE				4096*2
+#define LV_THREAD_SIZE				1024*50
 void gui_lvgl_init(void *parg);
 
 void gui_lvgl_thread_init(void) {
@@ -47,10 +46,8 @@ void gui_lvgl_init(void *parg) {
     lv_port_disp_init();
     lv_port_indev_init();
 
-	smart_farm_display();
-	
-    //draw_home();
-    //lv_test_theme_1(lv_theme_night_init(210, NULL));
+	lv_draw_init();
+
 	while(1) {
 		
 		lv_task_handler();

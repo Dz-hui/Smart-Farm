@@ -20,7 +20,14 @@
         "main.h": "c",
         "lv_draw_lvgl.h": "c",
         "lv_draw_home.h": "c",
-        "lv_draw_temp.h": "c"
+        "lv_draw_temp.h": "c",
+        "lv_home_btn.h": "c",
+        "lv_draw_main.h": "c",
+        "lv_home_val.h": "c",
+        "lv_home_status.h": "c",
+        "lv_draw_about.h": "c",
+        "lv_back_btn.h": "c",
+        "lv_draw_setting.h": "c"
     },
     "editor.minimap.enabled": true,
     "C_Cpp.autocomplete": "Default",
