@@ -8,8 +8,6 @@
 #define __app_h
 
 #include "main.h"
-#include "lv_draw_lvgl.h"
-#include "lv_draw_home.h"
 
 
 

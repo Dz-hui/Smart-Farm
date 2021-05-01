@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>MIMXRT1052DVL6B</Device>
           <Vendor>NXP</Vendor>
-          <PackID>NXP.MIMXRT1052_DFP.12.2.0</PackID>
+          <PackID>NXP.MIMXRT1052_DFP.10.0.1</PackID>
           <PackURL>http://mcuxpresso.nxp.com/cmsis_pack/repo/</PackURL>
           <Cpu>IRAM(0x20000000,0x020000) IRAM2(0x00000000,0x020000) XRAM(0x20200000,0x040000) CPUTYPE("Cortex-M7") FPU3(DFPU) CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -1296,36 +1296,44 @@
               <FilePath>..\..\GUI_APP\lv_draw_home.c</FilePath>
             </File>
             <File>
-              <FileName>lv_draw_lvgl.c</FileName>
+              <FileName>lv_draw_ctrl.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\lv_draw_lvgl.c</FilePath>
+              <FilePath>..\..\GUI_APP\lv_draw_ctrl.c</FilePath>
             </File>
             <File>
-              <FileName>lvgl_task.c</FileName>
+              <FileName>lv_draw_main.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\lvgl_task.c</FilePath>
+              <FilePath>..\..\GUI_APP\lv_draw_main.c</FilePath>
             </File>
             <File>
-              <FileName>lv_draw_temp.c</FileName>
+              <FileName>lv_home_btn.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\lv_draw_temp.c</FilePath>
+              <FilePath>..\..\GUI_APP\lv_home_btn.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_home_val.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\lv_home_val.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_home_status.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\lv_home_status.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_back_btn.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\lv_back_btn.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_draw_about.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\lv_draw_about.c</FilePath>
             </File>
           </Files>
         </Group>
         <Group>
           <GroupName>lvgl/pic</GroupName>
-          <Files>
-            <File>
-              <FileName>background.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\background.c</FilePath>
-            </File>
-            <File>
-              <FileName>curtain.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\curtain.c</FilePath>
-            </File>
-          </Files>
         </Group>
         <Group>
           <GroupName>lv_demo</GroupName>
@@ -1349,46 +1357,6 @@
               <FileName>lv_test_theme_2.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\GUI\lv_examples\lv_tests\lv_test_theme\lv_test_theme_2.c</FilePath>
-            </File>
-            <File>
-              <FileName>date_font_24.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\date_font_24.c</FilePath>
-            </File>
-            <File>
-              <FileName>gui_display.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\gui_display.c</FilePath>
-            </File>
-            <File>
-              <FileName>S_btn_font.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\S_btn_font.c</FilePath>
-            </File>
-            <File>
-              <FileName>S_click_font.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\S_click_font.c</FilePath>
-            </File>
-            <File>
-              <FileName>S_dialog_text_font1.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\S_dialog_text_font1.c</FilePath>
-            </File>
-            <File>
-              <FileName>S_display_font.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\S_display_font.c</FilePath>
-            </File>
-            <File>
-              <FileName>S_text_font.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\S_text_font.c</FilePath>
-            </File>
-            <File>
-              <FileName>time_font_80.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\time_font_80.c</FilePath>
             </File>
           </Files>
         </Group>

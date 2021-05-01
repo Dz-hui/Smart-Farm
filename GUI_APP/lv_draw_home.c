@@ -1,48 +1,106 @@
+/***********************************************************************
+*@Author: Dz_hui
+*@Date: 2021-05-01 16:37:36
+*@FilePath: ??径分隔???替??Smart-Farm??径分隔???替??GUI_APP??径分隔???替??lv_draw_home.c
+*@Drscription: 
+***********************************************************************/
 #include "lv_draw_home.h"
 
-
-
-static lv_obj_t* bk_img;
-
-static lv_obj_t* imgbtn_curtain;  
-static lv_obj_t* imgbtn_water;
-static lv_obj_t* imgbtn_temp;
-
-static lv_obj_t* label_curtain;  
-static lv_obj_t* label_water;
-
-LV_IMG_DECLARE(background);		//先申明此图片
-LV_IMG_DECLARE(curtain);		//先申明此图片
-
+extern MY_UI_T my_ui; 
+UI_HOME_T home_obj;
 
 static void event_handler_temp(lv_obj_t* obj, lv_event_t event) {
+    char buff[20];
+
+
+}
+
+static void event_handler_humi(lv_obj_t* obj, lv_event_t event) {
+
+}
+
+static void event_handler_co2(lv_obj_t* obj, lv_event_t event) {
+
+}
+
+static void event_handler_soil(lv_obj_t* obj, lv_event_t event) {
+
+
+}
+
+static void event_handler_lighting(lv_obj_t* obj, lv_event_t event) {
+
+}
+
+static void event_handler_water(lv_obj_t* obj, lv_event_t event) {
+
+
+}
+
+static void event_handler_btn_setting(lv_obj_t* obj, lv_event_t event) {
 
     if (event == LV_EVENT_RELEASED) {
+        
+        
+	}
+}
 
-        draw_temp();
+static void event_handler_btn_ctrl(lv_obj_t* obj, lv_event_t event) {
+
+    if (event == LV_EVENT_RELEASED) {
+        lv_clean_home();
+        
+	}
+}
+
+static void event_handler_btn_about(lv_obj_t* obj, lv_event_t event) {
+
+    if (event == LV_EVENT_RELEASED) {
+        lv_clean_home();
+        draw_about();
+
+        
 	}
 }
 
 
+
+
 void draw_home(void) {
 
-    // 创建主界面
-    scr = lv_obj_create(NULL, NULL);
-    scr = lv_scr_act();
+    home_display_val(my_ui.home_top_gb_layer, home_obj.home_temp_text, event_handler_temp, 10, 42, "Temperature: 35 C");
+    home_display_val(my_ui.home_top_gb_layer, home_obj.home_humi_text, event_handler_humi, 10, 2, "Humidity: 70%");
+    home_display_val(my_ui.home_top_gb_layer, home_obj.home_co2_text, event_handler_co2, 270, 2, "CO2 Content: 70%");
+    home_display_val(my_ui.home_top_gb_layer, home_obj.home_lighting_text , event_handler_lighting, 520, 42, "Light Intensity: 50%");
+    home_display_val(my_ui.home_top_gb_layer, home_obj.home_soil_text, event_handler_soil, 270, 42, "Soil Moisture: 50%");
+    home_display_val(my_ui.home_top_gb_layer, home_obj.home_water_text, event_handler_water, 520, 2, "Water Remaining: 50%");
 
-    // 绘制背景图
-    bk_img = lv_img_create(scr, NULL);
-    lv_img_set_src(bk_img, &background);
+    page_btn(my_ui.home_buttom_gb_layer, home_obj.home_btn_setting, event_handler_btn_setting, 50, 75, "Setting");
+    page_btn(my_ui.home_buttom_gb_layer, home_obj.home_btn_ctrl, event_handler_btn_ctrl, 320, 75, "Control");
+    page_btn(my_ui.home_buttom_gb_layer, home_obj.home_btn_about, event_handler_btn_about, 590, 75, "About");
 
-    // lv_obj_t * bar1 = lv_bar_create(scr, NULL);
-    // lv_obj_set_size(bar1, 200, 30);
-    // lv_obj_align(bar1, NULL, LV_ALIGN_CENTER, 0, 0);
-    // lv_bar_set_anim_time(bar1, 1000);
-    // lv_bar_set_value(bar1, 100, LV_ANIM_ON);
+    fan_dispaly(my_ui.home_buttom_gb_layer);
+    curtain_dispaly(my_ui.home_buttom_gb_layer);
+    pump_dispaly(my_ui.home_buttom_gb_layer);
+    device_text_dispaly(my_ui.home_buttom_gb_layer);
+    led_dispaly(my_ui.home_buttom_gb_layer);
+     
+}
 
-    lv_imgbtn_creat_mks(scr, imgbtn_temp, &curtain, &curtain, LV_ALIGN_CENTER, -250, -100, event_handler_temp);
+void display_home(void)
+{
+    page_btn(my_ui.home_buttom_gb_layer, home_obj.home_btn_setting, event_handler_btn_setting, 50, 75, "Setting");
+    page_btn(my_ui.home_buttom_gb_layer, home_obj.home_btn_ctrl, event_handler_btn_ctrl, 320, 75, "Control");
+    page_btn(my_ui.home_buttom_gb_layer, home_obj.home_btn_about, event_handler_btn_about, 590, 75, "About");
+
+    fan_dispaly(my_ui.home_buttom_gb_layer);
+    curtain_dispaly(my_ui.home_buttom_gb_layer);
+    pump_dispaly(my_ui.home_buttom_gb_layer);
+    device_text_dispaly(my_ui.home_buttom_gb_layer);
+    led_dispaly(my_ui.home_buttom_gb_layer);  
+     
 }
 
 void lv_clean_home(void) {
-	lv_obj_clean(scr);
+	lv_obj_clean(my_ui.home_buttom_gb_layer);
 }
