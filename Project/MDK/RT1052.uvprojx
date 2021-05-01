@@ -16,7 +16,7 @@
         <TargetCommonOption>
           <Device>MIMXRT1052DVL6B</Device>
           <Vendor>NXP</Vendor>
-          <PackID>NXP.MIMXRT1052_DFP.10.0.1</PackID>
+          <PackID>NXP.MIMXRT1052_DFP.12.2.0</PackID>
           <PackURL>http://mcuxpresso.nxp.com/cmsis_pack/repo/</PackURL>
           <Cpu>IRAM(0x20000000,0x020000) IRAM2(0x00000000,0x020000) XRAM(0x20200000,0x040000) CPUTYPE("Cortex-M7") FPU3(DFPU) CLOCK(12000000) ELITTLE</Cpu>
           <FlashUtilSpec></FlashUtilSpec>
@@ -184,8 +184,6 @@
             <hadXRAM>1</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>3</RvdsVP>
-            <RvdsMve>0</RvdsMve>
-            <RvdsCdeCp>0</RvdsCdeCp>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>0</StupSel>
@@ -313,7 +311,7 @@
           </ArmAdsMisc>
           <Cads>
             <interw>1</interw>
-            <Optim>4</Optim>
+            <Optim>1</Optim>
             <oTime>0</oTime>
             <SplitLS>0</SplitLS>
             <OneElfS>1</OneElfS>
@@ -352,7 +350,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>4</ClangAsOpt>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define>__STARTUP_INITIALIZE_NONCACHEDATA</Define>
@@ -610,16 +608,6 @@
               <FilePath>..\..\Libraries\hardware\touch\bsp_touch_gtxx.c</FilePath>
             </File>
             <File>
-              <FileName>gizwits_product.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Libraries\hardware\Gizwits\gizwits_product.c</FilePath>
-            </File>
-            <File>
-              <FileName>gizwits_protocol.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Libraries\hardware\Gizwits\gizwits_protocol.c</FilePath>
-            </File>
-            <File>
               <FileName>common.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Libraries\hardware\Utils\common.c</FilePath>
@@ -856,6 +844,18 @@
         </Group>
         <Group>
           <GroupName>gizwits</GroupName>
+          <Files>
+            <File>
+              <FileName>gizwits_product.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Libraries\hardware\Gizwits\gizwits_product.c</FilePath>
+            </File>
+            <File>
+              <FileName>gizwits_protocol.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Libraries\hardware\Gizwits\gizwits_protocol.c</FilePath>
+            </File>
+          </Files>
         </Group>
         <Group>
           <GroupName>lvgl/src</GroupName>
@@ -1350,6 +1350,46 @@
               <FileType>1</FileType>
               <FilePath>..\..\GUI\lv_examples\lv_tests\lv_test_theme\lv_test_theme_2.c</FilePath>
             </File>
+            <File>
+              <FileName>date_font_24.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\date_font_24.c</FilePath>
+            </File>
+            <File>
+              <FileName>gui_display.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\gui_display.c</FilePath>
+            </File>
+            <File>
+              <FileName>S_btn_font.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\S_btn_font.c</FilePath>
+            </File>
+            <File>
+              <FileName>S_click_font.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\S_click_font.c</FilePath>
+            </File>
+            <File>
+              <FileName>S_dialog_text_font1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\S_dialog_text_font1.c</FilePath>
+            </File>
+            <File>
+              <FileName>S_display_font.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\S_display_font.c</FilePath>
+            </File>
+            <File>
+              <FileName>S_text_font.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\S_text_font.c</FilePath>
+            </File>
+            <File>
+              <FileName>time_font_80.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\time_font_80.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
@@ -1361,20 +1401,5 @@
     <components/>
     <files/>
   </RTE>
-
-  <LayerInfo>
-    <Layers>
-      <Layer>
-        <LayName>&lt;Project Info&gt;</LayName>
-        <LayDesc></LayDesc>
-        <LayUrl></LayUrl>
-        <LayKeys></LayKeys>
-        <LayCat></LayCat>
-        <LayLic></LayLic>
-        <LayTarg>0</LayTarg>
-        <LayPrjMark>1</LayPrjMark>
-      </Layer>
-    </Layers>
-  </LayerInfo>
 
 </Project>

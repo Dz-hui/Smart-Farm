@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-01-06 23:27:08
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??RT1052_emwin??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??adc.c
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??adc.c
 *@Drscription: 
 ***********************************************************************/
 
@@ -129,8 +129,8 @@ uint16_t adc_measure(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumbe
 	adc_channle_config.enableInterruptOnConversionCompleted = true;
 	ADC_SetChannelConfig(base,channelGroup,&adc_channle_config);
 	while(1U == ADC_GetChannelStatusFlags(base,channelGroup));
-	printf("value=%d\n",ADC_GetChannelConversionValue(base, channelGroup));
-    return ADC_GetChannelConversionValue(base, channelGroup);
+	printf("adc_value=%d\n",ADC_GetChannelConversionValue(base, channelGroup));
+    //return ADC_GetChannelConversionValue(base, channelGroup);
 }
 
 /***********************************************************************

@@ -66,26 +66,26 @@ void rt_hw_board_init()
     Print_Log();
 	SysTick_Config(CLOCK_GetFreq(kCLOCK_CpuClk) / 1000);  
     led_init();
-    key_init();
+    //key_init();
 	GPT_Config();
 	USB_UART_config();
 	UART_Config();
 	userInit();
     gizwitsInit();
 	dht11_config();
-	LPI2C_config();
-	pit_timer_config();
-	// adc_config();
-	
-	PUMP_GPIO_Config();
-	STEP_GPIO_Config();
-	QTMR_PWM_config();
-    //I2C_Init();
+	//LPI2C_config();
+	//pit_timer_config();
+	adc_config();
+    I2C_Init();
+	//PUMP_GPIO_Config();
+	//QTMR_PWM_config();
+    STEP_GPIO_Config();
+
+
     // Pit_init(kPIT_Chnl_0,1000);  //1ms
     // Pit_init(kPIT_Chnl_1,10000);  //10ms
     // Pit_init(kPIT_Chnl_2,500000);  //100ms
-	BS_LCD_Init(LCD_INTERRUPT_ENABLE);
-	DEBUG_PRINT("Periph init succeed");
+	//BS_LCD_Init(LCD_INTERRUPT_ENABLE);
     /* System Tick Configuration */
     //_SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
 

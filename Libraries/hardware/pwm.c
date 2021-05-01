@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2020-06-12 17:05:51
-*@FilePath: \DEMO\hardware\pwm.c
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??pwm.c
 *@Drscription: 
 ***********************************************************************/
 #include "pwm.h"
@@ -14,7 +14,7 @@
 /*pad²ÎÊýÉèÖÃ*/
 #define PEM_PAD_SETTING_DATA    (SRE_0_SLOW_SLEW_RATE| \
                                  DSE_6_R0_6| \
-								 SPEED_1_MEDIUM_100MHz| \
+								 SPEED_2_MEDIUM_100MHz| \
 								 ODE_0_OPEN_DRAIN_DISABLED| \
 								 PKE_1_PULL_KEEPER_ENABLED| \
 								 PUE_1_PULL_SELECTED| \
@@ -42,14 +42,15 @@ void pwm_gpio_config(void)
     IOMUXC_SetPinMux(QTMR_CH0_IOMUXC,0U);
 	GPIO_PinInit(QTMR_CH0_GPIO_PORT,QTMR_CH0_GPIO_PIN,&gpio_Config);
 	
+	#if 0
 	gpio_Config.direction=kGPIO_DigitalOutput;
 	gpio_Config.outputLogic=1;
 	gpio_Config.interruptMode=kGPIO_NoIntmode;
 	
-	IOMUXC_SetPinConfig(QTMR_CH1_IOMUXC,PEM_PAD_SETTING_DATA);
-    IOMUXC_SetPinMux(QTMR_CH1_IOMUXC,0U);
-	GPIO_PinInit(QTMR_CH1_GPIO_PORT,QTMR_CH1_GPIO_PIN,&gpio_Config);
-    
+	IOMUXC_SetPinConfig(FAN_QTMR_CH1_IOMUXC,PEM_PAD_SETTING_DATA);
+    IOMUXC_SetPinMux(FAN_QTMR_CH1_IOMUXC,0U);
+	GPIO_PinInit(FAN_QTMR_CH1_GPIO_PORT,FAN_QTMR_CH1_GPIO_PIN,&gpio_Config);
+    #endif
 }
 
 /***********************************************************************
@@ -64,18 +65,23 @@ void QTMR_PWM_config(void)
 {
     qtmr_config_t qtmr_config;
 
+#if 1
     pwm_gpio_config();
     QTMR_GetDefaultConfig(&qtmr_config);
 	qtmr_config.primarySource=kQTMR_ClockDivide_8;
     QTMR_Init(QTMR_PORT,QTMR_CHANNLE,&qtmr_config);
-	QTMR_StopTimer(QTMR_PORT,QTMR_CHANNLE);
-    QTMR_SetupPwm(QTMR_PORT,QTMR_CHANNLE,QTMR_PWM_FREQ,101,false,QTMR_SOURCE_CLOCK / 128);
-	
+	//QTMR_StopTimer(QTMR_PORT,QTMR_CHANNLE);
+    QTMR_SetupPwm(QTMR_PORT,QTMR_CHANNLE,QTMR_PWM_FREQ,20,false,QTMR_SOURCE_CLOCK / 128);
+	QTMR_StartTimer(QTMR_PORT,QTMR_CHANNLE,kQTMR_PriSrcRiseEdge);
+#endif
+
+	#if 0
 	QTMR_GetDefaultConfig(&qtmr_config);
 	qtmr_config.primarySource=kQTMR_ClockDivide_8;
     QTMR_Init(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,&qtmr_config);
-	QTMR_StartTimer(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,kQTMR_PriSrcRiseEdge);
 	QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,0,false,QTMR_SOURCE_CLOCK / 128);
+	QTMR_StartTimer(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,kQTMR_PriSrcRiseEdge);
+	#endif
 }
 
 

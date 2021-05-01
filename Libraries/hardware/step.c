@@ -22,27 +22,27 @@ STEP_DEF user_step;
 
 static void STEP_IOMUXC_MUX_Config(void)
 {
-  /* 核心板的LED灯 */    
+  /* 步进电机 */    
   /* 设置引脚的复用模式为GPIO，不使用SION功能 */
   IOMUXC_SetPinMux(STEP_IN1_IOMUXC, 0U);
 
-  /* RGB LED灯，使用同样的IOMUXC MUX配置 */  
+  /* 步进电机，使用同样的IOMUXC MUX配置 */  
   IOMUXC_SetPinMux(STEP_IN2_IOMUXC, 0U); 
   IOMUXC_SetPinMux(STEP_IN3_IOMUXC, 0U);  
   IOMUXC_SetPinMux(STEP_IN4_IOMUXC, 0U);
 }
 
 /**
-* @brief  初始化LED相关IOMUXC的MUX复用配置
+* @brief  初始化步进电机相关IOMUXC的MUX复用配置
 * @param  无
 * @retval 无
 */
 static void STEP_IOMUXC_PAD_Config(void)
 {
-  /* 核心板的LED灯 */    
+  /* 步进电机 */    
   IOMUXC_SetPinConfig(STEP_IN1_IOMUXC, STEP_PAD_CONFIG_DATA);  
  
-  /* RGB LED灯，使用同样的IOMUXC PAD配置 */ 
+  /* 步进电机，使用同样的IOMUXC PAD配置 */ 
   IOMUXC_SetPinConfig(STEP_IN2_IOMUXC, STEP_PAD_CONFIG_DATA); 
   IOMUXC_SetPinConfig(STEP_IN3_IOMUXC, STEP_PAD_CONFIG_DATA); 
   IOMUXC_SetPinConfig(STEP_IN4_IOMUXC, STEP_PAD_CONFIG_DATA);  
@@ -50,7 +50,7 @@ static void STEP_IOMUXC_PAD_Config(void)
 
 
  /**
-  * @brief  初始化LED相关的GPIO模式
+  * @brief  初始化步进电机相关的GPIO模式
   * @param  无
   * @retval 无
   */
@@ -59,22 +59,20 @@ static void STEP_GPIO_Mode_Config(void)
   /* 定义gpio初始化配置结构体 */
   gpio_pin_config_t step_config;      
     
-   /** 核心板的LED灯，GPIO配置 **/       
+   /** 步进电机，GPIO配置 **/       
   step_config.direction = kGPIO_DigitalOutput; //输出模式
   step_config.outputLogic =  0;                //默认高电平    
   step_config.interruptMode = kGPIO_NoIntmode; //不使用中断
   
-  /* 初始化 LED GPIO. */
+  /* 初始化步进电机 */
   GPIO_PinInit(STEP_IN1_PORT, STEP_IN1_GPIO_PIN, &step_config);
-  
-  /* 使用同样的LED config配置RGB LED灯 */
   GPIO_PinInit(STEP_IN2_PORT, STEP_IN2_GPIO_PIN, &step_config);
   GPIO_PinInit(STEP_IN3_PORT, STEP_IN3_GPIO_PIN, &step_config);
   GPIO_PinInit(STEP_IN4_PORT, STEP_IN4_GPIO_PIN, &step_config);
 }
 
 /**
-  * @brief  初始化控制LED的IO
+  * @brief  初始化步进电机IO
   * @param  无
   * @retval 无
   */
@@ -88,7 +86,7 @@ void STEP_GPIO_Config(void)
 
 
 
-void user_step_init() {
+void user_step_init(void) {
 
 	user_step.curtain_dir = 0;
 	user_step.motor_num = 0;

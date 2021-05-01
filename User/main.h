@@ -1,8 +1,8 @@
 /***********************************************************************
 *@Date: 2020-05-22 02:22:45
 *@LastEditors: Please set LastEditors
-*@LastEditTime: 2020-11-27 19:49:05
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??RT1052_emwin1.2??¾¶·Ö¸ô???Ìæ??RT1052_emwin??¾¶·Ö¸ô???Ìæ??User??¾¶·Ö¸ô???Ìæ??main.h
+*@LastEditTime: 2021-04-11 16:47:14
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??User??¾¶·Ö¸ô???Ìæ??main.h
 ***********************************************************************/
 #ifndef __main_h
 #define __main_h
@@ -29,6 +29,7 @@
 #include "uart.h"
 #include "gizwits_product.h" 
 #include "gpt.h"
+#include "i2c.h"
 #include "lpi2c.h"
 #include "pump.h"
 #include "step.h"

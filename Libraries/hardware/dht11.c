@@ -30,6 +30,7 @@ void dht11_gpio_init(void)
 	gpio_pin_config_t dht11_Config;
 
 	IOMUXC_SetPinMux(DHT11_IOMUXC,0);
+	IOMUXC_SetPinConfig(DHT11_IOMUXC,DHT11_PAD_CONFIG_DATA);
 	
 	dht11_Config.direction = kGPIO_DigitalOutput;
 	dht11_Config.interruptMode = kGPIO_NoIntmode;
@@ -136,10 +137,11 @@ uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
 	
 	__DHT11_OUT_L();            //拉低
 	
-	CPU_TS_Tmr_Delay_US(18000);//rt_thread_delay(18);//__DHT11_DELAY_MS(18);       //18ms
+	// CPU_TS_Tmr_Delay_US(18000);//rt_thread_delay(18);//__DHT11_DELAY_MS(18);       //18ms
+	__DHT11_DELAY_MS(18);
 	__DHT11_OUT_H();            //拉高
     
-    CPU_TS_Tmr_Delay_US(13);//rt_thread_udelay(13)//__DHT11_DELAY_US(13);       //13us
+  	CPU_TS_Tmr_Delay_US(13);//rt_thread_udelay(13)//__DHT11_DELAY_US(13);       //13us
 	__DHT11_MODE(0);            //配置为输入
 
 	if(__DHT11_READ() == 0) {
@@ -191,19 +193,33 @@ uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
 #if 1
 void DHT11_PRINTF(void) {
 
-    if(Read_DHT11(&dht11_data) == 1) {
+	uint8_t is_read_succeed = 0;
+	
+	is_read_succeed = Read_DHT11(&dht11_data);
+
+
+
+//     if(Read_DHT11(&dht11_data) == 1) {
               
-            printf("\r\n\r\n湿度为%d.%d ％RH ，温度为 %d.%d℃ \r\n",
-                                                                dht11_data.humi_int,
-                                                                dht11_data.humi_deci,
-                                                                dht11_data.temp_int,
-                                                                dht11_data.temp_deci);
-  } 
-  else 
-  {
-		printf("\nDHT11 READ ERROR\r\n");
-  }
+//             printf("\r\n\r\n湿度为%d.%d ％RH ，温度为 %d.%d℃ \r\n",
+//                                                                 dht11_data.humi_int,
+//                                                                 dht11_data.humi_deci,
+//                                                                 dht11_data.temp_int,
+//                                                                 dht11_data.temp_deci);
+//   } 
+//   else 
+//   {
+// 		printf("\nDHT11 READ ERROR\r\n");
+//   }
 }
+
+void dht11_lvgl_display(DHT11_Data_TypeDef *dht11) {
+
+	/*
+		刷新label
+	*/
+}
+
 #endif
 
 

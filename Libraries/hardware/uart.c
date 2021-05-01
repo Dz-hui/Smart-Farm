@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2020-06-01 10:45:12
-*@FilePath: \DEMO\hardware\uart.c
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??uart.c
 *@Drscription: 
 ***********************************************************************/
 
@@ -95,9 +95,7 @@ void UART1_MODE_config(void)
 	EnableIRQ(LPUART1_IRQn);
 	
 }
-	
-    
-    
+	 
 /***********************************************************************
 *@Function: void USB_UART_config(void)
 *@Input: 

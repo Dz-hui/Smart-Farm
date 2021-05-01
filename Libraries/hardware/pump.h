@@ -1,3 +1,9 @@
+/***********************************************************************
+*@Author: Dz_hui
+*@Date: 2021-03-21 01:08:14
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??pump.h
+*@Drscription: 
+***********************************************************************/
 #ifndef __BSP_LED_H
 #define __BSP_LED_H
 
@@ -8,8 +14,8 @@
  *********************************************************/
 
 #define PUMP_GPIO                GPIO1
-#define PUMP_GPIO_PIN            (24U)
-#define PUMP_IOMUXC              IOMUXC_GPIO_AD_B1_08_GPIO1_IO24
+#define PUMP_GPIO_PIN            (4U)
+#define PUMP_IOMUXC              IOMUXC_GPIO_AD_B0_04_GPIO1_IO04
 
 
 /** ¿ØÖÆLEDµÆÁÁÃðµÄºê£¬
