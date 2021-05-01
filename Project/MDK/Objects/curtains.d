@@ -1,9 +1,0 @@
-.\objects\curtains.o: ..\..\Libraries\emWin\demo\curtains.c
-.\objects\curtains.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\curtains.o: ..\..\Libraries\emWin\inc\GUI.h
-.\objects\curtains.o: ..\..\Libraries\emWin\inc\GUI_ConfDefaults.h
-.\objects\curtains.o: ..\..\Libraries\emWin\Config\GUIConf.h
-.\objects\curtains.o: ..\..\Libraries\emWin\inc\GUI_Type.h
-.\objects\curtains.o: ..\..\Libraries\emWin\inc\LCD.h
-.\objects\curtains.o: ..\..\Libraries\emWin\inc\Global.h
-.\objects\curtains.o: ..\..\Libraries\emWin\inc\GUI_Version.h
