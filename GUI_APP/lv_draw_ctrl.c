@@ -5,6 +5,7 @@
 *@Drscription: 
 ***********************************************************************/
 #include "lv_draw_ctrl.h"
+
 extern MY_UI_T my_ui; 
 UI_CTRL_T control_obj;
 
@@ -20,7 +21,6 @@ lv_point_t control_line_points[4][2] = {
 
     {{CONTROL_LINE_FIRST_X_POS, CONTROL_LINE_FIRST_Y_POS+(CONTROL_LINE_OFFSET*3)},
     {CONTROL_LINE_END_X_POS, CONTROL_LINE_END_Y_POS+(CONTROL_LINE_OFFSET*3)}},
-    
 };
 
 
@@ -29,6 +29,7 @@ static void ctrl_back_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
+       my_ui.ui_list = UI_NONE;
        lv_clean_home();
        draw_home();
    }
@@ -126,8 +127,11 @@ static void ctrl_pump_off_btn_cb(lv_obj_t *btn, lv_event_t event)
 static void ctrl_curtain_on_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
-   {
-      
+   {    
+       if(user_step.curtain_status == CURTAIN_OFF) {
+           curtain_up();
+           user_step.curtain_status = CURTAIN_ON;
+       }
    }
 }
 
@@ -135,7 +139,10 @@ static void ctrl_curtain_off_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-      
+       if(user_step.curtain_status == CURTAIN_ON) {
+           curtain_down();
+           user_step.curtain_status = CURTAIN_OFF;
+       }
    }
 }
 
@@ -301,7 +308,7 @@ void draw_ctrl(void)
                 "BACK");
    lv_label_set_style(control_obj.control_label_back, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
 
-
+    my_ui.ui_list = UI_CONTROL;
 }
 
 

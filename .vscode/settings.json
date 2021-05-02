@@ -35,7 +35,10 @@
         "memory": "c",
         "string.h": "c",
         "rt_task_temp.h": "c",
-        "rt_task_adc.h": "c"
+        "rt_task_adc.h": "c",
+        "core_delay.h": "c",
+        "step.h": "c",
+        "rt_task_lvgl.h": "c"
     },
     "editor.minimap.enabled": true,
     "C_Cpp.autocomplete": "Default",

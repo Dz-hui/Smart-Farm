@@ -13,15 +13,15 @@ static void about_back_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-       lv_clean_home();
-       draw_home();
+        my_ui.ui_list = UI_NONE;
+        lv_clean_home();
+        draw_home();
    }
 }
 
 
 lv_obj_t* draw_about(void)
 {
-
     lv_style_copy(&about_obj.about_label_style, &lv_style_plain);
     about_obj.about_label_style.text.color = LV_COLOR_WHITE;
     about_obj.about_label_style.text.font = &lv_font_roboto_28;
@@ -63,7 +63,8 @@ lv_obj_t* draw_about(void)
                 "BACK");
    lv_label_set_style(about_obj.about_label_back, LV_LABEL_STYLE_MAIN, &about_obj.about_label_style);
    
-
+   my_ui.ui_list = UI_ABOUT;
 }
+
 
 

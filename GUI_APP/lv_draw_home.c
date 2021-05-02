@@ -64,7 +64,6 @@ static void event_handler_btn_about(lv_obj_t* obj, lv_event_t event) {
 }
 
 void draw_home(void) {
-
     lv_style_copy(&home_obj.home_label_style, &lv_style_plain);
     home_obj.home_label_style.text.color = LV_COLOR_WHITE;
     home_obj.home_label_style.text.font = &lv_font_roboto_28;
@@ -92,9 +91,6 @@ void draw_home(void) {
                 HOME_BTN_Y_POS,
                 event_handler_btn_about);
 
-               
-
-                
     home_obj.home_label_setting=lv_label_set(my_ui.home_buttom_gb_layer,
                 home_obj.home_label_setting,
                 HOME_BTN_LABEL_X_POS,
@@ -148,7 +144,27 @@ void draw_home(void) {
     lv_label_set_style(home_obj.home_label_led_status, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);
     lv_label_set_style(home_obj.home_label_pump_status, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);
     lv_label_set_style(home_obj.home_device_label_status, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);      
-     
+    my_ui.ui_list = UI_HOME;
+}
+
+
+char str_label_fan_status[20];
+char str_label_curtain_statusp[20];
+// char str_label_humi[20];
+// char str_label_soil[20];
+// char str_label_light[20];
+// char str_label_water[20];
+
+void lv_label_home_updata(void) {
+
+
+    // if() sprintf(str_label_fan_status, "ON");
+    // else sprintf(str_label_fan_status, "OFF");
+    lv_label_set_text(home_obj.home_label_fan_status, str_label_fan_status);
+
+    // if() sprintf(str_label_curtain_statusp, "ON");
+    // else sprintf(str_label_curtain_statusp, "OFF");
+    lv_label_set_text(home_obj.home_label_fan_status, str_label_curtain_statusp);
 }
 
 

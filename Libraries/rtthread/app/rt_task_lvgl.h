@@ -15,8 +15,7 @@
 void gui_lvgl_init(void *parg);
 void gui_lvgl_thread_init(void) ;
 
-extern rt_thread_t lv_thread ;
-
-
+void gui_lvgl_updata_init(void *parg);
+void gui_lvgl_uptada_init(void);
 #endif
 

@@ -130,7 +130,7 @@ uint16_t adc_measure(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumbe
 	ADC_SetChannelConfig(base,channelGroup,&adc_channle_config);
 	while(1U == ADC_GetChannelStatusFlags(base,channelGroup));
 	printf("adc_value=%d\n",ADC_GetChannelConversionValue(base, channelGroup));
-    //return ADC_GetChannelConversionValue(base, channelGroup);
+    return ADC_GetChannelConversionValue(base, channelGroup);
 }
 
 /***********************************************************************

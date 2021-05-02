@@ -9,12 +9,16 @@
 
 #include "main.h"
 
-#define ADC_THREAD_SIZE				1024
-#define ADC_THREAD_PRIO              5
+#define ADC_THREAD_SIZE     1024
+#define ADC_THREAD_PRIO     6
 
+typedef struct {
 
+    float soil_value;
+    float distance_value;
 
-extern rt_thread_t adc_thread ;
+}ADC_GET_DEF;
+extern ADC_GET_DEF adc_get;
 
 void adc_init(void *parg);
 void adc_thread_init(void);

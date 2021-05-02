@@ -62,6 +62,7 @@ typedef struct {
 	uint32_t 			    adc_measure_buff_length;
 	MEASURE_STATUS_DEF		adc_measure_status;
 }MEASURE_DATA_DEF;
+
 extern MEASURE_DATA_DEF soil_data;
 extern MEASURE_DATA_DEF distance_data;
 
