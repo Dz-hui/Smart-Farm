@@ -1,9 +1,6 @@
 #include "rt_task_temp.h"
 
-
 rt_thread_t dht11_thread = RT_NULL;
-#define DHT11_THREAD_SIZE			1024    
-#define DHT11_THREAD_PRIO           5
 
 void dht11_init(void *parg);
 
@@ -27,13 +24,13 @@ void dht11_thread_init(void) {
 void dht11_init(void *parg) {
 
     uint8_t is_read_succeed = 0; 
+
 	while(1) {
 
-        // ÁÙ½ç¶Î
-        is_read_succeed = Read_DHT11(&dht11_data);  
-        // ÁÙ½ç¶Î¡ª¡ªend
-
+		rt_enter_critical();
         if(is_read_succeed) dht11_lvgl_display(&dht11_data);
+		rt_exit_critical();
+
 		rt_thread_mdelay(200);
 	}
 }

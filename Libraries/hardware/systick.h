@@ -9,7 +9,7 @@
 #define __systick_h
 
 #include "fsl_common.h"
-#include "GUI.h"
+
 void systick_delay_init(void);
 void delay_us(uint32_t tick);
 void delay_ms(uint32_t tick);

@@ -3,7 +3,12 @@
 
 #include "main.h"
 
+#define DHT11_THREAD_SIZE			1024    
+#define DHT11_THREAD_PRIO           5
+
 void dht11_thread_init(void);
 void dht11_init(void *parg);
+
+extern rt_thread_t dht11_thread;
 
 #endif

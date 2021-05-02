@@ -165,21 +165,24 @@ uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
 		__DHT11_OUT_H();
 
 		if(DHT11_Data->check_sum == 
-                                    DHT11_Data->humi_int + 
-                                        DHT11_Data->humi_deci + 
-                                            DHT11_Data->temp_int+ 
-                                                DHT11_Data->temp_deci) {
+                                    DHT11_Data->humi_int 	+ 
+                                    DHT11_Data->humi_deci 	+ 
+                                    DHT11_Data->temp_int	+ 
+                                    DHT11_Data->temp_deci) {
 			printf("\r\n\r\n湿度为%d.%d ％RH ，温度为 %d.%d℃ \r\n",
                                                                 dht11_data.humi_int,
                                                                 dht11_data.humi_deci,
                                                                 dht11_data.temp_int,
-                                                                dht11_data.temp_deci);								
+                                                                dht11_data.temp_deci);
+			return 1;								
 		}
 		else {		
 			printf("\nDHT11 READ ERROR\r\n");	
+			return 0;
 		}
+	}else {
+		return 0;
 	}
-    return 0;
 }
 
 
@@ -215,9 +218,12 @@ void DHT11_PRINTF(void) {
 
 void dht11_lvgl_display(DHT11_Data_TypeDef *dht11) {
 
-	/*
-		刷新label
-	*/
+	uint8_t is_read_succeed = 0;
+	is_read_succeed = Read_DHT11(&dht11_data);
+	if(is_read_succeed == 1) {
+		dht11_data.humi_value = (float)dht11_data.humi_int + (dht11_data.humi_deci)/100;
+		dht11_data.temp_value = (float)dht11_data.temp_int + (dht11_data.temp_deci)/100;
+	} 
 }
 
 #endif

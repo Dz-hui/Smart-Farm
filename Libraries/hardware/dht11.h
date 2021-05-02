@@ -43,8 +43,10 @@ typedef struct
 	uint8_t  temp_int;	 	//温度的整数部分
 	uint8_t  temp_deci;	 	//温度的小数部分
 	uint8_t  check_sum;	 	//校验和
-		                 
+	float humi_value;			//湿度最终数据
+	float temp_value;			//温度最终数据
 }DHT11_Data_TypeDef;
+extern DHT11_Data_TypeDef dht11_data;
 
 
 
