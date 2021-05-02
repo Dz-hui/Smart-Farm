@@ -8,6 +8,8 @@
 
 rt_thread_t adc_thread = RT_NULL;
 
+ADC_GET_DEF adc_get;
+
 void adc_thread_init(void) {
 
 	adc_thread = rt_thread_create(	"adc thread",
@@ -26,10 +28,12 @@ void adc_thread_init(void) {
 }
 
 void adc_init(void *parg) {
+
+	adc_get.soil_value = 0;
+	adc_get.distance_value = 0;
 	while(1) {
-		adc_measure(ADC,DISTANCE_ADC_CHANNLE_GROUP,DISTANCE_ADC_CHANNLE);
-		adc_measure(ADC,SOIL_ADC_CHANNLE_GROUP,SOIL_ADC_CHANNLE);
-		//printf("hello\n");
+		adc_get.soil_value = adc_measure(ADC,SOIL_ADC_CHANNLE_GROUP,SOIL_ADC_CHANNLE);	
+		adc_get.distance_value = adc_measure(ADC,DISTANCE_ADC_CHANNLE_GROUP,DISTANCE_ADC_CHANNLE);
 		rt_thread_mdelay(500);
 	}
 }

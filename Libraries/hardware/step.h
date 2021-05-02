@@ -34,12 +34,18 @@ typedef enum {
 	STEP_IDLE,				// idle ,can ctrl 
 }STEP_STATUS_DEF;
 
+typedef enum {
+	CURTAIN_ON,	//
+	CURTAIN_OFF,	//
+}CURTAIN_STATUS_DEF;
+
 typedef struct {
 	uint8_t 			curtain_dir:1;
 	uint8_t 			step_move;
 	uint8_t 			motor_num;			// 0-3
 	STEP_STATUS_DEF		step_status;
-    uint32_t            step_delay;         
+    uint32_t            step_delay;   
+	CURTAIN_STATUS_DEF	curtain_status;      
 }STEP_DEF;
 extern STEP_DEF user_step;
 

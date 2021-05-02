@@ -172,7 +172,6 @@ void curtain_stop(void)
 	GPIO_PinWrite(STEP_IN2_PORT,STEP_IN2_GPIO_PIN,0);
 	GPIO_PinWrite(STEP_IN3_PORT,STEP_IN3_GPIO_PIN,0);
 	GPIO_PinWrite(STEP_IN4_PORT,STEP_IN4_GPIO_PIN,0);
-	
 }
 
 

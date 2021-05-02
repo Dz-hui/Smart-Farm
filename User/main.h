@@ -23,7 +23,7 @@
 
 
 #include "rtboard.h"
-#include "app.h"
+// #include "app.h"
 
 #include "bsp_uart.h"  
 #include "uart.h"

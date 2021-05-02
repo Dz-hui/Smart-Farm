@@ -28,7 +28,6 @@ typedef enum {
     HOME_LABEL_status_Y_POS = 300,
     HOME_LABEL_status_X_OFFEST = 300,
     HOME_LABEL_status_Y_OFFEST = 40,
-    
 
 }HOME_BTN_POS;
 

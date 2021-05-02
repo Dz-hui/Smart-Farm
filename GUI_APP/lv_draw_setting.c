@@ -286,6 +286,7 @@ void draw_setting(void)
                 "BACK");
    lv_label_set_style(setting_page.setting_label_back, LV_LABEL_STYLE_MAIN, &setting_page.setting_label_style);           
 
+   my_ui.ui_list = UI_SETTING;
 }
 
 

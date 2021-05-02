@@ -9,6 +9,4 @@
 void dht11_thread_init(void);
 void dht11_init(void *parg);
 
-extern rt_thread_t dht11_thread;
-
 #endif

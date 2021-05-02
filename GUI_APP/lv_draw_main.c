@@ -11,6 +11,8 @@ MY_UI_T my_ui;
 
 void lv_draw_init(void) {
 
+    my_ui.ui_list = UI_NONE;
+
     lv_style_copy(&my_ui.bar_label_style, &lv_style_plain);
     my_ui.bar_label_style.text.color = LV_COLOR_BLACK;
     my_ui.bar_label_style.text.font = &lv_font_roboto_28;
@@ -150,6 +152,34 @@ lv_obj_t* lv_set_ta(lv_obj_t* scr, lv_obj_t *ta, lv_obj_t *kb) {
     // lv_ta_set_text(ta, "password");
     lv_kb_set_ta(kb, ta);
     return ta;
+}
+
+char str_label_co2[20];
+char str_label_temp[20];
+char str_label_humi[20];
+char str_label_soil[20];
+char str_label_light[20];
+char str_label_water[20];
+
+void lv_label_main_updata(void) {
+
+    // sprintf();
+    // lv_label_set_text(my_ui.bar_label_co2, str_label_co2);
+
+    sprintf(str_label_temp, "%f", dht11_data.temp_value);
+    lv_label_set_text(my_ui.bar_label_temp, str_label_temp);
+
+    sprintf(str_label_humi, "%f", dht11_data.humi_value);
+    lv_label_set_text(my_ui.bar_label_humi, str_label_humi);
+
+    sprintf(str_label_soil, "%f", adc_get.soil_value);
+    lv_label_set_text(my_ui.bar_label_soil, str_label_soil);
+
+    // sprintf(str_label_light, "%f", adc_get.soil_value);
+    // lv_label_set_text(my_ui.bar_label_light, txt);
+
+    sprintf(str_label_water, "%f", adc_get.distance_value);
+    lv_label_set_text(my_ui.bar_label_water, str_label_water);
 }
 
 
