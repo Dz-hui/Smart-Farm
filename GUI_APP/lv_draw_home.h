@@ -20,7 +20,15 @@ typedef enum {
     HOME_BTN_LABEL_X_POS = 80,
     HOME_BTN_LABEL_Y_POS = 130,
     HOME_BTN_LABEL_OFFEST = 250,
-  
+
+    HOME_LABEL_device_status_X_POS = 40,
+    HOME_LABEL_device_status_Y_POS = 300,
+
+    HOME_LABEL_status_X_POS = 200,
+    HOME_LABEL_status_Y_POS = 300,
+    HOME_LABEL_status_X_OFFEST = 300,
+    HOME_LABEL_status_Y_OFFEST = 40,
+    
 
 }HOME_BTN_POS;
 
@@ -35,19 +43,12 @@ typedef struct {
     lv_obj_t *home_label_about;
 
     lv_style_t home_label_style;
-    
-    lv_obj_t *home_temp_text;
-    lv_obj_t *home_co2_text;
-    lv_obj_t *home_lighting_text;
-    lv_obj_t *home_humi_text;
-    lv_obj_t *home_water_text;
-    lv_obj_t *home_soil_text;
 
-    lv_obj_t *home_fan_text;
-    lv_obj_t *home_curtain_text;
-    lv_obj_t *home_led_text;
-    lv_obj_t *home_pump_text;
-    lv_obj_t *device_text;
+    lv_obj_t *home_label_fan_status;
+    lv_obj_t *home_label_curtain_status;
+    lv_obj_t *home_label_led_status;
+    lv_obj_t *home_label_pump_status;
+    lv_obj_t *home_device_label_status;
 
     lv_obj_t *back_btn;
 }UI_HOME_T;

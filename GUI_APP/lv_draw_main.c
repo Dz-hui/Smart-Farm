@@ -10,6 +10,11 @@ MY_UI_T my_ui;
 
 
 void lv_draw_init(void) {
+
+    lv_style_copy(&my_ui.bar_label_style, &lv_style_plain);
+    my_ui.bar_label_style.text.color = LV_COLOR_BLACK;
+    my_ui.bar_label_style.text.font = &lv_font_roboto_28;
+
     my_ui.main_src = lv_scr_act();
     my_ui.home_top_gb_layer = lv_obj_create(my_ui.main_src, NULL);
     lv_obj_set_pos(my_ui.home_top_gb_layer, 0, 0);
@@ -29,20 +34,61 @@ void lv_draw_init(void) {
     home_buttom_gb_style.body.main_color = LV_COLOR_MAKE(0x13, 0x35, 0x55);
     home_buttom_gb_style.body.grad_color = LV_COLOR_MAKE(0x13, 0x35, 0x55);
     lv_obj_set_style(my_ui.home_buttom_gb_layer, &home_buttom_gb_style);
+
+    my_ui.bar_label_temp = lv_label_set(my_ui.home_top_gb_layer,
+                my_ui.bar_label_temp,
+                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*1),
+                UI_LABEL_Y_POS,
+                "Temperature: 35 C");
+                
+    my_ui.bar_label_humi = lv_label_set(my_ui.home_top_gb_layer,
+                my_ui.bar_label_humi,
+                UI_LABEL_X_POS,
+                UI_LABEL_Y_POS,
+                "Humidity: 70%");
+    my_ui.bar_label_co2 = lv_label_set(my_ui.home_top_gb_layer,
+                my_ui.bar_label_co2,
+                UI_LABEL_X_POS,
+                UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST,
+                "CO2 Content: 70%");
+    my_ui.bar_label_light = lv_label_set(my_ui.home_top_gb_layer,
+                my_ui.bar_label_light,
+                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*1),
+                UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST,
+                "Light Intensity: 50%");
+    my_ui.bar_label_water = lv_label_set(my_ui.home_top_gb_layer,
+                my_ui.bar_label_water,
+                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*2),
+                UI_LABEL_Y_POS,
+                "Soil Moisture: 50%");
+    my_ui.bar_label_soil = lv_label_set(my_ui.home_top_gb_layer,
+                my_ui.bar_label_soil,
+                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*2),
+                UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST,
+                "Water Remaining: 50%");
+    
+    lv_label_set_style(my_ui.bar_label_temp, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);
+    lv_label_set_style(my_ui.bar_label_humi, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
+    lv_label_set_style(my_ui.bar_label_co2, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
+    lv_label_set_style(my_ui.bar_label_light, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
+    lv_label_set_style(my_ui.bar_label_water, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
+    lv_label_set_style(my_ui.bar_label_soil, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);    
     
     draw_home();
 }
 
-static void event_popup_draw(const char *text) {
+//static void event_popup_draw() {
 
-    switch(my_ui.event) {
+//    switch(my_ui.event) {
 
-        case EVENT_TEMP:
-        break;
+//        case EVENT_TEMP:
+//            
 
-        // ....
-    }
-}
+//        break;
+
+//        // ....
+//    }
+//}
 
 void lv_draw_home(void) {
 
@@ -67,13 +113,17 @@ lv_obj_t* lv_label_set(lv_obj_t* scr, lv_obj_t* label, lv_coord_t x, lv_coord_t 
     return label;
 }
 
-lv_obj_t* lv_label_align_set(lv_obj_t* scr, lv_obj_t* label, const char *txt) {
+lv_obj_t* lv_bar_set(lv_obj_t* scr, lv_obj_t* bar, lv_coord_t bar_w, lv_coord_t bar_h, lv_coord_t x, lv_coord_t y,int16_t bar_min, int16_t bar_max ,lv_event_cb_t event_cb) {
 
-    label = lv_label_create(scr, NULL);
-    lv_label_set_text(label,txt);
-    lv_obj_align(label,scr,LV_ALIGN_CENTER,0,0);
-    return label;
+    bar = lv_slider_create(scr, NULL);
+    lv_obj_set_size(bar, bar_w, bar_h);
+    lv_obj_set_pos(bar, x, y);
+    lv_slider_set_range(bar, bar_min, bar_max);
+    lv_obj_set_event_cb(bar, event_cb);
+    return bar;
 }
+
+
 
 void my_lv_obj_del(lv_obj_t *obj) {
     //lv_obj_clear(obj);

@@ -260,4 +260,3 @@ void draw_setting(void)
 }
 
 
-

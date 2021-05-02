@@ -41,8 +41,8 @@
 #include "lv_draw_ctrl.h"
 #include "lv_draw_setting.h"
 #include "lv_draw_about.h"
-#include "lv_draw_ctrl.h"
-#include "lv_control_display.h"
+
+
 
 
 typedef struct

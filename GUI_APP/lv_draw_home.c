@@ -50,7 +50,7 @@ static void event_handler_btn_ctrl(lv_obj_t* obj, lv_event_t event) {
 
     if (event == LV_EVENT_RELEASED) {
         lv_clean_home();
-        
+        draw_ctrl();
 	}
 }
 
@@ -58,7 +58,7 @@ static void event_handler_btn_about(lv_obj_t* obj, lv_event_t event) {
 
     if (event == LV_EVENT_RELEASED) {
         lv_clean_home();
-
+        draw_about();
         
 	}
 }
@@ -115,6 +115,39 @@ void draw_home(void) {
     lv_label_set_style(home_obj.home_label_ctrl, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);
     lv_label_set_style(home_obj.home_label_about, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);
 
+    
+    home_obj.home_device_label_status=lv_label_set(my_ui.home_buttom_gb_layer,
+                home_obj.home_device_label_status,
+                HOME_LABEL_device_status_X_POS,
+                HOME_LABEL_device_status_Y_POS,
+                "DEVICE\nSTATUS");
+
+                    home_obj.home_label_fan_status=lv_label_set(my_ui.home_buttom_gb_layer,
+                home_obj.home_label_fan_status,
+                HOME_LABEL_status_X_POS,
+                HOME_LABEL_status_Y_POS,
+                "Wind Speed : 0 %");
+                    home_obj.home_label_curtain_status=lv_label_set(my_ui.home_buttom_gb_layer,
+                home_obj.home_label_curtain_status,
+                HOME_LABEL_status_X_POS+HOME_LABEL_status_X_OFFEST,
+                HOME_LABEL_status_Y_POS+HOME_LABEL_status_Y_OFFEST,
+                "Curtain Status  : OFF");
+                    home_obj.home_label_led_status=lv_label_set(my_ui.home_buttom_gb_layer,
+                home_obj.home_label_led_status,
+                HOME_LABEL_status_X_POS+HOME_LABEL_status_X_OFFEST,
+                HOME_LABEL_status_Y_POS,
+                "Light Brightness : 0 %");
+                    home_obj.home_label_pump_status=lv_label_set(my_ui.home_buttom_gb_layer,
+                home_obj.home_label_pump_status,
+                HOME_LABEL_status_X_POS,
+                HOME_LABEL_status_Y_POS+HOME_LABEL_status_Y_OFFEST,
+                "Pump Status : OFF");
+
+    lv_label_set_style(home_obj.home_label_fan_status, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);
+    lv_label_set_style(home_obj.home_label_curtain_status, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);
+    lv_label_set_style(home_obj.home_label_led_status, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);
+    lv_label_set_style(home_obj.home_label_pump_status, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);
+    lv_label_set_style(home_obj.home_device_label_status, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);      
      
 }
 

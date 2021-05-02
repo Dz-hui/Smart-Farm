@@ -1,0 +1,10 @@
+.\objects\kservice.o: ..\..\Libraries\rtthread\src\kservice.c
+.\objects\kservice.o: ..\..\Libraries\rtthread\include\rtthread.h
+.\objects\kservice.o: ..\..\Libraries\rtthread\bsp\rtconfig.h
+.\objects\kservice.o: ..\..\Libraries\rtthread\include\rtdebug.h
+.\objects\kservice.o: ..\..\Libraries\rtthread\include\rtdef.h
+.\objects\kservice.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\kservice.o: ..\..\Libraries\rtthread\include\rtservice.h
+.\objects\kservice.o: ..\..\Libraries\rtthread\include\rtm.h
+.\objects\kservice.o: ..\..\Libraries\rtthread\include\rtthread.h
+.\objects\kservice.o: ..\..\Libraries\rtthread\include\rthw.h
