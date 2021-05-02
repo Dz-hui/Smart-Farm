@@ -1,0 +1,10 @@
+.\objects\idle.o: ..\..\Libraries\rtthread\src\idle.c
+.\objects\idle.o: ..\..\Libraries\rtthread\include\rthw.h
+.\objects\idle.o: ..\..\Libraries\rtthread\include\rtthread.h
+.\objects\idle.o: ..\..\Libraries\rtthread\bsp\rtconfig.h
+.\objects\idle.o: ..\..\Libraries\rtthread\include\rtdebug.h
+.\objects\idle.o: ..\..\Libraries\rtthread\include\rtdef.h
+.\objects\idle.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\idle.o: ..\..\Libraries\rtthread\include\rtservice.h
+.\objects\idle.o: ..\..\Libraries\rtthread\include\rtm.h
+.\objects\idle.o: ..\..\Libraries\rtthread\include\rtthread.h
