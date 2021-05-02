@@ -184,8 +184,6 @@
             <hadXRAM>1</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>3</RvdsVP>
-            <RvdsMve>0</RvdsMve>
-            <RvdsCdeCp>0</RvdsCdeCp>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>0</StupSel>
@@ -352,7 +350,7 @@
             <NoWarn>0</NoWarn>
             <uSurpInc>0</uSurpInc>
             <useXO>0</useXO>
-            <ClangAsOpt>4</ClangAsOpt>
+            <uClangAs>0</uClangAs>
             <VariousControls>
               <MiscControls></MiscControls>
               <Define>__STARTUP_INITIALIZE_NONCACHEDATA</Define>
@@ -711,6 +709,31 @@
               <FileName>rt_task_temp.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Libraries\rtthread\app\rt_task_temp.c</FilePath>
+            </File>
+            <File>
+              <FileName>gz_datasend.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Libraries\rtthread\app\gz_datasend.c</FilePath>
+            </File>
+            <File>
+              <FileName>rt_task_control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Libraries\rtthread\app\rt_task_control.c</FilePath>
+            </File>
+            <File>
+              <FileName>rt_task_adc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Libraries\rtthread\app\rt_task_adc.c</FilePath>
+            </File>
+            <File>
+              <FileName>rt_task_lighting.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Libraries\rtthread\app\rt_task_lighting.c</FilePath>
+            </File>
+            <File>
+              <FileName>rt_task_lvgl.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Libraries\rtthread\app\rt_task_lvgl.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1361,20 +1384,5 @@
     <components/>
     <files/>
   </RTE>
-
-  <LayerInfo>
-    <Layers>
-      <Layer>
-        <LayName>&lt;Project Info&gt;</LayName>
-        <LayDesc></LayDesc>
-        <LayUrl></LayUrl>
-        <LayKeys></LayKeys>
-        <LayCat></LayCat>
-        <LayLic></LayLic>
-        <LayTarg>0</LayTarg>
-        <LayPrjMark>1</LayPrjMark>
-      </Layer>
-    </Layers>
-  </LayerInfo>
 
 </Project>
