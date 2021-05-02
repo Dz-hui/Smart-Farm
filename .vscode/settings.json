@@ -27,7 +27,12 @@
         "lv_home_status.h": "c",
         "lv_draw_about.h": "c",
         "lv_back_btn.h": "c",
-        "lv_draw_setting.h": "c"
+        "lv_draw_setting.h": "c",
+        "rtboard.h": "c",
+        "lv_setting_display.h": "c",
+        "lv_control_display.h": "c",
+        "limits": "c",
+        "memory": "c"
     },
     "editor.minimap.enabled": true,
     "C_Cpp.autocomplete": "Default",

@@ -1306,29 +1306,14 @@
               <FilePath>..\..\GUI_APP\lv_draw_main.c</FilePath>
             </File>
             <File>
-              <FileName>lv_home_btn.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\lv_home_btn.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_home_val.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\lv_home_val.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_home_status.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\lv_home_status.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_back_btn.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\GUI_APP\lv_back_btn.c</FilePath>
-            </File>
-            <File>
               <FileName>lv_draw_about.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\GUI_APP\lv_draw_about.c</FilePath>
+            </File>
+            <File>
+              <FileName>lv_draw_setting.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\GUI_APP\lv_draw_setting.c</FilePath>
             </File>
           </Files>
         </Group>

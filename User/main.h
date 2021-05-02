@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Date: 2020-05-22 02:22:45
 *@LastEditors: Please set LastEditors
-*@LastEditTime: 2021-05-01 19:46:26
+*@LastEditTime: 2021-05-01 22:47:38
 *@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??User??¾¶·Ö¸ô???Ìæ??main.h
 ***********************************************************************/
 #ifndef __main_h
@@ -37,13 +37,12 @@
 
 #include "struct.h"
 #include "lvgl/lvgl.h"
-#include "lv_home_btn.h"
 #include "lv_draw_main.h"
 #include "lv_draw_ctrl.h"
-#include "lv_home_val.h"
-#include "lv_home_status.h"
-#include "lv_back_btn.h"
 #include "lv_draw_setting.h"
+#include "lv_draw_about.h"
+
+
 
 
 typedef struct
