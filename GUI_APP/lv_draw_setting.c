@@ -5,9 +5,12 @@
 *@Drscription: 
 ***********************************************************************/
 #include "lv_draw_setting.h"
+#include "String.h"
+
 extern MY_UI_T my_ui; 
 
 UI_SETTING_T setting_page;
+
 
 lv_point_t wifi_line_points[6][2] = {
     {{SETTING_LINE_FIRST_X_POS, SETTING_LINE_FIRST_Y_POS},
@@ -41,6 +44,32 @@ lv_obj_t* lv_set_line(lv_obj_t* scr, lv_obj_t * line, lv_point_t *line_points) {
     return line;
 }
 
+static void event_handler_wifi_kb_event(lv_obj_t *obj, lv_event_t event) {
+
+   if(obj == setting_page.setting_kb) {
+
+        lv_kb_def_event_cb(obj, event);
+
+        if(event == LV_EVENT_VALUE_CHANGED) {
+            
+        }else if(event == LV_EVENT_APPLY) {
+            
+
+            lv_obj_del(setting_page.setting_kb_src); // É¾³ý¼üÅÌ½çÃæ
+        }
+    }
+}
+
+void draw_wifi_kb(void) {
+
+   setting_page.setting_kb_src = lv_obj_create(my_ui.home_buttom_gb_layer, NULL);
+   lv_obj_set_size(setting_page.setting_kb_src, SETTING_KB_SRC_X_SIZE, SETTING_KB_SRC_Y_SIZE);
+   lv_obj_set_pos(setting_page.setting_kb_src, SETTING_KB_SRC_X_POS, SETTING_KB_SRC_Y_POS);
+
+   setting_page.setting_kb = lv_set_kb(setting_page.setting_kb_src, setting_page.setting_kb, event_handler_wifi_kb_event);
+   setting_page.setting_ta = lv_set_ta(setting_page.setting_kb_src ,setting_page.setting_ta, setting_page.setting_kb);
+}
+
 
 static void setting_back_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
@@ -55,7 +84,7 @@ static void setting_temp_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-      
+      draw_wifi_kb();
    }
 }
 
@@ -63,7 +92,7 @@ static void setting_humi_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-      
+      draw_wifi_kb();
    }
 }
 
@@ -71,7 +100,7 @@ static void setting_co2_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-     
+     draw_wifi_kb();
    }
 }
 
@@ -79,7 +108,7 @@ static void setting_light_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-       
+      draw_wifi_kb();
    }
 }
 
@@ -87,7 +116,7 @@ static void setting_water_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-      
+      draw_wifi_kb();
    }
 }
 
@@ -95,7 +124,7 @@ static void setting_soil_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-       
+      draw_wifi_kb();
    }
 }
 void draw_setting(void)

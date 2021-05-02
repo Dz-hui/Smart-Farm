@@ -32,7 +32,9 @@
         "lv_setting_display.h": "c",
         "lv_control_display.h": "c",
         "limits": "c",
-        "memory": "c"
+        "memory": "c",
+        "string.h": "c",
+        "rt_task_temp.h": "c"
     },
     "editor.minimap.enabled": true,
     "C_Cpp.autocomplete": "Default",

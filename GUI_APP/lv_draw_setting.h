@@ -45,17 +45,11 @@ typedef enum {
     SETTING_LABEL_TEMP_STATUS_X_POS = 680,
     SETTING_LABEL_TEMP_STATUS_Y_POS = 7,
     SETTING_LABEL_STATUS_OFFSET = 55,
-    // SETTING_LABEL_HUMI_STATUS_Y_POS = 55,
-    // SETTING_LABEL_CO2_STATUS_X_POS = 20,
-    // SETTING_LABEL_CO2_STATUS_Y_POS = 110,
-    // SETTING_LABEL_LIGHT_STATUS_X_POS = 20,
-    // SETTING_LABEL_LIGHT_STATUS_Y_POS = 165,
-    // SETTING_LABEL_WATER_STATUS_X_POS = 20,
-    // SETTING_LABEL_WATER_STATUS_Y_POS = 220,
-    // SETTING_LABEL_SOIL_STATUS_X_POS = 20,
-    // SETTING_LABEL_SOIL_STATUS_Y_POS = 275,
     
-
+    SETTING_KB_SRC_X_SIZE = 800,
+    SETTING_KB_SRC_Y_SIZE = 400,
+    SETTING_KB_SRC_X_POS = 0,
+    SETTING_KB_SRC_Y_POS = 0,
 }SETTING_LINE_POS;
 
 
@@ -94,6 +88,10 @@ typedef struct {
 
     lv_obj_t *back_btn;
     lv_obj_t *setting_label_back;
+
+    lv_obj_t *setting_kb_src;
+    lv_obj_t *setting_kb;
+    lv_obj_t *setting_ta;
     
 }UI_SETTING_T;
 
@@ -101,4 +99,5 @@ typedef struct {
 
 void draw_setting(void);
 lv_obj_t* lv_set_line(lv_obj_t* scr, lv_obj_t * line, lv_point_t *line_points);
+void draw_wifi_kb(void);
 #endif

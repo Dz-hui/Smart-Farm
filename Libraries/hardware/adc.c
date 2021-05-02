@@ -156,14 +156,14 @@ void soil_data_init(void) {
 *@Date: 2021-01-26 23:01:24
 *@Drscription: 
 ***********************************************************************/
-MEASURE_F data_adc_get(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumber,MEASURE_DATA_DEF *sd,MEASURE_NUM adc_measure_num) {   
+MEASURE_F data_adc_get(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumber, MEASURE_DATA_DEF *sd, MEASURE_NUM adc_measure_num) {   
     
     MEASURE_F value = 0;
     uint8_t adc_num = adc_measure_num;
     adc_channel_config_t adc_channle_config;
     
     adc_channle_config.channelNumber = channelNumber;
-    ADC_SetChannelConfig(base,channelGroup,&adc_channle_config);
+    ADC_SetChannelConfig(base, channelGroup, &adc_channle_config);
 
     value = adc_measure(base,channelGroup,channelNumber);
     if(adc_num == 0)

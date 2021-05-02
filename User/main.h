@@ -38,6 +38,7 @@
 #include "struct.h"
 #include "lvgl/lvgl.h"
 #include "lv_draw_main.h"
+#include "lv_draw_home.h"
 #include "lv_draw_ctrl.h"
 #include "lv_draw_setting.h"
 #include "lv_draw_about.h"
