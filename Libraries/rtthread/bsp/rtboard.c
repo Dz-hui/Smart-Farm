@@ -64,17 +64,18 @@ void rt_hw_board_init()
 {
 	Board_Config();
     Print_Log();
-	SysTick_Config(CLOCK_GetFreq(kCLOCK_CpuClk) / 1000);  
-    led_init();
+	SysTick_Config(CLOCK_GetFreq(kCLOCK_CpuClk) / 1000); 
+    userInit();
+    gizwitsInit();
+    pit_timer_config();
+    //GPT_Config(); 
+   //led_init();
     //key_init();
-	GPT_Config();
 	USB_UART_config();
 	UART_Config();
-	userInit();
-    gizwitsInit();
 	dht11_config();
 	//LPI2C_config();
-	//pit_timer_config();
+	
 	adc_config();
     I2C_Init();
 	//PUMP_GPIO_Config();

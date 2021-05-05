@@ -244,10 +244,10 @@ void mcuRestart(void)
 * @param none
 * @return none
 */
-void TIMER_IRQ_FUN(void)
-{
-  gizTimerMs();
-}
+// void TIMER_IRQ_FUN(void)
+// {
+//   gizTimerMs();
+// }
 
 /**
 * @brief UART_IRQ_FUN

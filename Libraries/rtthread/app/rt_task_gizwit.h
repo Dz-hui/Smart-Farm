@@ -15,7 +15,7 @@
 void gizwit_init(void *parg);
 void gizwit_thread_init(void);
 
-extern rt_thread_t gizwit_thread ;
+//extern rt_thread_t gizwit_thread ;
 
 
 #endif

@@ -30,7 +30,6 @@ void bh1750_init(void *parg) {
 	while(1) {
 
 		bh1750_measure();
-		//printf("hello\n");
 		rt_thread_mdelay(500);
 		
 	}
