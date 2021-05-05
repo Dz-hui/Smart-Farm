@@ -43,7 +43,7 @@ void gizwit_init(void *parg) {
 	static bool is_need_to_handle = true;
 
 	while(1) {
-
+     
 		// »úÖÇÔÆÉÏÐÐ
 		is_need_to_handle = check_gizwitsHandle();
 		if(is_need_to_handle) {

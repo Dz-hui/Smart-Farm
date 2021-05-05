@@ -50,7 +50,7 @@ void EXAMPLE_GPT_IRQHandler(void)
 
 	/* 清除中断标志位.*/
 	GPT_ClearStatusFlags(EXAMPLE_GPT, kGPT_OutputCompare1Flag);
-	gizTimerMs();
+	//gizTimerMs();
 
   
 }

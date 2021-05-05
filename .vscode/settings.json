@@ -38,7 +38,12 @@
         "rt_task_adc.h": "c",
         "core_delay.h": "c",
         "step.h": "c",
-        "rt_task_lvgl.h": "c"
+        "rt_task_lvgl.h": "c",
+        "rt_task_gizwit.h": "c",
+        "adc.h": "c",
+        "pad_config.h": "c",
+        "gpt.h": "c",
+        "pit.h": "c"
     },
     "editor.minimap.enabled": true,
     "C_Cpp.autocomplete": "Default",

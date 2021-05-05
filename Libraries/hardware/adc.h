@@ -15,13 +15,13 @@
 
 #include "fsl_common.h"
 
-#define SOIL_GPIO_PIN                               (14U)
+#define SOIL_GPIO_PIN                               (10U)
 #define SOIL_GPIO_PORT                              GPIO1
-#define SOIL_GPIO_IOMUXC                            IOMUXC_GPIO_AD_B0_14_GPIO1_IO14   
+#define SOIL_GPIO_IOMUXC                            IOMUXC_GPIO_AD_B0_10_GPIO1_IO10   
 
-#define DISTANCE_GPIO_PIN                           (15U)
+#define DISTANCE_GPIO_PIN                           (11U)
 #define DISTANCE_GPIO_PORT                          GPIO1
-#define DISTANCE_GPIO_IOMUXC                        IOMUXC_GPIO_AD_B0_15_GPIO1_IO15   
+#define DISTANCE_GPIO_IOMUXC                        IOMUXC_GPIO_AD_B0_11_GPIO1_IO11   
 
 #define DISTANCE_GPIO1_GPIO_PORT                    GPIO1
 #define DISTANCE_GPIO1_GPIO_PIN                     (02U)
@@ -33,10 +33,10 @@
 
 #define ADC                                         ADC1
 #define DISTANCE_ADC_CHANNLE_GROUP                  (0U)
-#define DISTANCE_ADC_CHANNLE                        (4U)
+#define DISTANCE_ADC_CHANNLE                        (0U)
 
 #define SOIL_ADC_CHANNLE_GROUP                      (0U)
-#define SOIL_ADC_CHANNLE                            (3U)
+#define SOIL_ADC_CHANNLE                            (15U)
 
 
 

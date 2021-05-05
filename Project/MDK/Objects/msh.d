@@ -1,0 +1,9 @@
+.\objects\msh.o: ..\..\Libraries\rtthread\components\finsh\msh.c
+.\objects\msh.o: ..\..\Libraries\rtthread\include\rtthread.h
+.\objects\msh.o: ..\..\Libraries\rtthread\bsp\rtconfig.h
+.\objects\msh.o: ..\..\Libraries\rtthread\include\rtdebug.h
+.\objects\msh.o: ..\..\Libraries\rtthread\include\rtdef.h
+.\objects\msh.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\msh.o: ..\..\Libraries\rtthread\include\rtservice.h
+.\objects\msh.o: ..\..\Libraries\rtthread\include\rtm.h
+.\objects\msh.o: ..\..\Libraries\rtthread\include\rtthread.h

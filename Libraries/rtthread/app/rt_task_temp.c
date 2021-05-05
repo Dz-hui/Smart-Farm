@@ -1,3 +1,9 @@
+/***********************************************************************
+*@Author: Dz_hui
+*@Date: 2021-05-01 16:37:37
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??rtthread??¾¶·Ö¸ô???Ìæ??app??¾¶·Ö¸ô???Ìæ??rt_task_temp.c
+*@Drscription: 
+***********************************************************************/
 #include "rt_task_temp.h"
 
 rt_thread_t dht11_thread = RT_NULL;
@@ -16,6 +22,7 @@ void dht11_thread_init(void) {
 	if(dht11_thread != RT_NULL)
 	{
 		rt_thread_startup(dht11_thread);
+		DEBUG_PRINT("dht11_thread succeed\n");
 	}
 	else 
 		DEBUG_PRINT("dht11_thread ERR");
@@ -23,12 +30,12 @@ void dht11_thread_init(void) {
 
 void dht11_init(void *parg) {
 
-    uint8_t is_read_succeed = 0; 
+    
 
 	while(1) {
 
 		rt_enter_critical();
-        if(is_read_succeed) dht11_lvgl_display(&dht11_data);
+        dht11_lvgl_display(&dht11_data);
 		rt_exit_critical();
 
 		rt_thread_mdelay(200);

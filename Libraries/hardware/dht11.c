@@ -137,16 +137,17 @@ uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
 	
 	__DHT11_OUT_L();            //拉低
 	
-	// CPU_TS_Tmr_Delay_US(18000);//rt_thread_delay(18);//__DHT11_DELAY_MS(18);       //18ms
-	__DHT11_DELAY_MS(18);
+	CPU_TS_Tmr_Delay_US(18000);//rt_thread_delay(18);//__DHT11_DELAY_MS(18);       //18ms
+	
 	__DHT11_OUT_H();            //拉高
     
   	CPU_TS_Tmr_Delay_US(13);//rt_thread_udelay(13)//__DHT11_DELAY_US(13);       //13us
 	__DHT11_MODE(0);            //配置为输入
 
 	if(__DHT11_READ() == 0) {
+		DEBUG_PRINT("DHT11 __DHT11_READ == 0\n");
 
-		while(__DHT11_READ() == 0); 
+		while(__DHT11_READ() == 0);
 
 		while(__DHT11_READ() == 1);
 
@@ -163,6 +164,8 @@ uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
 		__DHT11_MODE(1);                    //配置为输出
 
 		__DHT11_OUT_H();
+
+		DEBUG_PRINT("DHT11 need to check\n");
 
 		if(DHT11_Data->check_sum == 
                                     DHT11_Data->humi_int 	+ 
@@ -181,6 +184,7 @@ uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
 			return 0;
 		}
 	}else {
+		DEBUG_PRINT("DHT11 __DHT11_READ == 1\n");
 		return 0;
 	}
 }
@@ -202,28 +206,28 @@ void DHT11_PRINTF(void) {
 
 
 
-//     if(Read_DHT11(&dht11_data) == 1) {
+    if(Read_DHT11(&dht11_data) == 1) {
               
-//             printf("\r\n\r\n湿度为%d.%d ％RH ，温度为 %d.%d℃ \r\n",
-//                                                                 dht11_data.humi_int,
-//                                                                 dht11_data.humi_deci,
-//                                                                 dht11_data.temp_int,
-//                                                                 dht11_data.temp_deci);
-//   } 
-//   else 
-//   {
-// 		printf("\nDHT11 READ ERROR\r\n");
-//   }
+            printf("\r\n\r\n湿度为%d.%d ％RH ，温度为 %d.%d℃ \r\n",
+                                                                dht11_data.humi_int,
+                                                                dht11_data.humi_deci,
+                                                                dht11_data.temp_int,
+                                                                dht11_data.temp_deci);
+  } 
+  else 
+  {
+		printf("\nDHT11 READ ERROR\r\n");
+  }
 }
 
 void dht11_lvgl_display(DHT11_Data_TypeDef *dht11) {
-
+	DEBUG_PRINT("Enter DHT11\n");
 	uint8_t is_read_succeed = 0;
 	is_read_succeed = Read_DHT11(&dht11_data);
 	if(is_read_succeed == 1) {
 		dht11_data.humi_value = (float)dht11_data.humi_int + (dht11_data.humi_deci)/100;
 		dht11_data.temp_value = (float)dht11_data.temp_int + (dht11_data.temp_deci)/100;
-	} 
+	}
 }
 
 #endif

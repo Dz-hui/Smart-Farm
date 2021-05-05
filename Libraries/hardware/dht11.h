@@ -16,10 +16,10 @@
 #define __DHT11_OUT_H()         GPIO_PinWrite(DHT11_PORT,DHT11_PIN,1U)
 #define __DHT11_OUT_L()         GPIO_PinWrite(DHT11_PORT,DHT11_PIN,0U)
 #define __DHT11_READ()          GPIO_PinRead(DHT11_PORT,DHT11_PIN)    
-// #define __DHT11_DELAY_MS(nms)   delay_ms(nms)
-// #define __DHT11_DELAY_US(nms)   delay_us(nms)
-#define __DHT11_DELAY_MS(nms)   CPU_TS_Tmr_Delay_US(nms*1000)
-#define __DHT11_DELAY_US(nms)   CPU_TS_Tmr_Delay_US(nms*1000)
+#define __DHT11_DELAY_MS(nms)   delay_ms(nms)
+#define __DHT11_DELAY_US(nms)   delay_us(nms)
+//#define __DHT11_DELAY_MS(nms)   CPU_TS_Tmr_Delay_US(nms*1000)
+//#define __DHT11_DELAY_US(nms)   CPU_TS_Tmr_Delay_US(nms*1000)
 
 
 /*Ó²¼þ½Ó¿Ú*/
