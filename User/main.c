@@ -29,11 +29,12 @@
 ***********************************************************************/
 int main(void)
 {
-    //gui_lvgl_thread_init();
+    gui_lvgl_thread_init();
     gizwit_thread_init();
-    //dht11_thread_init();
-    //adc_thread_init();
-    //bh1750_thread_init();
+    dht11_thread_init();
+    adc_thread_init();
+    bh1750_thread_init();
+    ctrl_thread_init();
 }
 
 /***********************************************************************

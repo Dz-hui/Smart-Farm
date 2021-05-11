@@ -7,6 +7,11 @@
 
 #include "pit.h"
 #include "fsl_pit.h"
+#include "exit.h"
+#include "gizwits_product.h"
+#include "main.h"
+
+
 
 /***********************************************************************
 *@Function: 
@@ -42,7 +47,16 @@ void pit_timer_config(void) {
 
 void PIT_IRQHandler(void)
 {
-
-  PIT_ClearStatusFlags(PIT, PIT_CHANNLE, kPIT_TimerFlag);
-  gizTimerMs();
+  
+  // // if(PIT_ClearStatusFlags(PIT, PIT_CHANNLE, kPIT_TimerFlag))
+  // // {
+    
+  //   if(i==1000)
+  //   {
+  //     i=0;
+  //     printf("hello\n");
+  //   }
+  //   i++;
+  // // }
+  // gizTimerMs();
 }

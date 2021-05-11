@@ -1,6 +1,6 @@
 /***********************************************************************
 *@Author: Dz_hui
-*@Date: 2021-03-21 01:08:14
+*@Date: 2021-05-01 16:37:37
 *@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??Gizwits??¾¶·Ö¸ô???Ìæ??gizwits_product.h
 *@Drscription: 
 ***********************************************************************/
@@ -47,14 +47,13 @@ extern "C" {
 
 
 extern dataPoint_t currentDataPoint;
-extern dataPoint_t lastDataPoint;
 
 void userInit(void);
 void userHandle(void);
 void mcuRestart(void);
+void gizTimerMs(void);
 int32_t uartWrite(uint8_t *buf, uint32_t len);
 int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *data, uint32_t len);
-void gizTimerMs(void);
 
 #ifdef __cplusplus
 }

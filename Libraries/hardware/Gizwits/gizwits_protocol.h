@@ -7,9 +7,9 @@
 * @version      V03030000
 * @copyright    Gizwits
 * 
-* @note         æœºæ™ºäº?.å?ä¸ºæ™ºèƒ½ç¡¬ä»¶è€Œç”Ÿ
+* @note         æœºæ™ºäº‘.åªä¸ºæ™ºèƒ½ç¡¬ä»¶è€Œç”Ÿ
 *               Gizwits Smart Cloud  for Smart Products
-*               é“¾æ¥|å¢å€¼Öµ|å¼€æ”¾|ä¸?ç«‹|å®‰å…¨|è‡?æœ‰|è‡?ç”±|ç”Ÿæ€?
+*               é“¾æ¥|å¢å€¼Öµ|å¼€æ”¾|ä¸­ç«‹|å®‰å…¨|è‡ªæœ‰|è‡ªç”±|ç”Ÿæ€
 *               www.gizwits.com
 *
 ***********************************************************/
@@ -77,6 +77,9 @@ extern "C" {
 #define pump_BYTEOFFSET                    0
 #define pump_BITOFFSET                     0
 #define pump_LEN                           1
+#define curtain_BYTEOFFSET                    0
+#define curtain_BITOFFSET                     1
+#define curtain_LEN                           1
 
 #define brightness_RATIO                         1
 #define brightness_ADDITION                      0
@@ -142,6 +145,7 @@ typedef enum
   MODULE_INFO,                                      ///< Module information event
   TRANSPARENT_DATA,                                 ///< Transparency events
   EVENT_pump,
+  EVENT_curtain,
   EVENT_brightness,
   EVENT_fan,
   EVENT_TYPE_MAX                                    ///< Enumerate the number of members to calculate (user accidentally deleted)
@@ -197,69 +201,69 @@ typedef enum
 /** Protocol command code */                                   
 typedef enum                               
 {                                                   
-    CMD_GET_DEVICE_INTO             = 0x01,         ///< Protocolï¼?3.1 
-    ACK_GET_DEVICE_INFO             = 0x02,         ///< Protocolï¼?3.1 
+    CMD_GET_DEVICE_INTO             = 0x01,         ///< Protocolï¼š3.1 
+    ACK_GET_DEVICE_INFO             = 0x02,         ///< Protocolï¼š3.1 
             
-    CMD_ISSUED_P0                   = 0x03,         ///< Protocolï¼?3.2 3.3 
-    ACK_ISSUED_P0                   = 0x04,         ///< Protocolï¼?3.2 3.3 
+    CMD_ISSUED_P0                   = 0x03,         ///< Protocolï¼š3.2 3.3 
+    ACK_ISSUED_P0                   = 0x04,         ///< Protocolï¼š3.2 3.3 
             
-    CMD_REPORT_P0                   = 0x05,         ///< Protocolï¼?3.4 
-    ACK_REPORT_P0                   = 0x06,         ///< Protocolï¼?3.4 
+    CMD_REPORT_P0                   = 0x05,         ///< Protocolï¼š3.4 
+    ACK_REPORT_P0                   = 0x06,         ///< Protocolï¼š3.4 
             
-    CMD_HEARTBEAT                   = 0x07,         ///< Protocolï¼?3.5 
-    ACK_HEARTBEAT                   = 0x08,         ///< Protocolï¼?3.5 
+    CMD_HEARTBEAT                   = 0x07,         ///< Protocolï¼š3.5 
+    ACK_HEARTBEAT                   = 0x08,         ///< Protocolï¼š3.5 
             
-    CMD_WIFI_CONFIG                 = 0x09,         ///< Protocolï¼?3.6 
-    ACK_WIFI_CONFIG                 = 0x0A,         ///< Protocolï¼?3.6 
+    CMD_WIFI_CONFIG                 = 0x09,         ///< Protocolï¼š3.6 
+    ACK_WIFI_CONFIG                 = 0x0A,         ///< Protocolï¼š3.6 
             
-    CMD_SET_DEFAULT                 = 0x0B,         ///< Protocolï¼?3.7 
-    ACK_SET_DEFAULT                 = 0x0C,         ///< Protocolï¼?3.7 
+    CMD_SET_DEFAULT                 = 0x0B,         ///< Protocolï¼š3.7 
+    ACK_SET_DEFAULT                 = 0x0C,         ///< Protocolï¼š3.7 
             
-    CMD_WIFISTATUS                  = 0x0D,         ///< Protocolï¼?3.8 
-    ACK_WIFISTATUS                  = 0x0E,         ///< Protocolï¼?3.8 
+    CMD_WIFISTATUS                  = 0x0D,         ///< Protocolï¼š3.8 
+    ACK_WIFISTATUS                  = 0x0E,         ///< Protocolï¼š3.8 
         
-    CMD_MCU_REBOOT                  = 0x0F,         ///< Protocolï¼?4.1 
-    ACK_MCU_REBOOT                  = 0x10,         ///< Protocolï¼?4.1 
+    CMD_MCU_REBOOT                  = 0x0F,         ///< Protocolï¼š4.1 
+    ACK_MCU_REBOOT                  = 0x10,         ///< Protocolï¼š4.1 
             
-    CMD_ERROR_PACKAGE               = 0x11,         ///< Protocolï¼?3.9 
-    ACK_ERROR_PACKAGE               = 0x12,         ///< Protocolï¼?3.9 
+    CMD_ERROR_PACKAGE               = 0x11,         ///< Protocolï¼š3.9 
+    ACK_ERROR_PACKAGE               = 0x12,         ///< Protocolï¼š3.9 
 
-    CMD_PRODUCTION_TEST             = 0x13,         ///< Protocolï¼?
-    ACK_PRODUCTION_TEST             = 0x14,         ///< Protocolï¼?
+    CMD_PRODUCTION_TEST             = 0x13,         ///< Protocolï¼š
+    ACK_PRODUCTION_TEST             = 0x14,         ///< Protocolï¼š
 
-    CMD_NINABLE_MODE                = 0x15,         ///< Protocolï¼?3.10
-    ACK_NINABLE_MODE                = 0x16,         ///< Protocolï¼?3.10
+    CMD_NINABLE_MODE                = 0x15,         ///< Protocolï¼š3.10
+    ACK_NINABLE_MODE                = 0x16,         ///< Protocolï¼š3.10
 
-    CMD_GET_NTP                     = 0x17,         ///< Protocolï¼?4.3 
-    ACK_GET_NTP                     = 0x18,         ///< Protocolï¼?4.3 
+    CMD_GET_NTP                     = 0x17,         ///< Protocolï¼š4.3 
+    ACK_GET_NTP                     = 0x18,         ///< Protocolï¼š4.3 
 
 
-    CMD_ASK_BIGDATA                 = 0x19,         ///< Protocolï¼?4.4
-    ACK_ASK_BIGDATA                 = 0x1A,         ///< Protocolï¼?4.4
+    CMD_ASK_BIGDATA                 = 0x19,         ///< Protocolï¼š4.4
+    ACK_ASK_BIGDATA                 = 0x1A,         ///< Protocolï¼š4.4
 
-    CMD_BIGDATA_READY               = 0x1B,         ///< Protocolï¼?4.5
-    ACK_BIGDATA_READY               = 0x1C,         ///< Protocolï¼?4.5
+    CMD_BIGDATA_READY               = 0x1B,         ///< Protocolï¼š4.5
+    ACK_BIGDATA_READY               = 0x1C,         ///< Protocolï¼š4.5
 
-    CMD_BIGDATA_SEND                = 0x1D,         ///< Protocolï¼?4.6
-    ACK_BIGDATA_SEND                = 0x1E,         ///< Protocolï¼?4.6
+    CMD_BIGDATA_SEND                = 0x1D,         ///< Protocolï¼š4.6
+    ACK_BIGDATA_SEND                = 0x1E,         ///< Protocolï¼š4.6
 
-    CMD_S_STOP_BIGDATA_SEND         = 0x1F,         ///< Protocolï¼?4.7
-    ACK_S_STOP_BIGDATA_SEND         = 0x20,         ///< Protocolï¼?4.7
+    CMD_S_STOP_BIGDATA_SEND         = 0x1F,         ///< Protocolï¼š4.7
+    ACK_S_STOP_BIGDATA_SEND         = 0x20,         ///< Protocolï¼š4.7
 
-    CMD_D_STOP_BIGDATA_SEND         = 0x27,         ///< Protocolï¼?4.8
-    ACK_D_STOP_BIGDATA_SEND         = 0x28,         ///< Protocolï¼?4.8
+    CMD_D_STOP_BIGDATA_SEND         = 0x27,         ///< Protocolï¼š4.8
+    ACK_D_STOP_BIGDATA_SEND         = 0x28,         ///< Protocolï¼š4.8
 
-    CMD_ASK_MODULE_INFO             = 0x21,         ///< Protocolï¼?4.9
-    ACK_ASK_MODULE_INFO             = 0x22,         ///< Protocolï¼?4.9
+    CMD_ASK_MODULE_INFO             = 0x21,         ///< Protocolï¼š4.9
+    ACK_ASK_MODULE_INFO             = 0x22,         ///< Protocolï¼š4.9
 
-    CMD_ASK_AFFAIR_HANDLE           = 0x23,         ///< Protocolï¼?4.10
-    ACK_ASK_AFFAIR_HANDLE           = 0x24,         ///< Protocolï¼?4.10
+    CMD_ASK_AFFAIR_HANDLE           = 0x23,         ///< Protocolï¼š4.10
+    ACK_ASK_AFFAIR_HANDLE           = 0x24,         ///< Protocolï¼š4.10
 
-    CMD_AFFAIR_RESULT               = 0x25,         ///< Protocolï¼?4.10
-    ACK_AFFAIR_RESULT               = 0x26,         ///< Protocolï¼?4.10
+    CMD_AFFAIR_RESULT               = 0x25,         ///< Protocolï¼š4.10
+    ACK_AFFAIR_RESULT               = 0x26,         ///< Protocolï¼š4.10
 
-    CMD_REBOOT_MODULE               = 0x29,         ///< Protocolï¼?3.11
-    ACK_REBOOT_MODULE               = 0x2A,         ///< Protocolï¼?3.11
+    CMD_REBOOT_MODULE               = 0x29,         ///< Protocolï¼š3.11
+    ACK_REBOOT_MODULE               = 0x2A,         ///< Protocolï¼š3.11
 
     CMD_CONNECT_M2M                 = 0x2D,         ///< Protocolï¼šfor Virtualization
     ACK_CONNECT_M2M                 = 0x2E,         ///< Protocolï¼šfor Virtualization
@@ -305,6 +309,7 @@ typedef enum
 /** User Area Device State Structure */
 typedef struct {
   bool valuepump;
+  bool valuecurtain;
   uint32_t valuebrightness;
   uint32_t valuefan;
   uint32_t valueBH1750;
@@ -319,6 +324,7 @@ typedef struct {
 /** Corresponding to the protocol "4.10 WiFi module control device" in the flag " attr_flags" */ 
 typedef struct {
   uint8_t flagpump:1;
+  uint8_t flagcurtain:1;
   uint8_t flagbrightness:1;
   uint8_t flagfan:1;
 } attrFlags_t;
@@ -392,7 +398,7 @@ typedef struct
     uint8_t                 sum;                    ///< checksum
 } protocolDeviceInfo_t;
 
-/** Protocol common data frame(4.2ã€?4.4ã€?4.6ã€?4.9ã€?4.10) protocol structure */
+/** Protocol common data frame(4.2ã€4.4ã€4.6ã€4.9ã€4.10) protocol structure */
 typedef struct
 {
     protocolHead_t          head;                   ///< Protocol standard header structure
@@ -516,7 +522,7 @@ typedef struct
 } protocolP0Head_t;
 
 
-/** protocol â€?4.9 The device MCU reports the current status to the WiFi moduleâ€? device status "dev_status(11B)"  */ 
+/** protocol â€œ4.9 The device MCU reports the current status to the WiFi moduleâ€ device status "dev_status(11B)"  */ 
 typedef struct {
                      
     devStatus_t devStatus;                          ///< Stores the device status data

@@ -9,7 +9,7 @@
 
 #include "main.h"
 
-#define GIZWIT_THREAD_SIZE				10*1024
+#define GIZWIT_THREAD_SIZE				20*1024
 #define GIZWIT_THREAD_PRIO              3
 
 void gizwit_init(void *parg);
@@ -19,3 +19,5 @@ void gizwit_thread_init(void);
 
 
 #endif
+
+

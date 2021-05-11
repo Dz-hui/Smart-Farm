@@ -18,13 +18,10 @@
 #include "gizwits_product.h"
 #include "bsp_uart.h"
 
-uint16_t time[5];
-
 static uint32_t timerMsCount;
 
 /** Current datapoint */
 dataPoint_t currentDataPoint;
-dataPoint_t lastDataPoint;
 
 /**@} */
 /**@name Gizwits User Interface
@@ -80,6 +77,18 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
           //user handle    
         }
         break;
+      case EVENT_curtain:
+        currentDataPoint.valuecurtain = dataPointPtr->valuecurtain;
+        GIZWITS_LOG("Evt: EVENT_curtain %d \n", currentDataPoint.valuecurtain);
+        if(0x01 == currentDataPoint.valuecurtain)
+        {
+          //user handle
+        }
+        else
+        {
+          //user handle    
+        }
+        break;
 
 
       case EVENT_brightness:
@@ -120,11 +129,6 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
         break;
       case WIFI_NTP:
         GIZWITS_LOG("WIFI_NTP : [%d-%d-%d %02d:%02d:%02d][%d] \n",ptime->year,ptime->month,ptime->day,ptime->hour,ptime->minute,ptime->second,ptime->ntp);
-        time[0] =ptime->year;
-        time[1] =ptime->month;
-        time[2] =ptime->day;
-        time[3] =ptime->hour;
-        time[4] =ptime->minute;
         break;
       case MODULE_INFO:
             GIZWITS_LOG("MODULE INFO ...\n");
@@ -155,18 +159,13 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
 */
 void userHandle(void)
 {
- /*
-    currentDataPoint.valueBH1750 = ;//Add Sensor Data Collection
-    currentDataPoint.valueCO2 = ;//Add Sensor Data Collection
-    currentDataPoint.valuetemp = ;//Add Sensor Data Collection
-    currentDataPoint.valuehumi = ;//Add Sensor Data Collection
-    currentDataPoint.valuesoil = ;//Add Sensor Data Collection
-    currentDataPoint.valuedistant = ;//Add Sensor Data Collection
-
-    */
-    gizwitsGetNTP();//ÇëÇó NTP ÍøÂçÊ±¼ä
+  currentDataPoint.valueBH1750 = 12;//Add Sensor Data Collection
+  currentDataPoint.valueCO2 = 12;//Add Sensor Data Collection
+  currentDataPoint.valuetemp =13 ;//Add Sensor Data Collection
+  currentDataPoint.valuehumi = 11;//Add Sensor Data Collection
+  currentDataPoint.valuesoil = 11;//Add Sensor Data Collection
+  currentDataPoint.valuedistant = 34;//Add Sensor Data Collection
 }
-
 
 /**
 * Data point initialization function
@@ -183,6 +182,7 @@ void userInit(void)
     /** Warning !!! DataPoint Variables Init , Must Within The Data Range **/ 
     /*
       currentDataPoint.valuepump = ;
+      currentDataPoint.valuecurtain = ;
       currentDataPoint.valuebrightness = ;
       currentDataPoint.valuefan = ;
       currentDataPoint.valueBH1750 = ;
@@ -244,10 +244,10 @@ void mcuRestart(void)
 * @param none
 * @return none
 */
-// void TIMER_IRQ_FUN(void)
-// {
-//   gizTimerMs();
-// }
+void TIMER_IRQ_FUN(void)
+{
+  gizTimerMs();
+}
 
 /**
 * @brief UART_IRQ_FUN
@@ -300,15 +300,17 @@ int32_t uartWrite(uint8_t *buf, uint32_t len)
     {
         //USART_SendData(UART, buf[i]);//STM32 test demo
         //Serial port to achieve the function, the buf[i] sent to the module
-        Uart_SendByte(DEBUG_UARTx,buf[i]);
+         Uart_SendByte(DEBUG_UARTx,buf[i]);
         if(i >=2 && buf[i] == 0xFF)
         {
           //Serial port to achieve the function, the 0x55 sent to the module
           //USART_SendData(UART, 0x55);//STM32 test demo
-          Uart_SendByte(DEBUG_UARTx,0x55);
+           Uart_SendByte(DEBUG_UARTx,0x55);
         }
     }
-   
+
+
+    
     return len;
 }
 

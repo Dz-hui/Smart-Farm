@@ -31,11 +31,13 @@ void adc_init(void *parg) {
 
 	adc_get.soil_value = 0;
 	adc_get.distance_value = 0;
+	DEBUG_PRINT("creat adc task");
 	while(1) {
+		DEBUG_PRINT("enter adc task");
 		adc_get.soil_value = (((float)4095-(float)adc_measure(ADC,SOIL_ADC_CHANNLE_GROUP,SOIL_ADC_CHANNLE))/4095)*100;
-		//printf("soil_val:%0.2f\n",adc_get.soil_value);	
-		adc_get.distance_value = -(((((float)adc_measure(ADC,DISTANCE_ADC_CHANNLE_GROUP,DISTANCE_ADC_CHANNLE)/(float)4095)*(float)3.3)-(float)2.35)/(float)0.035);
-		printf("distant_val:%0.2f\n",adc_get.distance_value);
-		rt_thread_mdelay(500);
+		printf("soil_val:%0.2f\n",adc_get.soil_value);	
+		//adc_get.distance_value = -(((((float)adc_measure(ADC,DISTANCE_ADC_CHANNLE_GROUP,DISTANCE_ADC_CHANNLE)/(float)4095)*(float)3.3)-(float)2.35)/(float)0.035);
+		//printf("distant_val:%0.2f\n",adc_get.distance_value);
+		rt_thread_delay(500);
 	}
 }

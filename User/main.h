@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Date: 2020-05-22 02:22:45
 *@LastEditors: Please set LastEditors
-*@LastEditTime: 2021-05-03 02:06:15
+*@LastEditTime: 2021-05-06 23:26:08
 *@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??User??¾¶·Ö¸ô???Ìæ??main.h
 ***********************************************************************/
 #ifndef __main_h
@@ -47,6 +47,7 @@
 #include "rt_task_lvgl.h"
 #include "rt_task_temp.h"
 #include "rt_task_gizwit.h"
+#include "rt_task_key.h"
 
 
 

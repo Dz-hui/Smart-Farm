@@ -10,7 +10,7 @@
 #include "main.h"
 
 #define LV_THREAD_SIZE				1024*50
-#define LV_THREAD_PRIO              3
+#define LV_THREAD_PRIO              4
 
 void gui_lvgl_init(void *parg);
 void gui_lvgl_thread_init(void) ;

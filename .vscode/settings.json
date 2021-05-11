@@ -43,7 +43,10 @@
         "adc.h": "c",
         "pad_config.h": "c",
         "gpt.h": "c",
-        "pit.h": "c"
+        "pit.h": "c",
+        "exit.h": "c",
+        "gizwits_product.h": "c",
+        "dht11.h": "c"
     },
     "editor.minimap.enabled": true,
     "C_Cpp.autocomplete": "Default",

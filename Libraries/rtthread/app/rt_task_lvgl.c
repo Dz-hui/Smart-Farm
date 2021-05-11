@@ -34,7 +34,6 @@ void gui_lvgl_init(void *parg) {
 	gui_lvgl_uptada_init();
 
 	while(1) {
-		
 		lv_task_handler();
 		rt_thread_delay(5);
 	}
@@ -60,7 +59,7 @@ void gui_lvgl_uptada_init(void) {
 
 void gui_lvgl_updata_init(void *parg) {
 	while(1) {
-		
+		DEBUG_PRINT("enter updata task");
 		if(my_ui.ui_list == UI_NONE) {
 			lv_label_main_updata();
 		}
@@ -68,5 +67,6 @@ void gui_lvgl_updata_init(void *parg) {
 			lv_label_main_updata();
 		}
 
+		rt_thread_delay(100);
 	}
 }
