@@ -42,7 +42,7 @@ void pwm_gpio_config(void)
     IOMUXC_SetPinMux(QTMR_CH0_IOMUXC,0U);
 	GPIO_PinInit(QTMR_CH0_GPIO_PORT,QTMR_CH0_GPIO_PIN,&gpio_Config);
 	
-	#if 0
+	#if 1
 	gpio_Config.direction=kGPIO_DigitalOutput;
 	gpio_Config.outputLogic=1;
 	gpio_Config.interruptMode=kGPIO_NoIntmode;
@@ -75,7 +75,7 @@ void QTMR_PWM_config(void)
 	QTMR_StartTimer(QTMR_PORT,QTMR_CHANNLE,kQTMR_PriSrcRiseEdge);
 #endif
 
-	#if 0
+	#if 1
 	QTMR_GetDefaultConfig(&qtmr_config);
 	qtmr_config.primarySource=kQTMR_ClockDivide_8;
     QTMR_Init(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,&qtmr_config);

@@ -118,7 +118,7 @@ void draw_home(void) {
                 HOME_LABEL_device_status_Y_POS,
                 "DEVICE\nSTATUS");
 
-                    home_obj.home_label_fan_status=lv_label_set(my_ui.home_buttom_gb_layer,
+                home_obj.home_label_fan_status=lv_label_set(my_ui.home_buttom_gb_layer,
                 home_obj.home_label_fan_status,
                 HOME_LABEL_status_X_POS,
                 HOME_LABEL_status_Y_POS,
@@ -160,11 +160,11 @@ void lv_label_home_updata(void) {
 
     // if() sprintf(str_label_fan_status, "ON");
     // else sprintf(str_label_fan_status, "OFF");
-    lv_label_set_text(home_obj.home_label_fan_status, str_label_fan_status);
+    //lv_label_set_text(home_obj.home_label_fan_status, str_label_fan_status);
 
     // if() sprintf(str_label_curtain_statusp, "ON");
     // else sprintf(str_label_curtain_statusp, "OFF");
-    lv_label_set_text(home_obj.home_label_fan_status, str_label_curtain_statusp);
+    //lv_label_set_text(home_obj.home_label_fan_status, str_label_curtain_statusp);
 }
 
 

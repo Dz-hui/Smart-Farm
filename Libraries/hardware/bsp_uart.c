@@ -142,14 +142,16 @@ void DEBUG_UART_IRQHandler(void)
 {
   uint8_t Temp;
   /*串口接收到数据*/
+  rt_interrupt_enter();
   if ((kLPUART_RxDataRegFullFlag)&LPUART_GetStatusFlags(DEBUG_UARTx))
   {
     /*读取数据*/
     Temp = LPUART_ReadByte(DEBUG_UARTx);
     gizPutData(&Temp, 1);
     /*将读取到的数据写入到缓冲区*/
-    //Uart_SendByte(DEBUG_UARTx,ucTemp);
+   // Uart_SendByte(DEBUG_UARTx,Temp);
   }
+  rt_interrupt_leave();
 
 }
 

@@ -139,6 +139,13 @@ static int8_t ICACHE_FLASH_ATTR gizDataPoint2Event(gizwitsIssued_t *issuedData, 
         dataPoints->valuepump = gizStandardDecompressionValue(pump_BYTEOFFSET,pump_BITOFFSET,pump_LEN,(uint8_t *)&issuedData->attrVals.wBitBuf,sizeof(issuedData->attrVals.wBitBuf));
     }
         
+    if(0x01 == issuedData->attrFlags.flagcurtain)
+    {
+        info->event[info->num] = EVENT_curtain;
+        info->num++;
+        dataPoints->valuecurtain = gizStandardDecompressionValue(curtain_BYTEOFFSET,curtain_BITOFFSET,curtain_LEN,(uint8_t *)&issuedData->attrVals.wBitBuf,sizeof(issuedData->attrVals.wBitBuf));
+    }
+        
         
     if(0x01 == issuedData->attrFlags.flagbrightness)
     {
@@ -180,6 +187,11 @@ static int8_t ICACHE_FLASH_ATTR gizCheckReport(dataPoint_t *cur, dataPoint_t *la
     if(last->valuepump != cur->valuepump)
     {
         GIZWITS_LOG("valuepump Changed\n");
+        ret = 1;
+    }
+    if(last->valuecurtain != cur->valuecurtain)
+    {
+        GIZWITS_LOG("valuecurtain Changed\n");
         ret = 1;
     }
     if(last->valuebrightness != cur->valuebrightness)
@@ -268,6 +280,7 @@ static int8_t ICACHE_FLASH_ATTR gizDataPoints2ReportData(dataPoint_t *dataPoints
     gizMemset((uint8_t *)devStatusPtr->wBitBuf,0,sizeof(devStatusPtr->wBitBuf));
 
     gizStandardCompressValue(pump_BYTEOFFSET,pump_BITOFFSET,pump_LEN,(uint8_t *)devStatusPtr,dataPoints->valuepump);
+    gizStandardCompressValue(curtain_BYTEOFFSET,curtain_BITOFFSET,curtain_LEN,(uint8_t *)devStatusPtr,dataPoints->valuecurtain);
     gizByteOrderExchange((uint8_t *)devStatusPtr->wBitBuf,sizeof(devStatusPtr->wBitBuf));
 
     devStatusPtr->valuebrightness = gizY2X(brightness_RATIO,  brightness_ADDITION, dataPoints->valuebrightness); 

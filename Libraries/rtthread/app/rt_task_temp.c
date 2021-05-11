@@ -35,9 +35,10 @@ void dht11_init(void *parg) {
 	while(1) {
 
 		rt_enter_critical();
-        dht11_lvgl_display(&dht11_data);
+        //dht11_lvgl_display(&dht11_data);
+		DHT11_PRINTF();
 		rt_exit_critical();
 
-		rt_thread_mdelay(200);
+		rt_thread_delay(500);
 	}
 }

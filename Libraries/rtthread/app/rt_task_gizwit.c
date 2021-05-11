@@ -28,8 +28,7 @@ void gizwit_thread_init(void) {
 
 bool check_gizwitsHandle(void) {
 
-	if(currentDataPoint.valueBH1750 != lastDataPoint.valueBH1750) return true;
-
+	//if(currentDataPoint.valueBH1750 != lastDataPoint.valueBH1750) return true;
 	return false;
 }
 
@@ -39,18 +38,15 @@ void gizwit_init(void *parg) {
     gizwitsInit();
 	//配置机智云
 	userInit();
-
+	DEBUG_PRINT("creat gizwits task");
 	static bool is_need_to_handle = true;
 
 	while(1) {
-     
-		// 机智云上行
-		is_need_to_handle = check_gizwitsHandle();
-		if(is_need_to_handle) {
-			userHandle();
-			is_need_to_handle = false;
-		}
+		DEBUG_PRINT("enter gizwits task");
+		rt_enter_critical();
 		gizwitsHandle((dataPoint_t *)&currentDataPoint);
-		rt_thread_delay(1000);
+		userHandle();
+		rt_exit_critical();
+		rt_thread_delay(100);
 	}
 }
