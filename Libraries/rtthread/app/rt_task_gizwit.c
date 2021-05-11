@@ -34,12 +34,10 @@ bool check_gizwitsHandle(void) {
 
 void gizwit_init(void *parg) {
 
-	//初始化机智云
+    //初始化机智云
     gizwitsInit();
-	//配置机智云
-	userInit();
-	DEBUG_PRINT("creat gizwits task");
-	static bool is_need_to_handle = true;
+    //配置机智云
+    userInit();
 
 	while(1) {
 		DEBUG_PRINT("enter gizwits task");

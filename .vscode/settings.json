@@ -46,7 +46,11 @@
         "pit.h": "c",
         "exit.h": "c",
         "gizwits_product.h": "c",
-        "dht11.h": "c"
+        "dht11.h": "c",
+        "bsp_i2c_touch.h": "c",
+        "fsl_qtmr.h": "c",
+        "rt_task_lighting.h": "c",
+        "lpi2c.h": "c"
     },
     "editor.minimap.enabled": true,
     "C_Cpp.autocomplete": "Default",

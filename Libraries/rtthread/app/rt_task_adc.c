@@ -34,10 +34,28 @@ void adc_init(void *parg) {
 	DEBUG_PRINT("creat adc task");
 	while(1) {
 		DEBUG_PRINT("enter adc task");
-		adc_get.soil_value = (((float)4095-(float)adc_measure(ADC,SOIL_ADC_CHANNLE_GROUP,SOIL_ADC_CHANNLE))/4095)*100;
-		printf("soil_val:%0.2f\n",adc_get.soil_value);	
-		//adc_get.distance_value = -(((((float)adc_measure(ADC,DISTANCE_ADC_CHANNLE_GROUP,DISTANCE_ADC_CHANNLE)/(float)4095)*(float)3.3)-(float)2.35)/(float)0.035);
-		//printf("distant_val:%0.2f\n",adc_get.distance_value);
-		rt_thread_delay(500);
+
+		// adc_get.soil_value = (((float)4095-(float)adc_measure(ADC,SOIL_ADC_CHANNLE_GROUP,SOIL_ADC_CHANNLE))/4095)*100;
+		// adc_get.distance_value = -(((((float)adc_measure(ADC,DISTANCE_ADC_CHANNLE_GROUP,DISTANCE_ADC_CHANNLE)/(float)4095)*(float)3.3)-(float)2.35)/(float)0.035);
+
+		adc_get.soil_value = soil_value_get();
+		adc_get.distance_value = distance_value_get();
+
+		my_sensor.soil_value = adc_get.soil_value;
+		my_sensor.distance_value = adc_get.distance_value;
+		rt_thread_delay(1000);
 	}
 }
+
+float soil_value_get(void) {
+
+	return (((float)4095-(float)adc_measure(ADC,SOIL_ADC_CHANNLE_GROUP,SOIL_ADC_CHANNLE))/4095)*100;
+}
+
+float distance_value_get(void) {
+
+	return -(((((float)adc_measure(ADC,DISTANCE_ADC_CHANNLE_GROUP,DISTANCE_ADC_CHANNLE)/(float)4095)*(float)3.3)-(float)2.35)/(float)0.035);
+}
+
+
+

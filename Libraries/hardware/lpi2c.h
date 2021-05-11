@@ -50,7 +50,7 @@ void LPI2C_waitstandbystatus(uint8_t addr);
 
 void BH1750_writebyte(void);
 void BH1750_readdata(void);
-float BH1750_measure(void);
+float bh1750_measure(void);
 
 void SGP30_config(void);
 uint32_t SGP30_readdata(void);

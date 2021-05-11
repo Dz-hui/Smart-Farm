@@ -25,13 +25,21 @@ void bh1750_thread_init(void) {
 		DEBUG_PRINT("bh1750_thread ERR");
 }
 
+#define BH1750_DIV				5
 void bh1750_init(void *parg) {
 
+	float lighting_value = 0;
 	while(1) {
 
-		bh1750_measure();
-		rt_thread_mdelay(500);
+		lighting_value = bh1750_measure();
 		
+		if(lighting_value >= BH1750_DIV) {
+			my_sensor.lighting_value = lighting_value;
+		}
+		else {
+			// 不更新你的值
+		}
+		rt_thread_mdelay(1000);
 	}
 }
 

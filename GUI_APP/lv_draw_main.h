@@ -12,7 +12,7 @@
 typedef enum {
     UI_LABEL_X_POS = 10,
     UI_LABEL_Y_POS = 2,
-    UI_LABEL_X_OFFEST = 255,
+    UI_LABEL_X_OFFEST = 240,
     UI_LABEL_Y_OFFEST = 40,
 }UI_LABEL_POS;
 

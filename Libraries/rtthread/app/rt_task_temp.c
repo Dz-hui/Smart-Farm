@@ -30,15 +30,17 @@ void dht11_thread_init(void) {
 
 void dht11_init(void *parg) {
 
-    
-
 	while(1) {
 
 		rt_enter_critical();
         //dht11_lvgl_display(&dht11_data);
-		DHT11_PRINTF();
+		// DHT11_PRINTF();
+		if(Read_DHT11(&dht11_data) == 1) {
+			my_sensor.temp_value = (float)dht11_data.temp_int + (float)dht11_data.temp_deci/100;
+			my_sensor.humi_value = (float)dht11_data.humi_int + (float)dht11_data.humi_deci/100;
+		}
 		rt_exit_critical();
 
-		rt_thread_delay(500);
+		rt_thread_delay(1000);
 	}
 }

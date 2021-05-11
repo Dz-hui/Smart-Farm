@@ -7,7 +7,7 @@
 #include "rt_task_lvgl.h"
 
 rt_thread_t lv_thread = RT_NULL;
-
+lv_sensor_value_t my_sensor;
 
 void gui_lvgl_thread_init(void) {
 

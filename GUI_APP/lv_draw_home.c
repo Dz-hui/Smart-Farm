@@ -11,8 +11,6 @@ UI_HOME_T home_obj;
 
 static void event_handler_temp(lv_obj_t* obj, lv_event_t event) {
     
-
-
 }
 
 static void event_handler_humi(lv_obj_t* obj, lv_event_t event) {

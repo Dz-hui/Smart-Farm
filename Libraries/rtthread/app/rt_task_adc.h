@@ -20,8 +20,9 @@ typedef struct {
 }ADC_GET_DEF;
 extern ADC_GET_DEF adc_get;
 
+
 void adc_init(void *parg);
 void adc_thread_init(void);
-
-
+float soil_value_get(void);
+float distance_value_get(void);
 #endif

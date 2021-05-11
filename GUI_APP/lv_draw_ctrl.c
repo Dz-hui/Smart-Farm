@@ -260,24 +260,24 @@ void draw_ctrl(void)
                 control_obj.control_label_pump_status,
                 SETTING_LABEL_TEMP_STATUS_X_POS,
                 SETTING_LABEL_TEMP_STATUS_Y_POS,
-                "click me");
+                ">");
     control_obj.control_label_led_status = lv_label_set(my_ui.home_buttom_gb_layer,
                 control_obj.control_label_led_status,
                 SETTING_LABEL_TEMP_STATUS_X_POS,
                 SETTING_LABEL_TEMP_STATUS_Y_POS+(CONTROL_LABEL_STATUS_OFFSET*1),
-                "click me");
+                ">");
 
     control_obj.control_label_fan_status = lv_label_set(my_ui.home_buttom_gb_layer,
                 control_obj.control_label_fan_status,
                 SETTING_LABEL_TEMP_STATUS_X_POS,
                 SETTING_LABEL_TEMP_STATUS_Y_POS+(CONTROL_LABEL_STATUS_OFFSET*2),
-                "click me");
+                ">");
 
     control_obj.control_label_curtain_status = lv_label_set(my_ui.home_buttom_gb_layer,
                 control_obj.control_label_curtain_status,
                 SETTING_LABEL_TEMP_STATUS_X_POS,
                 SETTING_LABEL_TEMP_STATUS_Y_POS+(CONTROL_LABEL_STATUS_OFFSET*3),
-                "click me");
+                "?");
     
     lv_label_set_style(control_obj.control_label_pump_status, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
     lv_label_set_style(control_obj.control_label_led_status, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           

@@ -50,7 +50,7 @@ typedef struct {
 
 
 
-lv_obj_t* draw_about(void);
+void draw_about(void);
 
 #endif
 

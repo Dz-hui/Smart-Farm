@@ -20,7 +20,7 @@ static void about_back_btn_cb(lv_obj_t *btn, lv_event_t event)
 }
 
 
-lv_obj_t* draw_about(void)
+void draw_about(void)
 {
     lv_style_copy(&about_obj.about_label_style, &lv_style_plain);
     about_obj.about_label_style.text.color = LV_COLOR_WHITE;
