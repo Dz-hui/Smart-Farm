@@ -107,10 +107,16 @@ lv_obj_t* lv_btn_set(lv_obj_t* scr, lv_obj_t* btn, lv_coord_t btn_w, lv_coord_t 
 }
 
 lv_obj_t* lv_label_set(lv_obj_t* scr, lv_obj_t* label, lv_coord_t x, lv_coord_t y,const char *txt) {
-
     label = lv_label_create(scr, NULL);
     lv_obj_set_pos(label, x, y);
     lv_label_set_text(label,txt);
+    return label;
+}
+
+lv_obj_t* lv_static_label_set(lv_obj_t* scr, lv_obj_t* label, lv_coord_t x, lv_coord_t y,const char *txt) {
+    label = lv_label_create(scr, NULL);
+    lv_obj_set_pos(label, x, y);
+    lv_label_set_static_text(label,txt);
     return label;
 }
 

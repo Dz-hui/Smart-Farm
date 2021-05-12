@@ -4,13 +4,13 @@
   * @author  fire
   * @version V1.1
   * @date    2018-xx-xx
-  * @brief   uartÓ¦ÓÃº¯Êı½Ó¿Ú
+  * @brief   uartåº”ç”¨å‡½æ•°æ¥å£
   ******************************************************************
   * @attention
   *
-  * ÊµÑéÆ½Ì¨:Ò°»ğ  i.MXRT1052¿ª·¢°å 
-  * ÂÛÌ³    :http://www.firebbs.cn
-  * ÌÔ±¦    :https://fire-stm32.taobao.com
+  * å®éªŒå¹³å°:é‡ç«  i.MXRT1052å¼€å‘æ¿ 
+  * è®ºå›    :http://www.firebbs.cn
+  * æ·˜å®    :https://fire-stm32.taobao.com
   *
   ******************************************************************
   */
@@ -28,49 +28,53 @@
 #include "main.h"
 
 /**
-* @brief  ³õÊ¼»¯uartÅäÖÃ²ÎÊı
-* @param  ÎŞ
-* @retval ÎŞ
+* @brief  åˆå§‹åŒ–uarté…ç½®å‚æ•°
+* @param  æ— 
+* @retval æ— 
 */
 void UART_ModeConfig(void)
 {
-  /*¶¨Òå´®¿ÚÅäÖÃ²ÎÊı½á¹¹Ìå±äÁ¿£¬ÓÃÓÚ±£´æ´®¿ÚµÄÅäÖÃĞÅÏ¢*/
+  /*å®šä¹‰ä¸²å£é…ç½®å‚æ•°ç»“æ„ä½“å˜é‡ï¼Œç”¨äºä¿å­˜ä¸²å£çš„é…ç½®ä¿¡æ¯*/
   lpuart_config_t config;
   
-  /*µ÷ÓÃ¹Ì¼ş¿âº¯ÊıµÃµ½Ä¬ÈÏµÄ´®¿ÚÅäÖÃ²ÎÊı£¬ÔÚÄ¬ÈÏµÄÅäÖÃ²ÎÊı»ù´¡ÉÏĞŞ¸Ä*/
+  /*è°ƒç”¨å›ºä»¶åº“å‡½æ•°å¾—åˆ°é»˜è®¤çš„ä¸²å£é…ç½®å‚æ•°ï¼Œåœ¨é»˜è®¤çš„é…ç½®å‚æ•°åŸºç¡€ä¸Šä¿®æ”¹*/
   LPUART_GetDefaultConfig(&config);
-  config.baudRate_Bps = DEBUG_UART_BAUDRATE;  //²¨ÌØÂÊ
-  config.enableRx = DEBUG_UART_ENABLE_RESIVE; //ÊÇ·ñÔÊĞí½ÓÊÕÊı¾İ
-  config.enableTx = DEBUG_UART_ENABLE_SEND;   //ÊÇ·ñÔÊĞí·¢ËÍÊı¾İ
+  config.baudRate_Bps = DEBUG_UART_BAUDRATE;  //æ³¢ç‰¹ç‡
+  config.enableRx = DEBUG_UART_ENABLE_RESIVE; //æ˜¯å¦å…è®¸æ¥æ”¶æ•°æ®
+  config.enableTx = DEBUG_UART_ENABLE_SEND;   //æ˜¯å¦å…è®¸å‘é€æ•°æ®
+  config.parityMode = kLPUART_ParityDisabled;
+  config.dataBitsCount = kLPUART_EightDataBits;
+  config.stopBitCount = kLPUART_OneStopBit;
+  config.isMsb = false;
 
-  /*µ÷ÓÃ¹Ì¼ş¿âº¯Êı£¬½«ĞŞ¸ÄºÃµÄÅäÖÃĞÅÏ¢Ğ´Èëµ½´®¿ÚµÄÅäÖÃ¼Ä´æÆ÷ÖĞ*/
+  /*è°ƒç”¨å›ºä»¶åº“å‡½æ•°ï¼Œå°†ä¿®æ”¹å¥½çš„é…ç½®ä¿¡æ¯å†™å…¥åˆ°ä¸²å£çš„é…ç½®å¯„å­˜å™¨ä¸­*/
   LPUART_Init(DEBUG_UARTx, &config, BOARD_DEBUG_UART_CLK_FREQ);
   
-  /*ÔÊĞí½ÓÊÕÖĞ¶Ï*/
+  /*å…è®¸æ¥æ”¶ä¸­æ–­*/
   LPUART_EnableInterrupts(DEBUG_UARTx, kLPUART_RxDataRegFullInterruptEnable);
   
-  /*ÉèÖÃÖĞ¶ÏÓÅÏÈ¼¶,*/
-  IRQN_priority(4,0,1,DEBUG_UART_IRQ);
-  /*Ê¹ÄÜÖĞ¶Ï*/
+  /*è®¾ç½®ä¸­æ–­ä¼˜å…ˆçº§,*/
+  IRQN_priority(4,1,1,DEBUG_UART_IRQ);
+  /*ä½¿èƒ½ä¸­æ–­*/
   EnableIRQ(DEBUG_UART_IRQ);
 }
 
  /**
-* @brief  ³õÊ¼»¯uartÒı½Å¹¦ÄÜ
-* @param  ÎŞ
-* @retval ÎŞ
+* @brief  åˆå§‹åŒ–uartå¼•è„šåŠŸèƒ½
+* @param  æ— 
+* @retval æ— 
 */
 void UART_IOMUXC_MUX_Config(void)
 {
-  /* RXºÍTXÒı½Å */
+  /* RXå’ŒTXå¼•è„š */
   IOMUXC_SetPinMux(UART_RX_IOMUXC, 0U);                                   
   IOMUXC_SetPinMux(UART_TX_IOMUXC, 0U); 
 }
 
  /**
-* @brief  ³õÊ¼»¯uartÏà¹ØIOMUXCµÄPADÊôĞÔÅäÖÃ
-* @param  ÎŞ
-* @retval ÎŞ
+* @brief  åˆå§‹åŒ–uartç›¸å…³IOMUXCçš„PADå±æ€§é…ç½®
+* @param  æ— 
+* @retval æ— 
 */
 void UART_IOMUXC_PAD_Config(void)
 {
@@ -78,9 +82,9 @@ void UART_IOMUXC_PAD_Config(void)
   IOMUXC_SetPinConfig(UART_TX_IOMUXC, UART_TX_PAD_CONFIG_DATA);
 }
   /**
-* @brief  ³õÊ¼»¯uart,²¢¿ªÆôÁËÊÕ·¢¹¦ÄÜ
-* @param  ÎŞ
-* @retval ÎŞ
+* @brief  åˆå§‹åŒ–uart,å¹¶å¼€å¯äº†æ”¶å‘åŠŸèƒ½
+* @param  æ— 
+* @retval æ— 
 */
 void UART_Config(void)
 {
@@ -90,10 +94,10 @@ void UART_Config(void)
 }
 
   /**
-* @brief  ·¢ËÍÒ»¸ö×Ö·û 
-* @param  base:Ñ¡Ôñ¶Ë¿Ú
-* @param  data:½«Òª·¢ËÍµÄÊı¾İ
-* @retval ÎŞ
+* @brief  å‘é€ä¸€ä¸ªå­—ç¬¦ 
+* @param  base:é€‰æ‹©ç«¯å£
+* @param  data:å°†è¦å‘é€çš„æ•°æ®
+* @retval æ— 
 */
 void Uart_SendByte(LPUART_Type *base, uint8_t data)
 {
@@ -102,10 +106,10 @@ void Uart_SendByte(LPUART_Type *base, uint8_t data)
 }
 
   /**
-* @brief  ·¢ËÍÒ»¸ö×Ö·û´® 
-* @param  base:Ñ¡Ôñ¶Ë¿Ú
-* @param  data:½«Òª·¢ËÍµÄÊı¾İ
-* @retval ÎŞ
+* @brief  å‘é€ä¸€ä¸ªå­—ç¬¦ä¸² 
+* @param  base:é€‰æ‹©ç«¯å£
+* @param  data:å°†è¦å‘é€çš„æ•°æ®
+* @retval æ— 
 */
 void Uart_SendString( LPUART_Type *base,  const char *str)
 {
@@ -113,45 +117,44 @@ void Uart_SendString( LPUART_Type *base,  const char *str)
 }
  
   /**
-* @brief  ·¢ËÍÒ»¸ö16Î»Êı  
-* @param  base:Ñ¡Ôñ¶Ë¿Ú
-* @param  data:½«Òª·¢ËÍµÄÊı¾İ
-* @retval ÎŞ
+* @brief  å‘é€ä¸€ä¸ª16ä½æ•°  
+* @param  base:é€‰æ‹©ç«¯å£
+* @param  data:å°†è¦å‘é€çš„æ•°æ®
+* @retval æ— 
 */
 void Uart_SendHalfWord(LPUART_Type *base, uint16_t ch)
 {
   uint8_t temp_h, temp_l;
   
-  /* È¡³ö¸ß°ËÎ» */
+  /* å–å‡ºé«˜å…«ä½ */
   temp_h = (ch&0XFF00)>>8;
-  /* È¡³öµÍ°ËÎ» */
+  /* å–å‡ºä½å…«ä½ */
   temp_l = ch&0XFF; 
 
-  /* ·¢ËÍ¸ß°ËÎ» */
+  /* å‘é€é«˜å…«ä½ */
   LPUART_WriteByte( base, temp_h);
   while (!(base->STAT & LPUART_STAT_TDRE_MASK));
   
-  /* ·¢ËÍµÍ°ËÎ» */ 
+  /* å‘é€ä½å…«ä½ */ 
   LPUART_WriteByte( base, temp_l);
   while (!(base->STAT & LPUART_STAT_TDRE_MASK));  
 }
  
 
-/******************´®¿Ú½ÓÊÕÖĞ¶Ï·şÎñº¯Êı********************/
+/******************ä¸²å£æ¥æ”¶ä¸­æ–­æœåŠ¡å‡½æ•°********************/
 void DEBUG_UART_IRQHandler(void)
 {
   uint8_t Temp;
-  /*´®¿Ú½ÓÊÕµ½Êı¾İ*/
+  /*ä¸²å£æ¥æ”¶åˆ°æ•°æ®*/
   rt_interrupt_enter();
   if ((kLPUART_RxDataRegFullFlag)&LPUART_GetStatusFlags(DEBUG_UARTx))
   {
-    /*¶ÁÈ¡Êı¾İ*/
+    /*è¯»å–æ•°æ®*/
     Temp = LPUART_ReadByte(DEBUG_UARTx);
     gizPutData(&Temp, 1);
-    /*½«¶ÁÈ¡µ½µÄÊı¾İĞ´Èëµ½»º³åÇø*/
+    /*å°†è¯»å–åˆ°çš„æ•°æ®å†™å…¥åˆ°ç¼“å†²åŒº*/
    // Uart_SendByte(DEBUG_UARTx,Temp);
   }
   rt_interrupt_leave();
-
 }
 

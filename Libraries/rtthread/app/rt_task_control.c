@@ -54,12 +54,22 @@ void ctrl_thread_init(void) {
 }
 
 void ctrl_init(void *parg) {
+
 	QTMR_SetupPwm(QTMR_PORT,QTMR_CHANNLE,QTMR_PWM_FREQ,50,false,QTMR_SOURCE_CLOCK / 128);
 	QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,50,false,QTMR_SOURCE_CLOCK / 128);
-	//user_step_init();
+	user_step_init();
+	
 	while(1) {
-		//curtain_down();
-		 
-		rt_thread_mdelay(50);
+		
+		if(user_step.step_move != 0) {
+			if(user_step.curtain_dir == 0) {
+				curtain_down();
+			}else{
+				curtain_up();
+			}
+			rt_thread_mdelay(1);
+		}
+
+		rt_thread_mdelay(1000);
 	}
 }

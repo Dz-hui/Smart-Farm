@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-02 19:52:24
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??rtthread??¾¶·Ö¸ô???Ìæ??app??¾¶·Ö¸ô???Ìæ??rt_task_gizwit.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Libraries??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??rtthread??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??app??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??rt_task_gizwit.c
 *@Drscription: 
 ***********************************************************************/
 #include "rt_task_gizwit.h"
@@ -34,11 +34,8 @@ bool check_gizwitsHandle(void) {
 
 void gizwit_init(void *parg) {
 
-    //³õÊ¼»¯»úÖÇÔÆ
     gizwitsInit();
-    //ÅäÖÃ»úÖÇÔÆ
     userInit();
-
 	while(1) {
 		DEBUG_PRINT("enter gizwits task");
 		rt_enter_critical();

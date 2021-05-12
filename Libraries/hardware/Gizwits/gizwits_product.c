@@ -17,6 +17,7 @@
 #include <string.h>
 #include "gizwits_product.h"
 #include "bsp_uart.h"
+#include "rt_task_lvgl.h"
 
 static uint32_t timerMsCount;
 
@@ -159,12 +160,19 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
 */
 void userHandle(void)
 {
-  currentDataPoint.valueBH1750 = 12;//Add Sensor Data Collection
+  // currentDataPoint.valueBH1750 = 12;//Add Sensor Data Collection
+  // currentDataPoint.valueCO2 = 12;//Add Sensor Data Collection
+  // currentDataPoint.valuetemp =13 ;//Add Sensor Data Collection
+  // currentDataPoint.valuehumi = 11;//Add Sensor Data Collection
+  // currentDataPoint.valuesoil = 11;//Add Sensor Data Collection
+  // currentDataPoint.valuedistant = 34;//Add Sensor Data Collection
+
+  currentDataPoint.valueBH1750 = my_sensor.lighting_value;//Add Sensor Data Collection
   currentDataPoint.valueCO2 = 12;//Add Sensor Data Collection
-  currentDataPoint.valuetemp =13 ;//Add Sensor Data Collection
-  currentDataPoint.valuehumi = 11;//Add Sensor Data Collection
-  currentDataPoint.valuesoil = 11;//Add Sensor Data Collection
-  currentDataPoint.valuedistant = 34;//Add Sensor Data Collection
+  currentDataPoint.valuetemp =my_sensor.temp_value;//Add Sensor Data Collection
+  currentDataPoint.valuehumi = my_sensor.humi_value;//Add Sensor Data Collection
+  currentDataPoint.valuesoil = my_sensor.soil_value;//Add Sensor Data Collection
+  currentDataPoint.valuedistant = my_sensor.distance_value;//Add Sensor Data Collection
 }
 
 /**
@@ -281,6 +289,7 @@ void UART_IRQ_FUN(void)
 int32_t uartWrite(uint8_t *buf, uint32_t len)
 {
     uint32_t i = 0;
+    uint8_t ach = 0x55;
     
     if(NULL == buf)
     {
@@ -300,12 +309,16 @@ int32_t uartWrite(uint8_t *buf, uint32_t len)
     {
         //USART_SendData(UART, buf[i]);//STM32 test demo
         //Serial port to achieve the function, the buf[i] sent to the module
-         Uart_SendByte(DEBUG_UARTx,buf[i]);
+        //  Uart_SendByte(DEBUG_UARTx, buf[i]);
+
+        LPUART_WriteBlocking(DEBUG_UARTx, &buf[i],1);
         if(i >=2 && buf[i] == 0xFF)
         {
           //Serial port to achieve the function, the 0x55 sent to the module
           //USART_SendData(UART, 0x55);//STM32 test demo
-           Uart_SendByte(DEBUG_UARTx,0x55);
+          // Uart_SendByte(DEBUG_UARTx,0x55);
+          LPUART_WriteBlocking(DEBUG_UARTx, &ach, 1);
+
         }
     }
 

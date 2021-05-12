@@ -34,6 +34,18 @@ void gui_lvgl_init(void *parg) {
 	lv_draw_init();
 	gui_lvgl_uptada_init();
 
+	my_sensor.co2_value = 26.4;
+	my_sensor.distance_value = 0;
+	my_sensor.humi_value = 0;
+	my_sensor.lighting_value = 0;
+	my_sensor.soil_value = 0;
+	my_sensor.temp_value = 0;
+
+	my_ctrl.curtain_status = 0;
+	my_ctrl.fan_mode = 0;
+	my_ctrl.led_value = 0;
+	my_ctrl.pump_status = 0; 
+
 	while(1) {
 		lv_task_handler();
 		rt_thread_delay(5);

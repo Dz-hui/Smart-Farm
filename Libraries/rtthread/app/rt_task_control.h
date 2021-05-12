@@ -21,5 +21,4 @@ extern rt_thread_t ctrl_thread ;
 void ctrl_init(void *parg);
 void ctrl_thread_init(void);
 
-
 #endif

@@ -117,15 +117,15 @@ void draw_home(void) {
     lv_label_set_style(home_obj.home_label_about, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);
 
     
-    if(my_ctrl.fan_mode == 0)  sprintf(fan_str, "Fan Speed:0%");
-    else if(my_ctrl.fan_mode == 1) sprintf(fan_str, "Fan Speed:30%");
-    else if(my_ctrl.fan_mode == 2) sprintf(fan_str, "Fan Speed:60%");
-    else if(my_ctrl.fan_mode == 3) sprintf(fan_str, "Fan Speed:100%");
+    if(my_ctrl.fan_mode == 0)  sprintf(fan_str, "Fan Speed:0%%");
+    else if(my_ctrl.fan_mode == 1) sprintf(fan_str, "Fan Speed:30%%");
+    else if(my_ctrl.fan_mode == 2) sprintf(fan_str, "Fan Speed:60%%");
+    else if(my_ctrl.fan_mode == 3) sprintf(fan_str, "Fan Speed:100%%");
 
     if(my_ctrl.curtain_status == 0) sprintf(curtain_str, "Curtain Status:OFF");
     else if(my_ctrl.curtain_status == 1) sprintf(curtain_str, "Curtain Status:ON");
 
-    sprintf(light_str, "Light Brightness:%f", my_ctrl.led_value);
+    sprintf(light_str, "Light:%d", my_ctrl.led_value);
 
     if(my_ctrl.pump_status == 0) sprintf(Pump_str, "Pump Status:OFF");
     else if(my_ctrl.pump_status == 1) sprintf(Pump_str, "Pump Status:ON");
@@ -175,7 +175,6 @@ char str_label_curtain_statusp[20];
 // char str_label_water[20];
 
 void lv_label_home_updata(void) {
-
 
     // if() sprintf(str_label_fan_status, "ON");
     // else sprintf(str_label_fan_status, "OFF");

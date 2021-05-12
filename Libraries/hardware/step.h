@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-03-21 01:08:14
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??step.h
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Libraries??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??hardware??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??step.h
 *@Drscription: 
 ***********************************************************************/
 #ifndef __STEP__H
@@ -39,9 +39,11 @@ typedef enum {
 	CURTAIN_OFF,	//
 }CURTAIN_STATUS_DEF;
 
+#define NEED_TO_RUN_STEP			1250
+
 typedef struct {
 	uint8_t 			curtain_dir:1;
-	uint8_t 			step_move;
+	uint32_t 			step_move;
 	uint8_t 			motor_num;			// 0-3
 	STEP_STATUS_DEF		step_status;
     uint32_t            step_delay;   
