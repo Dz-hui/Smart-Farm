@@ -1,13 +1,14 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-02 19:39:25
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??rtthread??¾¶·Ö¸ô???Ìæ??app??¾¶·Ö¸ô???Ìæ??rt_task_lvgl.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Libraries??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??rtthread??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??app??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??rt_task_lvgl.c
 *@Drscription: 
 ***********************************************************************/
 #include "rt_task_lvgl.h"
 
 rt_thread_t lv_thread = RT_NULL;
 lv_sensor_value_t my_sensor;
+lv_ctrl_t my_ctrl;
 
 void gui_lvgl_thread_init(void) {
 

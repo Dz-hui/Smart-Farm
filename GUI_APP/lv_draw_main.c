@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-01 16:37:36
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??GUI_APP??¾¶·Ö¸ô???Ìæ??lv_draw_main.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??GUI_APP??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??lv_draw_main.c
 *@Drscription: 
 ***********************************************************************/
 #include "lv_draw_main.h" 
@@ -41,34 +41,33 @@ void lv_draw_init(void) {
                 my_ui.bar_label_temp,
                 UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*1)-10,
                 UI_LABEL_Y_POS,
-                "Temperature:30C");
-                
+                "Temperature:0C");
     my_ui.bar_label_humi = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_humi,
                 UI_LABEL_X_POS,
                 UI_LABEL_Y_POS,
-                "Humidity:70%");
+                "Humidity:0%");
     my_ui.bar_label_co2 = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_co2,
                 UI_LABEL_X_POS,
                 UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST,
-                "CO2 Content:40%");
+                "CO2 Content:26%");
     my_ui.bar_label_light = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_light,
                 UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*1)-10,
                 UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST,
-                "Light Intensity:25%");
+                "Light Intensity:0%");
     my_ui.bar_label_water = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_water,
                 UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*2),
                 UI_LABEL_Y_POS,
-                "Soil Moisture:27%");
+                "Soil Moisture:0%");
 
     my_ui.bar_label_soil = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_soil,
                 UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*2),
                 UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST,
-                "Water Remaining:50%");
+                "Water Remaining:0%");
     
     lv_label_set_style(my_ui.bar_label_temp, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);
     lv_label_set_style(my_ui.bar_label_humi, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
@@ -76,7 +75,6 @@ void lv_draw_init(void) {
     lv_label_set_style(my_ui.bar_label_light, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
     lv_label_set_style(my_ui.bar_label_water, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
     lv_label_set_style(my_ui.bar_label_soil, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);    
-    
     draw_home();
 }
 

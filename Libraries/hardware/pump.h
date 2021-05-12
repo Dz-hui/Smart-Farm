@@ -50,6 +50,22 @@
 
 
 
+typedef enum{ 
+
+   PUMO_NONE,
+   PUMP_RUN,
+   PUMP_STOP,
+}PUMP_STATUS_T;
+
+
+typedef struct {
+   
+   PUMP_STATUS_T ump_status;
+   uint32_t pump_tick_start;
+   uint32_t pump_tick_end;
+
+}PUMP_CTRL_T;
+
 
 /*******************************************************************************
  * º¯ÊýÉùÃ÷

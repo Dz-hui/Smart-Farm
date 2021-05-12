@@ -4,13 +4,13 @@
   * @author  fire
   * @version V1.1
   * @date    2018-xx-xx
-  * @brief   ledÓ¦ÓÃº¯Êý½Ó¿Ú
+  * @brief   ledåº”ç”¨å‡½æ•°æŽ¥å£
   ******************************************************************
   * @attention
   *
-  * ÊµÑéÆ½Ì¨:Ò°»ð  i.MXRT1052¿ª·¢°å 
-  * ÂÛÌ³    :http://www.firebbs.cn
-  * ÌÔ±¦    :https://fire-stm32.taobao.com
+  * å®žéªŒå¹³å°:é‡Žç«  i.MXRT1052å¼€å‘æ¿ 
+  * è®ºå›    :http://www.firebbs.cn
+  * æ·˜å®    :https://fire-stm32.taobao.com
   *
   ******************************************************************
   */
@@ -21,9 +21,9 @@
 #include "pump.h"   
 
 /*******************************************************************************
- * ºê
+ * å®
  ******************************************************************************/
-/* ËùÓÐÒý½Å¾ùÊ¹ÓÃÍ¬ÑùµÄPADÅäÖÃ */
+/* æ‰€æœ‰å¼•è„šå‡ä½¿ç”¨åŒæ ·çš„PADé…ç½® */
 #define PUMP_PAD_CONFIG_DATA            (SRE_0_SLOW_SLEW_RATE| \
                                         DSE_6_R0_6| \
                                         SPEED_2_MEDIUM_100MHz| \
@@ -32,27 +32,27 @@
                                         PUE_0_KEEPER_SELECTED| \
                                         PUS_0_100K_OHM_PULL_DOWN| \
                                         HYS_0_HYSTERESIS_DISABLED)   
-    /* ÅäÖÃËµÃ÷ : */
-    /* ×ª»»ËÙÂÊ: ×ª»»ËÙÂÊÂý
-      Çý¶¯Ç¿¶È: R0/6 
-      ´ø¿íÅäÖÃ : medium(100MHz)
-      ¿ªÂ©ÅäÖÃ: ¹Ø±Õ 
-      À­/±£³ÖÆ÷ÅäÖÃ: ¹Ø±Õ
-      À­/±£³ÖÆ÷Ñ¡Ôñ: ±£³ÖÆ÷£¨ÉÏÃæÒÑ¹Ø±Õ£¬ÅäÖÃÎÞÐ§£©
-      ÉÏÀ­/ÏÂÀ­Ñ¡Ôñ: 100KÅ·Ä·ÏÂÀ­£¨ÉÏÃæÒÑ¹Ø±Õ£¬ÅäÖÃÎÞÐ§£©
-      ÖÍ»ØÆ÷ÅäÖÃ: ¹Ø±Õ */     
+    /* é…ç½®è¯´æ˜Ž : */
+    /* è½¬æ¢é€ŸçŽ‡: è½¬æ¢é€ŸçŽ‡æ…¢
+      é©±åŠ¨å¼ºåº¦: R0/6 
+      å¸¦å®½é…ç½® : medium(100MHz)
+      å¼€æ¼é…ç½®: å…³é—­ 
+      æ‹‰/ä¿æŒå™¨é…ç½®: å…³é—­
+      æ‹‰/ä¿æŒå™¨é€‰æ‹©: ä¿æŒå™¨ï¼ˆä¸Šé¢å·²å…³é—­ï¼Œé…ç½®æ— æ•ˆï¼‰
+      ä¸Šæ‹‰/ä¸‹æ‹‰é€‰æ‹©: 100Kæ¬§å§†ä¸‹æ‹‰ï¼ˆä¸Šé¢å·²å…³é—­ï¼Œé…ç½®æ— æ•ˆï¼‰
+      æ»žå›žå™¨é…ç½®: å…³é—­ */     
 
 /*******************************************************************************
- * ÉùÃ÷
+ * å£°æ˜Ž
  ******************************************************************************/
 static void PUMP_IOMUXC_MUX_Config(void);
 static void PUMP_IOMUXC_PAD_Config(void);
 static void PUMP_GPIO_Mode_Config(void);
 
 /**
-* @brief  ³õÊ¼»¯LEDÏà¹ØIOMUXCµÄMUX¸´ÓÃÅäÖÃ
-* @param  ÎÞ
-* @retval ÎÞ
+* @brief  åˆå§‹åŒ–LEDç›¸å…³IOMUXCçš„MUXå¤ç”¨é…ç½®
+* @param  æ— 
+* @retval æ— 
 */
 static void PUMP_IOMUXC_MUX_Config(void)
 {
@@ -60,53 +60,58 @@ static void PUMP_IOMUXC_MUX_Config(void)
 }
 
 /**
-* @brief  ³õÊ¼»¯LEDÏà¹ØIOMUXCµÄMUX¸´ÓÃÅäÖÃ
-* @param  ÎÞ
-* @retval ÎÞ
+* @brief  åˆå§‹åŒ–LEDç›¸å…³IOMUXCçš„MUXå¤ç”¨é…ç½®
+* @param  æ— 
+* @retval æ— 
 */
 static void PUMP_IOMUXC_PAD_Config(void)
 {
-  /* ºËÐÄ°åµÄLEDµÆ */    
+  /* æ ¸å¿ƒæ¿çš„LEDç¯ */    
   //IOMUXC_SetPinConfig(CORE_BOARD_LED_IOMUXC, LED_PAD_CONFIG_DATA);  
  
-  /* RGB LEDµÆ£¬Ê¹ÓÃÍ¬ÑùµÄIOMUXC PADÅäÖÃ */ 
+  /* RGB LEDç¯ï¼Œä½¿ç”¨åŒæ ·çš„IOMUXC PADé…ç½® */ 
   IOMUXC_SetPinConfig(PUMP_IOMUXC, PUMP_PAD_CONFIG_DATA); 
- 
 }
 
 
  /**
-  * @brief  ³õÊ¼»¯LEDÏà¹ØµÄGPIOÄ£Ê½
-  * @param  ÎÞ
-  * @retval ÎÞ
+  * @brief  åˆå§‹åŒ–LEDç›¸å…³çš„GPIOæ¨¡å¼
+  * @param  æ— 
+  * @retval æ— 
   */
 static void PUMP_GPIO_Mode_Config(void)
 {     
-  /* ¶¨Òågpio³õÊ¼»¯ÅäÖÃ½á¹¹Ìå */
+  /* å®šä¹‰gpioåˆå§‹åŒ–é…ç½®ç»“æž„ä½“ */
   gpio_pin_config_t led_config;      
     
       
-  led_config.direction = kGPIO_DigitalOutput; //Êä³öÄ£Ê½
-  led_config.outputLogic =  1;                //Ä¬ÈÏ¸ßµçÆ½    
-  led_config.interruptMode = kGPIO_NoIntmode; //²»Ê¹ÓÃÖÐ¶Ï
+  led_config.direction = kGPIO_DigitalOutput; //è¾“å‡ºæ¨¡å¼
+  led_config.outputLogic =  1;                //é»˜è®¤é«˜ç”µå¹³    
+  led_config.interruptMode = kGPIO_NoIntmode; //ä¸ä½¿ç”¨ä¸­æ–­
   
 
   GPIO_PinInit(PUMP_GPIO, PUMP_GPIO_PIN, &led_config);
-  
 }
 
 /**
-  * @brief  ³õÊ¼»¯¿ØÖÆLEDµÄIO
-  * @param  ÎÞ
-  * @retval ÎÞ
+  * @brief  åˆå§‹åŒ–æŽ§åˆ¶LEDçš„IO
+  * @param  æ— 
+  * @retval æ— 
   */
 void PUMP_GPIO_Config(void)
 {
-  /* ³õÊ¼»¯GPIO¸´ÓÃ¡¢ÊôÐÔ¡¢Ä£Ê½ */
+  /* åˆå§‹åŒ–GPIOå¤ç”¨ã€å±žæ€§ã€æ¨¡å¼ */
   PUMP_IOMUXC_MUX_Config();
   PUMP_IOMUXC_PAD_Config();
   PUMP_GPIO_Mode_Config();
 }
+
+
+
+
+
+
+
 
 
 /*********************************************END OF FILE**********************/

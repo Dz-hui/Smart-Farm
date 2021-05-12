@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-02 19:39:41
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??rtthread??¾¶·Ö¸ô???Ìæ??app??¾¶·Ö¸ô???Ìæ??rt_task_lvgl.h
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Libraries??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??rtthread??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??app??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??rt_task_lvgl.h
 *@Drscription: 
 ***********************************************************************/
 #ifndef _rt_task_lvgl_h
@@ -22,6 +22,16 @@ typedef struct {
     float humi_value;
 }lv_sensor_value_t;
 extern lv_sensor_value_t my_sensor;
+
+typedef struct {
+
+    uint8_t curtain_status : 1;
+    uint8_t led_value;              // value :0-100
+    uint8_t pump_status:1;
+    uint8_t fan_mode;
+
+}lv_ctrl_t;
+extern lv_ctrl_t my_ctrl;
 
 
 

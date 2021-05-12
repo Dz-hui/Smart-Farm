@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-01 16:37:36
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??GUI_APP??¾¶·Ö¸ô???Ìæ??lv_draw_ctrl.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??GUI_APP??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??lv_draw_ctrl.c
 *@Drscription: 
 ***********************************************************************/
 #include "lv_draw_ctrl.h"
@@ -277,7 +277,7 @@ void draw_ctrl(void)
                 control_obj.control_label_curtain_status,
                 SETTING_LABEL_TEMP_STATUS_X_POS,
                 SETTING_LABEL_TEMP_STATUS_Y_POS+(CONTROL_LABEL_STATUS_OFFSET*3),
-                "?");
+                ">");
     
     lv_label_set_style(control_obj.control_label_pump_status, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
     lv_label_set_style(control_obj.control_label_led_status, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           

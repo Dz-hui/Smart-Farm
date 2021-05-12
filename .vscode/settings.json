@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "lv_draw_main.h": "c",
+        "pad_config.h": "c",
+        "fsl_gpio.h": "c",
+        "pump.h": "c",
+        "rt_task_lvgl.h": "c"
+    }
+}
