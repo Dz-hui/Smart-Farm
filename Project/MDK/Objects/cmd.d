@@ -1,0 +1,10 @@
+.\objects\cmd.o: ..\..\Libraries\rtthread\components\finsh\cmd.c
+.\objects\cmd.o: ..\..\Libraries\rtthread\include\rthw.h
+.\objects\cmd.o: ..\..\Libraries\rtthread\include\rtthread.h
+.\objects\cmd.o: ..\..\Libraries\rtthread\bsp\rtconfig.h
+.\objects\cmd.o: ..\..\Libraries\rtthread\include\rtdebug.h
+.\objects\cmd.o: ..\..\Libraries\rtthread\include\rtdef.h
+.\objects\cmd.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+.\objects\cmd.o: ..\..\Libraries\rtthread\include\rtservice.h
+.\objects\cmd.o: ..\..\Libraries\rtthread\include\rtm.h
+.\objects\cmd.o: ..\..\Libraries\rtthread\include\rtthread.h

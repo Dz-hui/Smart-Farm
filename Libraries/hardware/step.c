@@ -8,7 +8,7 @@
 
 STEP_DEF user_step;
 
-/* ËùÓÐÒý½Å¾ùÊ¹ÓÃÍ¬ÑùµÄPADÅäÖÃ */
+/* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Å¾ï¿½Ê¹ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½PADï¿½ï¿½ï¿½ï¿½ */
 #define STEP_PAD_CONFIG_DATA            (SRE_0_SLOW_SLEW_RATE| \
                                         DSE_6_R0_6| \
                                         SPEED_2_MEDIUM_100MHz| \
@@ -22,27 +22,27 @@ STEP_DEF user_step;
 
 static void STEP_IOMUXC_MUX_Config(void)
 {
-  /* ²½½øµç»ú */    
-  /* ÉèÖÃÒý½ÅµÄ¸´ÓÃÄ£Ê½ÎªGPIO£¬²»Ê¹ÓÃSION¹¦ÄÜ */
+  /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿? */    
+  /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ÅµÄ¸ï¿½ï¿½ï¿½Ä£Ê½ÎªGPIOï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½SIONï¿½ï¿½ï¿½ï¿½ */
   IOMUXC_SetPinMux(STEP_IN1_IOMUXC, 0U);
 
-  /* ²½½øµç»ú£¬Ê¹ÓÃÍ¬ÑùµÄIOMUXC MUXÅäÖÃ */  
+  /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Í?ï¿½ï¿½ï¿½ï¿½IOMUXC MUXï¿½ï¿½ï¿½ï¿½ */  
   IOMUXC_SetPinMux(STEP_IN2_IOMUXC, 0U); 
   IOMUXC_SetPinMux(STEP_IN3_IOMUXC, 0U);  
   IOMUXC_SetPinMux(STEP_IN4_IOMUXC, 0U);
 }
 
 /**
-* @brief  ³õÊ¼»¯²½½øµç»úÏà¹ØIOMUXCµÄMUX¸´ÓÃÅäÖÃ
-* @param  ÎÞ
-* @retval ÎÞ
+* @brief  ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IOMUXCï¿½ï¿½MUXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+* @param  ï¿½ï¿½
+* @retval ï¿½ï¿½
 */
 static void STEP_IOMUXC_PAD_Config(void)
 {
-  /* ²½½øµç»ú */    
+  /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿? */    
   IOMUXC_SetPinConfig(STEP_IN1_IOMUXC, STEP_PAD_CONFIG_DATA);  
  
-  /* ²½½øµç»ú£¬Ê¹ÓÃÍ¬ÑùµÄIOMUXC PADÅäÖÃ */ 
+  /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½Í?ï¿½ï¿½ï¿½ï¿½IOMUXC PADï¿½ï¿½ï¿½ï¿½ */ 
   IOMUXC_SetPinConfig(STEP_IN2_IOMUXC, STEP_PAD_CONFIG_DATA); 
   IOMUXC_SetPinConfig(STEP_IN3_IOMUXC, STEP_PAD_CONFIG_DATA); 
   IOMUXC_SetPinConfig(STEP_IN4_IOMUXC, STEP_PAD_CONFIG_DATA);  
@@ -50,21 +50,21 @@ static void STEP_IOMUXC_PAD_Config(void)
 
 
  /**
-  * @brief  ³õÊ¼»¯²½½øµç»úÏà¹ØµÄGPIOÄ£Ê½
-  * @param  ÎÞ
-  * @retval ÎÞ
+  * @brief  ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½GPIOÄ£Ê½
+  * @param  ï¿½ï¿½
+  * @retval ï¿½ï¿½
   */
 static void STEP_GPIO_Mode_Config(void)
 {     
-  /* ¶¨Òågpio³õÊ¼»¯ÅäÖÃ½á¹¹Ìå */
+  /* ï¿½ï¿½ï¿½ï¿½gpioï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ã½á¹¹ï¿½ï¿½ */
   gpio_pin_config_t step_config;      
     
-   /** ²½½øµç»ú£¬GPIOÅäÖÃ **/       
-  step_config.direction = kGPIO_DigitalOutput; //Êä³öÄ£Ê½
-  step_config.outputLogic =  0;                //Ä¬ÈÏ¸ßµçÆ½    
-  step_config.interruptMode = kGPIO_NoIntmode; //²»Ê¹ÓÃÖÐ¶Ï
+   /** ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½GPIOï¿½ï¿½ï¿½ï¿½ **/       
+  step_config.direction = kGPIO_DigitalOutput; //ï¿½ï¿½ï¿½Ä£Ê?
+  step_config.outputLogic =  0;                //Ä¬ï¿½Ï¸ßµï¿½Æ½    
+  step_config.interruptMode = kGPIO_NoIntmode; //ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Ð¶ï¿½
   
-  /* ³õÊ¼»¯²½½øµç»ú */
+  /* ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿? */
   GPIO_PinInit(STEP_IN1_PORT, STEP_IN1_GPIO_PIN, &step_config);
   GPIO_PinInit(STEP_IN2_PORT, STEP_IN2_GPIO_PIN, &step_config);
   GPIO_PinInit(STEP_IN3_PORT, STEP_IN3_GPIO_PIN, &step_config);
@@ -72,13 +72,13 @@ static void STEP_GPIO_Mode_Config(void)
 }
 
 /**
-  * @brief  ³õÊ¼»¯²½½øµç»úIO
-  * @param  ÎÞ
-  * @retval ÎÞ
+  * @brief  ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½IO
+  * @param  ï¿½ï¿½
+  * @retval ï¿½ï¿½
   */
 void STEP_GPIO_Config(void)
 {
-  /* ³õÊ¼»¯GPIO¸´ÓÃ¡¢ÊôÐÔ¡¢Ä£Ê½ */
+  /* ï¿½ï¿½Ê¼ï¿½ï¿½GPIOï¿½ï¿½ï¿½Ã¡ï¿½ï¿½ï¿½ï¿½Ô¡ï¿½Ä£Ê½ */
   STEP_IOMUXC_MUX_Config();
   STEP_IOMUXC_PAD_Config();
   STEP_GPIO_Mode_Config();
@@ -93,9 +93,18 @@ void user_step_init(void) {
 	user_step.step_delay = 4; 
 	user_step.step_move = 0;
 	user_step.step_status = STEP_STOP;
+	user_step.curtain_status = CURTAIN_OFF;
 }
 
 void step_move(uint8_t ch1,uint8_t ch2,uint8_t ch3,uint8_t ch4) {
+
+	if(user_step.step_move == 0) {
+		curtain_stop();
+		return;
+	}
+	else {
+		user_step.step_move--;
+	}
 
 	GPIO_PinWrite(STEP_IN1_PORT,STEP_IN1_GPIO_PIN,ch1);
 	GPIO_PinWrite(STEP_IN2_PORT,STEP_IN2_GPIO_PIN,ch2);
@@ -104,7 +113,7 @@ void step_move(uint8_t ch1,uint8_t ch2,uint8_t ch3,uint8_t ch4) {
 }
 
 
-/**ÄæÊ±Õë×ª¶¯**/
+/**ï¿½ï¿½Ê±ï¿½ï¿½×ªï¿½ï¿½**/
 void curtain_down(void)
 {
 	switch(user_step.motor_num)
@@ -112,30 +121,30 @@ void curtain_down(void)
 		case 0:
 			step_move(1,0,0,0);
 			user_step.motor_num++;
-			user_step.step_status = STEP_IN_MOVE;
+			// user_step.step_status = STEP_IN_MOVE;
 		break;
 		
 		case 1:
 			step_move(0,1,0,0);
 			user_step.motor_num++;
-			user_step.step_status = STEP_IN_MOVE;
+			// user_step.step_status = STEP_IN_MOVE;
 		break;
 		
 		case 2:
 			step_move(0,0,1,0);
 			user_step.motor_num++;
-			user_step.step_status = STEP_IN_MOVE;
+			// user_step.step_status = STEP_IN_MOVE;
 		break;
 		
 		case 3:
 			step_move(0,0,0,1);
 			user_step.motor_num = 0;
-			user_step.step_status = STEP_STOP;
+			// user_step.step_status = STEP_STOP;
 		break;
 	}
 }
 
-/**Ë³Ê±Õë×ª¶¯**/
+/**Ë³Ê±ï¿½ï¿½×ªï¿½ï¿½**/
 void curtain_up(void)
 {
 	switch(user_step.motor_num)
@@ -143,25 +152,25 @@ void curtain_up(void)
 		case 0:
 		step_move(0,0,0,1);
 		user_step.motor_num++;
-		user_step.step_status = STEP_IN_MOVE;
+		// user_step.step_status = STEP_IN_MOVE;
 		break;
 		
 		case 1:
 		step_move(0,0,1,0);
 		user_step.motor_num++;
-		user_step.step_status = STEP_IN_MOVE;
+		// user_step.step_status = STEP_IN_MOVE;
 		break;
 		
 		case 2:
 		step_move(0,1,0,0);
 		user_step.motor_num++;
-		user_step.step_status = STEP_IN_MOVE;
+		// user_step.step_status = STEP_IN_MOVE;
 		break;
 		
 		case 3:
 		step_move(1,0,0,0);
 		user_step.motor_num = 0;
-		user_step.step_status = STEP_STOP;
+		// user_step.step_status = STEP_STOP;
 		break;
 	}
 }

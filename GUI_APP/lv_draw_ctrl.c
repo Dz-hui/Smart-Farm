@@ -1,10 +1,13 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-01 16:37:36
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??GUI_APP??¾¶·Ö¸ô???Ìæ??lv_draw_ctrl.c
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??GUI_APP??¾¶·Ö¸ô???Ìæ??lv_draw_ctrl.c
 *@Drscription: 
 ***********************************************************************/
 #include "lv_draw_ctrl.h"
+#include "pump.h"
+#include "rt_task_control.h"
+
 
 extern MY_UI_T my_ui; 
 UI_CTRL_T control_obj;
@@ -112,7 +115,8 @@ static void ctrl_pump_on_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-      
+      my_ctrl.pump_status = 1;
+      PUMP_ON();
    }
 }
 
@@ -120,7 +124,8 @@ static void ctrl_pump_off_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-      
+      my_ctrl.pump_status = 0;
+      PUMP_OFF();
    }
 }
 
@@ -129,8 +134,12 @@ static void ctrl_curtain_on_btn_cb(lv_obj_t *btn, lv_event_t event)
    if (event == LV_EVENT_RELEASED)
    {    
        if(user_step.curtain_status == CURTAIN_OFF) {
-           curtain_up();
-           user_step.curtain_status = CURTAIN_ON;
+           if(user_step.step_status != STEP_IN_MOVE) {
+                user_step.step_move = NEED_TO_RUN_STEP;
+                user_step.curtain_dir = 1;
+                user_step.curtain_status = CURTAIN_ON;
+                my_ctrl.curtain_status = 1; 
+           }
        }
    }
 }
@@ -140,8 +149,13 @@ static void ctrl_curtain_off_btn_cb(lv_obj_t *btn, lv_event_t event)
    if (event == LV_EVENT_RELEASED)
    {
        if(user_step.curtain_status == CURTAIN_ON) {
-           curtain_down();
-           user_step.curtain_status = CURTAIN_OFF;
+
+           if(user_step.step_status != STEP_IN_MOVE) { 
+                user_step.step_move = NEED_TO_RUN_STEP;
+                user_step.curtain_dir = 0;
+                user_step.curtain_status = CURTAIN_OFF;
+                my_ctrl.curtain_status = 0; 
+           }
        }
    }
 }
@@ -150,8 +164,9 @@ static void ctrl_fan_0_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-      
-   }
+        my_ctrl.fan_mode = 0;
+        fan_pwm(1);     
+    }   
 }
 
 
@@ -159,30 +174,38 @@ static void ctrl_fan_1_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-      
-   }
+      my_ctrl.fan_mode = 1;
+       fan_pwm(40);
+    }
 }
 
 static void ctrl_fan_2_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-      
-   }
+      my_ctrl.fan_mode = 2;
+        fan_pwm(60);    
+    }
 }
 
 static void ctrl_fan_3_btn_cb(lv_obj_t *btn, lv_event_t event)
 {
    if (event == LV_EVENT_RELEASED)
    {
-      
+      my_ctrl.fan_mode = 3;
+        fan_pwm(90);       
    }
 }
 
 static void ctrl_bar_cb(lv_obj_t* slider, lv_event_t event)
-{
-    if (event == LV_EVENT_VALUE_CHANGED) {
-        
+{   
+    char led_dis_str[30];
+    if (event == LV_EVENT_RELEASED) {
+        my_ctrl.led_value = lv_bar_get_value(control_obj.control_bar_led);
+        sprintf(led_dis_str, "lighting:%d", my_ctrl.led_value);
+        lv_label_set_text(control_obj.control_label_led_val, led_dis_str);
+        led_pwm(my_ctrl.led_value);      
+
     }
 }
 
@@ -260,24 +283,24 @@ void draw_ctrl(void)
                 control_obj.control_label_pump_status,
                 SETTING_LABEL_TEMP_STATUS_X_POS,
                 SETTING_LABEL_TEMP_STATUS_Y_POS,
-                "click me");
+                ">");
     control_obj.control_label_led_status = lv_label_set(my_ui.home_buttom_gb_layer,
                 control_obj.control_label_led_status,
                 SETTING_LABEL_TEMP_STATUS_X_POS,
                 SETTING_LABEL_TEMP_STATUS_Y_POS+(CONTROL_LABEL_STATUS_OFFSET*1),
-                "click me");
+                ">");
 
     control_obj.control_label_fan_status = lv_label_set(my_ui.home_buttom_gb_layer,
                 control_obj.control_label_fan_status,
                 SETTING_LABEL_TEMP_STATUS_X_POS,
                 SETTING_LABEL_TEMP_STATUS_Y_POS+(CONTROL_LABEL_STATUS_OFFSET*2),
-                "click me");
+                ">");
 
     control_obj.control_label_curtain_status = lv_label_set(my_ui.home_buttom_gb_layer,
                 control_obj.control_label_curtain_status,
                 SETTING_LABEL_TEMP_STATUS_X_POS,
                 SETTING_LABEL_TEMP_STATUS_Y_POS+(CONTROL_LABEL_STATUS_OFFSET*3),
-                "click me");
+                ">");
     
     lv_label_set_style(control_obj.control_label_pump_status, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
     lv_label_set_style(control_obj.control_label_led_status, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
@@ -313,18 +336,18 @@ void draw_ctrl(void)
 
 
 static void event_popup_draw(CTRL_EVENT event) {
+    
+    char local_led_value[20];
 
-    switch(event) {
-
-        case EVENT_PUMP:
-            lv_clean_home();
-            control_obj.control_label_status_choose = lv_label_set(my_ui.home_buttom_gb_layer,
+    control_obj.control_label_status_choose = lv_label_set(my_ui.home_buttom_gb_layer,
                                                  control_obj.control_label_status_choose,
                                                  CONTROL_label_status_choose_X_POS,
                                                  CONTROL_label_status_choose_Y_POS,
-                                                 "Please select status");   
-            lv_label_set_style(control_obj.control_label_status_choose, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
+                                                 "Please select status");  
+    lv_label_set_style(control_obj.control_label_status_choose, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style); 
 
+    switch(event) {
+        case EVENT_PUMP:
             lv_btn_set(my_ui.home_buttom_gb_layer, 
                 control_obj.control_label_pump_on,
                 CONTROL_BTN_status_W, 
@@ -370,18 +393,9 @@ static void event_popup_draw(CTRL_EVENT event) {
                 CONTROL_label_pump_on_Y_POS,
                 "OFF");
             lv_label_set_style(control_obj.control_label_pump_off, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
-
-
         break;
         
-        case EVENT_CURTAIN:
-            lv_clean_home();
-            control_obj.control_label_status_choose = lv_label_set(my_ui.home_buttom_gb_layer,
-                                                 control_obj.control_label_status_choose,
-                                                 CONTROL_label_status_choose_X_POS,
-                                                 CONTROL_label_status_choose_Y_POS,
-                                                 "Please select status");   
-            lv_label_set_style(control_obj.control_label_status_choose, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
+        case EVENT_CURTAIN:   
 
             lv_btn_set(my_ui.home_buttom_gb_layer, 
                 control_obj.control_btn_curtain_on,
@@ -419,20 +433,17 @@ static void event_popup_draw(CTRL_EVENT event) {
                 CONTROL_label_curtain_on_X_POS,
                 CONTROL_label_curtain_on_Y_POS,
                 "ON");
-            lv_label_set_style(control_obj.control_label_pump_on, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
+            lv_label_set_style(control_obj.control_label_curtain_on, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
 
-              
             control_obj.control_label_curtain_off = lv_label_set(my_ui.home_buttom_gb_layer,
                 control_obj.control_label_curtain_off,
                 CONTROL_label_curtain_on_X_POS+CONTROL_label_curtain_on_OFFES,
                 CONTROL_label_curtain_on_Y_POS,
                 "OFF");
             lv_label_set_style(control_obj.control_label_curtain_off, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);  
-
         break;
     
         case EVENT_LED:
-            lv_clean_home();
 
             lv_style_copy(&control_obj.control_style_bg, &lv_style_pretty);
                           control_obj.control_style_bg.body.main_color = LV_COLOR_BLACK;
@@ -453,14 +464,7 @@ static void event_popup_draw(CTRL_EVENT event) {
                           control_obj.control_knob_style.body.radius = LV_RADIUS_CIRCLE;
                           control_obj.control_knob_style.body.opa = LV_OPA_70;
                           control_obj.control_knob_style.body.padding.top = 10;
-                          control_obj.control_knob_style.body.padding.bottom = 10;
-
-            control_obj.control_label_status_choose = lv_label_set(my_ui.home_buttom_gb_layer,
-                                                 control_obj.control_label_status_choose,
-                                                 CONTROL_label_status_choose_X_POS,
-                                                 CONTROL_label_status_choose_Y_POS,
-                                                 "Please select status");   
-            lv_label_set_style(control_obj.control_label_status_choose, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
+                          control_obj.control_knob_style.body.padding.bottom = 10;         
            
            control_obj.control_bar_led = lv_bar_set(my_ui.home_buttom_gb_layer,
                                                     control_obj.control_bar_led,
@@ -471,16 +475,18 @@ static void event_popup_draw(CTRL_EVENT event) {
                                                     CONTROL_BAR_MIN_POS,
                                                     CONTROL_BAR_MAX_POS,
                                                     ctrl_bar_cb);
+            lv_bar_set_value(control_obj.control_bar_led, my_ctrl.led_value, LV_ANIM_ON);
 
             lv_slider_set_style(control_obj.control_bar_led, LV_SLIDER_STYLE_BG, &control_obj.control_style_bg);
             lv_slider_set_style(control_obj.control_bar_led, LV_SLIDER_STYLE_INDIC, &control_obj.control_indic_style);
             lv_slider_set_style(control_obj.control_bar_led, LV_SLIDER_STYLE_KNOB, &control_obj.control_knob_style);
             
+            sprintf(local_led_value, "lighting:%d", my_ctrl.led_value);
             control_obj.control_label_led_val = lv_label_set(my_ui.home_buttom_gb_layer,
-                                                             control_obj.control_label_led_val,
-                                                             CONTROL_LABEL_BAR_X_POS,
-                                                             CONTROL_LABEL_BAR_Y_POS,
-                                                 "lighting : 000");   
+                                                            control_obj.control_label_led_val,
+                                                            CONTROL_LABEL_BAR_X_POS,
+                                                            CONTROL_LABEL_BAR_Y_POS,
+                                                            local_led_value);   
             lv_label_set_style(control_obj.control_label_led_val, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
 
             
@@ -500,14 +506,7 @@ static void event_popup_draw(CTRL_EVENT event) {
             
 
         break;
-        case EVENT_FAN:
-            lv_clean_home();
-            control_obj.control_label_status_choose = lv_label_set(my_ui.home_buttom_gb_layer,
-                                                                   control_obj.control_label_status_choose,
-                                                                   CONTROL_label_status_choose_X_POS,
-                                                                   CONTROL_label_status_choose_Y_POS,
-                                                 "Please select status");   
-            lv_label_set_style(control_obj.control_label_status_choose, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
+        case EVENT_FAN:       
 
             lv_btn_set(my_ui.home_buttom_gb_layer, 
                        control_obj.control_fan_back_btn,

@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2020-06-12 17:05:51
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??pwm.c
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??pwm.c
 *@Drscription: 
 ***********************************************************************/
 #include "pwm.h"
@@ -64,24 +64,23 @@ void pwm_gpio_config(void)
 void QTMR_PWM_config(void)
 {
     qtmr_config_t qtmr_config;
-
 #if 1
     pwm_gpio_config();
     QTMR_GetDefaultConfig(&qtmr_config);
 	qtmr_config.primarySource=kQTMR_ClockDivide_8;
     QTMR_Init(QTMR_PORT,QTMR_CHANNLE,&qtmr_config);
 	//QTMR_StopTimer(QTMR_PORT,QTMR_CHANNLE);
-    QTMR_SetupPwm(QTMR_PORT,QTMR_CHANNLE,QTMR_PWM_FREQ,20,false,QTMR_SOURCE_CLOCK / 128);
+    QTMR_SetupPwm(QTMR_PORT, QTMR_CHANNLE, QTMR_PWM_FREQ, 0, false, QTMR_SOURCE_CLOCK / 8);
 	QTMR_StartTimer(QTMR_PORT,QTMR_CHANNLE,kQTMR_PriSrcRiseEdge);
 #endif
 
-	#if 1
+#if 1
 	QTMR_GetDefaultConfig(&qtmr_config);
 	qtmr_config.primarySource=kQTMR_ClockDivide_8;
     QTMR_Init(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,&qtmr_config);
-	QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,0,false,QTMR_SOURCE_CLOCK / 128);
+	QTMR_SetupPwm(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,QTMR_PWM_FREQ,1,false,QTMR_SOURCE_CLOCK / 8);
 	QTMR_StartTimer(FAN_QTMR_PORT,FAN_QTMR_CHANNLE,kQTMR_PriSrcRiseEdge);
-	#endif
+#endif
 }
 
 

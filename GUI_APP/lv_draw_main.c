@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-01 16:37:36
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??GUI_APP??¾¶·Ö¸ô???Ìæ??lv_draw_main.c
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??GUI_APP??¾¶·Ö¸ô???Ìæ??lv_draw_main.c
 *@Drscription: 
 ***********************************************************************/
 #include "lv_draw_main.h" 
@@ -39,35 +39,35 @@ void lv_draw_init(void) {
 
     my_ui.bar_label_temp = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_temp,
-                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*1),
+                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*1)-10,
                 UI_LABEL_Y_POS,
-                "Temperature: 30 C");
-                
+                "Temperature:0C");
     my_ui.bar_label_humi = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_humi,
                 UI_LABEL_X_POS,
                 UI_LABEL_Y_POS,
-                "Humidity: 70%");
+                "Humidity:0%");
     my_ui.bar_label_co2 = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_co2,
                 UI_LABEL_X_POS,
                 UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST,
-                "CO2 Content: 40%");
+                "CO2 Content:26%");
     my_ui.bar_label_light = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_light,
-                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*1),
+                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*1)-10,
                 UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST,
-                "Light Intensity: 25%");
+                "Light Intensity:0%");
     my_ui.bar_label_water = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_water,
                 UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*2),
                 UI_LABEL_Y_POS,
-                "Soil Moisture: 27%");
+                "Soil Moisture:0%");
+
     my_ui.bar_label_soil = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_soil,
                 UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*2),
                 UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST,
-                "Water Remaining: 50%");
+                "Water Remaining:0%");
     
     lv_label_set_style(my_ui.bar_label_temp, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);
     lv_label_set_style(my_ui.bar_label_humi, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
@@ -75,7 +75,6 @@ void lv_draw_init(void) {
     lv_label_set_style(my_ui.bar_label_light, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
     lv_label_set_style(my_ui.bar_label_water, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
     lv_label_set_style(my_ui.bar_label_soil, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);    
-    
     draw_home();
 }
 
@@ -108,10 +107,16 @@ lv_obj_t* lv_btn_set(lv_obj_t* scr, lv_obj_t* btn, lv_coord_t btn_w, lv_coord_t 
 }
 
 lv_obj_t* lv_label_set(lv_obj_t* scr, lv_obj_t* label, lv_coord_t x, lv_coord_t y,const char *txt) {
-
     label = lv_label_create(scr, NULL);
     lv_obj_set_pos(label, x, y);
     lv_label_set_text(label,txt);
+    return label;
+}
+
+lv_obj_t* lv_static_label_set(lv_obj_t* scr, lv_obj_t* label, lv_coord_t x, lv_coord_t y,const char *txt) {
+    label = lv_label_create(scr, NULL);
+    lv_obj_set_pos(label, x, y);
+    lv_label_set_static_text(label,txt);
     return label;
 }
 
@@ -143,6 +148,7 @@ lv_obj_t* lv_set_kb(lv_obj_t* scr, lv_obj_t *kb, lv_event_cb_t event_cb) {
     lv_kb_set_style(kb, LV_KB_STYLE_BTN_REL, &rel_style);
     lv_kb_set_style(kb, LV_KB_STYLE_BTN_PR, &pr_style);
     lv_obj_set_event_cb(kb, event_cb);
+    return kb;
 }
 
 lv_obj_t* lv_set_ta(lv_obj_t* scr, lv_obj_t *ta, lv_obj_t *kb) { 
@@ -166,20 +172,25 @@ void lv_label_main_updata(void) {
     // sprintf();
     // lv_label_set_text(my_ui.bar_label_co2, str_label_co2);
 
-    // sprintf(str_label_temp, "%f", dht11_data.temp_value);
+    // sprintf(str_label_temp, "Temperature:%.2fC", my_sensor.temp_value);
     // lv_label_set_text(my_ui.bar_label_temp, str_label_temp);
 
-    // sprintf(str_label_humi, "%f", dht11_data.humi_value);
+    // sprintf(str_label_humi, "Humidity:%.2f", my_sensor.humi_value);
     // lv_label_set_text(my_ui.bar_label_humi, str_label_humi);
 
-    // sprintf(str_label_soil, "%f", adc_get.soil_value);
-    // lv_label_set_text(my_ui.bar_label_soil, str_label_soil);
+    sprintf(str_label_temp, "Temperature:28.8");
+    lv_label_set_text(my_ui.bar_label_temp, str_label_temp);
+    sprintf(str_label_humi, "Humidity:71");
+    lv_label_set_text(my_ui.bar_label_humi, str_label_humi);
 
-    // sprintf(str_label_light, "%f", adc_get.soil_value);
-    // lv_label_set_text(my_ui.bar_label_light, txt);
+    sprintf(str_label_soil, "Soil Moisture:%.2f", my_sensor.soil_value);
+    lv_label_set_text(my_ui.bar_label_soil, str_label_soil);
 
-    // sprintf(str_label_water, "%f", adc_get.distance_value);
-    // lv_label_set_text(my_ui.bar_label_water, str_label_water);
+    sprintf(str_label_water, "Water Remaining:%.2f", my_sensor.distance_value);
+    lv_label_set_text(my_ui.bar_label_water, str_label_water);
+
+    sprintf(str_label_light, "Light Intensity:%.1f", my_sensor.lighting_value);
+    lv_label_set_text(my_ui.bar_label_light, str_label_light);
 }
 
 

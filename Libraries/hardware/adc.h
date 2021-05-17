@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-03-21 01:08:14
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??adc.h
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??adc.h
 *@Drscription: 
 ***********************************************************************/
 /***********************************************************************
@@ -15,29 +15,36 @@
 
 #include "fsl_common.h"
 
-#define SOIL_GPIO_PIN                               (10U)
-#define SOIL_GPIO_PORT                              GPIO1
-#define SOIL_GPIO_IOMUXC                            IOMUXC_GPIO_AD_B0_10_GPIO1_IO10   
+#define DISTANCE_GPIO_PIN   						(26U)
+#define DISTANCE_GPIO_PORT  						GPIO1
+#define DISTANCE_GPIO_IOMUXC						IOMUXC_GPIO_AD_B1_10_GPIO1_IO26//IOMUXC_GPIO_AD_B0_10_GPIO1_IO10   //GPIO_AD_B1_10 
 
-#define DISTANCE_GPIO_PIN                           (11U)
-#define DISTANCE_GPIO_PORT                          GPIO1
-#define DISTANCE_GPIO_IOMUXC                        IOMUXC_GPIO_AD_B0_11_GPIO1_IO11   
+#define SOIL_GPIO_PIN                          		(27U)
+#define SOIL_GPIO_PORT                         		GPIO1
+#define SOIL_GPIO_IOMUXC                       		IOMUXC_GPIO_AD_B1_11_GPIO1_IO27// IOMUXC_GPIO_AD_B0_11_GPIO1_IO11   //GPIO_AD_B1_11
 
-#define DISTANCE_GPIO1_GPIO_PORT                    GPIO1
-#define DISTANCE_GPIO1_GPIO_PIN                     (02U)
-#define DISTANCE_GPIO1_IOMUXC                       IOMUXC_GPIO_AD_B0_02_GPIO1_IO02
+#define LIGHT_GPIO_PIN                           	(14U)//(11U)
+#define LIGHT_GPIO_PORT                          	GPIO1
+#define LIGHT_GPIO_IOMUXC                       	IOMUXC_GPIO_AD_B0_14_GPIO1_IO14// IOMUXC_GPIO_AD_B0_11_GPIO1_IO11   //GPIO_AD_B1_11
 
-#define DISTANCE_VIN_GPIO_PORT                      GPIO1
-#define DISTANCE_VIN_GPIO_PIN                       (03U)
-#define DISTANCE_VIN_IOMUXC                         IOMUXC_GPIO_AD_B0_03_GPIO1_IO03
+// #define DISTANCE_GPIO1_GPIO_PORT                    GPIO1
+// #define DISTANCE_GPIO1_GPIO_PIN                     (02U)
+// #define DISTANCE_GPIO1_IOMUXC                       IOMUXC_GPIO_AD_B0_02_GPIO1_IO02 
+
+// #define DISTANCE_VIN_GPIO_PORT                      GPIO1
+// #define DISTANCE_VIN_GPIO_PIN                       (20U)
+// #define DISTANCE_VIN_IOMUXC                         IOMUXC_GPIO_AD_B1_04_GPIO1_IO20//IOMUXC_GPIO_AD_B0_03_GPIO1_IO03 //GPIO_AD_B1_04
 
 #define ADC                                         ADC1
-#define DISTANCE_ADC_CHANNLE_GROUP                  (0U)
-#define DISTANCE_ADC_CHANNLE                        (0U)
+
+// #define DISTANCE_ADC_CHANNLE_GROUP                  (0U)
+// #define DISTANCE_ADC_CHANNLE                        (15U)
 
 #define SOIL_ADC_CHANNLE_GROUP                      (0U)
-#define SOIL_ADC_CHANNLE                            (15U)
+#define SOIL_ADC_CHANNLE                            (0U)
 
+#define LIGHT_ADC_CHANNLE_GROUP                      (0U)
+#define LIGHT_ADC_CHANNLE                            (3U)
 
 
 typedef float MEASURE_F;

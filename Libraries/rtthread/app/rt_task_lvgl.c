@@ -1,13 +1,14 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-02 19:39:25
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??rtthread??¾¶·Ö¸ô???Ìæ??app??¾¶·Ö¸ô???Ìæ??rt_task_lvgl.c
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??rtthread??¾¶·Ö¸ô???Ìæ??app??¾¶·Ö¸ô???Ìæ??rt_task_lvgl.c
 *@Drscription: 
 ***********************************************************************/
 #include "rt_task_lvgl.h"
 
 rt_thread_t lv_thread = RT_NULL;
-
+lv_sensor_value_t my_sensor;
+lv_ctrl_t my_ctrl;
 
 void gui_lvgl_thread_init(void) {
 
@@ -32,6 +33,18 @@ void gui_lvgl_init(void *parg) {
 
 	lv_draw_init();
 	gui_lvgl_uptada_init();
+
+	my_sensor.co2_value = 26.4;
+	my_sensor.distance_value = 0;
+	my_sensor.humi_value = 0;
+	my_sensor.lighting_value = 0;
+	my_sensor.soil_value = 0;
+	my_sensor.temp_value = 0;
+
+	my_ctrl.curtain_status = 0;
+	my_ctrl.fan_mode = 0;
+	my_ctrl.led_value = 0;
+	my_ctrl.pump_status = 0; 
 
 	while(1) {
 		lv_task_handler();
@@ -59,7 +72,7 @@ void gui_lvgl_uptada_init(void) {
 
 void gui_lvgl_updata_init(void *parg) {
 	while(1) {
-		DEBUG_PRINT("enter updata task");
+		// DEBUG_PRINT("enter updata task");
 		if(my_ui.ui_list == UI_NONE) {
 			lv_label_main_updata();
 		}

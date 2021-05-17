@@ -8,7 +8,7 @@
 #define _rt_task_linghting_h
 
 #include "main.h"
-
+#include "lpi2c.h"
 #define BH1750_THREAD_SIZE	        1024
 #define BH1750_THREAD_PRIO              5
 

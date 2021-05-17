@@ -65,22 +65,22 @@ void rt_hw_board_init()
 	Board_Config();
     Print_Log();
 	SysTick_Config(CLOCK_GetFreq(kCLOCK_CpuClk) / 1000); 
-    userInit();
-    gizwitsInit();
+    // userInit();
+    // gizwitsInit();
     //pit_timer_config();
-    GPT_Config(); 
+    // GPT_Config(); 
    //led_init();
     //key_init();
 	USB_UART_config();
-	UART_Config();
+	
 	dht11_config();
 	LPI2C_config();
 	
 	adc_config();
     //I2C_Init();
-	//PUMP_GPIO_Config();
-	//QTMR_PWM_config();
-    //STEP_GPIO_Config();
+	PUMP_GPIO_Config();
+	QTMR_PWM_config();
+    STEP_GPIO_Config();
 
 
     // Pit_init(kPIT_Chnl_0,1000);  //1ms

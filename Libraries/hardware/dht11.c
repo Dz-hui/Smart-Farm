@@ -22,7 +22,7 @@
 // *@function: dht11_gpio_init
 // *@input   : none
 // *@output  : none
-// *@describe: DHT11µÄGPIO¿Ú³õÊ¼»¯
+// *@describe: DHT11ï¿½ï¿½GPIOï¿½Ú³ï¿½Ê¼ï¿½ï¿½
 // *@author  : sola
 // ****************************************************************/
 // void dht11_gpio_init(void)
@@ -40,9 +40,9 @@
 
 // /****************************************************************
 // *@function: DHT11_MODE
-// *@input   : mode    £¨0/1£©
+// *@input   : mode    ï¿½ï¿½0/1ï¿½ï¿½
 // *@output  : none
-// *@describe: DHT11 GPIOÊäÈëÊä³öÄ£Ê½Ñ¡Ôñ
+// *@describe: DHT11 GPIOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½Ñ¡ï¿½ï¿½
 // *@author  : sola
 // ****************************************************************/
 // void DHT11_MODE(uint8_t mode)
@@ -65,13 +65,13 @@
 // }
 
 
-// /*---------------------------Ó¦ÓÃ²ã----------------------------*/
+// /*---------------------------Ó¦ï¿½Ã²ï¿½----------------------------*/
 
 // /****************************************************************
 // *@function: dht11_delay
 // *@input   : n (MHz)  
 // *@output  : none
-// *@describe: ÑÓÊ±
+// *@describe: ï¿½ï¿½Ê±
 // *@author  : sola
 // ****************************************************************/
 // void wait(unsigned long n)
@@ -85,7 +85,7 @@
 // *@function: dht11_init
 // *@input   : none
 // *@output  : none
-// *@describe: DHT11 ÆðÊ¼ÐÅºÅ
+// *@describe: DHT11 ï¿½ï¿½Ê¼ï¿½Åºï¿½
 // *@author  : sola
 // ****************************************************************/
 // void dht11_config(void)
@@ -97,7 +97,7 @@
 // *@function: ReadByte
 // *@input   : none
 // *@output  : temp
-// *@describe: ¶ÁÒ»¸ö×Ö½Ú
+// *@describe: ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½
 // *@author  : sola
 // ****************************************************************/
 // uint8_t ReadByte(void) {
@@ -128,21 +128,21 @@
 // *@function: Read_DHT11
 // *@input   : *DHT11_Data
 // *@output  : temp
-// *@describe: DHT11 ¶ÁÊý¾Ý
+// *@describe: DHT11 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 // *@author  : sola
 // ****************************************************************/
 // uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
     
-// 	__DHT11_MODE(1);            //ÅäÖÃÎªÊä³ö
+// 	__DHT11_MODE(1);            //ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½
 	
-// 	__DHT11_OUT_L();            //À­µÍ
+// 	__DHT11_OUT_L();            //ï¿½ï¿½ï¿½ï¿½
 	
 // 	CPU_TS_Tmr_Delay_US(18000);//rt_thread_delay(18);//__DHT11_DELAY_MS(18);       //18ms
 	
-// 	__DHT11_OUT_H();            //À­¸ß
+// 	__DHT11_OUT_H();            //ï¿½ï¿½ï¿½ï¿½
     
 //   	CPU_TS_Tmr_Delay_US(13);//rt_thread_udelay(13)//__DHT11_DELAY_US(13);       //13us
-// 	__DHT11_MODE(0);            //ÅäÖÃÎªÊäÈë
+// 	__DHT11_MODE(0);            //ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
 
 // 	if(__DHT11_READ() == 0) {
 // 		DEBUG_PRINT("DHT11 __DHT11_READ == 0\n");
@@ -151,17 +151,17 @@
 
 // 		while(__DHT11_READ() == 1);
 
-// 		DHT11_Data->humi_int= ReadByte();   //¶ÁÈ¡Êª¶ÈÕûÊý
+// 		DHT11_Data->humi_int= ReadByte();   //ï¿½ï¿½È¡Êªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-// 		DHT11_Data->humi_deci= ReadByte();  //¶ÁÈ¡Êª¶ÈÐ¡Êý
+// 		DHT11_Data->humi_deci= ReadByte();  //ï¿½ï¿½È¡Êªï¿½ï¿½Ð¡ï¿½ï¿½
 
-// 		DHT11_Data->temp_int= ReadByte();   //¶ÁÈ¡ÎÂ¶ÈÕûÊý
+// 		DHT11_Data->temp_int= ReadByte();   //ï¿½ï¿½È¡ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½
 
-// 		DHT11_Data->temp_deci= ReadByte();  //¶ÁÈ¡ÎÂ¶ÈÕûÊý
+// 		DHT11_Data->temp_deci= ReadByte();  //ï¿½ï¿½È¡ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½
 
-// 		DHT11_Data->check_sum= ReadByte();  //Ó¦´ð¶ÁÈ¡
+// 		DHT11_Data->check_sum= ReadByte();  //Ó¦ï¿½ï¿½ï¿½È¡
 
-// 		__DHT11_MODE(1);                    //ÅäÖÃÎªÊä³ö
+// 		__DHT11_MODE(1);                    //ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½
 
 // 		__DHT11_OUT_H();
 
@@ -172,7 +172,7 @@
 //                                     DHT11_Data->humi_deci 	+ 
 //                                     DHT11_Data->temp_int	+ 
 //                                     DHT11_Data->temp_deci) {
-// 			printf("\r\n\r\nÊª¶ÈÎª%d.%d £¥RH £¬ÎÂ¶ÈÎª %d.%d¡æ \r\n",
+// 			printf("\r\n\r\nÊªï¿½ï¿½Îª%d.%d ï¿½ï¿½RH ï¿½ï¿½ï¿½Â¶ï¿½Îª %d.%dï¿½ï¿½ \r\n",
 //                                                                 dht11_data.humi_int,
 //                                                                 dht11_data.humi_deci,
 //                                                                 dht11_data.temp_int,
@@ -194,7 +194,7 @@
 // *@function: DHT11_PRINTF
 // *@input   : none
 // *@output  : none
-// *@describe: DHT11 ´òÓ¡Êý¾Ý
+// *@describe: DHT11 ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½
 // *@author  : sola
 // ****************************************************************/
 // #if 1
@@ -208,7 +208,7 @@
 
 //     if(Read_DHT11(&dht11_data) == 1) {
               
-//             printf("\r\n\r\nÊª¶ÈÎª%d.%d £¥RH £¬ÎÂ¶ÈÎª %d.%d¡æ \r\n",
+//             printf("\r\n\r\nÊªï¿½ï¿½Îª%d.%d ï¿½ï¿½RH ï¿½ï¿½ï¿½Â¶ï¿½Îª %d.%dï¿½ï¿½ \r\n",
 //                                                                 dht11_data.humi_int,
 //                                                                 dht11_data.humi_deci,
 //                                                                 dht11_data.temp_int,
@@ -248,7 +248,7 @@ DHT11_Data_TypeDef dht11_data;
 *@function: dht11_gpio_init
 *@input   : none
 *@output  : none
-*@describe: DHT11µÄGPIO¿Ú³õÊ¼»¯
+*@describe: DHT11ï¿½ï¿½GPIOï¿½Ú³ï¿½Ê¼ï¿½ï¿½
 *@author  : sola
 ****************************************************************/
 void dht11_gpio_init(void)
@@ -265,38 +265,44 @@ void dht11_gpio_init(void)
 
 /****************************************************************
 *@function: DHT11_MODE
-*@input   : mode    £¨0/1£©
+*@input   : mode    ï¿½ï¿½0/1ï¿½ï¿½
 *@output  : none
-*@describe: DHT11 GPIOÊäÈëÊä³öÄ£Ê½Ñ¡Ôñ
+*@describe: DHT11 GPIOï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½Ñ¡ï¿½ï¿½
 *@author  : sola
 ****************************************************************/
 void DHT11_MODE(uint8_t mode)
 {
 	gpio_pin_config_t dht11_Config;
+	uint32_t pin_status;
+
+
+	pin_status = GPIO_PinRead(DHT11_PORT, DHT11_PIN);
+	// GPIO_read
 	if(mode == 0)
 	{
 		dht11_Config.direction = kGPIO_DigitalInput;
 		dht11_Config.interruptMode = kGPIO_NoIntmode;
-		dht11_Config.outputLogic = 0;
+		// dht11_Config.outputLogic = 0;
 		GPIO_PinInit(DHT11_PORT, DHT11_PIN, &dht11_Config);
 	}
 	else if(mode == 1)
 	{
 		dht11_Config.direction = kGPIO_DigitalOutput;
 		dht11_Config.interruptMode = kGPIO_NoIntmode;
-		dht11_Config.outputLogic = 0;
+		// dht11_Config.outputLogic = 0;
+		dht11_Config.outputLogic = pin_status;
 		GPIO_PinInit(DHT11_PORT, DHT11_PIN, &dht11_Config);
 	}
 }
 
 
-/*---------------------------Ó¦ÓÃ²ã----------------------------*/
+/*---------------------------Ó¦ï¿½Ã²ï¿½----------------------------*/
 
 /****************************************************************
 *@function: dht11_delay
 *@input   : n (MHz)  
 *@output  : none
-*@describe: ÑÓÊ±
+*@describe: ï¿½ï¿½Ê±
 *@author  : sola
 ****************************************************************/
 void wait(unsigned long n)
@@ -310,7 +316,7 @@ void wait(unsigned long n)
 *@function: dht11_init
 *@input   : none
 *@output  : none
-*@describe: DHT11 ÆðÊ¼ÐÅºÅ
+*@describe: DHT11 ï¿½ï¿½Ê¼ï¿½Åºï¿½
 *@author  : sola
 ****************************************************************/
 void dht11_config(void)
@@ -322,7 +328,7 @@ void dht11_config(void)
 *@function: ReadByte
 *@input   : none
 *@output  : temp
-*@describe: ¶ÁÒ»¸ö×Ö½Ú
+*@describe: ï¿½ï¿½Ò»ï¿½ï¿½ï¿½Ö½ï¿½
 *@author  : sola
 ****************************************************************/
 uint8_t ReadByte(void) {
@@ -333,7 +339,7 @@ uint8_t ReadByte(void) {
 
 		while(__DHT11_READ() == 0);
 		
-		CPU_TS_Tmr_Delay_US(40);//rt_thread_udelay(40);//__DHT11_DELAY_US(40);               //40us
+		CPU_TS_Tmr_Delay_US(60);//rt_thread_udelay(40);//__DHT11_DELAY_US(40);               //40us
 
 		if(__DHT11_READ() == 1) {
 
@@ -353,22 +359,27 @@ uint8_t ReadByte(void) {
 *@function: Read_DHT11
 *@input   : *DHT11_Data
 *@output  : temp
-*@describe: DHT11 ¶ÁÊý¾Ý
+*@describe: DHT11 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 *@author  : sola
 ****************************************************************/
 uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
     
     
-	__DHT11_MODE(1);            //ÅäÖÃÎªÊä³ö
+	__DHT11_MODE(1);            
 	
-	__DHT11_OUT_L();            //À­µÍ
-	
-	CPU_TS_Tmr_Delay_US(18000);//rt_thread_delay(18);//__DHT11_DELAY_MS(18);       //18ms
-	__DHT11_OUT_H();            //À­¸ß
+	__DHT11_OUT_L();           
+	CPU_TS_Tmr_Delay_US(2500);	//rt_thread_delay(18);//__DHT11_DELAY_MS(18);       //18ms
+	__DHT11_OUT_H();           
+
+	// __DHT11_MODE(0);			// INPUT MODE
+	// while(__DHT11_READ() == 1);	// wait sda low 83us
+
+	// while(__DHT11_READ() == 0);	// wait sda high 87us
+
     
     CPU_TS_Tmr_Delay_US(13);//rt_thread_udelay(13)//__DHT11_DELAY_US(13);       //13us
 
-	__DHT11_MODE(0);            //ÅäÖÃÎªÊäÈë
+	__DHT11_MODE(0);            //ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½
 
 	if(__DHT11_READ() == 0) {
 
@@ -376,17 +387,17 @@ uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
 
 		while(__DHT11_READ() == 1);
 
-		DHT11_Data->humi_int= ReadByte();   //¶ÁÈ¡Êª¶ÈÕûÊý
+		DHT11_Data->humi_int= ReadByte();   //ï¿½ï¿½È¡Êªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-		DHT11_Data->humi_deci= ReadByte();  //¶ÁÈ¡Êª¶ÈÐ¡Êý
+		DHT11_Data->humi_deci= ReadByte();  //ï¿½ï¿½È¡Êªï¿½ï¿½Ð¡ï¿½ï¿½
 
-		DHT11_Data->temp_int= ReadByte();   //¶ÁÈ¡ÎÂ¶ÈÕûÊý
+		DHT11_Data->temp_int= ReadByte();   //ï¿½ï¿½È¡ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½
 
-		DHT11_Data->temp_deci= ReadByte();  //¶ÁÈ¡ÎÂ¶ÈÕûÊý
+		DHT11_Data->temp_deci= ReadByte();  //ï¿½ï¿½È¡ï¿½Â¶ï¿½ï¿½ï¿½ï¿½ï¿½
 
-		DHT11_Data->check_sum= ReadByte();  //Ó¦´ð¶ÁÈ¡
+		DHT11_Data->check_sum= ReadByte();  //Ó¦ï¿½ï¿½ï¿½È¡
 
-		__DHT11_MODE(1);                    //ÅäÖÃÎªÊä³ö
+		__DHT11_MODE(1);                    //ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½
 
 		__DHT11_OUT_H();
 
@@ -395,7 +406,7 @@ uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
                                         DHT11_Data->humi_deci + 
                                             DHT11_Data->temp_int+ 
                                                 DHT11_Data->temp_deci) {
-			printf("\r\n\r\nÊª¶ÈÎª%d.%d £¥RH £¬ÎÂ¶ÈÎª %d.%d¡æ \r\n",
+			printf("\r\n\r\nÊªï¿½ï¿½Îª%d.%d ï¿½ï¿½RH ï¿½ï¿½ï¿½Â¶ï¿½Îª %d.%dï¿½ï¿½ \r\n",
                                                                 dht11_data.humi_int,
                                                                 dht11_data.humi_deci,
                                                                 dht11_data.temp_int,
@@ -413,7 +424,7 @@ uint8_t Read_DHT11(DHT11_Data_TypeDef *DHT11_Data) {
 *@function: DHT11_PRINTF
 *@input   : none
 *@output  : none
-*@describe: DHT11 ´òÓ¡Êý¾Ý
+*@describe: DHT11 ï¿½ï¿½Ó¡ï¿½ï¿½ï¿½ï¿½
 *@author  : sola
 ****************************************************************/
 #if 1
@@ -421,7 +432,7 @@ void DHT11_PRINTF(void) {
 
     if(Read_DHT11(&dht11_data) == 1) {
               
-            printf("\r\n\r\nÊª¶ÈÎª%d.%d £¥RH £¬ÎÂ¶ÈÎª %d.%d¡æ \r\n",
+            printf("\r\n\r\nÊªï¿½ï¿½Îª%d.%d ï¿½ï¿½RH ï¿½ï¿½ï¿½Â¶ï¿½Îª %d.%dï¿½ï¿½ \r\n",
                                                                 dht11_data.humi_int,
                                                                 dht11_data.humi_deci,
                                                                 dht11_data.temp_int,

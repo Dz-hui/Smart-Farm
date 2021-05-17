@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-03-21 01:08:14
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??pump.h
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??pump.h
 *@Drscription: 
 ***********************************************************************/
 #ifndef __BSP_LED_H
@@ -16,6 +16,9 @@
 #define PUMP_GPIO                GPIO1
 #define PUMP_GPIO_PIN            (4U)
 #define PUMP_IOMUXC              IOMUXC_GPIO_AD_B0_04_GPIO1_IO04
+         
+#define PUMP_OFF()               GPIO_PinWrite(PUMP_GPIO, PUMP_GPIO_PIN, 0U)
+#define PUMP_ON()                GPIO_PinWrite(PUMP_GPIO, PUMP_GPIO_PIN, 1U)
 
 
 /** ¿ØÖÆLEDµÆÁÁÃðµÄºê£¬
@@ -49,6 +52,22 @@
           GPIO_PinWrite(RGB_BLUE_LED_GPIO, RGB_BLUE_LED_GPIO_PIN, 1U);     
 
 
+
+typedef enum{ 
+
+   PUMO_NONE,
+   PUMP_RUN,
+   PUMP_STOP,
+}PUMP_STATUS_T;
+
+
+typedef struct {
+   
+   PUMP_STATUS_T ump_status;
+   uint32_t pump_tick_start;
+   uint32_t pump_tick_end;
+
+}PUMP_CTRL_T;
 
 
 /*******************************************************************************

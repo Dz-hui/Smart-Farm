@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: sola
 *@Date: 2019-11-16 19:58:33
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??key.c
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??key.c
 *@Drscription: 
 ***********************************************************************/
 
@@ -71,13 +71,13 @@ void key_init(void)
     IOMUXC_SetPinConfig(K1_MUX,KEY_PAD_CONFIG_DATA);
     IOMUXC_SetPinConfig(K2_MUX,KEY_PAD_CONFIG_DATA);
     /*ï¿½ï¿½ï¿½ï¿½GPIO Ä£Ê½*/
-    KEY_Config.direction = kGPIO_DigitalInput;      //ï¿½ï¿½ï¿½ï¿½Îªï¿½ï¿½ï¿½ï¿½Ä£Ê½
-    KEY_Config.outputLogic = 1u;                    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ð§ 
-    KEY_Config.interruptMode = kGPIO_NoIntmode;     //ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Ð¶ï¿½ 
-    //KEY_Config.interruptMode = kGPIO_IntLowLevel;   //ï¿½Íµï¿½Æ½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+    KEY_Config.direction = kGPIO_DigitalInput;      
+    KEY_Config.outputLogic = 0u;                    
+    KEY_Config.interruptMode = kGPIO_NoIntmode;     
+    //KEY_Config.interruptMode = kGPIO_IntLowLevel; 
     GPIO_PinInit(K1_PORT,K1_PIN,&KEY_Config);
     GPIO_PinInit(K2_PORT,K2_PIN,&KEY_Config);
-    //key_it_config();                                //ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½
+    // key_it_config();                               
 } 
 
 /***********************************************************************
@@ -88,17 +88,20 @@ void key_init(void)
 *@Date: 2019-11-17 17:52:47
 *@Drscription: 
 ***********************************************************************/
+#define KEY_PRESS           0
+#define KEY_UP              1          
+
 uint8_t key_scanf(void)
 {
     static uint8_t key_status=1;
 
-    if(key_status && ((K1_READ==0) ||(K2_READ==0)))
+    if(key_status && ((K1_READ == KEY_PRESS) ||( K2_READ == KEY_PRESS)))
     {
         key_status = 0;
-        if(K1_READ==0) return 1;
-        else if (K2_READ==0) return 2;
+        if(K1_READ == KEY_PRESS) return 1;
+        else if (K2_READ == KEY_PRESS) return 2;
     }
-    else if ((K1_READ==1) && (K2_READ==1))
+    else if ((K1_READ==KEY_UP) && (K2_READ==KEY_UP))
     {
         key_status = 1;
     }

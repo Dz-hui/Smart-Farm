@@ -37,6 +37,8 @@
 
 #include "struct.h"
 #include "lvgl/lvgl.h"
+#include "lv_port_disp.h"
+#include "lv_port_indev.h"
 #include "lv_draw_main.h"
 #include "lv_draw_home.h"
 #include "lv_draw_ctrl.h"

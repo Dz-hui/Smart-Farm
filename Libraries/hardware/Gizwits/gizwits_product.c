@@ -17,6 +17,10 @@
 #include <string.h>
 #include "gizwits_product.h"
 #include "bsp_uart.h"
+#include "rt_task_lvgl.h"
+#include "fsl_lpuart.h"
+#include "pump.h"
+#include "rt_task_control.h"
 
 static uint32_t timerMsCount;
 
@@ -70,11 +74,14 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
         GIZWITS_LOG("Evt: EVENT_pump %d \n", currentDataPoint.valuepump);
         if(0x01 == currentDataPoint.valuepump)
         {
-          //user handle
+          PUMP_ON();
+          my_ctrl.pump_status =1;
         }
         else
         {
-          //user handle    
+          //user handle  
+          PUMP_OFF(); 
+          my_ctrl.pump_status = 0; 
         }
         break;
       case EVENT_curtain:
@@ -83,10 +90,22 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
         if(0x01 == currentDataPoint.valuecurtain)
         {
           //user handle
+          if(user_step.step_status != STEP_IN_MOVE) {
+            user_step.step_move = NEED_TO_RUN_STEP;
+            user_step.curtain_dir = 1;
+            user_step.curtain_status = CURTAIN_ON;
+            my_ctrl.curtain_status = 1; 
+          }
         }
         else
         {
-          //user handle    
+          //user handle  
+          if(user_step.step_status != STEP_IN_MOVE) { 
+            user_step.step_move = NEED_TO_RUN_STEP;
+            user_step.curtain_dir = 0;
+            user_step.curtain_status = CURTAIN_OFF;
+            my_ctrl.curtain_status = 0; 
+          } 
         }
         break;
 
@@ -95,11 +114,15 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
         currentDataPoint.valuebrightness = dataPointPtr->valuebrightness;
         GIZWITS_LOG("Evt:EVENT_brightness %d\n",currentDataPoint.valuebrightness);
         //user handle
+        led_pwm(currentDataPoint.valuebrightness);
+        my_ctrl.led_value = currentDataPoint.valuebrightness;
         break;
       case EVENT_fan:
         currentDataPoint.valuefan = dataPointPtr->valuefan;
         GIZWITS_LOG("Evt:EVENT_fan %d\n",currentDataPoint.valuefan);
         //user handle
+        fan_pwm(currentDataPoint.valuefan*30);
+        my_ctrl.fan_mode = currentDataPoint.valuefan;
         break;
 
 
@@ -159,12 +182,19 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
 */
 void userHandle(void)
 {
-  currentDataPoint.valueBH1750 = 12;//Add Sensor Data Collection
+  // currentDataPoint.valueBH1750 = 12;//Add Sensor Data Collection
+  // currentDataPoint.valueCO2 = 12;//Add Sensor Data Collection
+  // currentDataPoint.valuetemp =13 ;//Add Sensor Data Collection
+  // currentDataPoint.valuehumi = 11;//Add Sensor Data Collection
+  // currentDataPoint.valuesoil = 11;//Add Sensor Data Collection
+  // currentDataPoint.valuedistant = 34;//Add Sensor Data Collection
+
+  currentDataPoint.valueBH1750 = my_sensor.lighting_value;//Add Sensor Data Collection
   currentDataPoint.valueCO2 = 12;//Add Sensor Data Collection
-  currentDataPoint.valuetemp =13 ;//Add Sensor Data Collection
-  currentDataPoint.valuehumi = 11;//Add Sensor Data Collection
-  currentDataPoint.valuesoil = 11;//Add Sensor Data Collection
-  currentDataPoint.valuedistant = 34;//Add Sensor Data Collection
+  currentDataPoint.valuetemp =my_sensor.temp_value;//Add Sensor Data Collection
+  currentDataPoint.valuehumi = my_sensor.humi_value;//Add Sensor Data Collection
+  currentDataPoint.valuesoil = my_sensor.soil_value;//Add Sensor Data Collection
+  currentDataPoint.valuedistant = my_sensor.distance_value;//Add Sensor Data Collection
 }
 
 /**
@@ -281,6 +311,7 @@ void UART_IRQ_FUN(void)
 int32_t uartWrite(uint8_t *buf, uint32_t len)
 {
     uint32_t i = 0;
+    uint8_t ach = 0x55;
     
     if(NULL == buf)
     {
@@ -300,12 +331,12 @@ int32_t uartWrite(uint8_t *buf, uint32_t len)
     {
         //USART_SendData(UART, buf[i]);//STM32 test demo
         //Serial port to achieve the function, the buf[i] sent to the module
-         Uart_SendByte(DEBUG_UARTx,buf[i]);
+         Uart_SendByte(DEBUG_UARTx, buf[i]);
         if(i >=2 && buf[i] == 0xFF)
         {
           //Serial port to achieve the function, the 0x55 sent to the module
           //USART_SendData(UART, 0x55);//STM32 test demo
-           Uart_SendByte(DEBUG_UARTx,0x55);
+          Uart_SendByte(DEBUG_UARTx, ach);
         }
     }
 

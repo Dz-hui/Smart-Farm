@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-01 16:37:37
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??rtthread??¾¶·Ö¸ô???Ìæ??app??¾¶·Ö¸ô???Ìæ??rt_task_temp.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Libraries??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??rtthread??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??app??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??rt_task_temp.c
 *@Drscription: 
 ***********************************************************************/
 #include "rt_task_temp.h"
@@ -30,15 +30,17 @@ void dht11_thread_init(void) {
 
 void dht11_init(void *parg) {
 
-    
-
 	while(1) {
 
 		rt_enter_critical();
         //dht11_lvgl_display(&dht11_data);
-		DHT11_PRINTF();
+		// DHT11_PRINTF();
+		if(Read_DHT11(&dht11_data) == 1) {
+			my_sensor.temp_value = (float)dht11_data.temp_int + (float)dht11_data.temp_deci/100;
+			my_sensor.humi_value = (float)dht11_data.humi_int + (float)dht11_data.humi_deci/100;
+		}
 		rt_exit_critical();
 
-		rt_thread_delay(500);
+		rt_thread_delay(2000);
 	}
 }

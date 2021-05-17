@@ -2,7 +2,7 @@
 /***********************************************************************
 *@Author: sola
 *@Date: 2019-11-16 19:58:35
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??User??¾¶·Ö¸ô???Ìæ??main.c
+*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??User??¾¶·Ö¸ô???Ìæ??main.c
 *@Drscription: 
 ***********************************************************************/
  
@@ -17,6 +17,7 @@
 #include "main.h"
 #include "bsp_touch_gtxx.h"
 #include "bsp_i2c_touch.h"
+#include "rt_task_control.h"
 
 
 /***********************************************************************
@@ -31,9 +32,9 @@ int main(void)
 {
     gui_lvgl_thread_init();
     gizwit_thread_init();
-    dht11_thread_init();
+    //dht11_thread_init();
     adc_thread_init();
-    bh1750_thread_init();
+    //bh1750_thread_init();
     ctrl_thread_init();
 }
 
