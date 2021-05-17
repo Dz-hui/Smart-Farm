@@ -63,17 +63,19 @@ RT_WEAK void *rt_heap_end_get(void)
 void rt_hw_board_init()
 {
 	Board_Config();
-    Print_Log();
+
 	SysTick_Config(CLOCK_GetFreq(kCLOCK_CpuClk) / 1000); 
-    // userInit();
-    // gizwitsInit();
-    //pit_timer_config();
-    // GPT_Config(); 
-   //led_init();
-    //key_init();
-	USB_UART_config();
+
+#if defined(USE_SERIAL_DEBUG)
+        lpuart_hw_init(DEBUG_SERIAL, DEBUG_BAUD);
+        Print_Log();
+#endif
 	
+#if defined(USE_DHT11)
 	dht11_config();
+#endif
+
+
 	LPI2C_config();
 	
 	adc_config();

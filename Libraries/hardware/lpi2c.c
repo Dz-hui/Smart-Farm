@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2020-06-02 19:24:01
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??lpi2c.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Libraries??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??hardware??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??lpi2c.c
 *@Drscription: 
 ***********************************************************************/
 #include "i2c.h"
@@ -27,7 +27,7 @@ uint8_t BH1750_readbuff[2];
 *@Return: none
 *@Author: Dz_hui
 *@Date: 2020-06-02 19:29:49
-*@Drscription: padÅäÖÃ
+*@Drscription: padï¿½ï¿½ï¿½ï¿½
 ***********************************************************************/
 void LPI2C_PAD_config(void)
 {
@@ -41,7 +41,7 @@ void LPI2C_PAD_config(void)
 *@Return: none
 *@Author: Dz_hui
 *@Date: 2020-06-02 19:38:45
-*@Drscription: MUXÅäÖÃ
+*@Drscription: MUXï¿½ï¿½ï¿½ï¿½
 ***********************************************************************/
 void LPI2C_IOMUXC_config(void)
 {
@@ -55,20 +55,20 @@ void LPI2C_IOMUXC_config(void)
 *@Return: none
 *@Author: Dz_hui
 *@Date: 2020-06-02 19:41:14
-*@Drscription: LPI2CµÄÄ£Ê½ÅäÖÃ
+*@Drscription: LPI2Cï¿½ï¿½Ä£Ê½ï¿½ï¿½ï¿½ï¿½
 ***********************************************************************/
 void LPI2C_MODE_config(void)
 {
     lpi2c_master_config_t masterConfig;
 
-    /*Ñ¡ÔñPLL3×÷ÎªLPI2CµÄÊ±ÖÓÔ´480/8=60M*/
-    /*LPI2CÁù·ÖÆµ     LPI2C=10MHz*/
+    /*Ñ¡ï¿½ï¿½PLL3ï¿½ï¿½ÎªLPI2Cï¿½ï¿½Ê±ï¿½ï¿½Ô´480/8=60M*/
+    /*LPI2Cï¿½ï¿½ï¿½ï¿½Æµ     LPI2C=10MHz*/
     CLOCK_SetMux(kCLOCK_Lpi2cMux,LPI2C_CLOCK_SOURCE);
     CLOCK_SetDiv(kCLOCK_Lpi2cDiv,LPI2C_CLOCK_DIV);
 
-    /*Ä¬ÈÏLPI2CµÄ³õÊ¼ÅäÖÃ*/
+    /*Ä¬ï¿½ï¿½LPI2Cï¿½Ä³ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½*/
     LPI2C_MasterGetDefaultConfig(&masterConfig);
-    /*LPI2CÍ¨Ñ¶ËÙÂÊ=400KHz*/
+    /*LPI2CÍ¨Ñ¶ï¿½ï¿½ï¿½ï¿½=400KHz*/
     masterConfig.baudRate_Hz=LPI2C_BAUDRATE;
     
     LPI2C_MasterInit(LPI2C_PORT,&masterConfig,LPI2C_CLOCK_SOURE_FREQ);
@@ -80,7 +80,7 @@ void LPI2C_MODE_config(void)
 *@Return: none
 *@Author: Dz_hui
 *@Date: 2020-06-02 20:05:45
-*@Drscription: LPI2C³õÊ¼»¯
+*@Drscription: LPI2Cï¿½ï¿½Ê¼ï¿½ï¿½
 ***********************************************************************/
 void LPI2C_config(void)
 {
@@ -95,7 +95,7 @@ void LPI2C_config(void)
 *@Return: none
 *@Author: Dz_hui
 *@Date: 2020-06-02 20:07:11
-*@Drscription: LPI2CÐ´Êý¾Ý
+*@Drscription: LPI2CÐ´ï¿½ï¿½ï¿½ï¿½
 ***********************************************************************/
 uint8_t LPI2C_writebyte(uint8_t addr,uint8_t subaddr,uint8_t data)
 {
@@ -130,7 +130,7 @@ uint8_t LPI2C_writebyte(uint8_t addr,uint8_t subaddr,uint8_t data)
 *@Return: none
 *@Author: Dz_hui
 *@Date: 2020-06-02 20:43:41
-*@Drscription: LPI2C¶ÁÊý¾Ý
+*@Drscription: LPI2Cï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 ***********************************************************************/
 void LPI2C_readdata(uint8_t addr,uint8_t subaddr,uint8_t *data)
 {
@@ -255,7 +255,7 @@ float bh1750_measure(void)
 //	}
 
 
-//	printf("³õÊ¼»¯Íê³É\n");
+//	printf("ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½\n");
 //	
 //		
 //}

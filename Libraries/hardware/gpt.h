@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-01 16:37:37
-*@FilePath: ??径分隔???替??Smart-Farm??径分隔???替??Libraries??径分隔???替??hardware??径分隔???替??gpt.h
+*@FilePath: ??锟斤拷锟街革拷???锟斤拷??Smart-Farm??锟斤拷锟街革拷???锟斤拷??Libraries??锟斤拷锟街革拷???锟斤拷??hardware??锟斤拷锟街革拷???锟斤拷??gpt.h
 *@Drscription: 
 ***********************************************************************/
 #ifndef __BSP_GPT_H
@@ -11,45 +11,45 @@
 #include "fsl_gpt.h"
 
 
-// /* 选择外部时钟源 */
+// /* 选锟斤拷锟解部时锟斤拷源 */
 // #define EXAMPLE_GPT_CLOCK_SOURCE_SELECT (0U)
-// /* 时钟源的时钟分频 */
+// /* 时锟斤拷源锟斤拷时锟接凤拷频 */
 // #define EXAMPLE_GPT_CLOCK_DIVIDER_SELECT (0U)
 
-// /*GPT 时钟分频(1-4096)*/
+// /*GPT 时锟接凤拷频(1-4096)*/
 // #define GPT_DIVIDER 100
 
-// /* 得到GPT定时器的计数频率*/
+// /* 锟矫碉拷GPT锟斤拷时锟斤拷锟侥硷拷锟斤拷频锟斤拷*/
 // #define EXAMPLE_GPT_CLK_FREQ ( (CLOCK_GetFreq(kCLOCK_IpgClk) / (EXAMPLE_GPT_CLOCK_DIVIDER_SELECT + 1U))/GPT_DIVIDER )
 // #define COUNGER_NUMBER  ((TIME_ms/1000.0)*EXAMPLE_GPT_CLK_FREQ)
 // #define TIME_ms 1
 
-// /*定义使用的GPT*/
+// /*锟斤拷锟斤拷使锟矫碉拷GPT*/
 // #define EXAMPLE_GPT GPT2
 
-// /*中断号和中断服务函数宏定义*/
+// /*锟叫断号猴拷锟叫断凤拷锟斤拷锟斤拷锟疥定锟斤拷*/
 // #define GPT_IRQ_ID GPT2_IRQn
 // #define EXAMPLE_GPT_IRQHandler GPT2_IRQHandler
 
 // void GPT_Config(void);
 
-/* 选择外部时钟源 */
+/* 选锟斤拷锟解部时锟斤拷源 */
 #define EXAMPLE_GPT_CLOCK_SOURCE_SELECT (0U)
-/* 时钟源的时钟分频 */
+/* 时锟斤拷源锟斤拷时锟接凤拷频 */
 #define EXAMPLE_GPT_CLOCK_DIVIDER_SELECT (0U)
 
-/*GPT 时钟分频(1-4096)*/
+/*GPT 时锟接凤拷频(1-4096)*/
 #define GPT_DIVIDER 100
 
-/* 得到GPT定时器的计数频率*/
+/* 锟矫碉拷GPT锟斤拷时锟斤拷锟侥硷拷锟斤拷频锟斤拷*/
 #define EXAMPLE_GPT_CLK_FREQ ( (CLOCK_GetFreq(kCLOCK_IpgClk) / (EXAMPLE_GPT_CLOCK_DIVIDER_SELECT + 1U))/GPT_DIVIDER )
 #define COUNGER_NUMBER  ((TIME_ms/1000.0)*EXAMPLE_GPT_CLK_FREQ)
 #define TIME_ms 1
 
-/*定义使用的GPT*/
+/*锟斤拷锟斤拷使锟矫碉拷GPT*/
 #define EXAMPLE_GPT GPT2
 
-/*中断号和中断服务函数宏定义*/
+/*锟叫断号猴拷锟叫断凤拷锟斤拷锟斤拷锟疥定锟斤拷*/
 #define GPT_IRQ_ID GPT2_IRQn
 #define EXAMPLE_GPT_IRQHandler GPT2_IRQHandler
 

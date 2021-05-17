@@ -13,12 +13,10 @@ void serial_port_init(uint32_t baoud) {
 #endif
 
 void ring_buff_init(SERIAL_RING_BUF_DEF *rb) {
-
     rb->tx_head = 0;
     rb->tx_tail = 0;
     rb->tx_length = 0;
     rb->rx_length = 0;
-    
 }
 
 void ring_buf_tx_write_data(SERIAL_RING_BUF_DEF *rb,uint8_t data) {

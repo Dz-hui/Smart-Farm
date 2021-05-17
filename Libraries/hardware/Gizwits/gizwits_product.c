@@ -16,7 +16,6 @@
 #include <stdio.h>
 #include <string.h>
 #include "gizwits_product.h"
-#include "bsp_uart.h"
 #include "rt_task_lvgl.h"
 #include "fsl_lpuart.h"
 #include "pump.h"
@@ -331,12 +330,12 @@ int32_t uartWrite(uint8_t *buf, uint32_t len)
     {
         //USART_SendData(UART, buf[i]);//STM32 test demo
         //Serial port to achieve the function, the buf[i] sent to the module
-         Uart_SendByte(DEBUG_UARTx, buf[i]);
+         lpuart_sendbyte(GIZWITS_SERIAL, buf[i]);
         if(i >=2 && buf[i] == 0xFF)
         {
           //Serial port to achieve the function, the 0x55 sent to the module
           //USART_SendData(UART, 0x55);//STM32 test demo
-          Uart_SendByte(DEBUG_UARTx, ach);
+          lpuart_sendbyte(GIZWITS_SERIAL, ach);
         }
     }
 

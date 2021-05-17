@@ -13,6 +13,7 @@
         "rt_task_adc.h": "c",
         "gpt.h": "c",
         "fsl_debug_console.h": "c",
-        "fsl_lpuart.h": "c"
+        "fsl_lpuart.h": "c",
+        "uart.h": "c"
     }
 }

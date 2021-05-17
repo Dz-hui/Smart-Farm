@@ -3,7 +3,8 @@
         {
             "name": "Win32",
             "includePath": [
-                "C:\\Users\\Dz_hui\\Desktop\\新建文件夹(1)\\新建文件夹/**"
+                "E:\\Github\\Smart-Farm/**",
+                "D:\\Keil_v5\\ARM\\ARMCC\\include"
             ],
             "defines": [
                 "_DEBUG",
@@ -14,7 +15,7 @@
             "compilerPath": "d:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.28.29910/bin/Hostx64/x64/cl.exe",
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "intelliSenseMode": "windows-msvc-x64"
+            "intelliSenseMode": "msvc-arm"
         }
     ],
     "version": 4

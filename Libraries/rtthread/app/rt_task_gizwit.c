@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-02 19:52:24
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??rtthread??¾¶·Ö¸ô???Ìæ??app??¾¶·Ö¸ô???Ìæ??rt_task_gizwit.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??ï¿½Â½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Libraries??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??rtthread??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??app??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??rt_task_gizwit.c
 *@Drscription: 
 ***********************************************************************/
 #include "rt_task_gizwit.h"
@@ -60,27 +60,21 @@ void gizwit_init(void *parg) {
 
 	// key_init();
 	GPT_Config(); 
-	UART_Config();
+	// UART_Config();
+#if defined(USR_GIZWITS)
+	lpuart_hw_init(GIZWITS_SERIAL, GIZWITS_BAUD);
+	lpuart_hw_enable_interrupt(GIZWITS_SERIAL,4,1,1);
+#endif
     gizwitsInit();
     userInit();
 	// gizwitsSetMode(WIFI_AIRLINK_MODE);
-	while(1) {
-
-		// if(key_scanf() == 0) {
-		// 	DEBUG_PRINT("giz enter WIFI_AIRLINK_MODE");
-		// 	gizwitsSetMode(WIFI_AIRLINK_MODE);
-		// }
-		// else if(key_scanf() == 1) {
-		// 	DEBUG_PRINT("giz enter WIFI_AIRLINK_MODE");
-		// 	gizwitsSetMode(gizwitsSetMode(WIFI_RESET_MODE));
-		// }	
+	while(1) {	
 
 		// if(K1_READ == 0) {
 		// 	DEBUG_PRINT("giz enter WIFI_AIRLINK_MODE");
 		// 	gizwitsSetMode(WIFI_AIRLINK_MODE);
 		// } 
-
-		// DEBUG_PRINT("enter gizwits task");
+		
 		rt_enter_critical();
 		giz_data_updata();
 		gizwitsHandle((dataPoint_t *)&currentDataPoint);

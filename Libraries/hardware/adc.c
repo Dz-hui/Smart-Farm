@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-01-06 23:27:08
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??adc.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??ï¿½Â½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Libraries??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??hardware??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??adc.c
 *@Drscription: 
 ***********************************************************************/
 
@@ -52,7 +52,7 @@ MEASURE_DATA_DEF soil_data;
 ***********************************************************************/
 void adc_iomuxc_mux_config(void)
 {
-    /*³õÊ¼»¯ADCÏà¹ØµÄIOMUXCµÄMUX¸´ÓÃÅäÖÃ*/
+    /*ï¿½ï¿½Ê¼ï¿½ï¿½ADCï¿½ï¿½Øµï¿½IOMUXCï¿½ï¿½MUXï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
     IOMUXC_SetPinMux(SOIL_GPIO_IOMUXC,0U);
     IOMUXC_SetPinMux(LIGHT_GPIO_IOMUXC,0U);
     
@@ -63,7 +63,7 @@ void adc_iomuxc_mux_config(void)
 
 void adc_iomuxc_pad_config(void)
 {
-    /*³õÊ¼»¯ADCÍâ²¿ÊäÈëÒý½ÅµÄPADÊôÐÔ*/
+    /*ï¿½ï¿½Ê¼ï¿½ï¿½ADCï¿½â²¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Åµï¿½PADï¿½ï¿½ï¿½ï¿½*/
     IOMUXC_SetPinConfig(SOIL_GPIO_IOMUXC,ADC_PAD_SETTING);
     IOMUXC_SetPinConfig(LIGHT_GPIO_IOMUXC,ADC_PAD_SETTING);
 
@@ -76,7 +76,7 @@ void adc_gpio_config(void)
 {
     gpio_pin_config_t adc_pin_config;
     adc_pin_config.direction = kGPIO_DigitalInput;
-	adc_pin_config.interruptMode = kGPIO_NoIntmode; //²»Ê¹ÓÃÖÐ¶Ï
+	adc_pin_config.interruptMode = kGPIO_NoIntmode; //ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½Ð¶ï¿½
 
 	GPIO_PinInit(SOIL_GPIO_PORT, SOIL_GPIO_PIN,&adc_pin_config);
     GPIO_PinInit(LIGHT_GPIO_PORT,LIGHT_GPIO_PIN,&adc_pin_config);

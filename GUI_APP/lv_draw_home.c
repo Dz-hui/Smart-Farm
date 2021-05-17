@@ -9,32 +9,32 @@ extern MY_UI_T my_ui;
 UI_HOME_T home_obj;
 
 
-static void event_handler_temp(lv_obj_t* obj, lv_event_t event) {
-    
-    
-}
+//static void event_handler_temp(lv_obj_t* obj, lv_event_t event) {
+//    
+//    
+//}
 
-static void event_handler_humi(lv_obj_t* obj, lv_event_t event) {
+//static void event_handler_humi(lv_obj_t* obj, lv_event_t event) {
 
-}
+//}
 
-static void event_handler_co2(lv_obj_t* obj, lv_event_t event) {
+//static void event_handler_co2(lv_obj_t* obj, lv_event_t event) {
 
-}
+//}
 
-static void event_handler_soil(lv_obj_t* obj, lv_event_t event) {
-
-
-}
-
-static void event_handler_lighting(lv_obj_t* obj, lv_event_t event) {
-
-}
-
-static void event_handler_water(lv_obj_t* obj, lv_event_t event) {
+//static void event_handler_soil(lv_obj_t* obj, lv_event_t event) {
 
 
-}
+//}
+
+//static void event_handler_lighting(lv_obj_t* obj, lv_event_t event) {
+
+//}
+
+//static void event_handler_water(lv_obj_t* obj, lv_event_t event) {
+
+
+//}
 
 static void event_handler_btn_setting(lv_obj_t* obj, lv_event_t event) {
 

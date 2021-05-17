@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2020-11-19 20:25:57
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??dht11.h
+*@FilePath: ??å¾„åˆ†éš”???æ›¿??Smart-Farm??å¾„åˆ†éš”???æ›¿??Libraries??å¾„åˆ†éš”???æ›¿??hardware??å¾„åˆ†éš”???æ›¿??dht11.h
 *@Drscription: 
 ***********************************************************************/
 #ifndef __DHT11__H
@@ -10,7 +10,7 @@
 
 #include "fsl_common.h"
 
-/*µ×²ã½Ó¿Ú*/
+/*åº•å±‚æ¥å£*/
 #define __DHT11_GPIO_INIT()     dht11_gpio_init()
 #define __DHT11_MODE(MODE)      DHT11_MODE(MODE)
 #define __DHT11_OUT_H()         GPIO_PinWrite(DHT11_PORT,DHT11_PIN,1U)
@@ -22,36 +22,36 @@
 //#define __DHT11_DELAY_US(nms)   CPU_TS_Tmr_Delay_US(nms*1000)
 
 
-/*Ó²¼ş½Ó¿Ú*/
+/*ç¡¬ä»¶æ¥å£*/
 #define __DHT11_PIN_CLK()       
 #define DHT11_PIN              	28U 
 #define DHT11_PORT              GPIO1
 #define DHT11_IOMUXC       		IOMUXC_GPIO_AD_B1_12_GPIO1_IO28
-/*ÑÓÊ±º¯Êı*/
-#define  SYSCLK                             600000000/1000000                   //Ö¸Ã÷CPU¹¤×÷ÆµÂÊÎª(SystemCoreClock/1000000)MHz
-#define  A                                  12                                   //Ò»´ÎÑ­»·Ëù»¨µÄÖÜÆÚÊı
-#define  B                                  2                                   //µ÷ÓÃ¡¢³õÊ¼»¯¡¢·µ»Ø×Ü¹²ËùÓÃµÄÖÜÆÚÊı
+/*å»¶æ—¶å‡½æ•°*/
+#define  SYSCLK                             600000000/1000000                   //æŒ‡æ˜CPUå·¥ä½œé¢‘ç‡ä¸º(SystemCoreClock/1000000)MHz
+#define  A                                  12                                   //ä¸€æ¬¡å¾ªç¯æ‰€èŠ±çš„å‘¨æœŸæ•°
+#define  B                                  2                                   //è°ƒç”¨ã€åˆå§‹åŒ–ã€è¿”å›æ€»å…±æ‰€ç”¨çš„å‘¨æœŸæ•°
 #define  delay_us(nus)                      wait(((nus)*(SYSCLK)-(B))/(A))
 // #define  delay_ms(nms)                      delay_us((nms)*1000)
 // #define  delay_s(ns)                        delay_ms((ns)*1000)
 
-/*½á¹¹Ìå³ÉÔ±¶¨Òå*/
+/*ç»“æ„ä½“æˆå‘˜å®šä¹‰*/
 typedef struct
 {
-	uint8_t  humi_int;		//Êª¶ÈµÄÕûÊı²¿·Ö
-	uint8_t  humi_deci;	 	//Êª¶ÈµÄĞ¡Êı²¿·Ö
-	uint8_t  temp_int;	 	//ÎÂ¶ÈµÄÕûÊı²¿·Ö
-	uint8_t  temp_deci;	 	//ÎÂ¶ÈµÄĞ¡Êı²¿·Ö
-	uint8_t  check_sum;	 	//Ğ£ÑéºÍ
-	float humi_value;			//Êª¶È×îÖÕÊı¾İ
-	float temp_value;			//ÎÂ¶È×îÖÕÊı¾İ
+	uint8_t  humi_int;		//æ¹¿åº¦çš„æ•´æ•°éƒ¨åˆ†
+	uint8_t  humi_deci;	 	//æ¹¿åº¦çš„å°æ•°éƒ¨åˆ†
+	uint8_t  temp_int;	 	//æ¸©åº¦çš„æ•´æ•°éƒ¨åˆ†
+	uint8_t  temp_deci;	 	//æ¸©åº¦çš„å°æ•°éƒ¨åˆ†
+	uint8_t  check_sum;	 	//æ ¡éªŒå’Œ
+	float humi_value;			//æ¹¿åº¦æœ€ç»ˆæ•°æ®
+	float temp_value;			//æ¸©åº¦æœ€ç»ˆæ•°æ®
 }DHT11_Data_TypeDef;
 extern DHT11_Data_TypeDef dht11_data;
 
 
 
 
-/*º¯ÊıÉùÃ÷*/
+/*å‡½æ•°å£°æ˜*/
 void  wait(unsigned long n);
 void dht11_config(void);
 uint8_t ReadByte(void);

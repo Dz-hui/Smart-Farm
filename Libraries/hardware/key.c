@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: sola
 *@Date: 2019-11-16 19:58:33
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??key.c
+*@FilePath: ????????????????????????????????????Libraries??????????????hardware??????????????key.c
 *@Drscription: 
 ***********************************************************************/
 
@@ -20,19 +20,8 @@
                                         IOMUXC_SW_PAD_CTL_PAD_PKE(1) | \
                                         IOMUXC_SW_PAD_CTL_PAD_PUE(1) | \
                                         IOMUXC_SW_PAD_CTL_PAD_PUS(3) | \
-                                        IOMUXC_SW_PAD_CTL_PAD_HYS(1))
-/*    PAD ï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½
-*1ï¿½ï¿½SERï¿½ï¿½ï¿½Ê¹Ø±ï¿½
-*2ï¿½ï¿½DSEÇ¿ï¿½ï¿½ï¿½ï¿½ï¿½Ø±ï¿½
-*3ï¿½ï¿½SPEEDï¿½Ù¶ï¿½Ñ¡ï¿½ï¿½ ï¿½ï¿½100MHz
-*4ï¿½ï¿½ODEï¿½ï¿½Â©ï¿½ï¿½Ê¹ï¿½ï¿½
-*6ï¿½ï¿½PKEï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
-*7ï¿½ï¿½PUEï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-*8ï¿½ï¿½PUSï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ñ¡ï¿½ï¿½Ñ¡ï¿½ï¿½22K
-*9ï¿½ï¿½ï¿½Í»Ø»ï¿½ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½
-*/                                        
+                                        IOMUXC_SW_PAD_CTL_PAD_HYS(1))                           
 
-/*-------------------------------------------------------------------------------*/
 
 /***********************************************************************
 *@Function: 
@@ -45,11 +34,11 @@
 void key_it_config(void)
 {
     
-    CLOCK_EnableClock(kCLOCK_IomuxcSnvs);     //ï¿½ï¿½Ê±ï¿½ï¿½
+    CLOCK_EnableClock(kCLOCK_IomuxcSnvs);     //?????
     
-    EnableIRQ(GPIO5_Combined_0_15_IRQn);      //Ñ¡ï¿½ï¿½ï¿½Ð¶ï¿½Ô´ï¿½ï¿½Ê¹ï¿½ï¿½
+    EnableIRQ(GPIO5_Combined_0_15_IRQn);      //????§Ø???????
     
-    GPIO_PortEnableInterrupts(K1_PORT,1U << K1_PIN);    //Ê¹ï¿½Ü¶Ë¿ï¿½ï¿½Ð¶ï¿½
+    GPIO_PortEnableInterrupts(K1_PORT,1U << K1_PIN);    //??????§Ø?
 }
 
 /***********************************************************************
@@ -64,13 +53,13 @@ void key_init(void)
 {
     gpio_pin_config_t KEY_Config;
     
-    /*ï¿½ï¿½ï¿½ï¿½IOï¿½ï¿½ï¿½ï¿½*/
+    /*????IO????*/
     IOMUXC_SetPinMux(K1_MUX,0u);
     IOMUXC_SetPinMux(K2_MUX,0u);
-    /*ï¿½ï¿½ï¿½ï¿½GOIO PAD*/
+    /*????GOIO PAD*/
     IOMUXC_SetPinConfig(K1_MUX,KEY_PAD_CONFIG_DATA);
     IOMUXC_SetPinConfig(K2_MUX,KEY_PAD_CONFIG_DATA);
-    /*ï¿½ï¿½ï¿½ï¿½GPIO Ä£Ê½*/
+    /*????GPIO ??*/
     KEY_Config.direction = kGPIO_DigitalInput;      
     KEY_Config.outputLogic = 0u;                    
     KEY_Config.interruptMode = kGPIO_NoIntmode;     
@@ -148,7 +137,7 @@ bool lcd_key_scanf(void)
 /*
 void GPIO5_Combined_0_15_IRQHandler(void)
 {
-    GPIO_PortClearInterruptFlags(K1_PORT,1U << K1_PIN); //ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î?
+    GPIO_PortClearInterruptFlags(K1_PORT,1U << K1_PIN); //????§Ø?????
     
     led_toggle(LED_B_PIN);
 

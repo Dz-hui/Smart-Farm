@@ -26,15 +26,15 @@
                                         IOMUXC_SW_PAD_CTL_PAD_PUS(0) | \
                                         IOMUXC_SW_PAD_CTL_PAD_HYS(0))
 
-/*    PAD ÅäÖÃËµÃ÷
-*1¡¢SER°ÚÂÊ¹Ø±Õ
-*2¡¢DSEÇ¿Çı¶¯¹Ø±Õ
-*3¡¢SPEEDËÙ¶ÈÑ¡Ôñ £º100MHz
-*4¡¢ODE¿ªÂ©Ê¹ÄÜ
-*6¡¢PKEÉÏÏÂÀ­Ê§ÄÜ
-*7¡¢PUEÉÏÏÂÀ­Ñ¡Ôñ£¬Ñ¡ÔñÉÏÀ­
-*8¡¢PUSÉÏÏÂÀ­µç×èÑ¡Ôñ£¬Ñ¡Ôñ22K
-*9¡¢ÖÍ»Ø»º³åÆ÷Ê¹ÄÜ
+/*    PAD é…ç½®è¯´æ˜
+*1ã€SERæ‘†ç‡å…³é—­
+*2ã€DSEå¼ºé©±åŠ¨å…³é—­
+*3ã€SPEEDé€Ÿåº¦é€‰æ‹© ï¼š100MHz
+*4ã€ODEå¼€æ¼ä½¿èƒ½
+*6ã€PKEä¸Šä¸‹æ‹‰å¤±èƒ½
+*7ã€PUEä¸Šä¸‹æ‹‰é€‰æ‹©ï¼Œé€‰æ‹©ä¸Šæ‹‰
+*8ã€PUSä¸Šä¸‹æ‹‰ç”µé˜»é€‰æ‹©ï¼Œé€‰æ‹©22K
+*9ã€æ»å›ç¼“å†²å™¨ä½¿èƒ½
 */
 
 /***********************************************************************
@@ -50,24 +50,24 @@ void I2C_Init(void)
     lpi2c_master_config_t masterConfig;
 
     /* 
-     * @Ê±ÖÓÅäÖÃ
-     * LPI2C1µÄÊ±ÖÓÀ´Ô´ÓÚ,Ñ¡Ôñ0£ºÀ´×ÔPLL3£¬Ñ¡Ôñ1£ºÀ´×Ôosc_clk
-     * ÓÉÓÚÕâÀïÑ¡Ôñ0---À´×ÔPLL3£¨480MHz£©,ËùÒÔ·ÖÆµÏµÊıÑ¡Ôñ5£¬¼´£¨6-1£©
+     * @æ—¶é’Ÿé…ç½®
+     * LPI2C1çš„æ—¶é’Ÿæ¥æºäº,é€‰æ‹©0ï¼šæ¥è‡ªPLL3ï¼Œé€‰æ‹©1ï¼šæ¥è‡ªosc_clk
+     * ç”±äºè¿™é‡Œé€‰æ‹©0---æ¥è‡ªPLL3ï¼ˆ480MHzï¼‰,æ‰€ä»¥åˆ†é¢‘ç³»æ•°é€‰æ‹©5ï¼Œå³ï¼ˆ6-1ï¼‰
      */   
     CLOCK_SetMux(kCLOCK_Lpi2cMux, 0);              
     CLOCK_SetDiv(kCLOCK_Lpi2cDiv,(6-1));
-    /* IO¸´ÓÃÅäÖÃ */
+    /* IOå¤ç”¨é…ç½® */
     IOMUXC_SetPinMux(I2C_SCL_MUX,1U);
     IOMUXC_SetPinMux(I2C_SDA_MUX,1U);
     
-    /* IO PADÅäÖÃ */
+    /* IO PADé…ç½® */
     IOMUXC_SetPinConfig(I2C_SCL_MUX,I2C_PAD_CONFIG_DATA);
     IOMUXC_SetPinConfig(I2C_SDA_MUX,I2C_PAD_CONFIG_DATA);
 
-    /* »ñÈ¡Ä¬ÈÏÅäÖÃ */
+    /* è·å–é»˜è®¤é…ç½® */
     LPI2C_MasterGetDefaultConfig(&masterConfig);
 
-    /* ÅäÖÃLPI2CËÙ¶È400k */
+    /* é…ç½®LPI2Cé€Ÿåº¦400k */
     masterConfig.baudRate_Hz = 400000; 
 
     LPI2C_MasterInit(I2Cx, &masterConfig, I2C_CLOCK);
@@ -89,13 +89,13 @@ bool I2C_WriteByte(uint8_t SalveAddr,uint8_t RegAddr,uint8_t *DateByte)
     status_t err_flag;
 
     /*
-    * @data         :Òª·¢ËÍµÄÊı¾İ
-    * @datasize     :·¢ËÍµÄÊı¾İ¸öÊı
-    * @direction    :¶ÁĞ´Ä£Ê½Ñ¡Ôñ
-    * @flags        :´«ÊäÊ§°ÜµÄ±êÖ¾Î»
-    * @slaveAaddress:´Ó»úµØÖ·
-    * @subaddress   :¼Ä´æÆ÷/ÄÚ´æµØÖ·
-    * @subaddressSize:µØÖ·¼Ä´æÆ÷´óĞ¡
+    * @data         :è¦å‘é€çš„æ•°æ®
+    * @datasize     :å‘é€çš„æ•°æ®ä¸ªæ•°
+    * @direction    :è¯»å†™æ¨¡å¼é€‰æ‹©
+    * @flags        :ä¼ è¾“å¤±è´¥çš„æ ‡å¿—ä½
+    * @slaveAaddress:ä»æœºåœ°å€
+    * @subaddress   :å¯„å­˜å™¨/å†…å­˜åœ°å€
+    * @subaddressSize:åœ°å€å¯„å­˜å™¨å¤§å°
     */
     transfer.data = DateByte;
     transfer.dataSize = 1;   
@@ -128,13 +128,13 @@ bool I2C_ReadByte(uint8_t SalveAddr,uint8_t RegAddr,uint8_t *DateByte)
     status_t err_flag;
 
     /*
-    * @data         :·¢ËÍ¡¢½ÓÊÜµÄÊı¾İ
-    * @datasize     :·¢ËÍµÄÊı¾İ¸öÊı
-    * @direction    :¶ÁĞ´Ä£Ê½Ñ¡Ôñ
-    * @flags        :´«ÊäÊ§°ÜµÄ±êÖ¾Î»
-    * @slaveAaddress:´Ó»úµØÖ·
-    * @subaddress   :¼Ä´æÆ÷/ÄÚ´æµØÖ·
-    * @subaddressSize:µØÖ·¼Ä´æÆ÷´óĞ¡
+    * @data         :å‘é€ã€æ¥å—çš„æ•°æ®
+    * @datasize     :å‘é€çš„æ•°æ®ä¸ªæ•°
+    * @direction    :è¯»å†™æ¨¡å¼é€‰æ‹©
+    * @flags        :ä¼ è¾“å¤±è´¥çš„æ ‡å¿—ä½
+    * @slaveAaddress:ä»æœºåœ°å€
+    * @subaddress   :å¯„å­˜å™¨/å†…å­˜åœ°å€
+    * @subaddressSize:åœ°å€å¯„å­˜å™¨å¤§å°
     */
     transfer.data = DateByte;
     transfer.dataSize = 1;   
@@ -167,13 +167,13 @@ bool I2C_WriteBuffer(uint8_t SalveAddr,uint8_t RegAddr,uint8_t *DateByte,uint32_
     status_t err_flag;
 
     /*
-    * @data         :Òª·¢ËÍµÄÊı¾İ
-    * @datasize     :·¢ËÍµÄÊı¾İ¸öÊı
-    * @direction    :¶ÁĞ´Ä£Ê½Ñ¡Ôñ
-    * @flags        :´«ÊäÊ§°ÜµÄ±êÖ¾Î»
-    * @slaveAaddress:´Ó»úµØÖ·
-    * @subaddress   :¼Ä´æÆ÷/ÄÚ´æµØÖ·
-    * @subaddressSize:µØÖ·¼Ä´æÆ÷´óĞ¡
+    * @data         :è¦å‘é€çš„æ•°æ®
+    * @datasize     :å‘é€çš„æ•°æ®ä¸ªæ•°
+    * @direction    :è¯»å†™æ¨¡å¼é€‰æ‹©
+    * @flags        :ä¼ è¾“å¤±è´¥çš„æ ‡å¿—ä½
+    * @slaveAaddress:ä»æœºåœ°å€
+    * @subaddress   :å¯„å­˜å™¨/å†…å­˜åœ°å€
+    * @subaddressSize:åœ°å€å¯„å­˜å™¨å¤§å°
     */
     transfer.data = DateByte;
     transfer.dataSize = DataNum;   
@@ -207,13 +207,13 @@ bool I2C_ReadBuffer(uint8_t SalveAddr,uint8_t RegAddr,uint8_t *DateByte,uint32_t
     status_t err_flag;
 
     /*
-    * @data         :·¢ËÍ¡¢½ÓÊÜµÄÊı¾İ
-    * @datasize     :·¢ËÍµÄÊı¾İ¸öÊı
-    * @direction    :¶ÁĞ´Ä£Ê½Ñ¡Ôñ
-    * @flags        :´«ÊäÊ§°ÜµÄ±êÖ¾Î»
-    * @slaveAaddress:´Ó»úµØÖ·
-    * @subaddress   :¼Ä´æÆ÷/ÄÚ´æµØÖ·
-    * @subaddressSize:µØÖ·¼Ä´æÆ÷´óĞ¡
+    * @data         :å‘é€ã€æ¥å—çš„æ•°æ®
+    * @datasize     :å‘é€çš„æ•°æ®ä¸ªæ•°
+    * @direction    :è¯»å†™æ¨¡å¼é€‰æ‹©
+    * @flags        :ä¼ è¾“å¤±è´¥çš„æ ‡å¿—ä½
+    * @slaveAaddress:ä»æœºåœ°å€
+    * @subaddress   :å¯„å­˜å™¨/å†…å­˜åœ°å€
+    * @subaddressSize:åœ°å€å¯„å­˜å™¨å¤§å°
     */
     transfer.data = DateByte;
     transfer.dataSize = DataNum;   
@@ -241,15 +241,15 @@ bool I2C_ReadBuffer(uint8_t SalveAddr,uint8_t RegAddr,uint8_t *DateByte,uint32_t
                                         IOMUXC_SW_PAD_CTL_PAD_PUS(0) | \
                                         IOMUXC_SW_PAD_CTL_PAD_HYS(0))
 
-/*    PAD ÅäÖÃËµÃ÷
-*1¡¢SER°ÚÂÊ¹Ø±Õ
-*2¡¢DSEÇ¿Çı¶¯¹Ø±Õ
-*3¡¢SPEEDËÙ¶ÈÑ¡Ôñ £º100MHz
-*4¡¢ODE¿ªÂ©Ê¹ÄÜ
-*6¡¢PKEÉÏÏÂÀ­Ê§ÄÜ
-*7¡¢PUEÉÏÏÂÀ­Ñ¡Ôñ£¬Ñ¡ÔñÉÏÀ­
-*8¡¢PUSÉÏÏÂÀ­µç×èÑ¡Ôñ£¬Ñ¡Ôñ22K
-*9¡¢ÖÍ»Ø»º³åÆ÷Ê¹ÄÜ
+/*    PAD é…ç½®è¯´æ˜
+*1ã€SERæ‘†ç‡å…³é—­
+*2ã€DSEå¼ºé©±åŠ¨å…³é—­
+*3ã€SPEEDé€Ÿåº¦é€‰æ‹© ï¼š100MHz
+*4ã€ODEå¼€æ¼ä½¿èƒ½
+*6ã€PKEä¸Šä¸‹æ‹‰å¤±èƒ½
+*7ã€PUEä¸Šä¸‹æ‹‰é€‰æ‹©ï¼Œé€‰æ‹©ä¸Šæ‹‰
+*8ã€PUSä¸Šä¸‹æ‹‰ç”µé˜»é€‰æ‹©ï¼Œé€‰æ‹©22K
+*9ã€æ»å›ç¼“å†²å™¨ä½¿èƒ½
 */
 
 /***********************************************************************
@@ -271,10 +271,10 @@ void I2C_Init(void)
     IOMUXC_SetPinConfig(I2C_SCL_MUX,I2C_PAD_CONFIG_DATA);
 
     /*                      
-    *                       ³õÊ¼»¯ÅäÖÃ
-    * ÅäÖÃÎªÊä³öÄ£Ê½
-    * ½ûÓÃÖĞ¶Ï
-    * ³õÊ¼Êä³ö¸ßµçÆ½
+    *                       åˆå§‹åŒ–é…ç½®
+    * é…ç½®ä¸ºè¾“å‡ºæ¨¡å¼
+    * ç¦ç”¨ä¸­æ–­
+    * åˆå§‹è¾“å‡ºé«˜ç”µå¹³
     */
     Config.direction = kGPIO_DigitalOutput;
     Config.interruptMode = 0U;

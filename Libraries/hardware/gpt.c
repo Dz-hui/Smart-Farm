@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2020-11-19 20:34:50
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??gpt.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Libraries??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??hardware??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??gpt.c
 *@Drscription: 
 ***********************************************************************/
 #include "exit.h"
@@ -14,40 +14,40 @@ uint16_t i=0;
 // {
 //   gpt_config_t gptConfig;
   
-//   /*ÉèÖÃGPTÊ¹ÓÃµ½µÄÍâ²¿Ê±ÖÓ*/
+//   /*ï¿½ï¿½ï¿½ï¿½GPTÊ¹ï¿½Ãµï¿½ï¿½ï¿½ï¿½â²¿Ê±ï¿½ï¿½*/
 //   CLOCK_SetMux(kCLOCK_PerclkMux, EXAMPLE_GPT_CLOCK_SOURCE_SELECT);
 //   CLOCK_SetDiv(kCLOCK_PerclkDiv, EXAMPLE_GPT_CLOCK_DIVIDER_SELECT);
   
-//   /*³õÊ¼»¯GPT*/
+//   /*ï¿½ï¿½Ê¼ï¿½ï¿½GPT*/
 //   GPT_GetDefaultConfig(&gptConfig);
 //   gptConfig.enableFreeRun = false;
 //   GPT_Init(EXAMPLE_GPT, &gptConfig);
   
-//   /* ÉèÖÃÊ±ÖÓ·ÖÆµ */
+//   /* ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ó·ï¿½Æµ */
 //   GPT_SetClockDivider(EXAMPLE_GPT, GPT_DIVIDER);
   
-//   /* ÉèÖÃGPT¶¨Ê±Æ÷µÄ¼ÆÊýÖµ*/
+//   /* ï¿½ï¿½ï¿½ï¿½GPTï¿½ï¿½Ê±ï¿½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½Öµ*/
 //   GPT_SetOutputCompareValue(EXAMPLE_GPT, kGPT_OutputCompare_Channel1, (uint32_t)COUNGER_NUMBER);
 
-//   /* ¿ªÆôGPT2¶¨Ê±Æ÷±È½ÏÍ¨µÀ1µÄÖÐ¶Ï */
+//   /* ï¿½ï¿½ï¿½ï¿½GPT2ï¿½ï¿½Ê±ï¿½ï¿½ï¿½È½ï¿½Í¨ï¿½ï¿½1ï¿½ï¿½ï¿½Ð¶ï¿½ */
 //   GPT_EnableInterrupts(EXAMPLE_GPT, kGPT_OutputCompare1InterruptEnable);
 
-//    /*ÉèÖÃÖÐ¶ÏÓÅÏÈ¼¶,*/
+//    /*ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½È¼ï¿½,*/
 //   IRQN_priority(4,6,0,GPT_IRQ_ID);
-//   /*Ê¹ÄÜÖÐ¶Ï*/
+//   /*Ê¹ï¿½ï¿½ï¿½Ð¶ï¿½*/
 //   EnableIRQ(GPT_IRQ_ID);
 
-//   /* ¿ªÆô¶¨Ê±Æ÷ */
+//   /* ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ */
 //   GPT_StartTimer(EXAMPLE_GPT);
 // }
 
 
 
-// /*¶¨ÒåÖÐ¶Ï·þÎñº¯Êý*/
+// /*ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï·ï¿½ï¿½ï¿½ï¿½ï¿½*/
 // void EXAMPLE_GPT_IRQHandler(void)
 // {
 
-// 	/* Çå³ýÖÐ¶Ï±êÖ¾Î».*/
+// 	/* ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î».*/
 // 	GPT_ClearStatusFlags(EXAMPLE_GPT, kGPT_OutputCompare1Flag);
 //   if(i==5000)
 //   {
@@ -68,40 +68,35 @@ void GPT_Config(void)
 {
   gpt_config_t gptConfig;
   
-  /*ÉèÖÃGPTÊ¹ÓÃµ½µÄÍâ²¿Ê±ÖÓ*/
   CLOCK_SetMux(kCLOCK_PerclkMux, EXAMPLE_GPT_CLOCK_SOURCE_SELECT);
   CLOCK_SetDiv(kCLOCK_PerclkDiv, EXAMPLE_GPT_CLOCK_DIVIDER_SELECT);
   
-  /*³õÊ¼»¯GPT*/
   GPT_GetDefaultConfig(&gptConfig);
+
   gptConfig.enableFreeRun = false;
+  
   GPT_Init(EXAMPLE_GPT, &gptConfig);
   
-  /* ÉèÖÃÊ±ÖÓ·ÖÆµ */
   GPT_SetClockDivider(EXAMPLE_GPT, GPT_DIVIDER);
   
-  /* ÉèÖÃGPT¶¨Ê±Æ÷µÄ¼ÆÊýÖµ*/
   GPT_SetOutputCompareValue(EXAMPLE_GPT, kGPT_OutputCompare_Channel1, (uint32_t)COUNGER_NUMBER);
 
-  /* ¿ªÆôGPT2¶¨Ê±Æ÷±È½ÏÍ¨µÀ1µÄÖÐ¶Ï */
   GPT_EnableInterrupts(EXAMPLE_GPT, kGPT_OutputCompare1InterruptEnable);
 
-   /*ÉèÖÃÖÐ¶ÏÓÅÏÈ¼¶,*/
   //set_IRQn_Priority(GPT_IRQ_ID,Group4_PreemptPriority_6, Group4_SubPriority_0);
   IRQN_priority(4,6,0,GPT_IRQ_ID);
-  /*Ê¹ÄÜÖÐ¶Ï*/
+
   EnableIRQ(GPT_IRQ_ID);
 
-  /* ¿ªÆô¶¨Ê±Æ÷ */
   GPT_StartTimer(EXAMPLE_GPT);
 }
 
 
 
-/*¶¨ÒåÖÐ¶Ï·þÎñº¯Êý*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶Ï·ï¿½ï¿½ï¿½ï¿½ï¿½*/
 void EXAMPLE_GPT_IRQHandler(void)
 {
-  /* Çå³ýÖÐ¶Ï±êÖ¾Î».*/
+  /* ï¿½ï¿½ï¿½ï¿½Ð¶Ï±ï¿½Ö¾Î».*/
   rt_interrupt_enter();
   GPT_ClearStatusFlags(EXAMPLE_GPT, kGPT_OutputCompare1Flag);
   gizTimerMs();

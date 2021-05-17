@@ -1,10 +1,3 @@
-/***********************************************************************
-*@Author: Dz_hui
-*@Date: 2020-06-01 10:45:12
-*@FilePath: ??径分隔???替??Smart-Farm??径分隔???替??Libraries??径分隔???替??hardware??径分隔???替??uart.c
-*@Drscription: 
-***********************************************************************/
-
 #include "uart.h"
 #include "board.h"
 #include "pad_config.h"
@@ -16,157 +9,184 @@
 #include "stdio.h"
 #include "exit.h"
 #include "gizwits_protocol.h"
+#include "exit.h"
 
-/*pad参数设置*/
-#define UART1_TX_PAD_SETTING_DATA    (SRE_0_SLOW_SLEW_RATE| \
-                                  DSE_6_R0_6| \
-								  SPEED_1_MEDIUM_100MHz| \
-								  ODE_0_OPEN_DRAIN_DISABLED| \
-								  PKE_1_PULL_KEEPER_ENABLED| \
-								  PUE_0_KEEPER_SELECTED| \
-								  PUS_0_100K_OHM_PULL_DOWN| \
-								  HYS_0_HYSTERESIS_DISABLED)
+#define LPUART_PAD    				(SRE_0_SLOW_SLEW_RATE| \
+									DSE_6_R0_6| \
+									SPEED_1_MEDIUM_100MHz| \
+									ODE_0_OPEN_DRAIN_DISABLED| \
+									PKE_1_PULL_KEEPER_ENABLED| \
+									PUE_0_KEEPER_SELECTED| \
+									PUS_0_100K_OHM_PULL_DOWN| \
+									HYS_0_HYSTERESIS_DISABLED)
 
-#define UART1_RX_PAD_SETTING_DATA    (SRE_0_SLOW_SLEW_RATE| \
-                                  DSE_6_R0_6| \
-								  SPEED_1_MEDIUM_100MHz| \
-								  ODE_0_OPEN_DRAIN_DISABLED| \
-								  PKE_1_PULL_KEEPER_ENABLED| \
-								  PUE_0_KEEPER_SELECTED| \
-								  PUS_0_100K_OHM_PULL_DOWN| \
-								  HYS_0_HYSTERESIS_DISABLED)
-								  
+lpuart_config_t uart_hw_config;
 
-/***********************************************************************
-*@Function: void UART_PAD_config(void)
-*@Input: 
-*@Return: none
-*@Author: Dz_hui
-*@Date: 2020-06-01 10:59:37
-*@Drscription: pad配置
-***********************************************************************/
-void UART1_PAD_config(void)
-{
-    IOMUXC_SetPinConfig(USB_UART_RX_IOMUXC,UART1_RX_PAD_SETTING_DATA);
-    IOMUXC_SetPinConfig(USB_UART_TX_IOMUXC,UART1_TX_PAD_SETTING_DATA);
-}
+void lpuart_hw_gpio_init(LPUART_Type *base) {
 
-
-
-/***********************************************************************
-*@Function: void UART_IOMUXC_config(void)
-*@Input: 
-*@Return: none
-*@Author: Dz_hui
-*@Date: 2020-06-01 11:04:14
-*@Drscription: MUX配置
-***********************************************************************/
-void UART1_IOMUXC_config(void)
-{
-    IOMUXC_SetPinMux(USB_UART_RX_IOMUXC,0U);
-    IOMUXC_SetPinMux(USB_UART_TX_IOMUXC,0U);
-}
-
-
-/***********************************************************************
-*@Function: void UART_MODE_config(void)
-*@Input: 
-*@Return: none
-*@Author: Dz_hui
-*@Date: 2020-06-01 11:08:39
-*@Drscription: 串口的模式配置
-***********************************************************************/
-void UART1_MODE_config(void)
-{
-    lpuart_config_t uart_config;
-    /*默认初始配置*/
-    LPUART_GetDefaultConfig(&uart_config);
-    uart_config.enableRx=true;
-    uart_config.enableTx=true;
-	
-	LPUART_Init(USB_UART_PORT,&uart_config,USB_UART_CLK_FREQ);
-	
-	/*允许接收中断*/
-	LPUART_EnableInterrupts(USB_UART_PORT, kLPUART_RxDataRegFullInterruptEnable);
-  
-	/*设置中断优先级,*/
-	IRQN_priority(4,1,1,LPUART1_IRQn);
-	/*使能中断*/
-	EnableIRQ(LPUART1_IRQn);
-	
-}
-	 
-/***********************************************************************
-*@Function: void USB_UART_config(void)
-*@Input: 
-*@Return: none
-*@Author: Dz_hui
-*@Date: 2020-06-01 11:30:06
-*@Drscription: 串口初始化 
-***********************************************************************/
-void USB_UART_config(void)
-{
-    UART1_PAD_config();
-    UART1_IOMUXC_config();
-    UART1_MODE_config();
-}
-
-/***********************************************************************
-*@Function: void UART_senddata(LPUART_Type *base,uint8_t data)
-*@Input: 
-*@Return: none
-*@Author: Dz_hui
-*@Date: 2020-06-01 11:31:16
-*@Drscription: 串口发送一个字节
-***********************************************************************/
-void UART_senddata(LPUART_Type *base,uint8_t data)
-{
-    LPUART_WriteByte(base,data);
-    while (!(base->STAT & LPUART_STAT_TDRE_MASK));
-}
-
-/***********************************************************************
-*@Function: void UART_sendstring(LPUART_Type *base,const char *str  )
-*@Input: 
-*@Return: none
-*@Author: Dz_hui
-*@Date: 2020-06-01 11:38:30
-*@Drscription: 串口发送字符串
-***********************************************************************/
-void UART_sendstring(LPUART_Type *base,const char *str  )
-{
-    LPUART_WriteBlocking(base,(uint8_t *)str,strlen(str));
-}
-
-/***********************************************************************
-*@Function: int fputc(int ch, FILE * f)
-*@Input: 
-*@Return: none
-*@Author: Dz_hui
-*@Date: 2020-06-01 12:22:24
-*@Drscription: 重定向printf函数
-***********************************************************************/
-int fputc(int ch, FILE * f)
-{
-    UART_senddata(USB_UART_PORT,(uint8_t )ch);
-    
-    return ch;
-}
-
-void LPUART1_IRQHandler(void)
-{
-	uint8_t ucTemp;
-  /*串口接收到数据*/
-	if ((kLPUART_RxDataRegFullFlag)&LPUART_GetStatusFlags(USB_UART_PORT))
-	{
-    /*读取数据*/
-		ucTemp = LPUART_ReadByte(USB_UART_PORT);
-    
-     /*将读取到的数据写入到缓冲区*/
-		UART_senddata(USB_UART_PORT,ucTemp);
+	if(base == LPUART1) { 	
+#if (defined(LPUART1_TX_PIN)&&defined(LPUART1_RX_PIN))
+		IOMUXC_SetPinConfig(LPUART1_TX_MUX, LPUART_PAD);
+		IOMUXC_SetPinConfig(LPUART1_RX_MUX, LPUART_PAD);
+		IOMUXC_SetPinMux(LPUART1_RX_MUX,0U);
+		IOMUXC_SetPinMux(LPUART1_TX_MUX,0U);
+#else
+		IOMUXC_SetPinConfig(LPUART1_TX_MUX,LPUART_PAD);
+		IOMUXC_SetPinConfig(LPUART1_RX_MUX,LPUART_PAD);
+		IOMUXC_SetPinMux(LPUART1_RX_MUX,0U);
+		IOMUXC_SetPinMux(LPUART1_TX_MUX,0U);
+#endif
 	}
-	
+	else if(base == LPUART2) {
+#if (defined(LPUART2_TX_PIN)&&defined(LPUART2_RX_PIN))
+		IOMUXC_SetPinConfig(LPUART2_TX_MUX,LPUART_PAD);
+		IOMUXC_SetPinConfig(LPUART2_RX_MUX,LPUART_PAD);
+		IOMUXC_SetPinMux(LPUART2_RX_MUX,0U);
+		IOMUXC_SetPinMux(LPUART2_TX_MUX,0U);
+#else 
+
+#endif
+	}
+	else if(base == LPUART3) {
+#if (defined(LPUART3_TX_PIN)&&defined(LPUART3_RX_PIN))
+		IOMUXC_SetPinConfig(LPUART3_TX_MUX,LPUART_PAD);
+		IOMUXC_SetPinConfig(LPUART3_RX_MUX,LPUART_PAD);
+		IOMUXC_SetPinMux(LPUART3_RX_MUX,0U);
+		IOMUXC_SetPinMux(LPUART3_TX_MUX,0U);
+#else 
+
+#endif
+	}
+	else if(base == LPUART4) {
+#if (defined(LPUART4_TX_PIN)&&defined(LPUART4_RX_PIN))
+		IOMUXC_SetPinConfig(LPUART4_TX_MUX,LPUART_PAD);
+		IOMUXC_SetPinConfig(LPUART4_RX_MUX,LPUART_PAD);
+		IOMUXC_SetPinMux(LPUART4_RX_MUX,0U);
+		IOMUXC_SetPinMux(LPUART4_TX_MUX,0U);
+#else 
+
+#endif
+	}
+	else if(base == LPUART5) {
+#if (defined(LPUART5_TX_PIN)&&defined(LPUART5_RX_PIN))
+		IOMUXC_SetPinConfig(LPUART5_TX_MUX,LPUART_PAD);
+		IOMUXC_SetPinConfig(LPUART5_RX_MUX,LPUART_PAD);
+		IOMUXC_SetPinMux(LPUART5_RX_MUX,0U);
+		IOMUXC_SetPinMux(LPUART5_TX_MUX,0U);
+#else 
+
+#endif
+	}
+	else if(base == LPUART6) {
+#if (defined(LPUART6_TX_PIN)&&defined(LPUART6_RX_PIN))
+		IOMUXC_SetPinConfig(LPUART6_TX_MUX,LPUART_PAD);
+		IOMUXC_SetPinConfig(LPUART6_RX_MUX,LPUART_PAD);
+		IOMUXC_SetPinMux(LPUART6_RX_MUX,0U);
+		IOMUXC_SetPinMux(LPUART6_TX_MUX,0U);
+#else 
+
+#endif
+	}
+	else if(base == LPUART7) {
+#if (defined(LPUART7_TX_PIN)&&defined(LPUART7_RX_PIN))
+		IOMUXC_SetPinConfig(LPUART7_TX_MUX,LPUART_PAD);
+		IOMUXC_SetPinConfig(LPUART7_RX_MUX,LPUART_PAD);
+		IOMUXC_SetPinMux(LPUART7_RX_MUX,0U);
+		IOMUXC_SetPinMux(LPUART7_TX_MUX,0U);
+#else 
+
+#endif
+	}
+	else if(base == LPUART8) {
+#if (defined(LPUART3_TX_PIN)&&defined(LPUART3_RX_PIN))
+		IOMUXC_SetPinConfig(LPUART8_TX_MUX,LPUART_PAD);
+		IOMUXC_SetPinConfig(LPUART8_RX_MUX,LPUART_PAD);
+		IOMUXC_SetPinMux(LPUART8_RX_MUX,0U);
+		IOMUXC_SetPinMux(LPUART8_TX_MUX,0U);
+#else 
+
+#endif
+	}
 }
+
+bool lpuart_hw_init(LPUART_Type *base, uint32_t baud) {
+	lpuart_hw_gpio_init(base);
+	LPUART_GetDefaultConfig(&uart_hw_config);
+	uart_hw_config.baudRate_Bps = baud;
+    uart_hw_config.enableRx=true;
+    uart_hw_config.enableTx=true;
+	LPUART_Init(base, &uart_hw_config, BOARD_DebugConsoleSrcFreq());
+	return true;
+}
+
+void lpuart_hw_enable_interrupt(LPUART_Type *base ,uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t SubPriority) {
+
+	IRQn_Type IRQn;
+	if(base == LPUART1)			IRQn = LPUART1_IRQn;
+	else if(base == LPUART2)	IRQn = LPUART2_IRQn;
+	else if(base == LPUART3)	IRQn = LPUART3_IRQn;
+	else if(base == LPUART4)	IRQn = LPUART4_IRQn;
+	else if(base == LPUART5)	IRQn = LPUART5_IRQn;
+	else if(base == LPUART6)	IRQn = LPUART6_IRQn;
+	else if(base == LPUART7)	IRQn = LPUART7_IRQn;
+	else if(base == LPUART8)	IRQn = LPUART8_IRQn;
+	LPUART_EnableInterrupts(base, kLPUART_RxDataRegFullInterruptEnable);
+	IRQN_priority(PriorityGroup, PreemptPriority, SubPriority, IRQn);
+	EnableIRQ(IRQn);
+}
+
+void lpuart_sendbyte(LPUART_Type *base, uint8_t data)
+{
+  LPUART_WriteByte( base, data);
+  while (!(base->STAT & LPUART_STAT_TDRE_MASK));
+}
+
+
+void lpuart_sendstring( LPUART_Type *base,  const char *str)
+{
+  LPUART_WriteBlocking( base, (const uint8_t *)str, strlen(str));
+}
+
+void lpuart_send_16_data(LPUART_Type *base, uint16_t ch)
+{
+  uint8_t temp_h, temp_l;
+  temp_h = (ch&0XFF00)>>8;
+  temp_l = ch&0XFF; 
+
+  LPUART_WriteByte( base, temp_h);
+  while (!(base->STAT & LPUART_STAT_TDRE_MASK));
+  
+  LPUART_WriteByte( base, temp_l);
+  while (!(base->STAT & LPUART_STAT_TDRE_MASK));  
+}
+
+
+
+// void LPUART1_IRQHandler(void) {
+
+
+// }
+
+// void LPUART2_IRQHandler(void) {
+
+
+// }
+
+void LPUART3_IRQHandler(void) {
+	uint8_t temp;
+	rt_interrupt_enter();
+	if ((kLPUART_RxDataRegFullFlag)&LPUART_GetStatusFlags(GIZWITS_SERIAL))
+	{
+		temp = LPUART_ReadByte(GIZWITS_SERIAL);
+		gizPutData(&temp, 1);
+	}
+	rt_interrupt_leave();
+}
+
+
+
+
+
 
 
 

@@ -11,18 +11,18 @@ void MPU6050_DELAY()
 void MPU6050_Init(void)
 {
   MPU6050_DELAY();
-	MPU6050_WriteByte(MPU6050_RA_PWR_MGMT_1,0X00);  //½â³ýÐÝÃßÄ£Ê½
-	MPU6050_WriteByte(MPU6050_RA_SMPLRT_DIV,0x07);	//ÅäÖÃÍÓÂÝÒÇ²ÉÑùÂÊ
+	MPU6050_WriteByte(MPU6050_RA_PWR_MGMT_1,0X00);  //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä£Ê½
+	MPU6050_WriteByte(MPU6050_RA_SMPLRT_DIV,0x07);	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ç²ï¿½ï¿½ï¿½ï¿½ï¿½
 	MPU6050_WriteByte(MPU6050_RA_CONFIG,	0x06);
-	MPU6050_WriteByte(MPU6050_RA_ACCEL_CONFIG,0x018);//ÅäÖÃ¹¤×÷ÔÚ16GÄ£Ê½ÏÂ
-	MPU6050_WriteByte(MPU6050_RA_GYRO_CONFIG,0x18);	//ÍÓÂÝÒÇ×Ô¼ì²âÁ¿·¶Î§
+	MPU6050_WriteByte(MPU6050_RA_ACCEL_CONFIG,0x018);//ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ï¿½ï¿½ï¿½16GÄ£Ê½ï¿½ï¿½
+	MPU6050_WriteByte(MPU6050_RA_GYRO_CONFIG,0x18);	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î§
   MPU6050_DELAY();
 }
 
 /*
-Ð´Êý¾Ýµ½MPU6050ÀïÃæ
-reg_add£º¼Ä´æÆ÷µØÖ·
-reg_dat£ºÐèÒªÐ´ÈëµÄÊý¾Ý
+Ð´ï¿½ï¿½ï¿½Ýµï¿½MPU6050ï¿½ï¿½ï¿½ï¿½
+reg_addï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
+reg_datï¿½ï¿½ï¿½ï¿½ÒªÐ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 void MPU6050_WriteByte(uint8_t reg_add,uint8_t reg_dat)
 {
@@ -31,9 +31,9 @@ void MPU6050_WriteByte(uint8_t reg_add,uint8_t reg_dat)
 }
 
 /*
-¶ÁMPU6050Êý¾Ý
-reg_add£º¼Ä´æÆ÷µØÖ·
-reg_dat£ºÐèÒªÐ´ÈëµÄÊý¾Ý
+ï¿½ï¿½MPU6050ï¿½ï¿½ï¿½ï¿½
+reg_addï¿½ï¿½ï¿½Ä´ï¿½ï¿½ï¿½ï¿½ï¿½Ö·
+reg_datï¿½ï¿½ï¿½ï¿½ÒªÐ´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 */
 void MPU6050_Read(uint8_t reg_add,unsigned char* Read,uint8_t num)
 {
@@ -75,7 +75,7 @@ uint8_t MPU6050_ReadID(void)
 *@Return: none
 *@Author: sola
 *@Date: 2020-02-22 18:33:06
-*@Drscription: ¼ÓËÙ¶È¼ÆÔ­Ê¼Êý¾Ý»ñµÃ
+*@Drscription: ï¿½ï¿½ï¿½Ù¶È¼ï¿½Ô­Ê¼ï¿½ï¿½ï¿½Ý»ï¿½ï¿½
 ***********************************************************************/
 void MPU6050_ACC_Read(short *accData)
 {
@@ -92,7 +92,7 @@ void MPU6050_ACC_Read(short *accData)
 *@Return: none
 *@Author: sola
 *@Date: 2020-02-22 18:33:29
-*@Drscription: ÍÓÂÝÒÇÔ­Ê¼Êý¾Ý»ñµÃ
+*@Drscription: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô­Ê¼ï¿½ï¿½ï¿½Ý»ï¿½ï¿½
 ***********************************************************************/
 void MPU6050_Gyro_Read(short *gyroData)
 {
@@ -109,7 +109,7 @@ void MPU6050_Gyro_Read(short *gyroData)
 *@Return: none
 *@Author: sola
 *@Date: 2020-02-22 18:33:53
-*@Drscription: »ñÈ¡²»Í¬·½ÏòµÄ½Ç¶È
+*@Drscription: ï¿½ï¿½È¡ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½Ä½Ç¶ï¿½
 ***********************************************************************/
 short MPU6050_GET_Angle(float x,float y,float z,uint8_t dir)
 {
@@ -139,15 +139,15 @@ short MPU6050_GET_Angle(float x,float y,float z,uint8_t dir)
 *@Return: none
 *@Author: sola
 *@Date: 2020-02-22 18:34:32
-*@Drscription: »ñÈ¡¼ÓËÙ¶È¼Æ¼ÆËã³öµÄ½Ç¶È£¬°üÀ¨Roll¡¢Pitch
+*@Drscription: ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ù¶È¼Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½Ä½Ç¶È£ï¿½ï¿½ï¿½ï¿½ï¿½Rollï¿½ï¿½Pitch
 ***********************************************************************/
 void Acce_angle(short ax,short ay,short az,float *AccAngle)
 {
-  /*¼ÓËÙ¶ÈÇóµÄ Roll*/
-  AccAngle[0] = atan((float)ay/(float)az)*(float)57.3;                              //57.3 = 360¡ã/2¦°
+  /*ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ Roll*/
+  AccAngle[0] = atan((float)ay/(float)az)*(float)57.3;                              //57.3 = 360ï¿½ï¿½/2ï¿½ï¿½
   
-  /*¼ÓËÙ¶ÈÇóµÄ Pitch */
-  AccAngle[1] = atan((float)ax/(float)az)*(float)57.3;                              //57.3 = 360¡ã/2¦° 
+  /*ï¿½ï¿½ï¿½Ù¶ï¿½ï¿½ï¿½ï¿½ Pitch */
+  AccAngle[1] = atan((float)ax/(float)az)*(float)57.3;                              //57.3 = 360ï¿½ï¿½/2ï¿½ï¿½ 
 }
 
 /***********************************************************************
@@ -156,7 +156,7 @@ void Acce_angle(short ax,short ay,short az,float *AccAngle)
 *@Return: none
 *@Author: sola
 *@Date: 2020-02-22 18:35:18
-*@Drscription: »ñÈ¡ÍÓÂÝÒÇµÃµ½µÄ½Ç¶È£¬°üÀ¨Roll¡¢Pitch
+*@Drscription: ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ÇµÃµï¿½ï¿½Ä½Ç¶È£ï¿½ï¿½ï¿½ï¿½ï¿½Rollï¿½ï¿½Pitch
 ***********************************************************************/
 void Gyro_angle(short gx,short gy,short gz,float *GyroAngle)
 {
