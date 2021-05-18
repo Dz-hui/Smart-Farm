@@ -12,17 +12,19 @@
 #define LV_THREAD_SIZE				1024*50
 #define LV_THREAD_PRIO              4
 
+// sensor data
 typedef struct {
 
-    float soil_value;
+    float soil_value;           
     float distance_value;
     float lighting_value;
     float co2_value;
     float temp_value;
     float humi_value;
 }lv_sensor_value_t;
-extern lv_sensor_value_t my_sensor;
+extern lv_sensor_value_t my_sensor; 
 
+// ctrl define
 typedef struct {
 
     uint8_t curtain_status : 1;

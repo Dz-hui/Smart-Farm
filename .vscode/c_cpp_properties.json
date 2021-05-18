@@ -3,7 +3,7 @@
         {
             "name": "Win32",
             "includePath": [
-                "E:\\Github\\Smart-Farm/**",
+                "F:\\sola_github\\MKS_TFT\\my\\Smart-Farm/**",
                 "D:\\Keil_v5\\ARM\\ARMCC\\include"
             ],
             "defines": [

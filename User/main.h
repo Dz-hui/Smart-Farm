@@ -25,8 +25,9 @@
 #include "rtboard.h"
 // #include "app.h"
 
-#include "uart.h"
 #include "gizwits_product.h" 
+
+#include "uart.h"
 #include "gpt.h"
 #include "i2c.h"
 #include "lpi2c.h"
@@ -65,26 +66,79 @@
 #endif 
 
 /*-------------------------------------------------Config-----------------------------------------------*/
+
+/*
+ * Debug serial config
+ * Defualt serial com   :LPUART1
+ * Defualt baud         :115200
+*/
 #define USE_SERIAL_DEBUG
 #if defined(USE_SERIAL_DEBUG)
     #define DEBUG_SERIAL            LPUART1 
     #define DEBUG_BAUD              115200
 #endif
 
+/*
+ * Gizwits(Wifi serial)
+ * Defualt serial com   :LPUART1
+ * Defualt baud         :115200
+*/
 #define USR_GIZWITS
 #if defined(USR_GIZWITS)
-    #define GIZWITS_SERIAL          LPUART3 
-    #define GIZWITS_BAUD            9600
+
+    #define USE_WIFI_UART
+    // #define USR_WIFI_SPI
+    #if defined(USE_WIFI_UART)
+        #define GIZWITS_SERIAL          LPUART3 
+        #define GIZWITS_BAUD            9600
+    #elif defined(USR_WIFI_SPI)
+        #define GIZWITS_SPI             LPUART3 
+        #define GIZWITS_BAUD            1Mbs
+    #endif
+
 #endif
 
-#define USE_KEY_ON_CORE
-// #define USE_KEY_ON_BOARD
+/*
+ * user key
+ * On core or On board
+*/
+#define USE_USER_KEY
+#if defined(USE_USER_KEY)
+    #define USE_KEY_ON_CORE
+    // #define USE_KEY_ON_BOARD
+#endif
 
+/*
+ * user DH11
+*/
+#define USE_TEMP_COLLECT
+#if defined(USE_TEMP_COLLECT)
 #define USE_DHT11
+// #define USE_DHT21
+#endif
 
+/*
+ * user Soil
+*/
+#define USE_SOIL
+#if defined(USE_SOIL)
 
+    /* use adc to collect data */
+    #define USE_SOIL_ADC
+    #if defined(USE_SOIL_ADC)
 
+    #endif
 
+    /* defien sensor channel (is not ment adc channel)*/
+    #define USE_SOIL_CH0
+    // #define USE_SOIL_CH1
+    // #define USR_SOIL_CH2
+    // #define USE_SOIL_CH3
+    // #define USE_SOIL_CH4
+    // #define USR_SOIL_CH5
+    // #define USE_SOIL_CH6
+    // #define USR_SOIL_CH7
+#endif
 
 
 void Print_Log(void);

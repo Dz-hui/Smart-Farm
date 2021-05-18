@@ -1,11 +1,4 @@
 
-/***********************************************************************
-*@Author: sola
-*@Date: 2019-11-16 19:58:35
-*@FilePath: ??���ָ�???��??�½��ļ���??���ָ�???��??User??���ָ�???��??main.c
-*@Drscription: 
-***********************************************************************/
- 
 #include "board.h"
 #include "pin_mux.h"
 #include "clock_config.h"
@@ -20,14 +13,6 @@
 #include "rt_task_control.h"
 
 
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: sola
-*@Date: 2019-11-17 20:15:06
-*@Drscription: 
-***********************************************************************/
 int main(void)
 {
     gui_lvgl_thread_init();
@@ -38,14 +23,7 @@ int main(void)
     ctrl_thread_init();
 }
 
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: sola
-*@Date: 2019-11-19 23:31:46
-*@Drscription: 
-***********************************************************************/
+
 void Print_Log(void)
 {
     DEBUG_PRINT("\r\n");
@@ -59,14 +37,7 @@ void Print_Log(void)
     DEBUG_PRINT("SYSPLLPFD3:      %d Hz", CLOCK_GetFreq(kCLOCK_SysPllPfd3Clk));	
 }
 
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: sola
-*@Date: 2019-11-19 23:31:50
-*@Drscription: 
-***********************************************************************/
+
 void Board_Config(void) 
 {
     BOARD_ConfigMPU();
