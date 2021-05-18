@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-01 16:37:36
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??GUI_APP??¾¶·Ö¸ô???Ìæ??lv_draw_home.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??ï¿½Â½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??GUI_APP??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??lv_draw_home.c
 *@Drscription: 
 ***********************************************************************/
 #include "lv_draw_home.h"
@@ -41,7 +41,6 @@ static void event_handler_btn_setting(lv_obj_t* obj, lv_event_t event) {
     if (event == LV_EVENT_RELEASED) {
         lv_clean_home();
         draw_setting();
-        
 	}
 }
 
@@ -58,7 +57,6 @@ static void event_handler_btn_about(lv_obj_t* obj, lv_event_t event) {
     if (event == LV_EVENT_RELEASED) {
         lv_clean_home();
         draw_about();
-        
 	}
 }
 
@@ -117,7 +115,6 @@ void draw_home(void) {
     lv_label_set_style(home_obj.home_label_ctrl, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);
     lv_label_set_style(home_obj.home_label_about, LV_LABEL_STYLE_MAIN, &home_obj.home_label_style);
 
-    
     if(my_ctrl.fan_mode == 0)  sprintf(fan_str, "Fan Speed:0%%");
     else if(my_ctrl.fan_mode == 1) sprintf(fan_str, "Fan Speed:30%%");
     else if(my_ctrl.fan_mode == 2) sprintf(fan_str, "Fan Speed:60%%");

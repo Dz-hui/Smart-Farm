@@ -22,7 +22,7 @@
 
 
 
-/* FLASH³£ÓÃÃüÁî */
+/* FLASHå¸¸ç”¨å‘½ä»¤ */
 #define W25Q_WriteEnable                0x06
 #define W25Q_WriteDisable               0x04
 #define W25Q_ReadStatusReg              0x05
@@ -49,20 +49,15 @@
 #define W25Q_DeviceID                   0xAB
 #define W25Q_ManufactDeviceID           0x90
 #define W25Q_JedecDeviceID              0x9F
-/*ÆäËü*/
+/*å…¶å®ƒ*/
 #define FLASH_ID                        0X18  
 #define FLASH_WINBOND_JEDECDEVICE_ID    0XEF4019   
 #define FLASH_ISSI_JEDECDEVICE_ID       0X9D6019  
 
-/* FLASHµÄ×´Ì¬¼Ä´æÆ÷BUSYÎ»µÄ¼«ĞÔ£¬Îª1Ê±±íÊ¾Ã¦Âµ */
+/* FLASHçš„çŠ¶æ€å¯„å­˜å™¨BUSYä½çš„ææ€§ï¼Œä¸º1æ—¶è¡¨ç¤ºå¿™ç¢Œ */
 #define FLASH_BUSY_STATUS_POL       1
-/* FLASHµÄ×´Ì¬¼Ä´æÆ÷BUSYÎ»µÄÆ«ÒÆ£¬µÚ0Î» */
+/* FLASHçš„çŠ¶æ€å¯„å­˜å™¨BUSYä½çš„åç§»ï¼Œç¬¬0ä½ */
 #define FLASH_BUSY_STATUS_OFFSET    0
-
-
-
-
-
 
 
 #endif /* __spi_h */

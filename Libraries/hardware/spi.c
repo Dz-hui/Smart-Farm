@@ -49,7 +49,7 @@ bool Spi_Init(void)
     CLOCK_SetMux(kCLOCK_FlexspiMux, 0x3); 
     CLOCK_SetDiv(kCLOCK_FlexspiDiv, 2);  
 
-    /* ¹Ø±ÕDCache¹¦ÄÜ */
+    /* ï¿½Ø±ï¿½DCacheï¿½ï¿½ï¿½ï¿½ */
     SCB_DisableDCache();
 
     FLEXSPI_GetDefaultConfig(&config);
