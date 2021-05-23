@@ -35,7 +35,6 @@
 #include "step.h"
 #include "pwm.h"
 
-#include "struct.h"
 #include "lvgl/lvgl.h"
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"

@@ -73,11 +73,11 @@ void gui_lvgl_uptada_init(void) {
 void gui_lvgl_updata_init(void *parg) {
 	while(1) {
 		// DEBUG_PRINT("enter updata task");
+		lv_label_main_updata();
 		if(my_ui.ui_list == UI_NONE) {
-			lv_label_main_updata();
+			
 		}
 		else if(my_ui.ui_list == UI_HOME) {
-			lv_label_main_updata();
 		}
 
 		rt_thread_delay(100);

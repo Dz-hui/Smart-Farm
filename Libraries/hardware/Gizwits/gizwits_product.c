@@ -108,7 +108,6 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
         }
         break;
 
-
       case EVENT_brightness:
         currentDataPoint.valuebrightness = dataPointPtr->valuebrightness;
         GIZWITS_LOG("Evt:EVENT_brightness %d\n",currentDataPoint.valuebrightness);
@@ -132,15 +131,17 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
       case WIFI_STATION:
         break;
       case WIFI_CON_ROUTER:
+        
  
         break;
       case WIFI_DISCON_ROUTER:
- 
+        
         break;
       case WIFI_CON_M2M:
- 
+        my_sensor.wifi_status = true;
         break;
       case WIFI_DISCON_M2M:
+        my_sensor.wifi_status = false;
         break;
       case WIFI_RSSI:
         GIZWITS_LOG("RSSI %d\n", wifiData->rssi);
@@ -151,6 +152,7 @@ int8_t gizwitsEventProcess(eventInfo_t *info, uint8_t *gizdata, uint32_t len)
         break;
       case WIFI_NTP:
         GIZWITS_LOG("WIFI_NTP : [%d-%d-%d %02d:%02d:%02d][%d] \n",ptime->year,ptime->month,ptime->day,ptime->hour,ptime->minute,ptime->second,ptime->ntp);
+        lv_get_time_dis(ptime->year,ptime->month,ptime->day,ptime->hour,ptime->minute,ptime->second);
         break;
       case MODULE_INFO:
             GIZWITS_LOG("MODULE INFO ...\n");

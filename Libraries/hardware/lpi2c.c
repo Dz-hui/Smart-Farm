@@ -11,7 +11,7 @@
 #include "stdio.h"
 #include "core_delay.h"
 #include "fsl_iomuxc.h"
-#include "struct.h"
+#include "lpi2c.h"
 
 
 uint8_t BH1750_write_reg[1] ={0x10};

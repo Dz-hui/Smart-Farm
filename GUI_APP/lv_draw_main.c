@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-01 16:37:36
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??GUI_APP??¾¶·Ö¸ô???Ìæ??lv_draw_main.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??ï¿½Â½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??GUI_APP??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??lv_draw_main.c
 *@Drscription: 
 ***********************************************************************/
 #include "lv_draw_main.h" 
@@ -12,26 +12,30 @@ MY_UI_T my_ui;
 void lv_draw_init(void) {
 
     my_ui.ui_list = UI_NONE;
+    static lv_style_t home_top_gb_style;
+    static lv_style_t home_buttom_gb_style;
+
 
     lv_style_copy(&my_ui.bar_label_style, &lv_style_plain);
     my_ui.bar_label_style.text.color = LV_COLOR_BLACK;
-    my_ui.bar_label_style.text.font = &lv_font_roboto_28;
+    my_ui.bar_label_style.text.font = &lv_font_roboto_16;
 
     my_ui.main_src = lv_scr_act();
     my_ui.home_top_gb_layer = lv_obj_create(my_ui.main_src, NULL);
     lv_obj_set_pos(my_ui.home_top_gb_layer, 0, 0);
     lv_obj_set_size(my_ui.home_top_gb_layer, 800, 80);
-    static lv_style_t home_top_gb_style;
+    
     lv_style_copy(&home_top_gb_style, &lv_style_plain_color);
-
     home_top_gb_style.body.main_color = LV_COLOR_MAKE(0x77, 0x88, 0x99);
     home_top_gb_style.body.grad_color = LV_COLOR_MAKE(0x77, 0x88, 0x99);
     lv_obj_set_style(my_ui.home_top_gb_layer, &home_top_gb_style);
 
+    
+
     my_ui.home_buttom_gb_layer = lv_obj_create(my_ui.main_src, NULL);
     lv_obj_set_pos(my_ui.home_buttom_gb_layer, 0, 80);
     lv_obj_set_size(my_ui.home_buttom_gb_layer, 800, 430);
-    static lv_style_t home_buttom_gb_style;
+    
     lv_style_copy(&home_buttom_gb_style, &lv_style_plain_color);
     home_buttom_gb_style.body.main_color = LV_COLOR_MAKE(0x13, 0x35, 0x55);
     home_buttom_gb_style.body.grad_color = LV_COLOR_MAKE(0x13, 0x35, 0x55);
@@ -39,42 +43,59 @@ void lv_draw_init(void) {
 
     my_ui.bar_label_temp = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_temp,
-                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*1)-10,
+                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*1),
                 UI_LABEL_Y_POS,
-                "Temperature:0C");
+                "T:0C");
     my_ui.bar_label_humi = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_humi,
                 UI_LABEL_X_POS,
                 UI_LABEL_Y_POS,
-                "Humidity:0%");
+                "H:0%");
     my_ui.bar_label_co2 = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_co2,
                 UI_LABEL_X_POS,
                 UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST,
-                "CO2 Content:26%");
+                "CO2:26%");
     my_ui.bar_label_light = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_light,
-                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*1)-10,
+                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*1),
                 UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST,
-                "Light Intensity:0%");
+                "Light:0%");
     my_ui.bar_label_water = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_water,
                 UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*2),
                 UI_LABEL_Y_POS,
-                "Soil Moisture:0%");
+                "Soil:0%");
 
     my_ui.bar_label_soil = lv_label_set(my_ui.home_top_gb_layer,
                 my_ui.bar_label_soil,
                 UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*2),
                 UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST,
-                "Water Remaining:0%");
+                "Water:0%");
+
+    my_ui.bar_label_wifi = lv_label_set(my_ui.home_top_gb_layer,
+                my_ui.bar_label_wifi,
+                UI_LABEL_X_POS+(UI_LABEL_X_OFFEST*3),
+                UI_LABEL_Y_POS,
+                "WIFI:Disconnect");
+
+    my_ui.bar_label_time = lv_label_set(my_ui.home_top_gb_layer,
+                    my_ui.bar_label_time,
+                    UI_LABEL_X_POS,
+                    UI_LABEL_Y_POS+UI_LABEL_Y_OFFEST*2,
+                    "0000-00-00  00:00:00");
+    ; 
+
+    
     
     lv_label_set_style(my_ui.bar_label_temp, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);
     lv_label_set_style(my_ui.bar_label_humi, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
     lv_label_set_style(my_ui.bar_label_co2, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
     lv_label_set_style(my_ui.bar_label_light, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
     lv_label_set_style(my_ui.bar_label_water, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);  
-    lv_label_set_style(my_ui.bar_label_soil, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);    
+    lv_label_set_style(my_ui.bar_label_soil, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);   
+    lv_label_set_style(my_ui.bar_label_wifi, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);   
+    lv_label_set_style(my_ui.bar_label_time, LV_LABEL_STYLE_MAIN, &my_ui.bar_label_style);   
     draw_home();
 }
 
@@ -95,7 +116,6 @@ void lv_draw_home(void) {
 
     my_ui.ui_list = UI_HOME;
 }
-
 
 lv_obj_t* lv_btn_set(lv_obj_t* scr, lv_obj_t* btn, lv_coord_t btn_w, lv_coord_t btn_h, lv_coord_t x, lv_coord_t y, lv_event_cb_t event_cb) {
 
@@ -178,19 +198,34 @@ void lv_label_main_updata(void) {
     // sprintf(str_label_humi, "Humidity:%.2f", my_sensor.humi_value);
     // lv_label_set_text(my_ui.bar_label_humi, str_label_humi);
 
-    sprintf(str_label_temp, "Temperature:28.8");
+    sprintf(str_label_temp, "T:28.8");
     lv_label_set_text(my_ui.bar_label_temp, str_label_temp);
-    sprintf(str_label_humi, "Humidity:71");
+    sprintf(str_label_humi, "H:71");
     lv_label_set_text(my_ui.bar_label_humi, str_label_humi);
 
-    sprintf(str_label_soil, "Soil Moisture:%.2f", my_sensor.soil_value);
+    sprintf(str_label_soil, "Soil:%.2f", my_sensor.soil_value);
     lv_label_set_text(my_ui.bar_label_soil, str_label_soil);
 
-    sprintf(str_label_water, "Water Remaining:%.2f", my_sensor.distance_value);
+    sprintf(str_label_water, "Water:%.2f", my_sensor.distance_value);
     lv_label_set_text(my_ui.bar_label_water, str_label_water);
 
-    sprintf(str_label_light, "Light Intensity:%.1f", my_sensor.lighting_value);
+    sprintf(str_label_light, "Light:%.1f", my_sensor.lighting_value);
     lv_label_set_text(my_ui.bar_label_light, str_label_light);
+
+    sprintf(str_label_light, "Light:%.1f", my_sensor.lighting_value);
+    lv_label_set_text(my_ui.bar_label_light, str_label_light);
+
+    if(my_sensor.wifi_status == true)
+        lv_label_set_text(my_ui.bar_label_wifi, "WIFI:Connect");
+    else 
+        lv_label_set_text(my_ui.bar_label_wifi, "WIFI:Disconnect");
+}
+
+void lv_get_time_dis(uint8_t year,uint8_t mon, uint8_t day, uint8_t hour, uint8_t min, uint8_t sec) {
+
+    char time_data[255];
+    sprintf(time_data, "%d-%d-%d  %d:%d:%d", year, mon, day, hour, min ,sec);
+    lv_label_set_text(my_ui.bar_label_time, time_data);
 }
 
 

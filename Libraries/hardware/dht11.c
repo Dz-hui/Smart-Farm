@@ -4,7 +4,6 @@
 #include "fsl_iomuxc.h"
 #include "core_delay.h"
 #include "stdio.h"
-#include "struct.h"
 
 // DHT11_Data_TypeDef dht11_data;
 

@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-01 19:03:35
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??GUI_APP??¾¶·Ö¸ô???Ìæ??lv_draw_about.h
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??GUI_APP??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??lv_draw_about.h
 *@Drscription: 
 ***********************************************************************/
 #ifndef __lv_draw_about_h
@@ -11,9 +11,6 @@
 
 
 typedef enum {
-
-
-
     ABOUT_LABEL_FW_X_POS = 350,
     ABOUT_LABEL_FW_Y_POS = 120,
 
@@ -30,8 +27,6 @@ typedef enum {
 
     ABOUT_label_back_X_POS = 705,
     ABOUT_label_back_Y_POS = 355,
-    
-
 }ABOUT_LABEL_POS;
 
 
