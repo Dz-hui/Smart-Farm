@@ -13,15 +13,11 @@
 #define ADC_THREAD_PRIO     6
 
 typedef struct {
-
     float soil_value;
     float distance_value;
     float light_value;
- 
-
 }ADC_GET_DEF;
 extern ADC_GET_DEF adc_get;
-
 
 void adc_init(void *parg);
 void adc_thread_init(void);

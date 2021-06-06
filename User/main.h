@@ -19,7 +19,7 @@
 #include "bsp_touch_gtxx.h"
 
 #include "dht11.h"
-#include "mpu6050.h"
+
 
 
 #include "rtboard.h"

@@ -160,18 +160,6 @@ void lpuart_send_16_data(LPUART_Type *base, uint16_t ch)
   while (!(base->STAT & LPUART_STAT_TDRE_MASK));  
 }
 
-
-
-// void LPUART1_IRQHandler(void) {
-
-
-// }
-
-// void LPUART2_IRQHandler(void) {
-
-
-// }
-
 void LPUART3_IRQHandler(void) {
 	uint8_t temp;
 	rt_interrupt_enter();

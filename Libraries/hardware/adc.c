@@ -39,8 +39,6 @@ uint8_t distant_conversion_flg=0;
                               PUS_0_100K_OHM_PULL_DOWN|\
                               HYS_0_HYSTERESIS_DISABLED)
 
-
-
 void hal_adc_gpio_config(void) {
 
     gpio_pin_config_t adc_pin_config;
@@ -97,29 +95,18 @@ uint16_t hal_adc_get(ADC_Type *base, uint32_t channelGroup, uint32_t channelNumb
     return ADC_GetChannelConversionValue(base, channelGroup);
 }
 
+
 float soil_value_get(void) {
 	return (((float)4095-(float)hal_adc_get(ADC_PORT ,SOIL_ADC_CHANNLE_GROUP, SOIL_ADC_CHANNLE))/4095)*100;
 }
 
-// float distance_value_get(void) {
-// 	return -(((((float)hal_adc_get(ADC,DISTANCE_ADC_CHANNLE_GROUP,DISTANCE_ADC_CHANNLE)/(float)4095)*(float)3.3)-(float)2.35)/(float)0.035);
-// }
+float distance_value_get(void) {
+	return -(((((float)hal_adc_get(ADC_PORT,DISTANCE_ADC_CHANNLE_GROUP,DISTANCE_ADC_CHANNLE)/(float)4095)*(float)3.3)-(float)2.35)/(float)0.035);
+}
 
 float light_value_get(void) {
 	return ((float)hal_adc_get(ADC_PORT,LIGHT_ADC_CHANNLE_GROUP,LIGHT_ADC_CHANNLE)/(float)4095*100);
 }
-
-
-
-// uint16_t adc_measure(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumber)
-// {
-// 	adc_channel_config_t adc_channle_config;
-// 	adc_channle_config.channelNumber = channelNumber;
-// 	adc_channle_config.enableInterruptOnConversionCompleted = true;
-// 	ADC_SetChannelConfig(base,channelGroup,&adc_channle_config);
-// 	while(1U == ADC_GetChannelStatusFlags(base,channelGroup));
-//     return ADC_GetChannelConversionValue(base, channelGroup);
-// }
 
 
 

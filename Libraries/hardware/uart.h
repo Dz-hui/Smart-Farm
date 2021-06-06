@@ -10,6 +10,8 @@
 #include "fsl_common.h"
 #include "main.h"
 
+#define LPUART(n)       LPUART ## n
+
 
 #define USB_UART_TX_GPIO       GPIO1
 #define USB_UART_TX_PIN        (12U)
@@ -32,7 +34,6 @@
 
 #define UART5_PORT             LPUART5   
 #define UART5_CLK_FREQ         BOARD_DebugConsoleSrcFreq()
-
 
 #define LPUART1_TX_PIN   
 #define LPUART1_RX_PIN
@@ -97,22 +98,11 @@
 // #define LPUART8_TX_MUX      IOMUXC_GPIO_AD_B0_12_LPUART1_TX
 // #define LPUART8_RX_MUX      IOMUXC_GPIO_AD_B0_13_LPUART1_RX
 
-
-
 bool lpuart_hw_init(LPUART_Type *base, uint32_t baud);
 void lpuart_hw_enable_interrupt(LPUART_Type *base ,uint32_t PriorityGroup, uint32_t PreemptPriority, uint32_t SubPriority);
 void lpuart_sendbyte(LPUART_Type *base, uint8_t data);
 void lpuart_sendstring( LPUART_Type *base,  const char *str);
 void lpuart_send_16_data(LPUART_Type *base, uint16_t ch);
-
-
-
-
-/////不要了 
-void USB_UART_config(void);
-void UART5_config(void);
-void UART_senddata(LPUART_Type *base,uint8_t data);
-void UART_sendstring(LPUART_Type *base,const char *str);
 
 #endif
 

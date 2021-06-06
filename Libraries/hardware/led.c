@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: sola
 *@Date: 2019-11-16 19:58:33
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??led.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Libraries??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??hardware??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??led.c
 *@Drscription: 
 ***********************************************************************/
 
@@ -22,15 +22,7 @@
                                         IOMUXC_SW_PAD_CTL_PAD_PUS(0) | \
                                         IOMUXC_SW_PAD_CTL_PAD_HYS(0))
 
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: sola
-*@Date: 2019-11-17 17:53:18
-*@Drscription: 
-***********************************************************************/
-static void led_gpio_mux_config(void)     //ÉèÖÃGPIO¸´ÓÃ
+static void led_gpio_mux_config(void)     
 {
     //IOMUXC_SetPinMux(IOMUXC_GPIO_AD_B0_09_GPIO1_IO09,0U);  //CORE LED
     
@@ -38,16 +30,8 @@ static void led_gpio_mux_config(void)     //ÉèÖÃGPIO¸´ÓÃ
     //IOMUXC_SetPinMux(LED_G_MUX,0U);
     //IOMUXC_SetPinMux(LED_B_MUX,0U);
 }
-    
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: sola
-*@Date: 2019-11-17 17:53:21
-*@Drscription: 
-***********************************************************************/    
-static void led_gpio_pad_config(void)   //ÉèÖÃGPIO PAD
+        
+static void led_gpio_pad_config(void)   //ï¿½ï¿½ï¿½ï¿½GPIO PAD
 {
     //IOMUXC_SetPinConfig(IOMUXC_GPIO_AD_B0_09_GPIO1_IO09,
 //                        LED_PAD_CONFIG_DATA);
@@ -57,14 +41,6 @@ static void led_gpio_pad_config(void)   //ÉèÖÃGPIO PAD
     //IOMUXC_SetPinConfig(LED_B_MUX,LED_PAD_CONFIG_DATA);
 }
 
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: sola
-*@Date: 2019-11-17 17:53:25
-*@Drscription: 
-***********************************************************************/
 static void led_gpio_mode_config()
 {
     gpio_pin_config_t led_config;
@@ -80,14 +56,6 @@ static void led_gpio_mode_config()
     //GPIO_PinInit(LED_B_PORT, LED_B_PIN,&led_config);
 }
 
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: sola
-*@Date: 2019-11-17 17:53:27
-*@Drscription: 
-***********************************************************************/
 void led_init(void)
 {
     led_gpio_mux_config();
@@ -96,44 +64,27 @@ void led_init(void)
     led_off(LED_R_PIN);
 }
 
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: sola
-*@Date: 2019-11-17 17:53:30
-*@Drscription: 
-***********************************************************************/
 void led_on(uint32_t LED_X_PIN)
 {
     GPIO_PinWrite(LED_R_PORT,LED_X_PIN,0U);
 }
 
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: sola
-*@Date: 2019-11-17 17:53:35
-*@Drscription: 
-***********************************************************************/
 void led_off(uint32_t LED_X_PIN)
 {
     GPIO_PinWrite(LED_R_PORT,LED_X_PIN,1U);
 }
 
-/***********************************************************************
-*@Date: 2020-05-22 14:03:29
-*@Function: 
-*@Input: 
-*@Return: 
-*@Drscription: 
-***********************************************************************/
+
 void led_toggle(uint32_t LED_X_PIN)
 {
     GPIO_PinWrite(LED_R_PORT,LED_X_PIN,
                  (1 - GPIO_PinRead(LED_R_PORT, 
                                    LED_X_PIN)));
+}
+
+void hal_led_gpio_init(void) {
+
+
 }
 
 

@@ -37,7 +37,7 @@ void bh1750_init(void *parg) {
 			my_sensor.lighting_value = lighting_value;
 		}
 		else {
-			// 不更新你的值
+			
 		}
 		rt_thread_mdelay(1000);
 	}

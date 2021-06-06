@@ -23,7 +23,6 @@ static void PUMP_IOMUXC_MUX_Config(void)
   IOMUXC_SetPinMux(PUMP_IOMUXC, 0U); 
 }
 
-
 static void PUMP_IOMUXC_PAD_Config(void)
 {
   IOMUXC_SetPinConfig(PUMP_IOMUXC, PUMP_PAD_CONFIG_DATA); 

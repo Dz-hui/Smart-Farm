@@ -205,7 +205,6 @@ static void ctrl_bar_cb(lv_obj_t* slider, lv_event_t event)
         sprintf(led_dis_str, "lighting:%d", my_ctrl.led_value);
         lv_label_set_text(control_obj.control_label_led_val, led_dis_str);
         led_pwm(my_ctrl.led_value);      
-
     }
 }
 

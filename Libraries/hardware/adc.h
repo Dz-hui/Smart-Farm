@@ -39,11 +39,6 @@
 #define LIGHT_ADC_CHANNLE_GROUP                      	(0U)
 #define LIGHT_ADC_CHANNLE                            	(3U)
 
-
-
-
-
-
 void hal_adc_gpio_config(void);
 void hal_adc_config(void);
 uint16_t hal_adc_get(ADC_Type *base, uint32_t channelGroup, uint32_t channelNumber);

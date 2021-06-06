@@ -25,6 +25,10 @@
         "pin_mux.h": "c",
         "bsp_touch_gtxx.h": "c",
         "stdint.h": "c",
-        "dht11.h": "c"
+        "dht11.h": "c",
+        "serial_port.h": "c",
+        "fsl_iomuxc.h": "c",
+        "parser.h": "c",
+        "spi.h": "c"
     }
 }

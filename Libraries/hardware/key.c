@@ -36,9 +36,9 @@ void key_it_config(void)
     
     CLOCK_EnableClock(kCLOCK_IomuxcSnvs);     //?????
     
-    EnableIRQ(GPIO5_Combined_0_15_IRQn);      //????§Ø???????
+    EnableIRQ(GPIO5_Combined_0_15_IRQn);      //????ï¿½ï¿½???????
     
-    GPIO_PortEnableInterrupts(K1_PORT,1U << K1_PIN);    //??????§Ø?
+    GPIO_PortEnableInterrupts(K1_PORT,1U << K1_PIN);    //??????ï¿½ï¿½?
 }
 
 /***********************************************************************
@@ -97,51 +97,5 @@ uint8_t key_scanf(void)
     return 0;
 }
 
-lcd_key_t lcd_key1;
-
-bool lcd_key_creat(void)
-{
-    lcd_key1.key_high = 50;
-    lcd_key1.key_start_x_point = 100; 
-    lcd_key1.key_start_y_point = 200;
-    lcd_key1.key_weigth = 80;
-    
-    LCD_DrawRect(lcd_key1.key_start_x_point, 
-                 lcd_key1.key_start_y_point,
-                 lcd_key1.key_weigth,
-                 lcd_key1.key_high);
-    
-    return true;
-}
-
-bool lcd_key_scanf(void)
-{
-    if(x_point>100 && x_point <150)
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
-
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: sola
-*@Date: 2019-11-17 17:52:52
-*@Drscription: 
-***********************************************************************/
-/*
-void GPIO5_Combined_0_15_IRQHandler(void)
-{
-    GPIO_PortClearInterruptFlags(K1_PORT,1U << K1_PIN); //????§Ø?????
-    
-    led_toggle(LED_B_PIN);
-
-}
-*/
 
 

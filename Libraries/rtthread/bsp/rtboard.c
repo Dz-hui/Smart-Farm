@@ -28,23 +28,9 @@ extern void SystemCoreClockUpdate(void);
 // core clock.
 extern uint32_t SystemCoreClock;
 
-//static uint32_t _SysTick_Config(rt_uint32_t ticks)
-//{
-//    if ((ticks - 1) > 0xFFFFFF)
-//    {
-//        return 1;
-//    }
-//    
-//    _SYSTICK_LOAD = ticks - 1; 
-//    _SYSTICK_PRI = 0xFF;
-//    _SYSTICK_VAL  = 0;
-//    _SYSTICK_CTRL = 0x07;  
-//    
-//    return 0;
-//}
 
 #if defined(RT_USING_USER_MAIN) && defined(RT_USING_HEAP)
-#define RT_HEAP_SIZE 50*1024
+#define RT_HEAP_SIZE 50 * 1024
 static uint32_t rt_heap[RT_HEAP_SIZE];     // heap default size: 4K(1024 * 4)
 RT_WEAK void *rt_heap_begin_get(void)
 {
@@ -74,22 +60,11 @@ void rt_hw_board_init()
 #if defined(USE_DHT11)
 	dht11_config();
 #endif
-
     hal_adc_init();
 	LPI2C_config();
 	PUMP_GPIO_Config();
 	QTMR_PWM_config();
     STEP_GPIO_Config();
-
-
-    // Pit_init(kPIT_Chnl_0,1000);  //1ms
-    // Pit_init(kPIT_Chnl_1,10000);  //10ms
-    // Pit_init(kPIT_Chnl_2,500000);  //100ms
-	//BS_LCD_Init(LCD_INTERRUPT_ENABLE);
-    /* System Tick Configuration */
-    //_SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
-
-    /* Call components board initial (use INIT_BOARD_EXPORT()) */
 #ifdef RT_USING_COMPONENTS_INIT
     rt_components_board_init();
 #endif

@@ -87,7 +87,6 @@ void step_move(uint8_t ch1,uint8_t ch2,uint8_t ch3,uint8_t ch4) {
 }
 
 
-/**��ʱ��ת��**/
 void curtain_down(void)
 {
 	switch(user_step.motor_num)

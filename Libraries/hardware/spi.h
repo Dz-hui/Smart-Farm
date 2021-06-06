@@ -20,8 +20,6 @@
 #define QSPI_SCK_MUX    IOMUXC_GPIO_SD_B1_07_FLEXSPIA_SCLK
 #define QSPI_CE_MUX     IOMUXC_GPIO_SD_B1_06_FLEXSPIA_SS0_B
 
-
-
 /* FLASH常用命令 */
 #define W25Q_WriteEnable                0x06
 #define W25Q_WriteDisable               0x04

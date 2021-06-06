@@ -339,7 +339,7 @@
               <MiscControls>--library_interface=armcc --library_type=standardlib --diag_suppress=66,1296,186,68,111,550</MiscControls>
               <Define>CPU_MIMXRT1052DVL6B,XIP_EXTERNAL_FLASH=1, XIP_BOOT_HEADER_ENABLE=1,XIP_BOOT_HEADER_DCD_ENABLE =1,PRINTF_FLOAT_ENABLE=1,SCANF_FLOAT_ENABLE=1, PRINTF_ADVANCED_ENABLE=1, SCANF_ADVANCED_ENABLE=1,__CC_ARM,ARM_MATH_CM7,__FPU_PRESENT=1</Define>
               <Undefine></Undefine>
-              <IncludePath>..\..\Libraries\CMSIS\Include;..\..\Libraries\drivers;..\..\Libraries\utilities;..\..\Libraries\utilities\io;..\..\Libraries\utilities\log;..\..\Libraries\utilities\str;..\..\User\xip;..\..\User\bsp;..\..\User;..\..\Libraries\hardware;..\..\Libraries\hardware\lcd;..\..\Libraries\hardware\font;..\..\Libraries\hardware\touch;..\..\Libraries\emWin\Config;..\..\Libraries\emWin\demo;..\..\Libraries\emWin\inc;..\..\Libraries\emWin\Include;..\..\Libraries\rtthread\bsp;..\..\Libraries\rtthread\components\finsh;..\..\Libraries\rtthread\include;..\..\Libraries\rtthread\include\libc;..\..\Libraries\rtthread\app;..\..\Libraries\hardware\Gizwits;..\..\Libraries\hardware\Utils;..\..\GUI;..\..\GUI\lvgl;..\..\GUI\lvgl_driver;..\..\GUI_APP;..\..\GUI\lv_examples\lv_apps\demo;..\..\GUI\lv_examples\lv_tests\lv_test_theme;..\..\GUI\lv_examples</IncludePath>
+              <IncludePath>..\..\Libraries\CMSIS\Include;..\..\Libraries\drivers;..\..\Libraries\utilities;..\..\Libraries\utilities\io;..\..\Libraries\utilities\log;..\..\Libraries\utilities\str;..\..\User\xip;..\..\User\bsp;..\..\User;..\..\Libraries\hardware;..\..\Libraries\hardware\lcd;..\..\Libraries\hardware\font;..\..\Libraries\hardware\touch;..\..\Libraries\emWin\Config;..\..\Libraries\emWin\demo;..\..\Libraries\emWin\inc;..\..\Libraries\emWin\Include;..\..\Libraries\rtthread\bsp;..\..\Libraries\rtthread\components\finsh;..\..\Libraries\rtthread\include;..\..\Libraries\rtthread\include\libc;..\..\Libraries\rtthread\app;..\..\Libraries\hardware\Gizwits;..\..\Libraries\hardware\Utils;..\..\GUI;..\..\GUI\lvgl;..\..\GUI\lvgl_driver;..\..\GUI_APP;..\..\GUI\lv_examples\lv_apps\demo;..\..\GUI\lv_examples\lv_tests\lv_test_theme;..\..\GUI\lv_examples;..\..\HAL</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -595,11 +595,6 @@
               <FilePath>..\..\Libraries\hardware\dht11.c</FilePath>
             </File>
             <File>
-              <FileName>mpu6050.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Libraries\hardware\mpu6050.c</FilePath>
-            </File>
-            <File>
               <FileName>bsp_i2c_touch.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Libraries\hardware\touch\bsp_i2c_touch.c</FilePath>
@@ -658,6 +653,16 @@
               <FileName>step.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Libraries\hardware\step.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>HAL</GroupName>
+          <Files>
+            <File>
+              <FileName>parser.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\HAL\parser.c</FilePath>
             </File>
           </Files>
         </Group>

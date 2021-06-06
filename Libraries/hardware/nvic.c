@@ -20,7 +20,7 @@
 ***********************************************************************/
 void Set_NVIC_PriorityGroup(PriorityGroup_Type PriorityGroup) 
 {
-  NVIC_SetPriorityGrouping((uint32_t)PriorityGroup); //ÉèÖÃÖĞ¶ÏÓÅÏÈ¼¶·Ö×é
+  NVIC_SetPriorityGrouping((uint32_t)PriorityGroup); //è®¾ç½®ä¸­æ–­ä¼˜å…ˆçº§åˆ†ç»„
 }
 
 /***********************************************************************
@@ -33,12 +33,12 @@ void Set_NVIC_PriorityGroup(PriorityGroup_Type PriorityGroup)
 ***********************************************************************/
 void Set_IRQn_Priority(IRQn_Type IRQn,PreemptPriority_Type PreemptPriority, SubPriority_Type SubPriorit)
 {
-    uint32_t PriorityGroup = 0;   //±£´æÖĞ¶ÏÓÅÏÈ¼¶·Ö×é
-    uint32_t Priority_Encode = 0; //±£´æÖĞ¶ÏÓÅÏÈ¼¶±àÂë
-    PriorityGroup = NVIC_GetPriorityGrouping();//»ñµÃµ±Ç°ÖĞ¶ÏÓÅÏÈ¼¶·Ö×é
-    Priority_Encode = NVIC_EncodePriority (PriorityGroup,(uint32_t)PreemptPriority,(uint32_t)SubPriorit);//µÃµ½ÖĞ¶ÏÓÅÏÈ¼¶±àÂë
+    uint32_t PriorityGroup = 0;   //ä¿å­˜ä¸­æ–­ä¼˜å…ˆçº§åˆ†ç»„
+    uint32_t Priority_Encode = 0; //ä¿å­˜ä¸­æ–­ä¼˜å…ˆçº§ç¼–ç 
+    PriorityGroup = NVIC_GetPriorityGrouping();//è·å¾—å½“å‰ä¸­æ–­ä¼˜å…ˆçº§åˆ†ç»„
+    Priority_Encode = NVIC_EncodePriority (PriorityGroup,(uint32_t)PreemptPriority,(uint32_t)SubPriorit);//å¾—åˆ°ä¸­æ–­ä¼˜å…ˆçº§ç¼–ç 
   
-    NVIC_SetPriority(IRQn, Priority_Encode);//ÉèÖÃÖĞ¶Ï±àºÅµÄÖĞ¶ÏÓÅÏÈ¼¶
+    NVIC_SetPriority(IRQn, Priority_Encode);//è®¾ç½®ä¸­æ–­ç¼–å·çš„ä¸­æ–­ä¼˜å…ˆçº§
 }
 
 

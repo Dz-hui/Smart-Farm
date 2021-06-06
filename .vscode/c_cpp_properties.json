@@ -9,13 +9,23 @@
             "defines": [
                 "_DEBUG",
                 "UNICODE",
-                "_UNICODE"
+                "_UNICODE",
+                "CPU_MIMXRT1052DVL6B",
+                "XIP_EXTERNAL_FLASH=1",
+                "XIP_BOOT_HEADER_ENABLE=1",
+                "XIP_BOOT_HEADER_DCD_ENABLE =1",
+                "PRINTF_FLOAT_ENABLE=1",
+                "SCANF_FLOAT_ENABLE=1",
+                "PRINTF_ADVANCED_ENABLE=1",
+                "SCANF_ADVANCED_ENABLE=1",
+                "__CC_ARM,ARM_MATH_CM7",
+                "__FPU_PRESENT=1"
             ],
             "windowsSdkVersion": "10.0.19041.0",
             "compilerPath": "d:/Program Files (x86)/Microsoft Visual Studio/2019/Community/VC/Tools/MSVC/14.28.29910/bin/Hostx64/x64/cl.exe",
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "intelliSenseMode": "msvc-arm"
+            "intelliSenseMode": "msvc-x64"
         }
     ],
     "version": 4

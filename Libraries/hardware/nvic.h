@@ -9,7 +9,7 @@
 
 #include "fsl_common.h"
 
-/*¶¨ÒåÖĞ¶ÏÓÅÏÈ¼¶·Ö×é */
+/*å®šä¹‰ä¸­æ–­ä¼˜å…ˆçº§åˆ†ç»„ */
 typedef enum PriorityGroup{
   Group_4 = 4,
   Group_5,
@@ -17,7 +17,7 @@ typedef enum PriorityGroup{
   Group_7,
 }PriorityGroup_Type;
 
-/*¶¨ÒåÇÀÕ¼ÓÅÏÈ¼¶*/
+/*å®šä¹‰æŠ¢å ä¼˜å…ˆçº§*/
 typedef enum PreemptPriority {
   Group4_PreemptPriority_0 = 0,
   Group4_PreemptPriority_2,
@@ -38,7 +38,7 @@ typedef enum PreemptPriority {
   Group7_PreemptPriority_0 = 0
 }PreemptPriority_Type;
 
-/*¶¨Òå×ÓÓÅÏÈ¼¶*/
+/*å®šä¹‰å­ä¼˜å…ˆçº§*/
 typedef enum SubPriority {
   Group4_SubPriority_0 = 0,
   Group4_SubPriority_1,
