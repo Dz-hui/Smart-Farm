@@ -1,19 +1,20 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-03-21 01:08:14
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??ÐÂ½¨ÎÄ¼þ¼Ð??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??adc.h
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??ï¿½Â½ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Libraries??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??hardware??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??adc.h
 *@Drscription: 
 ***********************************************************************/
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2020-09-16 16:33:06
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??Libraries??¾¶·Ö¸ô???Ìæ??hardware??¾¶·Ö¸ô???Ìæ??adc.h
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Libraries??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??hardware??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??adc.h
 *@Drscription: 
 ***********************************************************************/
 #ifndef   __ADC_SOIL__H
 #define   __ADC_SOIL__H
 
 #include "fsl_common.h"
+// #include "main.h"
 
 #define DISTANCE_GPIO_PIN   						(26U)
 #define DISTANCE_GPIO_PORT  						GPIO1
@@ -27,63 +28,30 @@
 #define LIGHT_GPIO_PORT                          	GPIO1
 #define LIGHT_GPIO_IOMUXC                       	IOMUXC_GPIO_AD_B0_14_GPIO1_IO14// IOMUXC_GPIO_AD_B0_11_GPIO1_IO11   //GPIO_AD_B1_11
 
-// #define DISTANCE_GPIO1_GPIO_PORT                    GPIO1
-// #define DISTANCE_GPIO1_GPIO_PIN                     (02U)
-// #define DISTANCE_GPIO1_IOMUXC                       IOMUXC_GPIO_AD_B0_02_GPIO1_IO02 
+#define ADC_PORT								ADC1
 
-// #define DISTANCE_VIN_GPIO_PORT                      GPIO1
-// #define DISTANCE_VIN_GPIO_PIN                       (20U)
-// #define DISTANCE_VIN_IOMUXC                         IOMUXC_GPIO_AD_B1_04_GPIO1_IO20//IOMUXC_GPIO_AD_B0_03_GPIO1_IO03 //GPIO_AD_B1_04
+#define DISTANCE_ADC_CHANNLE_GROUP               	(0U)
+#define DISTANCE_ADC_CHANNLE                     	(15U)
 
-#define ADC                                         ADC1
+#define SOIL_ADC_CHANNLE_GROUP                      	(0U)
+#define SOIL_ADC_CHANNLE                            	(0U)
 
-// #define DISTANCE_ADC_CHANNLE_GROUP                  (0U)
-// #define DISTANCE_ADC_CHANNLE                        (15U)
-
-#define SOIL_ADC_CHANNLE_GROUP                      (0U)
-#define SOIL_ADC_CHANNLE                            (0U)
-
-#define LIGHT_ADC_CHANNLE_GROUP                      (0U)
-#define LIGHT_ADC_CHANNLE                            (3U)
+#define LIGHT_ADC_CHANNLE_GROUP                      	(0U)
+#define LIGHT_ADC_CHANNLE                            	(3U)
 
 
-typedef float MEASURE_F;
-#define ADC_MEASURE_QUEUE_BUFF_SIZE		10
 
 
-typedef enum {
-	IDLE,			// ¿ÕÏÐ×´Ì¬£¬¿ÉÒÔ²É¼¯½ÓÊÕbuffer
-	IN_CALC,		// ÕýÔÚµÈ´ý¼ÆËã£¬²»ÄÜÌî³äBUFF
-	RE_CALC,		// ¼ÆËãÍê³É£¬Çå¿ÕBUFFÖÐ
-}MEASURE_STATUS_DEF;
-
-typedef enum {
-	soil,
-	distance,
-}MEASURE_NUM;
 
 
-typedef struct {
-	MEASURE_F 				adc_measure_value;
-	MEASURE_F 				adc_measure_queue_buffer[ADC_MEASURE_QUEUE_BUFF_SIZE];
-	uint32_t 			    adc_measure_buff_length;
-	MEASURE_STATUS_DEF		adc_measure_status;
-}MEASURE_DATA_DEF;
+void hal_adc_gpio_config(void);
+void hal_adc_config(void);
+uint16_t hal_adc_get(ADC_Type *base, uint32_t channelGroup, uint32_t channelNumber);
+void hal_adc_init(void);
 
-extern MEASURE_DATA_DEF soil_data;
-extern MEASURE_DATA_DEF distance_data;
-
-void adc_mode_config(void);
-void adc_config(void);
-uint16_t adc_measure(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumber);
-
-MEASURE_F data_adc_get(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumber,MEASURE_DATA_DEF *sd,MEASURE_NUM adc_measure_num);
-void adc_measure_write_byte(MEASURE_DATA_DEF *sd, MEASURE_F data);
-void adc_measure_read_buffer(MEASURE_DATA_DEF *sd, MEASURE_F *data);
-MEASURE_F adc_measure_calc(MEASURE_DATA_DEF *sd, MEASURE_F *data);
-
-float GP2Y0E03_DateRead(void);
-
+float soil_value_get(void);
+uint16_t soil_value_get_int(void);
+float light_value_get(void);
 
 
 #endif /*__ADC_SOIL__H*/

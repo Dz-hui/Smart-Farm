@@ -75,11 +75,8 @@ void rt_hw_board_init()
 	dht11_config();
 #endif
 
-
+    hal_adc_init();
 	LPI2C_config();
-	
-	adc_config();
-    //I2C_Init();
 	PUMP_GPIO_Config();
 	QTMR_PWM_config();
     STEP_GPIO_Config();

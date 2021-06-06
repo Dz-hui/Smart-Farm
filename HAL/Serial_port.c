@@ -2,9 +2,6 @@
 
 SERIAL_RING_BUF_DEF serial_ring_buff;
 
-
-
-// #if defined(HAS_USER_Serial)
 #if 1
 void serial_port_init(uint32_t baoud) {
 

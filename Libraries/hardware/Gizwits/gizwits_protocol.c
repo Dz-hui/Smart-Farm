@@ -7,9 +7,9 @@
 * @version      V03030000
 * @copyright    Gizwits
 * 
-* @note         机智�?.�?为智能硬件而生
+* @note         机智�?.�?为智能硬件而生
 *               Gizwits Smart Cloud  for Smart Products
-*               链接|增值ֵ|开放|�?立|安全|�?有|�?由|生�?
+*               链接|增值ֵ|开放|�?立|安全|�?有|�?由|生�?
 *               www.gizwits.com
 *
 ***********************************************************/
@@ -64,7 +64,7 @@ int32_t gizPutData(uint8_t *buf, uint32_t len)
 *
 * @param [out] head         : Protocol header pointer
 *
-* @return 0�? success; other�? failure    
+* @return 0�? success; other�? failure    
 */
 static int8_t gizProtocolHeadInit(protocolHead_t *head)
 {
@@ -87,7 +87,7 @@ static int8_t gizProtocolHeadInit(protocolHead_t *head)
 * @param [in] data            : data adress
 * @param [in] len             : data length
 *
-* @return 0�? suceess; other�? failure
+* @return 0�? suceess; other�? failure
 */
 static int8_t gizProtocolWaitAck(uint8_t *gizdata, uint32_t len)
 {
@@ -654,7 +654,7 @@ static void gizProtocolResendData(void)
 *
 * @param [in] head : Protocol header address
 *
-* @return 0�? success; other�? failure
+* @return 0�? success; other�? failure
 */
 static int8_t gizProtocolWaitAckCheck(protocolHead_t *head)
 {
@@ -783,7 +783,7 @@ static int32_t gizProtocolGetDeviceInfo(protocolHead_t * head)
 
 * @param[in] head  : Protocol header address
 * @param[in] errno : Illegal message notification type
-* @return 0�? success; other�? failure
+* @return 0�? success; other�? failure
 */
 static int32_t gizProtocolErrorCmd(protocolHead_t *head,errorPacketsType_t errno)
 {
@@ -817,7 +817,7 @@ static int32_t gizProtocolErrorCmd(protocolHead_t *head,errorPacketsType_t errno
 *
 * @param [in] head : Protocol header address
 *
-* @return 0�? success; other�? failure
+* @return 0�? success; other�? failure
 */
 static int8_t gizProtocolNTP(protocolHead_t *head)
 {  
@@ -1048,7 +1048,7 @@ void gizwitsInit(void)
 
 * Set the WiFi module into the corresponding configuration mode or reset the module
 
-* @param[in] mode �?0x0�? reset the module ;0x01�? SoftAp mode ;0x02�? AirLink mode ;0x03�? Production test mode; 0x04:allow users to bind devices
+* @param[in] mode �?0x0�? reset the module ;0x01�? SoftAp mode ;0x02�? AirLink mode ;0x03�? Production test mode; 0x04:allow users to bind devices
 
 * @return Error command code
 */
@@ -1214,7 +1214,7 @@ void gizwitsGetModuleInfo(void)
 *
 * @param [in] head : 
 *
-* @return 0, Success�? , other,Faild
+* @return 0, Success�? , other,Faild
 */
 static int8_t gizProtocolModuleInfoHandle(protocolHead_t *head)
 {

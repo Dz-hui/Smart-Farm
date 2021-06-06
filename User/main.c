@@ -23,7 +23,6 @@ int main(void)
     ctrl_thread_init();
 }
 
-
 void Print_Log(void)
 {
     DEBUG_PRINT("\r\n");

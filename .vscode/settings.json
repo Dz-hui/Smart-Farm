@@ -20,6 +20,11 @@
         "bsp_lcd.h": "c",
         "led.h": "c",
         "key.h": "c",
-        "struct.h": "c"
+        "struct.h": "c",
+        "systick.h": "c",
+        "pin_mux.h": "c",
+        "bsp_touch_gtxx.h": "c",
+        "stdint.h": "c",
+        "dht11.h": "c"
     }
 }

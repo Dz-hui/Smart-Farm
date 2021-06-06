@@ -332,7 +332,7 @@ void draw_ctrl(void)
    lv_label_set_style(control_obj.control_label_back, LV_LABEL_STYLE_MAIN, &control_obj.control_label_style);           
 
     my_ui.ui_list = UI_CONTROL;
-}
+}                                                                                                                                                                                                                                                                                                                               
 
 
 static void event_popup_draw(CTRL_EVENT event) {

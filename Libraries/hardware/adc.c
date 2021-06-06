@@ -18,16 +18,14 @@
 #include "stdio.h"
 #include "core_delay.h"
 #include "fsl_common.h"
+#include "main.h"
 
 float soil_val;    
-//float soil;
 float distant_val;
 float distance_val;
 uint8_t soil_conversion_flg=0;
 uint8_t distant_conversion_flg=0;
 
-
-MEASURE_DATA_DEF soil_data;
 
 /***********************************************************************
 *@Drscription: SOIL_PAD_CONFIG
@@ -41,101 +39,87 @@ MEASURE_DATA_DEF soil_data;
                               PUS_0_100K_OHM_PULL_DOWN|\
                               HYS_0_HYSTERESIS_DISABLED)
 
-                
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: Dz_hui
-*@Date: 2020-09-16 16:47:11
-*@Drscription: 
-***********************************************************************/
-void adc_iomuxc_mux_config(void)
-{
-    /*��ʼ��ADC��ص�IOMUXC��MUX��������*/
-    IOMUXC_SetPinMux(SOIL_GPIO_IOMUXC,0U);
-    IOMUXC_SetPinMux(LIGHT_GPIO_IOMUXC,0U);
-    
-    IOMUXC_SetPinMux(DISTANCE_GPIO_IOMUXC,0U);
-    // IOMUXC_SetPinMux(DISTANCE_GPIO1_IOMUXC,0U);
-    // IOMUXC_SetPinMux(DISTANCE_VIN_IOMUXC,0U);
-}
 
-void adc_iomuxc_pad_config(void)
-{
-    /*��ʼ��ADC�ⲿ�������ŵ�PAD����*/
-    IOMUXC_SetPinConfig(SOIL_GPIO_IOMUXC,ADC_PAD_SETTING);
-    IOMUXC_SetPinConfig(LIGHT_GPIO_IOMUXC,ADC_PAD_SETTING);
 
-//     IOMUXC_SetPinConfig(DISTANCE_GPIO_IOMUXC,ADC_PAD_SETTING);
-//     IOMUXC_SetPinConfig(DISTANCE_GPIO1_IOMUXC,ADC_PAD_SETTING);
-//     IOMUXC_SetPinConfig(DISTANCE_VIN_IOMUXC,ADC_PAD_SETTING);
-}
+void hal_adc_gpio_config(void) {
 
-void adc_gpio_config(void)
-{
     gpio_pin_config_t adc_pin_config;
     adc_pin_config.direction = kGPIO_DigitalInput;
-	adc_pin_config.interruptMode = kGPIO_NoIntmode; //��ʹ���ж�
+	adc_pin_config.interruptMode = kGPIO_NoIntmode; 
 
-	GPIO_PinInit(SOIL_GPIO_PORT, SOIL_GPIO_PIN,&adc_pin_config);
-    GPIO_PinInit(LIGHT_GPIO_PORT,LIGHT_GPIO_PIN,&adc_pin_config);
-    // GPIO_PinInit(DISTANCE_GPIO_PORT,DISTANCE_GPIO_PIN,&adc_pin_config);
-    
-    // adc_pin_config.direction = kGPIO_DigitalOutput;
-	// adc_pin_config.interruptMode = kGPIO_NoIntmode;
-	// adc_pin_config.outputLogic = 0;
-	// GPIO_PinInit(DISTANCE_VIN_GPIO_PORT,DISTANCE_VIN_GPIO_PIN,&adc_pin_config);
-    // GPIO_PinInit(DISTANCE_GPIO1_GPIO_PORT,DISTANCE_GPIO1_GPIO_PIN,&adc_pin_config);  
+#if defined(USE_SOIL_ADC)
+    GPIO_PinInit(SOIL_GPIO_PORT, SOIL_GPIO_PIN, &adc_pin_config);
+    IOMUXC_SetPinMux(SOIL_GPIO_IOMUXC,0U);
+    IOMUXC_SetPinConfig(SOIL_GPIO_IOMUXC, ADC_PAD_SETTING);
+#endif
+
+#if defined(USE_LIGHT_ADC) 
+    GPIO_PinInit(LIGHT_GPIO_PORT, LIGHT_GPIO_PIN, &adc_pin_config);
+    IOMUXC_SetPinMux(LIGHT_GPIO_IOMUXC, 0U);
+    IOMUXC_SetPinConfig(LIGHT_GPIO_IOMUXC, ADC_PAD_SETTING);
+#endif
+
+#if defined(USE_DISTANCE_ADC) 
+    GPIO_PinInit(DISTANCE_GPIO_PORT, DISTANCE_GPIO_PIN, &adc_pin_config);
+    IOMUXC_SetPinMux(DISTANCE_GPIO_IOMUXC, 0U);
+    IOMUXC_SetPinConfig(DISTANCE_GPIO_IOMUXC, ADC_PAD_SETTING);
+#endif
 }
 
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: Dz_hui
-*@Date: 2020-09-16 17:04:32
-*@Drscription: 
-***********************************************************************/
-void adc_config(void)
-{
+void hal_adc_config(void) {
     adc_config_t adc_config;
 
-    adc_gpio_config();
-    adc_iomuxc_mux_config();
-    adc_iomuxc_pad_config();
-    
-    //CPU_TS_Tmr_Delay_US(5000);
-    // GPIO_WritePinOutput(DISTANCE_VIN_GPIO_PORT,DISTANCE_VIN_GPIO_PIN,1);
-    //CPU_TS_Tmr_Delay_US(5000);
-    // GPIO_WritePinOutput(DISTANCE_GPIO1_GPIO_PORT,DISTANCE_GPIO1_GPIO_PIN,1);
-
+    // adc use 12bit
     ADC_GetDefaultConfig(&adc_config);
-    ADC_Init(ADC,&adc_config);
-    if( kStatus_Success == ADC_DoAutoCalibration(ADC) )
-        printf("Check Succeed\n");
-    else 
-        printf("Check Error\n");
-    
+    ADC_Init(ADC_PORT, &adc_config);
+    if(kStatus_Success == ADC_DoAutoCalibration(ADC_PORT)) {
+        DEBUG_PRINT("Check Succeed\n");
+    }
+    else {
+        DEBUG_PRINT("Check Error\n");
+    }
 }
 
-/***********************************************************************
-*@Function: 
-*@Input: 
-*@Return: none
-*@Author: Dz_hui
-*@Date: 2020-09-16 17:04:32
-*@Drscription: 
-***********************************************************************/
-uint16_t adc_measure(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumber)
-{
-	adc_channel_config_t adc_channle_config;
+void hal_adc_init(void) {
+
+    hal_adc_gpio_config();
+    hal_adc_config();
+}
+
+uint16_t hal_adc_get(ADC_Type *base, uint32_t channelGroup, uint32_t channelNumber) {
+    adc_channel_config_t adc_channle_config;
 	adc_channle_config.channelNumber = channelNumber;
 	adc_channle_config.enableInterruptOnConversionCompleted = true;
 	ADC_SetChannelConfig(base,channelGroup,&adc_channle_config);
-	while(1U == ADC_GetChannelStatusFlags(base,channelGroup));
+	while(1U == ADC_GetChannelStatusFlags(base,channelGroup)) {
+        // need add time count ;
+    }
     return ADC_GetChannelConversionValue(base, channelGroup);
 }
+
+float soil_value_get(void) {
+	return (((float)4095-(float)hal_adc_get(ADC_PORT ,SOIL_ADC_CHANNLE_GROUP, SOIL_ADC_CHANNLE))/4095)*100;
+}
+
+// float distance_value_get(void) {
+// 	return -(((((float)hal_adc_get(ADC,DISTANCE_ADC_CHANNLE_GROUP,DISTANCE_ADC_CHANNLE)/(float)4095)*(float)3.3)-(float)2.35)/(float)0.035);
+// }
+
+float light_value_get(void) {
+	return ((float)hal_adc_get(ADC_PORT,LIGHT_ADC_CHANNLE_GROUP,LIGHT_ADC_CHANNLE)/(float)4095*100);
+}
+
+
+
+// uint16_t adc_measure(ADC_Type *base, uint32_t channelGroup,uint32_t channelNumber)
+// {
+// 	adc_channel_config_t adc_channle_config;
+// 	adc_channle_config.channelNumber = channelNumber;
+// 	adc_channle_config.enableInterruptOnConversionCompleted = true;
+// 	ADC_SetChannelConfig(base,channelGroup,&adc_channle_config);
+// 	while(1U == ADC_GetChannelStatusFlags(base,channelGroup));
+//     return ADC_GetChannelConversionValue(base, channelGroup);
+// }
 
 
 

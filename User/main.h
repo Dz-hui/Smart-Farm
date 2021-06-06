@@ -50,8 +50,6 @@
 #include "rt_task_gizwit.h"
 #include "rt_task_key.h"
 
-
-
 #define SUCCESS							    1
 #define ERROR					    	    0
 
@@ -121,23 +119,61 @@
 */
 #define USE_SOIL
 #if defined(USE_SOIL)
-
     /* use adc to collect data */
     #define USE_SOIL_ADC
     #if defined(USE_SOIL_ADC)
+        /* defien sensor channel (is not ment adc channel)*/
+        #define USE_SOIL_CH0
+        // #define USE_SOIL_CH1
+        // #define USR_SOIL_CH2
+        // #define USE_SOIL_CH3
+        // #define USE_SOIL_CH4
+        // #define USR_SOIL_CH5
+        // #define USE_SOIL_CH6
+        // #define USR_SOIL_CH7
+    #endif
+#endif
 
+/*
+ * user Light collect
+*/
+#define USE_LIGHT_C
+#if defined(USE_LIGHT_C) 
+
+    #define USE_LIGHT_ADC
+    #if defined(USE_LIGHT_ADC)
+        // #define USE_LIGHT_CH0
+        #define USE_LIGHT_CH1
+        // #define USR_LIGHT_CH2
+        // #define USE_LIGHT_CH3
+        // #define USE_LIGHT_CH4
+        // #define USR_LIGHT_CH5
+        // #define USE_LIGHT_CH6
+        // #define USR_LIGHT_CH7
+    #endif
+#endif
+
+/*
+ * user Distance collect
+*/
+#define USE_DISTANCE_C
+#if defined(USE_DISTANCE_C)
+
+    #define USE_DISTANCE_ADC
+    #if defined(USE_DISTANCE_ADC)
+        // #define USE_LIGHT_CH0
+        // #define USE_DISTANCE_CH1
+        #define USR_DISTANCE_CH2
+        // #define USE_DISTANCE_CH3
+        // #define USE_DISTANCE_CH4
+        // #define USR_DISTANCE_CH5
+        // #define USE_DISTANCE_CH6
+        // #define USR_DISTANCE_CH7
     #endif
 
-    /* defien sensor channel (is not ment adc channel)*/
-    #define USE_SOIL_CH0
-    // #define USE_SOIL_CH1
-    // #define USR_SOIL_CH2
-    // #define USE_SOIL_CH3
-    // #define USE_SOIL_CH4
-    // #define USR_SOIL_CH5
-    // #define USE_SOIL_CH6
-    // #define USR_SOIL_CH7
 #endif
+
+
 
 
 void Print_Log(void);

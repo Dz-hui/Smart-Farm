@@ -1,7 +1,7 @@
 /***********************************************************************
 *@Author: Dz_hui
 *@Date: 2021-05-01 19:03:18
-*@FilePath: ??¾¶·Ö¸ô???Ìæ??Smart-Farm??¾¶·Ö¸ô???Ìæ??GUI_APP??¾¶·Ö¸ô???Ìæ??lv_draw_about.c
+*@FilePath: ??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??Smart-Farm??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??GUI_APP??ï¿½ï¿½ï¿½Ö¸ï¿½???ï¿½ï¿½??lv_draw_about.c
 *@Drscription: 
 ***********************************************************************/
 #include "lv_draw_about.h"
@@ -30,13 +30,13 @@ void draw_about(void)
                                             about_obj.about_label_fw,
                                             ABOUT_LABEL_FW_X_POS,
                                             ABOUT_LABEL_FW_Y_POS,
-                                            "FW : V1.0");
+                                            "FW:V1.0");
 
     about_obj.about_label_author=lv_label_set(my_ui.home_buttom_gb_layer,
                                             about_obj.about_label_author,
                                             ABOUT_LABEL_AUTHOR_X_POS,
                                             ABOUT_LABEL_AUTHOR_Y_POS,
-                                            "Author : He Jiahui");
+                                            "Author:He Jiahui");
 
     about_obj.about_label_class=lv_label_set(my_ui.home_buttom_gb_layer,
                                             about_obj.about_label_class,
